@@ -22,6 +22,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-speeddating'
 
 
 call vundle#end()            " required
