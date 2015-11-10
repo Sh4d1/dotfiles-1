@@ -1,0 +1,20 @@
+
+- clean: ['~']
+
+- link:
+    ~/.vim: .vim/
+    ~/.mutt: .mutt/
+    ~/.vimrc: .vimrc
+    ~/.bashrc: .bashrc
+    ~/.bash_profile: .bash_profile
+    ~/.octaverc: .octaverc
+    ~/.gitconfig: gitconfig
+    ~/.inputrc: .inputrc
+    ~/.mbsyncrc: .mbsyncrc
+    ~/.muttrc: .muttrc
+    ~/.config/htop: 
+        create: true
+        path: .config/htop/
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
