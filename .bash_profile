@@ -4,6 +4,9 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+# simple stopwatch function
+function stopwatch(){ local tempdate=`date +%s`; while true; do echo -ne "$(date -u --date @$((`date +%s` - $tempdate)) +'   %H:%M:%S')\r"; sleep 0.2; done }; 
+
 
 export HISTFILESIZE=5000
 export HISTSIZE=5000

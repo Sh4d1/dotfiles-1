@@ -4,7 +4,7 @@
 - link:
     ~/.vim: .vim/
     ~/.mutt: .mutt/
-   # ~/.vimrc: .vimrc
+    ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
     ~/.octaverc: .octaverc
