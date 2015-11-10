@@ -8,6 +8,7 @@
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
     ~/.octaverc: .octaverc
+    ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
     ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
