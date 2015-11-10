@@ -14,11 +14,11 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 
-if [ "$(uname)" == "Darwin" ]; then
+if [ "$(uname -s)" == "Darwin" ]; then
     # Do something under OS X platform
     export PATH=$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin
 
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "$(uname -s)" == "Linux" ]; then
     # Do something under GNU/Linux platform
 
     # ruby gem path, and bin directory in my home dir
