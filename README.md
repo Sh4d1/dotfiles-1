@@ -5,7 +5,7 @@
 
 ## managed/installed using Dotbot
 
-- run `./install` from in repo to populate symlinks for dotfiles
+- run `./install -c <config file>` from in repo to populate symlinks for dotfiles (chose correct config file!)
 
 
 ## notes
