@@ -1,0 +1,20 @@
+
+- clean: ['~']
+
+- link:
+    ~/.vim: .vim/
+    ~/.mutt: .mutt/
+   # ~/.vimrc: .vimrc
+    ~/.bashrc: .bashrc
+    ~/.octaverc: .octaverc
+    ~/.inputrc: .inputrc
+    ~/.mbsyncrc: .mbsyncrc
+    ~/.muttrc: .muttrc
+    ~/.xinitrc: .xinitrc
+    ~/.Xresources: .Xresources
+    ~/.config/awesome: 
+		create: true
+		path: .config/awesome/
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

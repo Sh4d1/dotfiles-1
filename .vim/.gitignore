@@ -1,0 +1,8 @@
+
+spell/*
+
+.netrwhist
+
+bundle/*
+
+!/bundle/Vundle.vim/
