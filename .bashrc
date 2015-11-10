@@ -38,5 +38,3 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 
-# ruby gem path, and bin directory in my home dir
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"
