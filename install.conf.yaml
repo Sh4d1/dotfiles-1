@@ -26,6 +26,18 @@
     ~/.config/htop: 
         create: true
         path: .config/htop/
+    ~/.config/clipit: 
+        create: true
+        path: .config/clipit/
+    ~/.config/qutebrowser: 
+        create: true
+        path: .config/qutebrowser/
+    ~/.config/touchegg: 
+        create: true
+        path: .config/touchegg/
+    ~/.local/share/qutebrowser: 
+        create: true
+        path: .local/share/qutebrowser/
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
