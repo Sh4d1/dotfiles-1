@@ -35,6 +35,12 @@
     ~/.config/touchegg: 
         create: true
         path: .config/touchegg/
+    ~/.config/i3status: 
+        create: true
+        path: .config/i3status/
+    ~/.config/i3: 
+        create: true
+        path: .config/i3/
     ~/.local/share/qutebrowser: 
         create: true
         path: .local/share/qutebrowser/

@@ -1,0 +1,5 @@
+*
+!userscripts
+!userscripts/*
+!blocked-hosts
+!.gitignore
