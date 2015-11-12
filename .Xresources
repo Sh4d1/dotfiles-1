@@ -79,5 +79,6 @@
 
 Xft.hinting: 1
 Xft.hintstyle: hintslight
-Xft.antialias: 0
+Xft.antialias: 1
 Xft.dpi: 96
+

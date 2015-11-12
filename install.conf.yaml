@@ -41,6 +41,9 @@
     ~/.config/i3: 
         create: true
         path: .config/i3/
+    ~/.config/termite: 
+        create: true
+        path: .config/termite/
     ~/.local/share/qutebrowser: 
         create: true
         path: .local/share/qutebrowser/
