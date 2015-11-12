@@ -44,6 +44,9 @@
     ~/.config/termite: 
         create: true
         path: .config/termite/
+    ~/.config/dunst: 
+        create: true
+        path: .config/dunst/
     ~/.local/share/qutebrowser: 
         create: true
         path: .local/share/qutebrowser/

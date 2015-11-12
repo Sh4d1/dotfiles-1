@@ -225,6 +225,15 @@ exec --no-startup-id clipit
 # dropbox
 exec --no-startup-id dropbox
 
+# pulseaudio system tray icon
+exec --no-startup-id pasystray
+
+# notify daemon
+exec --no-startup-id dunst
+
+# startup kdeconnect (refresh on restart i3)
+exec_always --no-startup-id kdeconnect-cli --refresh
+
 # keyboard setup
 ## dvorak, composekey, swap caps and ctrl
 exec_always --no-startup-id setxkbmap -variant dvorak -option caps:ctrl_modifier -option compose:ralt
