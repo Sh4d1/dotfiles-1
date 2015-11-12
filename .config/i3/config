@@ -196,6 +196,10 @@ mode "$mode_system" {
 
 bindsym Mod4+Escape mode "$mode_system"
 
+for_window [class="Xfce4-appfinder"] floating enable
+
+bindsym Mod4+o exec xfce4-appfinder
+
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
 # keysym-based config which used their favorite modifier (alt or windows)
