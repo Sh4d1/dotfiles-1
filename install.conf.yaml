@@ -13,13 +13,12 @@
     ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
     ~/.xinitrc: .xinitrc
+    ~/.tmux.conf: .tmux.conf
+    ~/.dircolors.ansi-dark: .dircolors.ansi-dark
     ~/.Xresources: .Xresources
     ~/.config/awesome: 
         create: true
         path: .config/awesome/
-    ~/.config/lxterminal: 
-        create: true
-        path: .config/lxterminal/
     ~/.config/mpd: 
         create: true
         path: .config/mpd/
