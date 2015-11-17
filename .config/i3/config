@@ -231,6 +231,9 @@ exec --no-startup-id pasystray
 # notify daemon
 exec --no-startup-id dunst
 
+# music player
+exec --no-startup-id clementine
+
 # startup kdeconnect (refresh on restart i3)
 exec_always --no-startup-id kdeconnect-cli --refresh
 
