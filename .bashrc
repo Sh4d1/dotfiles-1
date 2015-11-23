@@ -8,9 +8,11 @@
 PS1='[\u@\h \W]\$ '
 
 export EDITOR="vim"
+export TERMINAL="termite"
 export BROWSER="qutebrowser"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
+export TERM=xterm-256color
 
 
 if [ "$(uname -s)" == "Darwin" ]; then
@@ -45,4 +47,6 @@ export HISTTIMEFORMAT="[%F %T] "
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTCONTROL=ignoreboth
 shopt -s histappend
+
+eval $(dircolors ~/.dircolors.ansi-dark)
 

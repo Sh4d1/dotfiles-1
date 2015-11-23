@@ -12,6 +12,8 @@
     ~/.inputrc: .inputrc
     ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
+    ~/.tmux.conf: .tmux.conf
+    ~/.dircolors.ansi-dark: .dircolors.ansi-dark
     ~/.config/htop: 
         create: true
         path: .config/htop/
