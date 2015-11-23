@@ -239,7 +239,7 @@ exec_always --no-startup-id kdeconnect-cli --refresh
 
 # keyboard setup
 ## dvorak, composekey, swap caps and ctrl
-exec_always --no-startup-id setxkbmap -variant dvorak -option caps:ctrl_modifier -option compose:ralt
+exec_always --no-startup-id setxkbmap us -variant dvorak -option caps:ctrl_modifier -option compose:ralt
 ## speed up keyrepeat
 exec_always --no-startup-id xset r rate 175 80
 ## double up on capslock key (now acts as either esc or ctrl)
