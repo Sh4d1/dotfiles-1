@@ -17,7 +17,7 @@ export TERM=xterm-256color
 
 if [ "$(uname -s)" == "Darwin" ]; then
     # Do something under OS X platform
-    export PATH=$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin
+    export PATH="/usr/local/bin:$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
     alias rm='rm -i'
     alias octave='PATH=/usr/local/octave/3.8.0/bin:/usr/local/octave/3.8.0/sbin:${PATH}  octave'
     # set up homebrew cask for global install
