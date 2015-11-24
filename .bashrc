@@ -30,6 +30,8 @@ elif [ "$(uname -s)" == "Linux" ]; then
     alias ls='ls --color=auto'
     alias rm='rm -I'
 
+    eval $(dircolors ~/.dircolors.ansi-dark)
+
     # ruby gem path, and bin directory in my home dir
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"
 
@@ -48,5 +50,4 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 
-eval $(dircolors ~/.dircolors.ansi-dark)
 
