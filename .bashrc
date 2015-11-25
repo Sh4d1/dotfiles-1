@@ -21,7 +21,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
     alias rm='rm -i'
     alias octave='PATH=/usr/local/octave/3.8.0/bin:/usr/local/octave/3.8.0/sbin:${PATH}  octave'
     # set up homebrew cask for global install
-    export HOMEBREW_CASK_OPTS="--appdir=/Applications --prefpanedir=/Library/PreferencePanes --qlplugindir=/Library/QuickLook --widgetdir="/Library/Widgets" --fontdir=/Library/Fonts --input_methoddir=/Library/Input\ Methods --screen_saverdir=/Library/Screen\ Savers"
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications --prefpanedir=/Library/PreferencePanes --qlplugindir=/Library/QuickLook --fontdir=/Library/Fonts --input_methoddir=/Library/Input\ Methods --screen_saverdir=/Library/Screen\ Savers"
+    alias vim='vi'
      
 
 elif [ "$(uname -s)" == "Linux" ]; then
