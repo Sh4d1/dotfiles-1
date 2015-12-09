@@ -12,7 +12,7 @@ export TERMINAL="termite"
 export BROWSER="qutebrowser"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
-export TERM=xterm-256color
+export TERM=screen-256color
 
 
 if [ "$(uname -s)" == "Darwin" ]; then
