@@ -234,7 +234,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 
 # dropbox
-exec --no-startup-id dropbox
+#exec --no-startup-id dropbox
 
 # syncthing systray icon
 #exec --no-startup-id syncthing-gtk -m
