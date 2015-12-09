@@ -200,6 +200,17 @@ for_window [class="Xfce4-appfinder"] floating enable
 
 bindsym Mod4+o exec xfce4-appfinder
 
+workspace 1 output HDMI1
+workspace 2 output HDMI1
+workspace 3 output HDMI1
+workspace 4 output HDMI1
+workspace 5 output HDMI1
+workspace 6 output VGA1
+workspace 7 output VGA1
+workspace 8 output VGA1
+workspace 9 output VGA1
+workspace 10 output VGA1
+
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
 # keysym-based config which used their favorite modifier (alt or windows)
@@ -223,7 +234,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 
 # dropbox
-#exec --no-startup-id dropbox
+exec --no-startup-id dropbox
+
+# syncthing systray icon
+#exec --no-startup-id syncthing-gtk -m
 
 # pulseaudio system tray icon
 exec --no-startup-id pasystray
