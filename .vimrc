@@ -36,6 +36,9 @@ set secure
 "so don't lose undo history when switching buffers
 set hidden
 
+"allow backspace over indents, etc.
+set backspace=indent,eol,start
+
 "the map leader key
 let mapleader = ","
 
