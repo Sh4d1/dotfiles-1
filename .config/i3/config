@@ -257,7 +257,7 @@ exec_always --no-startup-id setxkbmap us -variant dvorak -option caps:ctrl_modif
 ## speed up keyrepeat
 exec_always --no-startup-id xset r rate 175 80
 ## double up on capslock key (now acts as either esc or ctrl)
-exec_always --no-startup-id xcape -e 'Caps_Lock=Escape' -t 300
+exec --no-startup-id xcape -e 'Caps_Lock=Escape' -t 300
 ## turn on numberlock
 exec_always --no-startup-id sleep 3 && numlockx
 
