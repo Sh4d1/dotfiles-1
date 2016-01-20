@@ -6,28 +6,21 @@
 
 "doesn't have to be
 set nocompatible
-filetype off "needed for vundle
+filetype plugin indent on 
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
 
-call vundle#begin()
+Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ctrlpvim/ctrlp.vim'
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Add plugins to &runtimepath
+call plug#end()
 
-" put all vundle plugins here
-" and before vundle end
-
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-speeddating'
-
-
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 "for local .vimrc
 set exrc
@@ -35,6 +28,9 @@ set secure
 
 "so don't lose undo history when switching buffers
 set hidden
+
+"allow backspace over indents, etc.
+set backspace=indent,eol,start
 
 "the map leader key
 let mapleader = ","
@@ -59,6 +55,7 @@ set ruler
 set history=1000
 set undolevels=2000
 
+"proper encryption
 set cm=blowfish2
 
 "less hitting the shift key
@@ -92,19 +89,12 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
-"tagbar activation
-"nmap <F8> :TagbarToggle<CR>
-"for vala support:
-"let g:tagbar_ctags_bin = "anjuta-tags"
-
+"spell checking
 set spelllang=en_au
 set nospell
 nmap <silent> <leader>s :set spell!<CR>
-
 " for quick fix word spelling
 nmap <leader>f 1z=
-
-
 
 " control space style completion
 if has("gui_running")
