@@ -12,11 +12,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
 "Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lervag/vimtex'
+Plug 'machakann/vim-sandwich'
+Plug 'tomtom/tcomment_vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -34,6 +37,7 @@ set backspace=indent,eol,start
 
 "the map leader key
 let mapleader = ","
+let maplocalleader = ","
 
 set incsearch
 set hlsearch
@@ -115,4 +119,6 @@ let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
 
 " insert current iso date
 inoremap <leader>d <C-R>=strftime('%F')<CR>
+
+let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 
