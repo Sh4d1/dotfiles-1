@@ -130,8 +130,9 @@ set background=dark
 colorscheme solarized
 
 
-set visualbell
-set noerrorbells
+"messes up terminal?!?
+" set visualbell
+" set noerrorbells
 
 " less 'press ... to continue'
 set shortmess=atI
