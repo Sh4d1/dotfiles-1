@@ -1,12 +1,17 @@
+" inspiration for some parts found at: 
+"  - http://items.sjbach.com/319/configuring-vim-right
+"  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
+"  - and others...
 
 " saves and auto loads last view of page - buggy
 "au BufWinLeave ?* mkview
 "au BufWinEnter ?* silent loadview
 
 
-"doesn't have to be
+"doesn't have to be compatible
 set nocompatible
-filetype plugin indent on 
+set encoding=utf-8
+filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
@@ -20,17 +25,45 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lervag/vimtex'
 Plug 'machakann/vim-sandwich'
 Plug 'tomtom/tcomment_vim'
+Plug 'luochen1990/rainbow'
 
 " Add plugins to &runtimepath
 call plug#end()
 
+" better % navigation
+runtime macros/matchit.vim
+
+" better searching
+set ignorecase
+set smartcase
 
 "for local .vimrc
 set exrc
 set secure
 
+" Buffer management
+nmap <C-h> :bp<CR>
+nmap <C-l> :bn<CR>
+
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+set title
+
 "so don't lose undo history when switching buffers
 set hidden
+
+set scrolloff=3
+set sidescrolloff=3
+
+" Indentation
+set autoindent
+set expandtab
+set smarttab
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+
 
 "allow backspace over indents, etc.
 set backspace=indent,eol,start
@@ -41,7 +74,17 @@ let maplocalleader = ","
 
 set incsearch
 set hlsearch
-set title
+set bs=2 " backspace stuff
+
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
+set wildignore+=ve/**,ve-*/**                    " virtualenv folders
+set wildignore+=__pycache__                      " Python 3
+set wildignore+=.*.sw[opq]                       " vim swap files
+set wildmenu
+" set wildmode=list:longest
 
 "set syntax highlighting on
 syntax on
@@ -58,6 +101,13 @@ set ruler
 "more history and undolevels
 set history=1000
 set undolevels=2000
+
+" hide highlighting from search
+nmap <silent> <leader>n :silent :nohlsearch<CR>
+
+" show/hide whitespace
+set listchars=tab:>-,trail:·,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
 
 "proper encryption
 set cm=blowfish2
@@ -79,14 +129,12 @@ hi Normal ctermbg=NONE
 set background=dark
 colorscheme solarized
 
-"autoindenting
-set autoindent
-set smartindent
 
-" tabs and spacing
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set visualbell
+set noerrorbells
+
+" less 'press ... to continue'
+set shortmess=atI
 
 "toggle paste mode in terminal (avoiding autoindent over pasted text)
 nnoremap <F2> :set invpaste paste?<CR>
@@ -96,7 +144,7 @@ set showmode
 "spell checking
 set spelllang=en_au
 set nospell
-nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>p :set spell!<CR>
 " for quick fix word spelling
 nmap <leader>f 1z=
 
@@ -121,4 +169,37 @@ let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
 inoremap <leader>d <C-R>=strftime('%F')<CR>
 
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
+
+" rainbow plugin
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
+
+" Ctrl-P
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|ve$\|ve-\|doc/html',
+  \ 'file': '\.o$\|\.so$\|\.dll$',
+  \ }
+let g:ctrlp_use_caching = 0
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']  " Make Ctrl-P plugin a lot faster for Git projects
 
