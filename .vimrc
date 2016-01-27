@@ -1,23 +1,68 @@
+" Samuel Walladge's vimrc
 " inspiration for some parts found at: 
 "  - http://items.sjbach.com/319/configuring-vim-right
 "  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
 "  - and others...
 
-" saves and auto loads last view of page - buggy
-"au BufWinLeave ?* mkview
-"au BufWinEnter ?* silent loadview
+"" Settings
 
-
-"doesn't have to be compatible
-set nocompatible
-set encoding=utf-8
+set nocompatible " doesn't have to be compatible
+set encoding=utf-8 " good default
 filetype plugin indent on
+syntax on "set syntax highlighting on
+set exrc " for local .vimrc
+set secure
+set title
+set hidden "so don't lose undo history when switching buffers
+set scrolloff=3 " see more lines on scrolling
+set sidescrolloff=3
+set autoindent
+set expandtab
+set smarttab
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+set ignorecase " better searching
+set smartcase
+set incsearch
+set hlsearch
+set bs=2 " backspace stuff
+set backspace=indent,eol,start " allow backspace over indents, etc.
+set number " turn on line numbering
+set ruler " cursor position info
+set history=1000    " more history
+set undolevels=2000 " and undolevels
+set cm=blowfish2 " proper encryption
+set listchars=tab:>-,trail:·,eol:$ " for graphically displaying whitespace
+set wildmenu
+set shortmess=atI " less 'press ... to continue'
+set showmode
+" set wildmode=list:longest| " no, i like the vim way
+set nospell " spellchecking off by default
+set spelllang=en_au " correct language
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
+set wildignore+=ve/**,ve-*/**                    " virtualenv folders
+set wildignore+=__pycache__                      " Python 3
+set wildignore+=.*.sw[opq]                       " vim swap files
+
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
+hi Normal ctermbg=NONE| "to keep transparent background
+
+let mapleader = ","      " the map leader key
+let maplocalleader = ","
+
+" better % navigation
+runtime macros/matchit.vim
+
+
+"" Load plugins with vim-plug
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
-"Plug 'scrooloose/nerdtree'
-"Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'altercation/vim-colors-solarized'
@@ -26,129 +71,31 @@ Plug 'lervag/vimtex'
 Plug 'machakann/vim-sandwich'
 Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
+"Plug 'scrooloose/nerdtree'
+"Plug 'tpope/vim-surround'
 
-" Add plugins to &runtimepath
-call plug#end()
-
-" better % navigation
-runtime macros/matchit.vim
-
-" better searching
-set ignorecase
-set smartcase
-
-"for local .vimrc
-set exrc
-set secure
-
-" Buffer management
-nmap <C-h> :bp<CR>
-nmap <C-l> :bn<CR>
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-set title
-
-"so don't lose undo history when switching buffers
-set hidden
-
-set scrolloff=3
-set sidescrolloff=3
-
-" Indentation
-set autoindent
-set expandtab
-set smarttab
-set softtabstop=2
-set shiftwidth=2
-set tabstop=2
+call plug#end() " add plugins to &runtimepath
 
 
-"allow backspace over indents, etc.
-set backspace=indent,eol,start
+"" Keymappings
 
-"the map leader key
-let mapleader = ","
-let maplocalleader = ","
-
-set incsearch
-set hlsearch
-set bs=2 " backspace stuff
-
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
-set wildignore+=ve/**,ve-*/**                    " virtualenv folders
-set wildignore+=__pycache__                      " Python 3
-set wildignore+=.*.sw[opq]                       " vim swap files
-set wildmenu
-" set wildmode=list:longest
-
-"set syntax highlighting on
-syntax on
-
-"shift tab to insert real tab
-inoremap <S-Tab> <C-V><Tab>
-
-"turn on line numbering
-set number
-
-"cursor position info
-set ruler
-
-"more history and undolevels
-set history=1000
-set undolevels=2000
-
-" hide highlighting from search
-nmap <silent> <leader>n :silent :nohlsearch<CR>
-
-" show/hide whitespace
-set listchars=tab:>-,trail:·,eol:$
-nmap <silent> <leader>s :set nolist!<CR>
-
-"proper encryption
-set cm=blowfish2
-
-"less hitting the shift key
-"nmap ; :
-
-"easy access to beginning and end of line
-noremap - $
-noremap _ ^
-"for scrolling one screen line at a time
-noremap k gk
-noremap j gj
-
-"to keep transparent background
-hi Normal ctermbg=NONE
-
-"colorscheme
-set background=dark
-colorscheme solarized
-
-
-set visualbell
-set noerrorbells
-
-" less 'press ... to continue'
-set shortmess=atI
-
-"toggle paste mode in terminal (avoiding autoindent over pasted text)
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-set showmode
-
-"spell checking
-set spelllang=en_au
-set nospell
+nmap <C-h> :bp<CR>| " Buffer management
+nmap <C-l> :bn<CR>| " - easy move through buffers
+inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
+inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
+cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
+nmap <silent> <leader>n :silent :nohlsearch<CR>| " hide highlighting from search
+nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
+noremap - $|  " easy access to beginning and end of line
+noremap _ ^|  " ||
+noremap k gk| " for scrolling one screen line at a time
+noremap j gj| " ||
+nnoremap <F2> :set invpaste paste?<CR>| "toggle paste mode in terminal (avoiding autoindent over pasted text)
+set pastetoggle=<F2>| " needed to get out of paste mode
 nmap <silent> <leader>p :set spell!<CR>
-" for quick fix word spelling
-nmap <leader>f 1z=
+nmap <leader>f 1z=| " for quick fix word spelling
 
-" control space style completion
+" control space style completion - TODO: better completion shortcuts
 if has("gui_running")
     " C-Space seems to work under gVim on both Linux and win32
     inoremap <C-Space> <C-n>
@@ -156,21 +103,23 @@ else " no gui
     inoremap <Nul> <C-n>
 endif
 
-" save even if opened in readonly
-cmap w!! w !sudo tee % >/dev/null
 
-" syntastic stuff
+"" Plugins options
+
+" solarized
+set background=dark
+colorscheme solarized
+
+" syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
-"let g:syntastic_cpp_compiler = 'g++'
+" let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
 
-" insert current iso date
-inoremap <leader>d <C-R>=strftime('%F')<CR>
-
+" vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 
-" rainbow plugin
+" rainbow 
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
     \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -195,7 +144,7 @@ let g:rainbow_conf = {
     \   }
     \}
 
-" Ctrl-P
+" ctrlp
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|ve$\|ve-\|doc/html',
   \ 'file': '\.o$\|\.so$\|\.dll$',
