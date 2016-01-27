@@ -10,7 +10,6 @@
 
 ## notes
 
-- Vundle is a submodule and should be updated along with the dotbot submodule before doing stuff
 
 
 ## dependencies
@@ -22,4 +21,4 @@
 
 ## post install tasks
 
-- run `:VundleInstall` in vim to install bundled plugins
+- run `:PlugInstall` in vim to install plugins
