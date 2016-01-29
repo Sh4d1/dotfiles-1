@@ -47,6 +47,7 @@ set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
 set wildignore+=ve/**,ve-*/**                    " virtualenv folders
 set wildignore+=__pycache__                      " Python 3
 set wildignore+=.*.sw[opq]                       " vim swap files
+set virtualedit=block
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
 hi Normal ctermbg=NONE| "to keep transparent background
