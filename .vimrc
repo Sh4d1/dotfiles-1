@@ -71,6 +71,7 @@ Plug 'lervag/vimtex'
 Plug 'machakann/vim-sandwich'
 Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
+Plug 'danro/rename.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-surround'
 
@@ -90,10 +91,11 @@ noremap - $|  " easy access to beginning and end of line
 noremap _ ^|  " ||
 noremap k gk| " for scrolling one screen line at a time
 noremap j gj| " ||
-nnoremap <F2> :set invpaste paste?<CR>| "toggle paste mode in terminal (avoiding autoindent over pasted text)
-set pastetoggle=<F2>| " needed to get out of paste mode
+nnoremap <F3> :set invpaste paste?<CR>| "toggle paste mode in terminal (avoiding autoindent over pasted text)
+set pastetoggle=<F3>| " needed to get out of paste mode
 nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
+nnoremap <F2> :Rename | " quick rename current file
 
 " control space style completion - TODO: better completion shortcuts
 if has("gui_running")
@@ -149,6 +151,4 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|ve$\|ve-\|doc/html',
   \ 'file': '\.o$\|\.so$\|\.dll$',
   \ }
-let g:ctrlp_use_caching = 0
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']  " Make Ctrl-P plugin a lot faster for Git projects
 
