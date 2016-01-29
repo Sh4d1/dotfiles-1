@@ -35,7 +35,7 @@ set undolevels=2000 " and undolevels
 set cm=blowfish2 " proper encryption
 set listchars=tab:>-,trail:·,eol:$ " for graphically displaying whitespace
 set wildmenu
-set shortmess=atI " less 'press ... to continue'
+set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
 " set wildmode=list:longest| " no, i like the vim way
 set nospell " spellchecking off by default
