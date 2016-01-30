@@ -47,7 +47,8 @@ export HISTSIZE=5000
 export HISTTIMEFORMAT="[%F %T] "
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# fixed according to https://savannah.gnu.org/patch/index.php?8676#history
+# PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 
