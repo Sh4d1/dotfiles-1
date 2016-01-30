@@ -153,3 +153,38 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.o$\|\.so$\|\.dll$',
   \ }
 
+" vim-sandwich
+let g:sandwich#recipes = []
+let g:sandwich#recipes += [
+      \   {
+      \     'buns'    : ['TagInput(1)', 'TagInput(0)'],
+      \     'expr'    : 1,
+      \     'filetype': ['html'],
+      \     'kind'    : ['add', 'replace'],
+      \     'action'  : ['add'],
+      \     'input'   : ['t'],
+      \   },
+      \ ]
+
+function! TagInput(is_head) abort
+  if a:is_head
+    let s:TagLast = input('Tag: ')
+    if s:TagLast !=# ''
+      let tag = printf('<%s>', s:TagLast)
+    else
+      throw 'OperatorSandwichCancel'
+    endif
+  else
+    let tag = printf('</%s>', matchstr(s:TagLast, '^\a[^[:blank:]>/]*'))
+  endif
+  return tag
+endfunction
+
+let g:sandwich#recipes += [
+      \   {
+      \     'external': ['it', 'at'],
+      \     'noremap' : 1,
+      \     'filetype': ['html'],
+      \     'input'   : ['t'],
+      \   },
+      \ ]
