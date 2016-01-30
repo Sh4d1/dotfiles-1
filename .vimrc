@@ -98,6 +98,10 @@ nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
 
+" shortcut to system clipboard
+vnoremap + "+
+noremap + "+
+
 " control space style completion - TODO: better completion shortcuts
 if has("gui_running")
     " C-Space seems to work under gVim on both Linux and win32
