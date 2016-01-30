@@ -47,6 +47,7 @@ set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
 set wildignore+=ve/**,ve-*/**                    " virtualenv folders
 set wildignore+=__pycache__                      " Python 3
 set wildignore+=.*.sw[opq]                       " vim swap files
+set wildignore+=_site                            " jekyll site directory
 set virtualedit=block
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
@@ -156,9 +157,10 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|ve$\|ve-\|doc/html',
   \ 'file': '\.o$\|\.so$\|\.dll$',
   \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']  " Make Ctrl-P plugin a lot faster for Git projects
 
 " vim-sandwich
-let g:sandwich#recipes = []
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
       \   {
       \     'buns'    : ['TagInput(1)', 'TagInput(0)'],
@@ -192,3 +194,4 @@ let g:sandwich#recipes += [
       \     'input'   : ['t'],
       \   },
       \ ]
+
