@@ -107,8 +107,10 @@ noremap + "+
 if has("gui_running")
     " C-Space seems to work under gVim on both Linux and win32
     inoremap <C-Space> <C-n>
+    nmap <C-Space> <C-p>
 else " no gui
     inoremap <Nul> <C-n>
+    nmap <Nul> <C-p>
 endif
 
 
