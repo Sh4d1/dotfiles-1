@@ -2,4 +2,4 @@
 .netrwhist
 .vim/plugged/
 .DS_Store
-
+.mutt/temp
