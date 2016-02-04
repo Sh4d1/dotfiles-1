@@ -10,6 +10,7 @@
     ~/.octaverc: .octaverc
     ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
+    ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
     ~/.tmux.conf: .tmux.conf

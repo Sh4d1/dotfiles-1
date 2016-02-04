@@ -1,0 +1,6 @@
+[settings]
+file = ~/Documents/Todo/todo.txt
+archive = ~/Documents/Todo/done.txt
+colorscheme = solarized-dark
+show-filter-panel = True
+auto-save = True
