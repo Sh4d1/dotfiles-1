@@ -31,6 +31,7 @@ elif [ "$(uname -s)" == "Linux" ]; then
 
     alias ls='ls --color=auto'
     alias rm='rm -I'
+    alias td='todotxt-machine'
 
     eval $(dircolors ~/.dircolors.ansi-dark)
 
