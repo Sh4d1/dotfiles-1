@@ -16,6 +16,8 @@ export TERM=screen-256color
 export MAIL=~/Maildir
 
 
+alias td='todotxt-machine'
+
 if [ "$(uname -s)" == "Darwin" ]; then
     # Do something under OS X platform
     export PATH="/usr/local/bin:$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
@@ -31,7 +33,6 @@ elif [ "$(uname -s)" == "Linux" ]; then
 
     alias ls='ls --color=auto'
     alias rm='rm -I'
-    alias td='todotxt-machine'
 
     eval $(dircolors ~/.dircolors.ansi-dark)
 
