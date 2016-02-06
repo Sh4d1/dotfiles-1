@@ -35,7 +35,7 @@ set $right l
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec i3-sensible-terminal
+bindsym Mod4+Return exec termite
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -167,17 +167,14 @@ bar {
     status_command i3status
         tray_output primary
         position top
-        output LVDS1
-        output HDMI1
 }
 
-bar {
-    status_command i3status --config ~/.config/i3status/config-secondary
-        tray_output primary
-        position top
-        output VGA1
-}
 
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id  pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id  pulseaudio-ctl mute
 
 set $Locker i3lock -c 000000 -f && sleep 1
 
@@ -200,16 +197,16 @@ for_window [class="Xfce4-appfinder"] floating enable
 
 bindsym Mod4+o exec xfce4-appfinder
 
-workspace 1 output HDMI1
-workspace 2 output HDMI1
-workspace 3 output HDMI1
-workspace 4 output HDMI1
-workspace 5 output HDMI1
-workspace 6 output VGA1
-workspace 7 output VGA1
-workspace 8 output VGA1
-workspace 9 output VGA1
-workspace 10 output VGA1
+# workspace 1 output HDMI1
+# workspace 2 output HDMI1
+# workspace 3 output HDMI1
+# workspace 4 output HDMI1
+# workspace 5 output HDMI1
+# workspace 6 output VGA1
+# workspace 7 output VGA1
+# workspace 8 output VGA1
+# workspace 9 output VGA1
+# workspace 10 output VGA1
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
@@ -240,7 +237,7 @@ exec --no-startup-id clipit
 #exec --no-startup-id syncthing-gtk -m
 
 # pulseaudio system tray icon
-exec --no-startup-id pasystray
+# exec --no-startup-id pasystray
 
 # notify daemon
 exec --no-startup-id dunst

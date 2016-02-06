@@ -26,9 +26,8 @@ export SSH_AUTH_SOCK
 # sound
 #start-pulseaudio-x11
 
-# set up multihead
-xrandr --output HDMI1 --auto --pos 0x0 --output VGA1 --auto --pos 1920x180
-xrandr --output HDMI1 --primary
+xrandr --dpi 192
+xrandr --output eDP1 --primary
 
 
 exec i3
