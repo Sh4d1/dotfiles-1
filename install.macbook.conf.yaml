@@ -1,0 +1,55 @@
+
+- clean: ['~']
+
+- link:
+    ~/.vim: .vim/
+    ~/.mutt: .mutt/
+    ~/.vimrc: .vimrc
+    ~/.bashrc: .bashrc
+    ~/.bash_profile: .bash_profile
+    ~/.octaverc: .octaverc
+    ~/.gitconfig: gitconfig
+    ~/.inputrc: .inputrc
+    ~/.mbsyncrc: .mbsyncrc
+    ~/.muttrc: .muttrc
+    ~/.xinitrc: macbook/.xinitrc
+    ~/.todotxt-machinerc: .todotxt-machinerc
+    ~/.tmux.conf: .tmux.conf
+    ~/.dircolors.ansi-dark: .dircolors.ansi-dark
+    ~/.Xresources: macbook/.Xresources
+    ~/.config/awesome: 
+        create: true
+        path: .config/awesome/
+    ~/.config/mpd: 
+        create: true
+        path: .config/mpd/
+    ~/.config/htop: 
+        create: true
+        path: .config/htop/
+    ~/.config/clipit: 
+        create: true
+        path: .config/clipit/
+    ~/.config/qutebrowser: 
+        create: true
+        path: .config/qutebrowser/
+    ~/.config/touchegg: 
+        create: true
+        path: .config/touchegg/
+    ~/.config/i3status: 
+        create: true
+        path: macbook/.config/i3status/
+    ~/.config/i3: 
+        create: true
+        path: macbook/.config/i3/
+    ~/.config/termite: 
+        create: true
+        path: .config/termite/
+    ~/.config/dunst: 
+        create: true
+        path: macbook/.config/dunst/
+    ~/.local/share/qutebrowser: 
+        create: true
+        path: macbook/.local/share/qutebrowser/
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
