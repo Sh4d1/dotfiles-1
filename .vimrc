@@ -74,6 +74,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
 Plug 'danro/rename.vim'
+Plug 'ap/vim-css-color'
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-surround'
 
