@@ -13,6 +13,7 @@
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
+    ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
     ~/.dircolors.ansi-dark: .dircolors.ansi-dark
     ~/.config/htop: 
