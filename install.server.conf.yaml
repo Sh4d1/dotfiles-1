@@ -3,7 +3,6 @@
 
 - link:
     ~/.vim: .vim/
-    ~/.mutt: .mutt/
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
@@ -11,7 +10,6 @@
     ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
     ~/.todotxt-machinerc: .todotxt-machinerc
-    ~/.muttrc: .muttrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
     ~/.dircolors.ansi-dark: .dircolors.ansi-dark

@@ -3,14 +3,12 @@
 
 - link:
     ~/.vim: .vim/
-    ~/.mutt: .mutt/
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
     ~/.octaverc: .octaverc
     ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
-    ~/.muttrc: .muttrc
     ~/.xinitrc: macbook/.xinitrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
