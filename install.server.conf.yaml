@@ -7,7 +7,6 @@
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
     ~/.octaverc: .octaverc
-    ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.todotxt-machinerc: .todotxt-machinerc
