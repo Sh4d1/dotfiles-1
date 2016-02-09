@@ -10,7 +10,6 @@
     ~/.octaverc: .octaverc
     ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
-    ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
     ~/.xinitrc: .xinitrc
     ~/.todotxt-machinerc: .todotxt-machinerc

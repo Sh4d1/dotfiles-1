@@ -11,7 +11,6 @@
     ~/.gitconfig: gitconfig
     ~/.inputrc: .inputrc
     ~/.todotxt-machinerc: .todotxt-machinerc
-    ~/.mbsyncrc: .mbsyncrc
     ~/.muttrc: .muttrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
