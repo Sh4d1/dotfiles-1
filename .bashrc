@@ -56,3 +56,5 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 
 
+[[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
+
