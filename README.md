@@ -17,7 +17,7 @@ dotfiles are managed and installed with [dotbot](https://github.com/anishathalye
 ### dependencies
 
 - ruby
-- vim
+- vim (or gvim on archlinux for system clipboard support)
 - python (preferably version 3)
 
 
