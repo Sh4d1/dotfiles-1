@@ -11,7 +11,6 @@
     ~/.xinitrc: macbook/.xinitrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
-    ~/.dircolors.ansi-dark: .dircolors.ansi-dark
     ~/.Xresources: macbook/.Xresources
     ~/.config/awesome: 
         create: true

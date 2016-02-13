@@ -120,6 +120,7 @@ endif
 
 " solarized
 set background=dark
+" let g:solarized_contrast = "high"
 colorscheme solarized
 
 " syntastic
