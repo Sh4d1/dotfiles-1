@@ -6,6 +6,7 @@
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
+    ~/.zprofile: .zprofile
     ~/.zshrc: .zshrc
     ~/.zshenv: .zshenv
     ~/.octaverc: .octaverc
