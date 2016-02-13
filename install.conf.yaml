@@ -13,7 +13,6 @@
     ~/.xinitrc: .xinitrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
-    ~/.dircolors.ansi-dark: .dircolors.ansi-dark
     ~/.Xresources: .Xresources
     ~/.config/awesome: 
         create: true

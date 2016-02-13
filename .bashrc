@@ -31,10 +31,12 @@ if [ "$(uname -s)" == "Darwin" ]; then
 elif [ "$(uname -s)" == "Linux" ]; then
     # Do something under GNU/Linux platform
 
+
     alias ls='ls --color=auto'
     alias rm='rm -I'
 
-    eval $(dircolors ~/.dircolors.ansi-dark)
+    # bug fixed in coreutils - no longer needed for termite!
+    # eval $(dircolors ~/.dircolors.ansi-dark)
 
     # ruby gem path, and bin directory in my home dir
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"
