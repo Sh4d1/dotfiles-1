@@ -5,6 +5,8 @@
     ~/.vim: .vim/
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
+    ~/.zshrc: .zshrc
+    ~/.zshenv: .zshenv
     ~/.bash_profile: .bash_profile
     ~/.octaverc: .octaverc
     ~/.inputrc: .inputrc

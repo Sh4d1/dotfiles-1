@@ -6,6 +6,8 @@
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
+    ~/.zshrc: .zshrc
+    ~/.zshenv: .zshenv
     ~/.octaverc: .octaverc
     ~/.inputrc: .inputrc
     ~/.todotxt-machinerc: .todotxt-machinerc
