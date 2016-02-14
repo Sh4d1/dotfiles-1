@@ -1,13 +1,21 @@
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  REMOTE_SESSION=true
+  export REMOTE_SESSION=true
 # else
 #   case $(ps -o comm= -p $PPID) in
 #     sshd|*/sshd|mosh-session) REMOTE_SESSION=true;;
 #   esac
 fi
 
-if [ -n "$REMOTE_SESSION" ]; then
-  # BULLETTRAIN_CONTEXT_SHOW=true
-  # BULLETTRAIN_IS_SSH_CLIENT=true
-  BULLETTRAIN_CUSTOM_MSG="\u26a1 $(hostname)" 
-fi
+
+export EDITOR="vim"
+export VISUAL="vim"
+export TERMINAL="termite"
+export BROWSER="qutebrowser"
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+export JAVA_FONTS=/usr/share/fonts/TTF
+export MAIL=~/Maildir
+
+
+
+
+
