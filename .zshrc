@@ -78,6 +78,14 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 
 
+# so backspace still works
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
+# delete actually deletes
+bindkey    "^[[3~"          delete-char
+bindkey    "^[3;5~"         delete-char
+
 # so terminal not messed up after program crashed
 ttyctl -f
 
