@@ -78,6 +78,14 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 
 
+# so backspace still works
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
+# delete actually deletes
+bindkey    "^[[3~"          delete-char
+bindkey    "^[3;5~"         delete-char
+
 # so terminal not messed up after program crashed
 ttyctl -f
 
@@ -86,6 +94,8 @@ alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
 
+# shortcuts to force password auth (avoid too many auth attempts error)
+alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
+alias sshp='ssh -o PubkeyAuthentication=no'
 
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
-
