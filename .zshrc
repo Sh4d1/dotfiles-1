@@ -85,3 +85,7 @@ ttyctl -f
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
+
+
+[[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
+
