@@ -93,6 +93,7 @@ ttyctl -f
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
+alias  c=z
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
