@@ -102,3 +102,7 @@ alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
 alias sshp='ssh -o PubkeyAuthentication=no'
 
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
+
+# lets start the shell cleanly
+true
+

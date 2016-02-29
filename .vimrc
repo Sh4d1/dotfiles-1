@@ -191,6 +191,32 @@ function! TagInput(is_head) abort
   return tag
 endfunction
 
+
+let g:sandwich#recipes += [
+      \   {
+      \     'buns'    : ['LatexTagInput(1)', 'LatexTagInput(0)'],
+      \     'expr'    : 1,
+      \     'filetype': ['plaintex'],
+      \     'kind'    : ['add', 'replace'],
+      \     'action'  : ['add'],
+      \     'input'   : ['t'],
+      \   },
+      \ ]
+
+function! LatexTagInput(is_head) abort
+  if a:is_head
+    let s:TagLast = input('Tag: ')
+    if s:TagLast !=# ''
+      let tag = printf('\%s{', s:TagLast)
+    else
+      throw 'OperatorSandwichCancel'
+    endif
+  else
+    let tag = '}'
+  endif
+  return tag
+endfunction
+
 let g:sandwich#recipes += [
       \   {
       \     'external': ['it', 'at'],
