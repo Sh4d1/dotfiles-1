@@ -45,9 +45,9 @@
     ~/.config/dunst: 
         create: true
         path: .config/dunst/
-    ~/.local/share/qutebrowser: 
+    ~/.local/share/qutebrowser/userscripts:
         create: true
-        path: .local/share/qutebrowser/
+        path: qutebrowser-userscripts/
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
