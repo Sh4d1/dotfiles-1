@@ -12,6 +12,10 @@ BULLETTRAIN_DIR_EXTENDED=0
 BULLETTRAIN_VIRTUALENV_PREFIX=""
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 
+export PKGDEST=~/aur/packages
+export SRCDEST=~/aur/sources
+export AURDEST=~/aur/pkgbuilds
+
 # load zgen
 source "${HOME}/dotfiles/zgen/zgen.zsh"
 
