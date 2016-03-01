@@ -50,6 +50,9 @@ set wildignore+=.*.sw[opq]                       " vim swap files
 set wildignore+=_site                            " jekyll site directory
 set virtualedit=block
 
+set backupdir=~/.vimbackup
+set directory=~/.vimbackup
+
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
 hi Normal ctermbg=NONE| "to keep transparent background
 
