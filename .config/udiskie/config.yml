@@ -6,5 +6,5 @@ program_options:
   tray: auto
   automount: false
   notify: true
-  file_manager: xdg-open
+  file_manager: rifle
 
