@@ -17,6 +17,18 @@
     ~/.config/htop: 
         create: true
         path: .config/htop/
+    ~/.config/ranger/rc.conf:
+        path: .config/ranger/rc.conf
+        create: true
+    ~/.config/ranger/rifle.conf:
+        path: .config/ranger/rifle.conf
+        create: true
+    ~/.config/ranger/scope.sh:
+        path: .config/ranger/scope.sh
+        create: true
+    ~/.config/ranger/commands.py:
+        path: .config/ranger/commands.py
+        create: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
