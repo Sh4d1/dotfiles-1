@@ -45,6 +45,9 @@
     ~/.config/dunst: 
         create: true
         path: macbook/.config/dunst/
+    ~/.config/udiskie: 
+        create: true
+        path: .config/udiskie/
     ~/.local/share/qutebrowser/userscripts:
         create: true
         path: qutebrowser-userscripts/

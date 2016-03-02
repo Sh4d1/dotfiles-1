@@ -54,5 +54,5 @@ dotfiles are managed and installed with [dotbot](https://github.com/anishathalye
 - and readline/login/init stuff
 - zsh
 - ranger
-
+- udiskie
 
