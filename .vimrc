@@ -37,6 +37,7 @@ set listchars=tab:>-,trail:·,eol:$ " for graphically displaying whitespace
 set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
+set laststatus=2
 " set wildmode=list:longest| " no, i like the vim way
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
@@ -79,6 +80,8 @@ Plug 'luochen1990/rainbow'
 Plug 'danro/rename.vim'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'itchyny/lightline.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-surround'
 
