@@ -245,6 +245,9 @@ exec --no-startup-id clipit
 # notify daemon
 exec --no-startup-id dunst
 
+# external drive management
+exec --no-startup-id udiskie
+
 # music player
 exec --no-startup-id clementine
 
