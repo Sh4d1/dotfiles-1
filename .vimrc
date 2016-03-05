@@ -80,7 +80,8 @@ Plug 'luochen1990/rainbow'
 Plug 'danro/rename.vim'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Plug 'itchyny/lightline.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-surround'
@@ -231,4 +232,9 @@ let g:sandwich#recipes += [
       \     'input'   : ['t'],
       \   },
       \ ]
+
+" airline config
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'solarized'
 
