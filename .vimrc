@@ -108,6 +108,7 @@ nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
 
+
 " shortcut to system clipboard
 vnoremap + "+
 noremap + "+
@@ -203,7 +204,7 @@ let g:sandwich#recipes += [
       \   {
       \     'buns'    : ['LatexTagInput(1)', 'LatexTagInput(0)'],
       \     'expr'    : 1,
-      \     'filetype': ['plaintex'],
+      \     'filetype': ['plaintex', 'tex', 'latex'],
       \     'kind'    : ['add', 'replace'],
       \     'action'  : ['add'],
       \     'input'   : ['t'],
