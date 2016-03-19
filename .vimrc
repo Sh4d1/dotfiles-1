@@ -54,7 +54,7 @@ set virtualedit=block
 set backupdir=~/.vimbackup
 set directory=~/.vimbackup
 
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
+match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
 hi Normal ctermbg=NONE| "to keep transparent background
 
 let mapleader = ","      " the map leader key
