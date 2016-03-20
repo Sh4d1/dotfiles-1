@@ -1,5 +1,5 @@
 " Samuel Walladge's vimrc
-" inspiration for some parts found at: 
+" inspiration for some parts found at:
 "  - http://items.sjbach.com/319/configuring-vim-right
 "  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
 "  - and others...
@@ -33,7 +33,7 @@ set ruler " cursor position info
 set history=1000    " more history
 set undolevels=2000 " and undolevels
 set cm=blowfish2 " proper encryption
-set listchars=tab:>-,trail:·,eol:$ " for graphically displaying whitespace
+set listchars=tab:»·,trail:·,eol:$ " for graphically displaying whitespace
 set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
@@ -54,8 +54,8 @@ set virtualedit=block
 set backupdir=~/.vimbackup
 set directory=~/.vimbackup
 
+" match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
-hi Normal ctermbg=NONE| "to keep transparent background
 
 let mapleader = ","      " the map leader key
 let maplocalleader = ","
@@ -238,4 +238,11 @@ let g:sandwich#recipes += [
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'solarized'
+
+" has to be defined later in file than was previously
+" to keep transparent background
+hi Normal ctermbg=NONE|
+
+" listchars highlighting
+hi SpecialKey guibg=red ctermbg=red
 
