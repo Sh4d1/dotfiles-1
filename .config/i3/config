@@ -204,6 +204,8 @@ for_window [class="Xfce4-appfinder"] floating enable
 
 bindsym Mod4+o exec xfce4-appfinder
 
+bindsym Print exec cd ~/Pictures && scrot -z -q 100 -m
+
 workspace 1 output HDMI1
 workspace 2 output HDMI1
 workspace 3 output HDMI1

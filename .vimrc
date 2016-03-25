@@ -54,6 +54,8 @@ set virtualedit=block
 set backupdir=~/.vimbackup
 set directory=~/.vimbackup
 
+set iskeyword+=- " better - and essential for css
+
 " match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
 
@@ -70,7 +72,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-speeddating'
+" Plug 'tpope/vim-speeddating'                " seems to be broken?
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lervag/vimtex'
@@ -82,6 +84,9 @@ Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'Valloric/YouCompleteMe'               " too heavy...
+Plug 'ternjs/tern_for_vim'                    " javascript autocomleter
+Plug 'ervandew/supertab'                      " tab completion
 " Plug 'itchyny/lightline.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-surround'
@@ -113,13 +118,10 @@ nnoremap <F2> :Rename | " quick rename current file
 vnoremap + "+
 noremap + "+
 
-" control space style completion - TODO: better completion shortcuts
 if has("gui_running")
     " C-Space seems to work under gVim on both Linux and win32
-    inoremap <C-Space> <C-n>
     nmap <C-Space> <C-p>
 else " no gui
-    inoremap <Nul> <C-n>
     nmap <Nul> <C-p>
 endif
 
@@ -246,3 +248,9 @@ hi Normal ctermbg=NONE|
 " listchars highlighting
 hi SpecialKey guibg=red ctermbg=red
 
+" YCM config
+let g:ycm_path_to_python_interpreter = "/usr/bin/python"
+
+" supertab config
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
