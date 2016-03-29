@@ -90,6 +90,7 @@ Plug 'ervandew/supertab'                      " tab completion
 " Plug 'itchyny/lightline.vim'
 "Plug 'scrooloose/nerdtree'
 "Plug 'tpope/vim-surround'
+Plug 'majutsushi/tagbar'
 
 call plug#end() " add plugins to &runtimepath
 
@@ -113,6 +114,8 @@ nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
 
+" tagbar
+nmap <leader>t :TagbarToggle<CR>
 
 " shortcut to system clipboard
 vnoremap + "+
@@ -138,6 +141,9 @@ let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 " let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
 
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
