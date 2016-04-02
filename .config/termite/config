@@ -3,6 +3,9 @@
 [options]
 font = Hack 10
 
+scrollback_lines = 20000
+allow_bold = true
+
 
 # Solarized dark color scheme
 

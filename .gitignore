@@ -1,5 +1,15 @@
+
+# swap files
 *.swp
+*.swo
+
+# stuff in .vim we don't need to keep
 .netrwhist
 .vim/plugged/
+
+# init.vim is symlink to .vimrc
+.vim/init.vim
+
+# other random files
 .DS_Store
 .mutt/temp
