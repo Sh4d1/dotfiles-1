@@ -14,6 +14,7 @@ export BROWSER="qutebrowser"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export MAIL=~/Maildir
+# export GPGKEY=5AC10404
 
 
 

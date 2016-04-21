@@ -99,7 +99,9 @@ ttyctl -f
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
-alias  c=z
+alias c=z
+alias v='{hash nvim 2>/dev/null && nvim} || {hash vim 2>/dev/null && vim} || {hash vi 2>/dev/null && vi}'
+alias vim=v
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'

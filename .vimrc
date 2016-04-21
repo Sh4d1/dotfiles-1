@@ -32,10 +32,10 @@ set hlsearch
 set bs=2 " backspace stuff
 set backspace=indent,eol,start " allow backspace over indents, etc.
 set number " turn on line numbering
+set relativenumber " turn on relative line numbering as well
 set ruler " cursor position info
 set history=1000    " more history
 set undolevels=2000 " and undolevels
-set cm=blowfish2 " proper encryption
 set listchars=tab:»·,trail:·,eol:$ " for graphically displaying whitespace
 set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
@@ -95,6 +95,7 @@ Plug 'ervandew/supertab'                      " tab completion
 " Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
+Plug 'jamessan/vim-gnupg'
 
 call plug#end() " add plugins to &runtimepath
 

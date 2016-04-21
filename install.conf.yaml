@@ -15,37 +15,37 @@
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
     ~/.Xresources: .Xresources
-    ~/.config/awesome: 
+    ~/.config/awesome:
         create: true
         path: .config/awesome/
-    ~/.config/mpd: 
+    ~/.config/mpd:
         create: true
         path: .config/mpd/
-    ~/.config/htop: 
+    ~/.config/htop:
         create: true
         path: .config/htop/
-    ~/.config/clipit: 
+    ~/.config/clipit:
         create: true
         path: .config/clipit/
-    ~/.config/qutebrowser: 
+    ~/.config/qutebrowser:
         create: true
         path: .config/qutebrowser/
-    ~/.config/touchegg: 
+    ~/.config/touchegg:
         create: true
         path: .config/touchegg/
-    ~/.config/i3status: 
+    ~/.config/i3status:
         create: true
         path: .config/i3status/
-    ~/.config/i3: 
+    ~/.config/i3:
         create: true
         path: .config/i3/
-    ~/.config/termite: 
+    ~/.config/termite:
         create: true
         path: .config/termite/
-    ~/.config/dunst: 
+    ~/.config/dunst:
         create: true
         path: .config/dunst/
-    ~/.config/udiskie: 
+    ~/.config/udiskie:
         create: true
         path: .config/udiskie/
     ~/.local/share/qutebrowser/userscripts:
@@ -67,4 +67,5 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vimbackup, vim swapfile directory]
-  - ['mkdir -p ~/aur/{pkgbuilds,packages,sources}', aur directories]
+  - ['mkdir -p ~/aur/{pkgbuilds,packages,sources}', making aur directories]
+  - ['ln -s ~/.vim ~/.config/nvim && ln -s ~/.vimrc ~/.config/nvim/init.vim', symlinking nvim config]
