@@ -95,13 +95,16 @@ bindkey    "^[3;5~"         delete-char
 # so terminal not messed up after program crashed
 ttyctl -f
 
+run_vim() {
+  {hash nvim 2>/dev/null && nvim "$@"} || {hash vim 2>/dev/null && vim "$@"} || {hash vi 2>/dev/null && vi "$@"}
+}
 
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
 alias c=z
-alias v='{hash nvim 2>/dev/null && nvim} || {hash vim 2>/dev/null && vim} || {hash vi 2>/dev/null && vi}'
-alias vim=v
+alias v=run_vim
+alias vim=run_vim
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'

@@ -73,7 +73,8 @@ runtime macros/matchit.vim
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'altercation/vim-colors-solarized'
@@ -133,6 +134,12 @@ else " no gui
     nmap <Nul> <C-p>
 endif
 
+" NVIM specific stuff
+if has('nvim')
+  " double escape to get out of terminal mode
+  " (double to allow single esc to go to terminal)
+  tnoremap <esc><esc> <c-\><c-n>
+endif
 
 "" Plugins options
 
@@ -141,19 +148,23 @@ set background=dark
 " let g:solarized_contrast = "high"
 colorscheme solarized
 
-" syntastic
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-" let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
-let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
+" Neomake
+autocmd! BufEnter,BufWritePost * Neomake
+
+
+" " syntastic
+" let g:syntastic_check_on_open=1
+" let g:syntastic_enable_signs=1
+" " let g:syntastic_cpp_compiler = 'g++'
+" let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
+" let g:syntastic_always_populate_loc_list = 1
+" " let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_wq = 0
 
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 
-" rainbow 
+" rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
     \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
