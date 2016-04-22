@@ -272,8 +272,10 @@ exec --no-startup-id dunst
 # external drive management
 exec --no-startup-id udiskie
 
+# start console apps (irc, music player, etc) in tmux session in background
 # exec sleep 3 && {ps aux | grep -v 'grep' | grep -e 'termite --title consoleapps' || termite --title consoleapps -e "tmuxinator start apps"}
-exec ~/bin/run-apps.sh
+# exec ~/bin/run-apps.sh
+exec tmuxinator start apps
 
 # dmenu replacement (window switcher and app launcher)
 exec --no-startup-id rofi
