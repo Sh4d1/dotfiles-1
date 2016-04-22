@@ -135,7 +135,7 @@ rofi.run-shell-command:              {terminal} --hold -e "{cmd}"
 ! Disable history in run/ssh
 rofi.disable-history:                false
 ! Use levenshtein sorting
-rofi.levenshtein-sort:               false
+rofi.levenshtein-sort:               true
 ! Set case-sensitivity
 rofi.case-sensitive:                 false
 ! Enable sidebar-mode
