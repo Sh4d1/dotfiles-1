@@ -34,4 +34,4 @@
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vimbackup, vim swapfile directory]
   - ['mkdir -p ~/aur/{pkgbuilds,packages,sources}', aur directories]
-  - ['ln -s ~/.vim/ ~/.config/nvim/ && ln -s ~/.vimrc ~/.config/nvim/init.vim', symlinking nvim config]
+  - ['ln -s ~/.vimrc ~/.vim/init.vim && ln -s ~/.vim/ ~/.config/nvim', symlinking nvim config]

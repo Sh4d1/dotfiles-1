@@ -63,9 +63,12 @@
     ~/.config/ranger/commands.py:
         path: .config/ranger/commands.py
         create: true
+    ~/bin:
+        path: bin/
+        create: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vimbackup, vim swapfile directory]
   - ['mkdir -p ~/aur/{pkgbuilds,packages,sources}', making aur directories]
-  - ['ln -s ~/.vim ~/.config/nvim && ln -s ~/.vimrc ~/.config/nvim/init.vim', symlinking nvim config]
+  - ['ln -s ~/.vimrc ~/.vim/init.vim && ln -s ~/.vim/ ~/.config/nvim', symlinking nvim config]

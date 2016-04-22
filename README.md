@@ -56,4 +56,4 @@ dotfiles are managed and installed with [dotbot](https://github.com/anishathalye
 - ranger
 - udiskie
 - rofi
-
+- conky with i3bar

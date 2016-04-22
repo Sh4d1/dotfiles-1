@@ -174,7 +174,8 @@ bar {
 }
 
 bar {
-    status_command i3status --config ~/.config/i3status/config-secondary
+    # status_command i3status --config ~/.config/i3status/config-secondary
+    status_command ~/bin/conky-i3bar
         tray_output primary
         position top
         output VGA1
@@ -268,7 +269,7 @@ exec --no-startup-id dunst
 exec --no-startup-id udiskie
 
 # exec sleep 3 && {ps aux | grep -v 'grep' | grep -e 'termite --title consoleapps' || termite --title consoleapps -e "tmuxinator start apps"}
-exec ~/.config/i3/run-apps.sh
+exec ~/bin/run-apps.sh
 
 # dmenu replacement (window switcher and app launcher)
 exec --no-startup-id rofi
