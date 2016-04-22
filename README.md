@@ -55,4 +55,5 @@ dotfiles are managed and installed with [dotbot](https://github.com/anishathalye
 - zsh
 - ranger
 - udiskie
+- rofi
 
