@@ -176,7 +176,8 @@ bar {
 
 bar {
     # status_command i3status --config ~/.config/i3status/config-secondary
-    status_command i3status
+    status_command ~/bin/i3pystatus-conf2.py
+    # status_command i3status
     # status_command ~/bin/conky-i3bar
     # status_command i3blocks
         tray_output primary

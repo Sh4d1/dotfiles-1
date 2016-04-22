@@ -17,43 +17,52 @@ dotfiles are managed and installed with [dotbot](https://github.com/anishathalye
 ### dependencies
 
 - ruby
-- vim (or gvim on archlinux for system clipboard support)
-- python (preferably version 3)
+- vim (or gvim) (actually neovim is recommended)
+- python (version 3)
+- python-pip
 
+Plus all the other apps...
+
+- install most through package manager (`pacman -S ...`)
+- `gem install tmuxinator`
+- `pip install --user i3pystatus`
 
 ### install config files
 
 - `install.macbook.conf.yaml` - installs all config along with some macbook specific files (from `macbook` dir), designed for my macbook
 - `install.conf.yaml` - main config which installs everything, designed for my desktop
-- `install.server.conf.yaml` - only installs stuff for console apps, designed for my servers
+- `install.server.conf.yaml` - only installs stuff for console apps on my servers
 
 
 ### post install tasks
 
-- run `:PlugInstall` in vim to install plugins
+- run `:PlugInstall` in vim/nvim to install plugins
 
 
 ## app config included
 
-- vim
+- awesome wm (currently use/prefer i3)
 - bash
-- octave
-- X11 (xinitrc, Xresources)
-- todotxt-machine
-- tmux
-- ls dircolors
-- i3 and i3 status bar
-- awesome wm (although currently use/prefer i3)
-- htop
-- mpd (don't use - only boring basic config)
 - clipit
-- touchegg
-- qutebrowser
-- termite
+- conky for i3bar
 - dunst
-- and readline/login/init stuff
-- zsh
+- htop
+- i3
+- i3pystatus
+- i3status
+- ls dircolors
+- mpd (don't use - only basic config)
+- octave
+- qutebrowser
 - ranger
-- udiskie
+- readline/login/init stuff
 - rofi
-- conky with i3bar
+- termite
+- tmux
+- todotxt-machine
+- touchegg
+- udiskie
+- vim
+- X11 (xinitrc, Xresources)
+- zsh
+
