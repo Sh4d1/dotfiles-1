@@ -86,6 +86,8 @@ Xft.rgba: rgb
 *dpi: 192
 
 
+!! Rofi config - https://github.com/DaveDavenport/rofi
+!
 ! Enabled modi
 rofi.modi:                           window,drun,run,combi
 ! Window opacity
@@ -97,9 +99,7 @@ rofi.lines:                          15
 ! Number of columns
 rofi.columns:                        1
 ! Font to use
-rofi.font:                           mono 12
-! Use extended color scheme
-rofi.color-enabled:                  true
+rofi.font:                           Hack 12
 ! Color scheme for normal row
 rofi.color-normal:                   #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
 ! Color scheme for urgent row
@@ -135,13 +135,11 @@ rofi.run-shell-command:              {terminal} --hold -e "{cmd}"
 ! Disable history in run/ssh
 rofi.disable-history:                false
 ! Use levenshtein sorting
-rofi.levenshtein-sort:               true
+rofi.levenshtein-sort:               false
 ! Set case-sensitivity
 rofi.case-sensitive:                 false
 ! Enable sidebar-mode
 rofi.sidebar-mode:                   false
-! Set lazy filter limit
-rofi.lazy-filter-limit:              15000
 ! Row height (in chars)
 rofi.eh:                             1
 ! Enable auto select mode
@@ -153,7 +151,7 @@ rofi.parse-known-hosts:              true
 ! Set the modi to combine in combi mode
 rofi.combi-modi:                     window,run,drun
 ! Do a more fuzzy matching
-rofi.fuzzy:                          true
+rofi.fuzzy:                          false
 ! Use glob matching
 rofi.glob:                           false
 ! Use regex matching
@@ -170,18 +168,18 @@ rofi.filter:
 rofi.separator-style:                dash
 ! Hide scroll-bar
 rofi.hide-scrollbar:                 false
-! Show markup
-rofi.markup-rows:                    false
 ! Fullscreen
 rofi.fullscreen:                     false
 ! Fake transparency
 rofi.fake-transparency:              false
 ! DPI
-rofi.dpi:                            96
+rofi.dpi:                            192
 ! Threads to use for string matching
 rofi.threads:                        1
 ! Scrollbar width
 rofi.scrollbar-width:                8
+! Scrolling method. (0: Page, 1: Centered)
+rofi.scroll-method:                  0
 ! Pidfile location
 rofi.pid:                            /run/user/1000/rofi.pid
 ! Keybinding
@@ -214,8 +212,6 @@ rofi.kb-remove-char-back:            BackSpace,Control+h
 rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
 ! Keybinding
 rofi.kb-accept-custom:               Control+Return
-! Keybinding
-rofi.kb-accept-entry-continue:       Shift+Return
 ! Keybinding
 rofi.kb-mode-next:                   Shift+Right,Control+Tab
 ! Keybinding
@@ -288,9 +284,4 @@ rofi.kb-custom-19:                   Alt+Shift+9
 rofi.kb-screenshot:                  Alt+Shift+S
 ! Keybinding
 rofi.kb-toggle-sort:                 Alt+grave
-! Keybinding
-rofi.key-window:                     SuperL+space
-! Keybinding
-rofi.key-drun:                        SuperL+Shift+space
-rofi.key-run:                        SuperL+Control+Shift+space
-rofi.key-combi:                        SuperL+Control+space
+

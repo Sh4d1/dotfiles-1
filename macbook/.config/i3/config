@@ -204,6 +204,12 @@ for_window [class="Xfce4-appfinder"] floating enable
 
 bindsym Mod4+o exec xfce4-appfinder
 
+
+bindsym Mod4+space exec rofi -show window
+bindsym Mod4+Shift+space exec rofi -show drun
+bindsym Mod4+Ctrl+Shift+space exec rofi -show run
+bindsym Mod4+Ctrl+space exec rofi -show combi
+
 # workspace 1 output HDMI1
 # workspace 2 output HDMI1
 # workspace 3 output HDMI1
@@ -255,9 +261,6 @@ exec --no-startup-id udiskie
 # exec sleep 3 && {ps aux | grep -v 'grep' | grep -e 'termite --title consoleapps' || termite --title consoleapps -e "tmuxinator start apps"}
 # exec ~/bin/run-apps.sh
 # exec --no-startup-id tmuxinator start apps
-
-# dmenu replacement (window switcher and app launcher)
-exec --no-startup-id rofi
 
 # music player
 # exec --no-startup-id clementine

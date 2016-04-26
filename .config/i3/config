@@ -187,7 +187,6 @@ bar {
  
 
 
-
 set $Locker i3lock -c 002b36 -f && sleep 1
 
 set $mode_system System (s) lock, (e) logout, (Shift+s) suspend, (Shift+r) reboot, (Shift+p) shutdown
@@ -217,6 +216,11 @@ bindsym Ctrl+Shift+Up exec cmus-remote -s
 bindsym Ctrl+Shift+Left exec cmus-remote -r
 bindsym Ctrl+Shift+Right exec cmus-remote -n
 bindsym Ctrl+Shift+Down exec cmus-remote -u
+
+bindsym Mod4+space exec rofi -show window
+bindsym Mod4+Shift+space exec rofi -show drun
+bindsym Mod4+Ctrl+Shift+space exec rofi -show run
+bindsym Mod4+Ctrl+space exec rofi -show combi
 
 workspace 1 output HDMI1
 workspace 2 output HDMI1
@@ -275,10 +279,7 @@ exec --no-startup-id udiskie
 # start console apps (irc, music player, etc) in tmux session in background
 # exec sleep 3 && {ps aux | grep -v 'grep' | grep -e 'termite --title consoleapps' || termite --title consoleapps -e "tmuxinator start apps"}
 # exec ~/bin/run-apps.sh
-exec tmuxinator start apps
-
-# dmenu replacement (window switcher and app launcher)
-exec --no-startup-id rofi
+exec --no-startup-id zsh -c "tmuxinator start apps"
 
 # startup kdeconnect (refresh on restart i3)
 exec_always --no-startup-id kdeconnect-cli --refresh

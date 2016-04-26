@@ -44,7 +44,6 @@ Plus all the other apps...
 - awesome wm (currently use/prefer i3)
 - bash
 - clipit
-- conky for i3bar
 - dunst
 - htop
 - i3

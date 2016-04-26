@@ -54,7 +54,7 @@ setopt HIST_IGNORE_DUPS
 
 bindkey -v
 
-zstyle :compinstall filename '/home/samuel/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -U compinit promptinit
 compinit
