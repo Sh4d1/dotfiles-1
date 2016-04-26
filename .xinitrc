@@ -30,8 +30,7 @@ xrandr --output HDMI1 --auto --pos 0x0 --output VGA1 --auto --pos 1920x180
 xrandr --output HDMI1 --primary
 
 
-# exec i3
-exec startkde
+exec i3
 
 #choose desktop from first argument 
 #session=${2:-i3}

@@ -102,6 +102,9 @@ bindsym Mod4+a focus parent
 # move the currently focused window to the scratchpad
 bindsym Mod4+Shift+minus move scratchpad
 
+# move window to scratchpad and set it fullscreen (will stay focused on screen)
+bindsym Mod4+Ctrl+minus mark "FULLSCREEN", move scratchpad, [con_mark="^FULLSCREEN$"] resize set 1920 1080, [con_mark="^FULLSCREEN$"] move position 0 0
+
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
@@ -217,8 +220,8 @@ bindsym Ctrl+Shift+Left exec cmus-remote -r
 bindsym Ctrl+Shift+Right exec cmus-remote -n
 bindsym Ctrl+Shift+Down exec cmus-remote -u
 
-bindsym Mod4+space exec rofi -show window
-bindsym Mod4+Shift+space exec rofi -show drun
+bindsym Mod4+space exec rofi -show drun
+bindsym Mod4+Shift+space exec rofi -show window
 bindsym Mod4+Ctrl+Shift+space exec rofi -show run
 bindsym Mod4+Ctrl+space exec rofi -show combi
 
