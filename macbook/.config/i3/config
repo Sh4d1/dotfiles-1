@@ -101,6 +101,9 @@ bindsym Mod4+a focus parent
 # move the currently focused window to the scratchpad
 bindsym Mod4+Shift+minus move scratchpad
 
+# move window to scratchpad and set it fullscreen (will stay focused on screen)
+bindsym Mod4+Ctrl+minus mark "FULLSCREEN", move scratchpad, [con_mark="^FULLSCREEN$"] resize set 2560 1600, [con_mark="^FULLSCREEN$"] move position 0 0
+
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
@@ -205,8 +208,8 @@ for_window [class="Xfce4-appfinder"] floating enable
 bindsym Mod4+o exec xfce4-appfinder
 
 
-bindsym Mod4+space exec rofi -show window
-bindsym Mod4+Shift+space exec rofi -show drun
+bindsym Mod4+space exec rofi -show drun
+bindsym Mod4+Shift+space exec rofi -show window
 bindsym Mod4+Ctrl+Shift+space exec rofi -show run
 bindsym Mod4+Ctrl+space exec rofi -show combi
 
