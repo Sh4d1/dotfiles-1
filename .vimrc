@@ -34,8 +34,9 @@ set backspace=indent,eol,start " allow backspace over indents, etc.
 set number " turn on line numbering
 set relativenumber " turn on relative line numbering as well
 set ruler " cursor position info
-set history=1000    " more history
-set undolevels=2000 " and undolevels
+set history=2000    " more history
+set undolevels=5000 " and undolevels
+set undofile
 set listchars=tab:»·,trail:·,eol:$ " for graphically displaying whitespace
 set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
@@ -54,10 +55,13 @@ set wildignore+=.*.sw[opq]                       " vim swap files
 set wildignore+=_site                            " jekyll site directory
 set virtualedit=block
 
-set backupdir=~/.vimbackup
-set directory=~/.vimbackup
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swp/
+set undodir=~/.vim/undo/
 
 set iskeyword+=- " better - and essential for css
+
+set colorcolumn=81
 
 " match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
@@ -90,16 +94,22 @@ Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'Valloric/YouCompleteMe'               " too heavy...
-Plug 'ternjs/tern_for_vim'                    " javascript autocomleter
+Plug 'ternjs/tern_for_vim'                    " javascript autocompleter
 Plug 'ervandew/supertab'                      " tab completion
 " Plug 'itchyny/lightline.vim'
 " Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
 Plug 'jamessan/vim-gnupg'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'mbbill/undotree'
+" Plug 'sjl/gundo.vim'
 
 call plug#end() " add plugins to &runtimepath
-
 
 "" Keymappings
 
@@ -110,8 +120,8 @@ inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
 cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
 nmap <silent> <leader>h :silent :nohlsearch<CR>| " hide highlighting from search
 nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
-noremap - $|  " easy access to beginning and end of line
-noremap _ ^|  " ||
+" noremap - $|  " easy access to beginning and end of line
+" noremap _ ^|  " ||
 noremap k gk| " for scrolling one screen line at a time
 noremap j gj| " ||
 nnoremap <F3> :set invpaste paste?<CR>| "toggle paste mode in terminal (avoiding autoindent over pasted text)
@@ -119,20 +129,25 @@ set pastetoggle=<F3>| " needed to get out of paste mode
 nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
+nnoremap - :silent e <C-R>=empty(expand('%')) ? '.' : expand('%:p:h')<CR><CR>
+nnoremap _ :NERDTreeToggle<CR>
+map <C-@> <C-Space>
+imap <C-@> <C-Space>
+imap <C-Space> <c-x><c-o>
 
 " tagbar
 nmap <leader>t :TagbarToggle<CR>
 
+" undotree
+nmap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+
+" ctrl-p
+map <C-Space> :CtrlP<CR>
+
+
 " shortcut to system clipboard
 vnoremap + "+
 noremap + "+
-
-if has("gui_running")
-    " C-Space seems to work under gVim on both Linux and win32
-    nmap <C-Space> <C-p>
-else " no gui
-    nmap <Nul> <C-p>
-endif
 
 " NVIM specific stuff
 if has('nvim')
@@ -191,6 +206,9 @@ let g:rainbow_conf = {
     \}
 
 " ctrlp
+let g:ctrlp_map = '' " managing it myself
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|ve$\|ve-\|doc/html',
   \ 'file': '\.o$\|\.so$\|\.dll$',
@@ -292,4 +310,19 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = ""  | " rely on supertab tab completion for this
 let g:jedi#rename_command = "<leader>r"
+
+
+" NERDtree
+let g:NERDTreeCreatePrefix='keepalt silent keepjumps'
+" https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.vim/autoload/autocmds.vim
+function! Attempt_select_last_file() abort
+  let l:previous=expand('#:t')
+  if l:previous != ''
+    call search('\v<' . l:previous . '>')
+  endif
+endfunction
+augroup NERDTreeAutocmds
+  autocmd!
+  autocmd User NERDTreeInit call Attempt_select_last_file()
+augroup END
 
