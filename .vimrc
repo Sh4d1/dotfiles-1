@@ -63,6 +63,11 @@ set iskeyword+=- " better - and essential for css
 
 set colorcolumn=81
 
+" https://robots.thoughtbot.com/faster-grepping-in-vim
+" better grep with the silver searcher
+set grepprg=ag\ --nogroup\ --nocolor\ --column
+set grepformat=%f:%l:%c%m
+
 " match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
 
@@ -208,12 +213,11 @@ let g:rainbow_conf = {
 " ctrlp
 let g:ctrlp_map = '' " managing it myself
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|ve$\|ve-\|doc/html',
-  \ 'file': '\.o$\|\.so$\|\.dll$',
-  \ }
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']  " Make Ctrl-P plugin a lot faster for Git projects
+" let g:ctrlp_show_hidden = 1
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
+
 
 " vim-sandwich
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
