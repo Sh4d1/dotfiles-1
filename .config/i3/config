@@ -211,6 +211,8 @@ for_window [class="Xfce4-appfinder"] floating enable
 # send the apps console session to the scratchpad
 for_window [ title="^consoleapps$" ] move scratchpad
 
+for_window [ title="^POPUP1$" ] floating enable
+
 bindsym Mod4+o exec xfce4-appfinder
 
 bindsym Print exec cd ~/Pictures && scrot -z -q 100 -m

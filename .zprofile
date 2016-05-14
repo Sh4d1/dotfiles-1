@@ -14,6 +14,13 @@ export BROWSER="qutebrowser"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export MAIL=~/Maildir
+
+# https://github.com/neovim/neovim/issues/2048#issuecomment-187227417
+export TERMINFO="$HOME/.terminfo"
+
+# export NODE_PATH="/usr/lib/node_modules/"
+export NODE_PATH="~/.node_modules/lib/node_modules"
+
 # export GPGKEY=5AC10404
 
 

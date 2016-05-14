@@ -1,0 +1,25 @@
+#! /usr/bin/env node
+// vim: set ft=javascript:
+
+// this opens a html file given at the first command line argument,
+//  and scans (and prints) a detected vimgolf challenge id
+
+var jsdom = require("jsdom");
+//var fs = require('fs');
+
+if (process.argv.length < 3) {
+    process.exit();
+}
+
+var f = process.argv[2];
+
+jsdom.env({
+    file: f,
+    done: function (err, window) {
+      var text = window.document.querySelector('pre.terminal').innerHTML;
+      var m = text.match(/vimgolf put ([\w]+)/g);
+      var s = m[0].split(/\s+/)[2];
+      console.log(s);
+    }
+});
+

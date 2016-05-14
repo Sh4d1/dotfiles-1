@@ -42,6 +42,8 @@ set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
 set laststatus=2
+set breakindent
+set showbreak=⤷\   " backslash to escape extra space
 " set wildmode=list:longest| " no, i like the vim way
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
@@ -118,8 +120,6 @@ call plug#end() " add plugins to &runtimepath
 
 "" Keymappings
 
-nmap <C-h> :bp<CR>| " Buffer management
-nmap <C-l> :bn<CR>| " - easy move through buffers
 inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
 inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
 cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
@@ -139,6 +139,12 @@ nnoremap _ :NERDTreeToggle<CR>
 map <C-@> <C-Space>
 imap <C-@> <C-Space>
 imap <C-Space> <c-x><c-o>
+
+" easy moving between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 
 " tagbar
 nmap <leader>t :TagbarToggle<CR>
