@@ -150,7 +150,8 @@ nnoremap <C-k> <C-w>k
 nmap <leader>t :TagbarToggle<CR>
 
 " undotree
-nmap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+nmap <leader>u :UndotreeToggle<CR>
+let g:undotree_SetFocusWhenToggle = 1
 
 " ctrl-p
 map <C-Space> :CtrlP<CR>

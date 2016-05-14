@@ -38,7 +38,8 @@ status.register("temp",
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
                 interface="wlp3s0",
-                format_up="{essid} {v4cidr} {network_graph}",)
+                format_up="{v4cidr}",)
+                #format_up="{essid} {v4cidr} {network_graph}",)
 
 # Shows disk usage of /
 # Format:
