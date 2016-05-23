@@ -142,6 +142,9 @@ map <C-@> <C-Space>
 imap <C-@> <C-Space>
 imap <C-Space> <c-x><c-o>
 
+" faster saving files
+map <C-s> :wa<CR>
+
 " easy moving between splits
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
