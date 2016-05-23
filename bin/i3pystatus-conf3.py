@@ -54,6 +54,10 @@ status.register("disk",
 status.register("pulseaudio",
                 format="♪ {volume}%",)
 
+status.register("backlight",
+                interval=5,
+                format="Backlight {percentage}%")
+
 status.register("cmus",
                 format="{status} {title:.27s} - {artist:.18s}",
                 color="#7070ff")

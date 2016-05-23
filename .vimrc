@@ -63,7 +63,9 @@ set undodir=~/.vim/undo/
 
 set iskeyword+=- " better - and essential for css
 
-set colorcolumn=81
+set cursorline
+set textwidth=78
+set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
@@ -292,6 +294,28 @@ let g:sandwich#recipes += [
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'solarized'
+
+" custom symbols (avoid problems with powerline fonts not installed)
+let g:airline_powerline_fonts=0
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = '»'
+let g:airline_right_alt_sep = '«'
+let g:airline_symbols.crypt = 'X'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.readonly = 'RO'
 
 " has to be defined later in file than was previously
 " to keep transparent background
