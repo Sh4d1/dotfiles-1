@@ -14,6 +14,7 @@
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
+    ~/.tmuxline.conf: .tmuxline.conf
     ~/.config/htop: 
         create: true
         path: .config/htop/

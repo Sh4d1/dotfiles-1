@@ -64,7 +64,7 @@ set undodir=~/.vim/undo/
 set iskeyword+=- " better - and essential for css
 
 set cursorline
-set textwidth=78
+set textwidth=80
 set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
@@ -117,6 +117,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'mbbill/undotree'
 " Plug 'sjl/gundo.vim'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end() " add plugins to &runtimepath
 
@@ -363,4 +364,17 @@ augroup NERDTreeAutocmds
   autocmd!
   autocmd User NERDTreeInit call Attempt_select_last_file()
 augroup END
+
+" tmuxline.vim
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#(whoami)@#H',
+      \'c'    : '#{session_attached} #{?session_many_attached,clients,client}',
+      \'win'  : '[#I:#W]',
+      \'cwin' : '[#I:#W (#{=20:pane_current_command})]',
+      \'x'    : '#(uptime -p | cut -d "," -f 1,2)',
+      \'y'    : '%R %a %F',
+      \'z'    : ''}
+      " \'options': {'status-justify': 'left'}}
 

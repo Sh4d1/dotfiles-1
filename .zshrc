@@ -105,6 +105,7 @@ alias td='todotxt-machine'
 alias c=z
 alias v=run_vim
 alias vim=run_vim
+alias mux=tmuxinator
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
