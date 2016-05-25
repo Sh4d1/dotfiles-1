@@ -28,7 +28,7 @@ if ! zgen saved; then
     # plugins
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
-    zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+    # zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
     zgen load rupa/z
 
 
@@ -112,6 +112,8 @@ alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
 alias sshp='ssh -o PubkeyAuthentication=no'
 
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
+
+[[ -f ~/.promptline.sh ]] && . ~/.promptline.sh
 
 # lets start the shell cleanly
 true

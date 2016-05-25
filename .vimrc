@@ -118,6 +118,7 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'mbbill/undotree'
 " Plug 'sjl/gundo.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/promptline.vim'
 
 call plug#end() " add plugins to &runtimepath
 
@@ -377,4 +378,25 @@ let g:tmuxline_preset = {
       \'y'    : '%R %a %F',
       \'z'    : ''}
       " \'options': {'status-justify': 'left'}}
+
+
+" Promptline.vim
+" generate new prompt:
+" :PromptlineSnapshot! ~/.promptline.sh airline
+
+let g:promptline_powerline_symbols = 0
+let g:promptline_symbols = {
+    \ 'left'       : '',
+    \ 'left_alt'   : '',
+    \ 'dir_sep'    : '/',
+    \ 'truncation' : '…',
+    \ 'vcs_branch' : '',
+    \ 'space'      : ' '}
+
+let g:promptline_preset = {
+    \'a' : [ '$USER' ],
+    \'b' : [ promptline#slices#host()],
+    \'c' : [ promptline#slices#python_virtualenv(), promptline#slices#cwd() ],
+    \'y' : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
+    \'warn' : [ promptline#slices#last_exit_code() ]}
 

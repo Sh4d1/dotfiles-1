@@ -9,6 +9,7 @@
     ~/.zprofile: .zprofile
     ~/.zshrc: .zshrc
     ~/.zshenv: .zshenv
+    ~/.promptline.sh: .promptline.sh
     ~/.octaverc: .octaverc
     ~/.inputrc: .inputrc
     ~/.xinitrc: macbook/.xinitrc
