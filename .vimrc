@@ -99,7 +99,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
 Plug 'danro/rename.vim'
 Plug 'ap/vim-css-color'
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'Valloric/YouCompleteMe'               " too heavy...
@@ -119,6 +119,8 @@ Plug 'mbbill/undotree'
 " Plug 'sjl/gundo.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
+Plug 'jreybert/vimagit'
+Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 
 call plug#end() " add plugins to &runtimepath
 

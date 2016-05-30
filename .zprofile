@@ -1,9 +1,7 @@
+
+# detect if logged in remotely
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export REMOTE_SESSION=true
-# else
-#   case $(ps -o comm= -p $PPID) in
-#     sshd|*/sshd|mosh-session) REMOTE_SESSION=true;;
-#   esac
 fi
 
 
@@ -23,6 +21,10 @@ export NODE_PATH="~/.node_modules/lib/node_modules"
 
 # export GPGKEY=5AC10404
 
+# aur/makepkg stuff
+export PKGDEST=~/aur/packages
+export SRCDEST=~/aur/sources
+export AURDEST=~/aur/pkgbuilds
 
 
 
