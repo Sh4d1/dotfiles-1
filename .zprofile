@@ -5,10 +5,10 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 fi
 
 
-if hash nvim 2>/dev/null
+if hash nvim 2>/dev/null; then
   export EDITOR="nvim"
   export VISUAL="nvim"
-else if hash vim 2>/dev/null
+elif hash vim 2>/dev/null; then
   export EDITOR="vim"
   export VISUAL="vim"
 else
