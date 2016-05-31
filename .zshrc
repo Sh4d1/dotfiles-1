@@ -104,16 +104,11 @@ bindkey '^[^M' autosuggest-execute
 # so terminal not messed up after program crashed
 ttyctl -f
 
-run_vim() {
-  {hash nvim 2>/dev/null && nvim "$@"} || {hash vim 2>/dev/null && vim "$@"} || {hash vi 2>/dev/null && vi "$@"}
-}
-
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
 alias c=z
-alias v=run_vim
-alias vim=run_vim
+alias e=$EDITOR
 alias mux=tmuxinator
 alias rg=ranger
 alias gp='git push'

@@ -104,7 +104,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'Valloric/YouCompleteMe'               " too heavy...
 Plug 'ternjs/tern_for_vim'                    " javascript autocompleter
-Plug 'ervandew/supertab'                      " tab completion
+" Plug 'ervandew/supertab'                    " tab completion
+Plug 'ajh17/VimCompletesMe'                   " minimal context completion
 " Plug 'itchyny/lightline.vim'
 " Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
@@ -121,13 +122,15 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
 Plug 'jreybert/vimagit'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end() " add plugins to &runtimepath
 
 "" Keymappings
 
 inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
-inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
+" inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
 cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
 nmap <silent> <leader>h :silent :nohlsearch<CR>| " hide highlighting from search
 nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
@@ -332,15 +335,24 @@ hi Normal ctermbg=NONE|
 hi SpecialKey guibg=red ctermbg=red
 
 " YCM config
-let g:ycm_path_to_python_interpreter = "/usr/bin/python"
+" let g:ycm_path_to_python_interpreter = "/usr/bin/python"
 
 " supertab config
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-autocmd FileType *
-  \ if &omnifunc != '' |
-  \   call SuperTabChain(&omnifunc, "<c-n>") |
-  \ endif
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" autocmd FileType *
+"   \ if &omnifunc != '' |
+"   \   call SuperTabChain(&omnifunc, "<c-n>") |
+"   \ endif
+
+" vimcompletesme config
+let g:vcm_default_maps = 1
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-s>"
+let g:UltiSnipsJumpBackwardTrigger=""
+
 
 " jedi-vim
 " let g:jedi#auto_vim_configuration = 0
@@ -350,7 +362,8 @@ let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = ""  | " rely on supertab tab completion for this
+" already have other keybindings for omnicompletion
+let g:jedi#completions_command = ""
 let g:jedi#rename_command = "<leader>r"
 
 

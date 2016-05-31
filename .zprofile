@@ -5,8 +5,17 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 fi
 
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+if hash nvim 2>/dev/null
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+else if hash vim 2>/dev/null
+  export EDITOR="vim"
+  export VISUAL="vim"
+else
+  export EDITOR="vi"
+  export VISUAL="vi"
+fi
+
 export TERMINAL="termite"
 export BROWSER="qutebrowser"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
