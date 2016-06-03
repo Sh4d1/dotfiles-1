@@ -61,7 +61,7 @@ Plus all the other apps...
 - todotxt-machine
 - touchegg
 - udiskie
-- vim
+- vim/neovim
 - X11 (xinitrc, Xresources)
 - zsh
 

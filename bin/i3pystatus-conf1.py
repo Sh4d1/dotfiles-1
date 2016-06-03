@@ -20,6 +20,10 @@ status.register("cpu_usage",
 # Shows your CPU temperature, if you have a Intel CPU
 status.register("temp",
                 alert_temp=70,
+                file="/sys/class/hwmon/hwmon1/temp1_input",
+                format="Core: {temp:.0f}°C",)
+status.register("temp",
+                alert_temp=70,
                 format="{temp:.0f}°C",)
 
 
