@@ -75,6 +75,7 @@
         path: .offlineimaprc
     ~/.offlineimap.py:
         path: .offlineimap.py
+    ~/.msmtprc: .msmtprc
     ~/bin:
         path: bin/
         create: true

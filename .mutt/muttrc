@@ -1,7 +1,12 @@
 
-# get encrypted password
-source "gpg2 -dq ~/.mutt-passwords.gpg |"
-set my_pass=$my_pw_main
+# # use the following if using native smtp
+# # get encrypted password
+# source "gpg2 -dq ~/.mutt-passwords.gpg |"
+# set my_pass=$my_pw_main
+# set smtp_url=smtp://$my_user:$my_pass@mail.swalladge.id.au:25
+# set ssl_force_tls = yes
+# set ssl_starttls = yes
+
 set my_user=samuel@swalladge.id.au
 
 source ~/.mutt/solarized-dark16.theme
@@ -13,17 +18,16 @@ set spoolfile=+INBOX
 set header_cache=~/.cache/mutt
 set record = +Sent
 set postponed = +Drafts
-set imap_user = $my_user
+# set imap_user = $my_user
 
 source ~/.mutt/muttrc.mailboxes
 
 # sending mail
+set sendmail = "/usr/bin/msmtp"
+set edit_headers = yes
 set realname = 'Samuel Walladge'
 set from = $my_user
 set use_from = yes
-set smtp_url=smtp://$my_user:$my_pass@mail.swalladge.id.au:25
-set ssl_force_tls = yes
-set ssl_starttls = yes
 
 set maildir_trash = no
 folder-hook . 'macro index d "<save-message>+Trash<enter>"'
