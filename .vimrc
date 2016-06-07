@@ -112,6 +112,7 @@ Plug 'mbbill/undotree'
 Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
 Plug 'jreybert/vimagit'
+Plug 'benmills/vimux'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -158,6 +159,39 @@ let g:undotree_SetFocusWhenToggle = 1
 " ctrl-p
 map <C-Space> :CtrlP<CR>
 
+
+" Vimux
+function! VimuxSlime()
+ call VimuxSendText(@v)
+ call VimuxSendKeys("Enter")
+endfunction
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
+
+" Select current paragraph and send it to tmux
+nmap <C-c><C-c> vip<C-c><C-c>
+
+" Run the current file with rspec
+map <Leader>rp :call VimuxRunCommand("python " . bufname("%"))<CR>
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>vx :VimuxInterruptRunner<CR>
+
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " shortcut to system clipboard
 vnoremap + "+
