@@ -65,12 +65,26 @@
     ~/.config/ranger/commands.py:
         path: .config/ranger/commands.py
         create: true
+    ~/.config/systemd/user:
+        path: .config/systemd/user/
+        create: true
+    ~/.mutt:
+        path: .mutt/
+        create: true
+    ~/.offlineimaprc:
+        path: .offlineimaprc
+    ~/.offlineimap.py:
+        path: .offlineimap.py
     ~/bin:
         path: bin/
         create: true
+    ~/.vim/init.vim:
+        path: .vimrc
+    ~/.config/nvim:
+        path: .vim/
+
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vimbackup, vim swapfile directory]
   - ['mkdir -p ~/aur/{pkgbuilds,packages,sources}', aur directories]
-  - ['ln -s ~/.vimrc ~/.vim/init.vim && ln -s ~/.vim/ ~/.config/nvim', symlinking nvim config]

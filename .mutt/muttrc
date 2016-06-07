@@ -1,0 +1,22 @@
+
+set editor=`echo \$EDITOR`
+
+source "gpg2 -dq ~/.mutt-passwords.gpg |"
+set my_pass=$my_pw_main
+
+set mbox_type=Maildir
+set folder=~/Maildir
+set spoolfile=+INBOX
+set header_cache=~/.cache/mutt
+set record = +Sent
+
+set my_user=samuel@swalladge.id.au
+set realname = 'Samuel Walladge'
+set from = $my_user
+set use_from = yes
+
+set smtp_url=smtps://$my_user:$my_pass@mail.swalladge.id.au:25
+set ssl_force_tls = yes
+set ssl_starttls = yes
+
+source ~/.mutt/solarized-dark16.theme
