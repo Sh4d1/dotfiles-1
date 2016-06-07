@@ -86,44 +86,34 @@ runtime macros/matchit.vim
 
 call plug#begin('~/.vim/plugged')
 
-" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lervag/vimtex'
-" Plug 'tpope/vim-surround'                    " replaced with vim-sandwich
 Plug 'machakann/vim-sandwich'
 Plug 'tomtom/tcomment_vim'
 Plug 'luochen1990/rainbow'
 Plug 'danro/rename.vim'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Plug 'Valloric/YouCompleteMe'               " too heavy...
-Plug 'ternjs/tern_for_vim'                    " javascript autocompleter
-" Plug 'ervandew/supertab'                    " tab completion
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}       " javascript autocompleter
 Plug 'ajh17/VimCompletesMe'                   " minimal context completion
-" Plug 'itchyny/lightline.vim'
-" Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
 Plug 'jamessan/vim-gnupg'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'mbbill/undotree'
-" Plug 'sjl/gundo.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
 Plug 'jreybert/vimagit'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 call plug#end() " add plugins to &runtimepath
 
@@ -334,17 +324,6 @@ hi Normal ctermbg=NONE|
 " listchars highlighting
 hi SpecialKey guibg=red ctermbg=red
 
-" YCM config
-" let g:ycm_path_to_python_interpreter = "/usr/bin/python"
-
-" supertab config
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabContextDefaultCompletionType = "<c-n>"
-" autocmd FileType *
-"   \ if &omnifunc != '' |
-"   \   call SuperTabChain(&omnifunc, "<c-n>") |
-"   \ endif
-
 " vimcompletesme config
 let g:vcm_default_maps = 1
 
@@ -365,21 +344,6 @@ let g:jedi#usages_command = "<leader>n"
 " already have other keybindings for omnicompletion
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = "<leader>r"
-
-
-" NERDtree
-let g:NERDTreeCreatePrefix='keepalt silent keepjumps'
-" https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.vim/autoload/autocmds.vim
-function! Attempt_select_last_file() abort
-  let l:previous=expand('#:t')
-  if l:previous != ''
-    call search('\v<' . l:previous . '>')
-  endif
-endfunction
-augroup NERDTreeAutocmds
-  autocmd!
-  autocmd User NERDTreeInit call Attempt_select_last_file()
-augroup END
 
 " tmuxline.vim
 let g:tmuxline_powerline_separators = 0

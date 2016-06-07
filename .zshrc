@@ -20,15 +20,12 @@ source "${HOME}/dotfiles/zgen/zgen.zsh"
 if ! zgen saved; then
     echo "Creating a zgen save"
 
-    zgen oh-my-zsh
-
     # plugins
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
     zgen load zsh-users/zsh-autosuggestions
     # zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
     zgen load rupa/z
-
 
     # completions
     zgen load zsh-users/zsh-completions src
