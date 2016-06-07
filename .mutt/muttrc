@@ -33,3 +33,6 @@ set mailcap_path 	= ~/.mutt/mailcap
 set editor=`echo \$EDITOR`
 auto_view text/html
 alternative_order text/plain text/html
+
+set crypt_use_gpgme = yes
+set crypt_autosign = yes
