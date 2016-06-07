@@ -1,22 +1,33 @@
 
-set editor=`echo \$EDITOR`
-
+# get encrypted password
 source "gpg2 -dq ~/.mutt-passwords.gpg |"
 set my_pass=$my_pw_main
+set my_user=samuel@swalladge.id.au
 
+source ~/.mutt/solarized-dark16.theme
+
+# inbox
 set mbox_type=Maildir
 set folder=~/Maildir
 set spoolfile=+INBOX
 set header_cache=~/.cache/mutt
 set record = +Sent
+set postponed = +Drafts
+set imap_user = $my_user
 
-set my_user=samuel@swalladge.id.au
+# sending mail
 set realname = 'Samuel Walladge'
 set from = $my_user
 set use_from = yes
-
-set smtp_url=smtps://$my_user:$my_pass@mail.swalladge.id.au:25
+set smtp_url=smtp://$my_user:$my_pass@mail.swalladge.id.au:25
 set ssl_force_tls = yes
 set ssl_starttls = yes
 
-source ~/.mutt/solarized-dark16.theme
+set maildir_trash = yes
+folder-hook . 'macro index d "<save-message>+Trash<enter>"'
+folder-hook =Trash 'macro index d <delete-message>' 
+
+set mailcap_path 	= ~/.mutt/mailcap
+set editor=`echo \$EDITOR`
+auto_view text/html
+alternative_order text/plain text/html
