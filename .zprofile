@@ -7,14 +7,13 @@ fi
 
 if hash nvim 2>/dev/null; then
   export EDITOR="nvim"
-  export VISUAL="nvim"
 elif hash vim 2>/dev/null; then
   export EDITOR="vim"
-  export VISUAL="vim"
 else
   export EDITOR="vi"
-  export VISUAL="vi"
 fi
+
+export VISUAL=$EDITOR
 
 export TERMINAL="termite"
 export BROWSER="qutebrowser"
@@ -26,7 +25,7 @@ export MAIL=~/Maildir
 export TERMINFO="$HOME/.terminfo"
 
 # export NODE_PATH="/usr/lib/node_modules/"
-export NODE_PATH="~/.node_modules/lib/node_modules"
+export NODE_PATH="$HOME/.node_modules/lib/node_modules"
 
 # export GPGKEY=5AC10404
 
@@ -34,7 +33,4 @@ export NODE_PATH="~/.node_modules/lib/node_modules"
 export PKGDEST=~/aur/packages
 export SRCDEST=~/aur/sources
 export AURDEST=~/aur/pkgbuilds
-
-
-
 

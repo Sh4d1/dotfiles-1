@@ -9,6 +9,7 @@
     ~/.zprofile: .zprofile
     ~/.zshrc: .zshrc
     ~/.zshenv: .zshenv
+    ~/.dircolors: .dircolors
     ~/.promptline.sh: .promptline.sh
     ~/.octaverc: .octaverc
     ~/.inputrc: .inputrc
