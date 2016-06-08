@@ -51,6 +51,15 @@
     ~/.config/udiskie:
         create: true
         path: .config/udiskie/
+    ~/.config/vdirsyncer:
+        create: true
+        path: .config/vdirsyncer/
+    ~/.config/khal:
+        create: true
+        path: .config/khal/
+    ~/.config/khard:
+        create: true
+        path: .config/khard/
     ~/.local/share/qutebrowser/userscripts:
         create: true
         path: qutebrowser-userscripts/
@@ -65,6 +74,9 @@
         create: true
     ~/.config/ranger/commands.py:
         path: .config/ranger/commands.py
+        create: true
+    ~/.config/cmus/rc:
+        path: .config/cmus/rc
         create: true
     ~/.mutt:
         path: .mutt/

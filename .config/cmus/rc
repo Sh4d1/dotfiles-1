@@ -1,0 +1,6 @@
+
+add ~/Music
+colorscheme solarized-dark
+
+# https://github.com/cmus/cmus/wiki/detachable-cmus
+bind -f common q shell tmux detach-client -s cmus

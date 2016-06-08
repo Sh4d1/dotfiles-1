@@ -48,5 +48,17 @@ set crypt_autosign = yes
 bind pager j next-line
 bind pager k previous-line
 
-macro attach 'V' "<pipe-entry>cat >~/.cache/mutt-temp-email.html && $BROWSER ~/.cache/mutt-temp-email.html && rm ~/.cache/mutt-temp-email.html<enter>"
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt-temp-email.html && $BROWSER ~/.cache/mutt-temp-email.html && rm ~/.cache/mutt-temp-email.html<enter>" \
+      "view html attachments or message in browser"
+
+set query_command= "khard email -p %s"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+
+macro index,pager A \
+    "<pipe-message>khard add-email<return>" \
+    "add the sender email address to khard"
+
+macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
+      "syncronize contacts with server"
 

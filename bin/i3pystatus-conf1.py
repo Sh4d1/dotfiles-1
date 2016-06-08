@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 from i3pystatus import Status
+from i3pystatus.mail import maildir
+import os
 
 status = Status()
 
@@ -56,6 +58,11 @@ status.register("disk",
 # Note: requires libpulseaudio from PyPI
 status.register("pulseaudio",
                 format="♪ {volume}%",)
+
+status.register("mail",
+        backends=[maildir.MaildirMail(
+            directory=os.path.join(os.path.expanduser('~'), 'Maildir/INBOX/'))],
+        format="MAIL: {unread}",format_plural="MAIL: {unread}")
 
 status.register("cmus",
                 format="{status} {title} - {artist}",

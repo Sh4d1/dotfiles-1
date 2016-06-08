@@ -44,11 +44,14 @@ Plus all the other apps...
 - awesome wm (currently use/prefer i3)
 - bash
 - clipit
+- cmus
 - dunst
 - htop
 - i3
 - i3pystatus
 - i3status
+- khal
+- khard
 - ls dircolors
 - mpd (don't use - only basic config)
 - msmtp
@@ -64,6 +67,7 @@ Plus all the other apps...
 - todotxt-machine
 - touchegg
 - udiskie
+- vdirsyncer
 - vim/neovim
 - X11 (xinitrc, Xresources)
 - zsh
