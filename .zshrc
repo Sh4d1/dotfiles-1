@@ -137,14 +137,28 @@ alias c=z
 alias e=$EDITOR
 alias mux=tmuxinator
 alias rg=ranger
-alias gp='git push'
-alias gs='git status'
-alias gcom='git commit'
-alias gc='git checkout'
-alias gf='git fetch'
-alias gm='git fetch'
-alias gd='git diff'
+
+# inspiration for git aliases from https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
+# don't need that many though
+alias g='git'
+alias gg='git grep'
 alias ga='git add'
+alias gaa='git add --all'
+alias gd='git diff'
+alias gb='git branch'
+alias gph='git push'
+alias gpl='git pull'
+alias gss='git status -sb'
+alias gcm='git commit'
+alias gco='git checkout'
+alias gf='git fetch'
+alias grv='git remote -v'
+alias gmm='git merge'
+alias grb='git rebase'
+alias glog='git log --oneline --decorate --color --graph'
+
+alias upgrade='sudo pacman -Syu'
+alias vimdiff='nvim -d'
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
