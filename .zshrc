@@ -65,6 +65,7 @@ SAVEHIST=100000
 
 # COMPLETIONS
 
+ZLE_REMOVE_SUFFIX_CHARS='* \t\n;&|'
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 1
