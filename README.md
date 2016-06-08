@@ -51,8 +51,11 @@ Plus all the other apps...
 - i3status
 - ls dircolors
 - mpd (don't use - only basic config)
+- msmtp
+- mutt
 - octave
-- qutebrowser
+- offlineimap
+- qutebrowser (plus userscripts)
 - ranger
 - readline/login/init stuff
 - rofi

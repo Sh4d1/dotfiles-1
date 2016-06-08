@@ -208,9 +208,6 @@ mode "$mode_system" {
 bindsym Mod4+Escape mode "$mode_system"
 
 for_window [class="Xfce4-appfinder"] floating enable
-# send the apps console session to the scratchpad
-for_window [ title="^consoleapps$" ] move scratchpad
-
 for_window [ title="^POPUP1$" ] floating enable
 
 bindsym Mod4+o exec xfce4-appfinder
@@ -274,9 +271,6 @@ exec --no-startup-id pasystray
 
 # notify daemon
 exec --no-startup-id dunst
-
-# music player
-# exec --no-startup-id clementine
 
 # external drive management
 exec --no-startup-id udiskie
