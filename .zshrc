@@ -159,6 +159,8 @@ alias glog='git log --oneline --decorate --color --graph'
 
 alias upgrade='sudo pacman -Syu'
 alias vimdiff='nvim -d'
+alias status='systemctl status'
+alias ustatus='systemctl status --user'
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
