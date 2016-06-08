@@ -1,4 +1,6 @@
-
+#
+# Thanks to https://wiki.archlinux.org/index.php/Mutt for much of this config
+#
 # # use the following if using native smtp
 # # get encrypted password
 # source "gpg2 -dq ~/.mutt-passwords.gpg |"
@@ -40,3 +42,11 @@ alternative_order text/plain text/html
 
 set crypt_use_gpgme = yes
 set crypt_autosign = yes
+
+
+# keybindings
+bind pager j next-line
+bind pager k previous-line
+
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt-temp-email.html && $BROWSER ~/.cache/mutt-temp-email.html && rm ~/.cache/mutt-temp-email.html<enter>"
+
