@@ -1,4 +1,9 @@
 
+# If not running interactively, do nothing
+[[ $- != *i* ]] && return
+
+# start tmux automatically
+[[ -z "$TMUX" ]] && exec tmux
 
 # OPTIONS
 
@@ -145,6 +150,7 @@ alias gg='git grep'
 alias ga='git add'
 alias gaa='git add --all'
 alias gd='git diff'
+alias gdh='git diff HEAD'
 alias gb='git branch'
 alias gph='git push'
 alias gpl='git pull'
@@ -161,6 +167,7 @@ alias upgrade='sudo pacman -Syu'
 alias vimdiff='nvim -d'
 alias status='systemctl status'
 alias ustatus='systemctl status --user'
+alias sys='systemctl'
 
 # shortcuts to force password auth (avoid too many auth attempts error)
 alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'

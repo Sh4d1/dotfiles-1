@@ -98,4 +98,3 @@
   - [git submodule update --init --recursive, Installing submodules]
   - [mkdir -p ~/.vimbackup, vim swapfile directory]
   - ['mkdir -p ~/aur/{pkgbuilds,packages,sources}', aur directories]
-  - ['systemctl enable --user `pwd`/systemd/offlineimap.service', enabling offlineimap]

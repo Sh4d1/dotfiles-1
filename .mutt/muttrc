@@ -36,12 +36,19 @@ folder-hook . 'macro index d "<save-message>+Trash<enter>"'
 folder-hook =Trash 'macro index d <delete-message>' 
 
 set mailcap_path 	= ~/.mutt/mailcap
+folder-hook . `rm -r /tmp/mutt/*`
+
 set editor=`echo \$EDITOR`
 auto_view text/html
 alternative_order text/plain text/html
 
 set crypt_use_gpgme = yes
 set crypt_autosign = yes
+
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+
+set signature="~/.mutt/sig"
 
 
 # keybindings
