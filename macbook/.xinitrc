@@ -15,20 +15,6 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-#### run startup programs
-
-# keyboard options
-#setxkbmap -option compose:ralt
-#setxkbmap -variant dvorak
-#xset r rate 175 80
-
-
-# sound
-#start-pulseaudio-x11
-
-xrandr --dpi 192
-xrandr --output eDP1 --primary
-
 
 exec i3
 

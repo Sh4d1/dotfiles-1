@@ -2,8 +2,8 @@
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
 
-# start tmux automatically
-[[ -z "$TMUX" ]] && exec tmux
+# start tmux automatically (attach if already running)
+[[ -z "$TMUX" ]] && exec tmux new-session -A -s terminal
 
 # OPTIONS
 
