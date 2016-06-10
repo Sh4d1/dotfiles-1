@@ -3,7 +3,9 @@
 [[ $- != *i* ]] && return
 
 # start tmux automatically (attach if already running)
-[[ -z "$TMUX" ]] && exec tmux new-session -A -s terminal
+# [[ -z "$TMUX" ]] && [[ -z "$REMOTE_SESSION" ]] && hash tmux 2>/dev/null && exec tmux new-session -A -s terminal
+[[ -z "$TMUX" ]] && hash tmux 2>/dev/null && exec tmux
+
 
 # OPTIONS
 
