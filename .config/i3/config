@@ -242,7 +242,7 @@ workspace 10 output VGA1
 exec_always --no-startup-id xrandr --output HDMI1 --auto --pos 0x0 --output VGA1 --auto --pos 1920x180
 exec_always --no-startup-id xrandr --output HDMI1 --primary
 
-exec_always --no-startup-id xsetroot -solid #999999
+exec_always --no-startup-id xsetroot -solid #000000
 
 # Startup programs!
 
