@@ -7,6 +7,8 @@ if tmux switch-client -p && tmux kill-session -t $SESSION; then
   if [ `tmux list-sessions | wc -l` -gt 1 ]; then
     tmux choose-session;
   fi
+else
+  tmux kill-session
 fi
 
 # exit cleanly to avoid output in tmux
