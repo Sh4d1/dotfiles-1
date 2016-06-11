@@ -2,10 +2,10 @@
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
 
-# Ok, not so fun starting tmux automatically...
 # start tmux automatically (attach if already running)
 # [[ -z "$TMUX" ]] && [[ -z "$REMOTE_SESSION" ]] && hash tmux 2>/dev/null && exec tmux new-session -A -s terminal
 # [[ -z "$TMUX" ]] && hash tmux 2>/dev/null && exec tmux
+[[ -z "$TMUX" ]] && hash tmux 2>/dev/null && {tmux list-sessions && exec tmux attach || exec tmux}
 
 
 # OPTIONS
