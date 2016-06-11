@@ -2,10 +2,12 @@
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
 
-# start tmux automatically (attach if already running)
+# Below are some various methods for automatically running tmux on opening a
+# shell. They work well, but I like access to the shell sometimes without tmux
+# around it...
 # [[ -z "$TMUX" ]] && [[ -z "$REMOTE_SESSION" ]] && hash tmux 2>/dev/null && exec tmux new-session -A -s terminal
 # [[ -z "$TMUX" ]] && hash tmux 2>/dev/null && exec tmux
-[[ -z "$TMUX" ]] && hash tmux 2>/dev/null && {tmux list-sessions && exec tmux attach || exec tmux}
+# [[ -z "$TMUX" ]] && hash tmux 2>/dev/null && {tmux list-sessions && exec tmux attach || exec tmux}
 
 
 # OPTIONS
@@ -146,6 +148,7 @@ alias e=$EDITOR
 alias mux=tmuxinator
 alias rg=ranger
 alias t=tmux
+alias ta='tmux attach'
 
 # inspiration for git aliases from https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 # don't need that many though
@@ -156,7 +159,7 @@ alias gaa='git add --all'
 alias gd='git diff'
 alias gdh='git diff HEAD'
 alias gb='git branch'
-alias gph='git push'
+alias gps='git push'
 alias gpl='git pull'
 alias gss='git status -sb'
 alias gcm='git commit'
