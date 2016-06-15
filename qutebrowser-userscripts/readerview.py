@@ -14,7 +14,36 @@ import tempfile
 # use readability-lxml (https://pypi.python.org/pypi/readability-lxml) to
 # extract the article text
 html = open(os.environ.get('QUTE_HTML')).read()
-article = Document(html).summary()
+url = os.environ.get('QUTE_URL')
+
+# set the url kwarg to get absolute links
+document = Document(html, url=url)
+article = document.summary()
+
+# add styling and whatever for better reading
+head = '''<html>
+<head>
+<style>
+body {
+ max-width: 1000px;
+ margin: 0 auto;
+}
+#qute_orig_link {
+ font-weight: bold;
+ text-align: center;
+ width: 100%;
+ margin: 3rem 0;
+}
+</style>
+</head>
+<body>
+<div id="qute_orig_link">
+ <h1>''' + document.title() + '''</h1>
+ <a href="''' + url + '''">View original page.</a>
+</div>
+'''
+
+article = head + article[12:]
 
 # create a temporary file to open with qutebrowser
 fd, name = tempfile.mkstemp(suffix='.html')
