@@ -30,6 +30,9 @@
     ~/.config/clipit: 
         create: true
         path: .config/clipit/
+    ~/.config/clipster:
+        create: true
+        path: .config/clipster/
     ~/.config/qutebrowser: 
         create: true
         path: macbook/.config/qutebrowser/

@@ -44,6 +44,7 @@ Plus all the other apps...
 - awesome wm (currently use/prefer i3)
 - bash
 - clipit
+- clipster
 - cmus
 - dunst
 - htop

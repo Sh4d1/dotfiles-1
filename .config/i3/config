@@ -256,7 +256,8 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # clipboard management
-exec --no-startup-id clipit
+exec--no-startup-id clipster -d
+bindsym Mod4+c exec clipster -cs
 
 # syncthing systray icon
 #exec --no-startup-id syncthing-gtk -m
