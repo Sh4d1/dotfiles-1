@@ -256,7 +256,7 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # clipboard management
-exec--no-startup-id clipster -d
+exec --no-startup-id clipster -d
 bindsym Mod4+c exec clipster -cs
 
 # syncthing systray icon
