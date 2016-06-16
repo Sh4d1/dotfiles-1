@@ -19,14 +19,20 @@ url = os.environ.get('QUTE_URL')
 # set the url kwarg to get absolute links
 document = Document(html, url=url)
 article = document.summary()
+title = document.title()
 
 # add styling and whatever for better reading
 head = '''<html>
 <head>
+<title>''' + title + ''' [readerview]</title>
 <style>
 body {
  max-width: 1000px;
  margin: 0 auto;
+ background-color: #002b36;
+ color: #839496;
+ // background-color: #fdf6e3;
+ // color: #657b83;
 }
 #qute_orig_link {
  font-weight: bold;
@@ -38,7 +44,7 @@ body {
 </head>
 <body>
 <div id="qute_orig_link">
- <h1>''' + document.title() + '''</h1>
+ <h1>''' + title + '''</h1>
  <a href="''' + url + '''">View original page.</a>
 </div>
 '''

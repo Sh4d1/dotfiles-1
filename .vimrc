@@ -2,6 +2,7 @@
 " inspiration for some parts found at:
 "  - http://items.sjbach.com/319/configuring-vim-right
 "  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
+"  - https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim
 "  - and others...
 
 "" Settings
@@ -69,7 +70,7 @@ set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
-set grepprg=ag\ --nogroup\ --nocolor\ --column
+set grepprg=ag\ --vimgrep
 set grepformat=%f:%l:%c%m
 
 " match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
@@ -123,7 +124,7 @@ call plug#end() " add plugins to &runtimepath
 inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
 " inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
 cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
-nmap <silent> <leader>h :silent :nohlsearch<CR>| " hide highlighting from search
+nmap <silent> <leader>n :silent :nohlsearch<CR>| " hide highlighting from search
 nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
 " noremap - $|  " easy access to beginning and end of line
 " noremap _ ^|  " ||
@@ -135,13 +136,16 @@ nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
 nnoremap - :silent e <C-R>=empty(expand('%')) ? '.' : expand('%:p:h')<CR><CR>
-nnoremap _ :NERDTreeToggle<CR>
+nnoremap <silent> _ :NERDTreeToggle<CR>
 map <C-@> <C-Space>
 imap <C-@> <C-Space>
 imap <C-Space> <c-x><c-o>
 
+nnoremap / /\v
+vnoremap / /\v
+
 " faster saving files
-map <C-s> :wa<CR>
+map <silent> <C-s> :wa<CR>
 
 " easy moving between splits
 nnoremap <C-h> <C-w>h
@@ -150,14 +154,14 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
 " tagbar
-nmap <leader>t :TagbarToggle<CR>
+nmap <silent> <leader>t :TagbarToggle<CR>
 
 " undotree
-nmap <leader>u :UndotreeToggle<CR>
+nmap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 
 " ctrl-p
-map <C-Space> :CtrlP<CR>
+map <silent> <C-Space> :CtrlP<CR>
 
 
 " Vimux
@@ -172,26 +176,31 @@ vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
 " Select current paragraph and send it to tmux
 nmap <C-c><C-c> vip<C-c><C-c>
 
-" Run the current file with rspec
-map <Leader>rp :call VimuxRunCommand("python " . bufname("%"))<CR>
+" map <Leader>bp :call VimuxRunCommand("python")<CR>
 
 " Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>bp :VimuxPromptCommand<CR>
 
 " Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>bl :VimuxRunLastCommand<CR>
 
 " Inspect runner pane
-map <Leader>vi :VimuxInspectRunner<CR>
+map <Leader>bo :call VimuxOpenRunner()<CR>
+
+" Inspect runner pane
+map <Leader>bi :VimuxInspectRunner<CR>
 
 " Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
+map <Leader>bq :VimuxCloseRunner<CR>
 
 " Interrupt any command running in the runner pane
-map <Leader>vx :VimuxInterruptRunner<CR>
+map <Leader>bx :VimuxInterruptRunner<CR>
+" send eof
+map <Leader>bd :call VimuxSendKeys("^D")<CR>
 
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <Leader>vz :call VimuxZoomRunner()<CR>
+map <Leader>bz :call VimuxZoomRunner()<CR>
+
 
 " shortcut to system clipboard
 vnoremap + "+
