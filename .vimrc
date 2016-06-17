@@ -68,6 +68,8 @@ set cursorline
 set textwidth=80
 set colorcolumn=+1,+2,+3
 
+set fo+=tcrqanl1j
+
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
 set grepprg=ag\ --vimgrep
