@@ -32,8 +32,14 @@ set from = $my_user
 set use_from = yes
 
 set maildir_trash = no
-folder-hook . 'macro index d "<save-message>+Trash<enter>"'
+
+# delete/trash messages from index
+folder-hook . 'macro index d ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Trash\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Trash"'
 folder-hook =Trash 'macro index d <delete-message>' 
+
+# delete/trash messages from pager
+folder-hook . 'macro pager d ":set confirmappend=no delete=yes\n<save-message>+Trash\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Trash"'
+folder-hook =Trash 'macro pager d <delete-message>' 
 
 set mailcap_path 	= ~/.mutt/mailcap
 folder-hook . `rm -r /tmp/mutt/*`
@@ -62,10 +68,13 @@ set query_command= "khard email -p %s"
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
-macro index,pager A \
+# save sender address to contacts
+macro index,pager S \
     "<pipe-message>khard add-email<return>" \
     "add the sender email address to khard"
 
 macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
       "syncronize contacts with server"
+
+macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Archive"
 

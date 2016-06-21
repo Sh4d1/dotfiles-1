@@ -46,6 +46,7 @@ Plus all the other apps...
 - clipit
 - clipster
 - cmus
+- copyq (new preferred clipboard manager)
 - dunst
 - htop
 - i3

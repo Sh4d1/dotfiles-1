@@ -25,7 +25,7 @@ export MAIL=~/Maildir
 export TERMINFO="$HOME/.terminfo"
 
 # export NODE_PATH="/usr/lib/node_modules/"
-export NODE_PATH="$HOME/.node_modules/lib/node_modules"
+# export NODE_PATH="$HOME/.node_modules/lib/node_modules"
 
 # export GPGKEY=5AC10404
 

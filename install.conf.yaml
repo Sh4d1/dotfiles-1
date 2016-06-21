@@ -33,6 +33,9 @@
     ~/.config/clipster:
         create: true
         path: .config/clipster/
+    ~/.config/copyq/copyq.conf:
+        path: .config/copyq/copyq.conf
+        create: true
     ~/.config/qutebrowser:
         create: true
         path: .config/qutebrowser/

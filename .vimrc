@@ -68,8 +68,6 @@ set cursorline
 set textwidth=80
 set colorcolumn=+1,+2,+3
 
-set fo+=tcrqanl1j
-
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
 set grepprg=ag\ --vimgrep
@@ -116,6 +114,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
 Plug 'jreybert/vimagit'
 Plug 'benmills/vimux'
+Plug 'wannesm/wmgraphviz.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -126,7 +125,7 @@ call plug#end() " add plugins to &runtimepath
 inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
 " inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
 cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
-nmap <silent> <leader>n :silent :nohlsearch<CR>| " hide highlighting from search
+nnoremap <silent> <esc> :silent :nohlsearch<CR> " hide search highlighting
 nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
 " noremap - $|  " easy access to beginning and end of line
 " noremap _ ^|  " ||
@@ -423,4 +422,6 @@ let g:promptline_preset = {
     \'c' : [ promptline#slices#python_virtualenv(), promptline#slices#cwd() ],
     \'y' : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
     \'warn' : [ promptline#slices#last_exit_code() ]}
+
+let g:WMGraphviz_viewer = 'rifle'
 
