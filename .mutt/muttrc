@@ -73,6 +73,9 @@ macro index,pager S \
     "<pipe-message>khard add-email<return>" \
     "add the sender email address to khard"
 
+macro index <F4> "<shell-escape>offlineimap -o<enter>" \
+      "check for new emails now"
+
 macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
       "syncronize contacts with server"
 
