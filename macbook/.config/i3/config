@@ -132,7 +132,7 @@ bindsym Mod4+Shift+9 move container to workspace 9
 bindsym Mod4+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym Mod4+Shift+c reload
+bindsym Mod4+Ctrl+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod4+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -245,8 +245,10 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # clipboard management
-exec --no-startup-id clipster -d
-bindsym Mod4+c exec clipster -cs
+# Why are all the clipboard apps not working when called from here on startup??
+# exec --no-startup-id clipster -d
+# bindsym Mod4+c exec clipster -cs
+exec --no-startup-id copyq
 
 # syncthing systray icon
 #exec --no-startup-id syncthing-gtk -m

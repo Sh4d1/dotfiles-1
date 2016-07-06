@@ -237,6 +237,7 @@ let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck i
 
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
+let g:vimtex_view_general_viewer = 'rifle'
 
 " rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
