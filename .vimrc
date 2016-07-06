@@ -125,7 +125,10 @@ call plug#end() " add plugins to &runtimepath
 inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
 " inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
 cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
-nnoremap <silent> <esc> :silent :nohlsearch<CR> " hide search highlighting
+
+" hide search highlighting
+nnoremap <silent> <esc> :silent :nohlsearch<CR>
+
 nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
 " noremap - $|  " easy access to beginning and end of line
 " noremap _ ^|  " ||
