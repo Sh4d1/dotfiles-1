@@ -145,6 +145,7 @@ alias rm='rm -I'
 alias td='todotxt-machine'
 alias c=z
 alias e=$EDITOR
+alias ni=nvim
 alias mux=tmuxinator
 alias rg=ranger
 alias t=tmux
@@ -181,6 +182,7 @@ alias moshp='mosh --ssh="ssh -o PubkeyAuthentication=no"'
 alias sshp='ssh -o PubkeyAuthentication=no'
 alias rsyncp="rsync -e 'ssh -o PubkeyAuthentication=no'"
 
+export GPG_TTY=$(tty)
 
 # anything local to this machine
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local

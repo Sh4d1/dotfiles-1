@@ -21,6 +21,8 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export MAIL=~/Maildir
 
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
 # https://github.com/neovim/neovim/issues/2048#issuecomment-187227417
 export TERMINFO="$HOME/.terminfo"
 
@@ -34,3 +36,6 @@ export PKGDEST=~/aur/packages
 export SRCDEST=~/aur/sources
 export AURDEST=~/aur/pkgbuilds
 
+# steam options
+# export STEAM_RUNTIME=0
+export STEAM_FRAME_FORCE_CLOSE=1

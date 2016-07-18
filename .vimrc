@@ -7,7 +7,6 @@
 
 "" Settings
 
-set nocompatible " doesn't have to be compatible
 set encoding=utf-8 " good default
 filetype plugin indent on
 syntax on "set syntax highlighting on
@@ -15,11 +14,15 @@ set exrc " for local .vimrc
 set secure
 set title
 set hidden "so don't lose undo history when switching buffers
-set scrolloff=3 " see more lines on scrolling
+
+" see more lines on scrolling
+set scrolloff=3
 set sidescrolloff=3
+
+" indenting
 set autoindent
-set expandtab
 set smarttab
+set expandtab
 set softtabstop=2
 set shiftwidth=2
 
@@ -42,7 +45,6 @@ set listchars=tab:»·,trail:·,eol:$ " for graphically displaying whitespace
 set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
-set laststatus=2
 set breakindent
 set showbreak=⤷\   " backslash to escape extra space
 " set wildmode=list:longest| " no, i like the vim way
@@ -99,7 +101,6 @@ Plug 'luochen1990/rainbow'
 Plug 'danro/rename.vim'
 Plug 'ap/vim-css-color'
 Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}       " javascript autocompleter
 Plug 'ajh17/VimCompletesMe'                   " minimal context completion
 Plug 'majutsushi/tagbar'
@@ -117,8 +118,56 @@ Plug 'benmills/vimux'
 Plug 'wannesm/wmgraphviz.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'romainl/flattened'
 
 call plug#end() " add plugins to &runtimepath
+
+
+colorscheme flattened_dark
+
+
+" statusline highlights
+hi User1 ctermbg=NONE ctermfg=NONE
+hi User2 ctermbg=2 ctermfg=0
+hi User3 ctermbg=3 ctermfg=0
+hi User4 ctermbg=4 ctermfg=0
+hi User5 ctermbg=5 ctermfg=0
+
+" Status Line
+set laststatus=2
+
+function! BuildStatusline()
+  let l:line='%3*'
+  let l:line = l:line . '%2.{mode()}'           " mode
+  let l:line = l:line . ' %1* '
+  let l:line = l:line . '%F'                    " filename
+  let l:line = l:line . '%r%m%w%q%h'            " flags
+
+  let l:line = l:line . '%1*'
+  let l:line = l:line . '%='                    " separator
+
+  let l:line = l:line . '%{tagbar#currenttag("%s « ", "", "fs")}'  " tagbar
+  let l:line = l:line . '%{&ft}'                " filetype
+  let l:line = l:line . ' %2* '
+  let l:line = l:line . '%([%{&fenc}]%)%{&ff}'  " encodings
+  let l:line = l:line . ' %4* '
+  let l:line = l:line . '%v,%l/%L [%p%%] '      " cursor position
+
+  " git status
+  let l:line = l:line . '%5*%( %{fugitive#statusline()} %)'
+  let l:hunks = GitGutterGetHunkSummary()
+  if hunks[0] || hunks[1] || hunks[2]
+    let l:line = l:line . '%#GitGutterAdd# +' . l:hunks[0] .
+                        \ ' %#GitGutterChange#~' . l:hunks[1] .
+                        \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
+  endif
+
+  return line
+endfunction
+
+
+set statusline=%!BuildStatusline()
+
 
 "" Keymappings
 
@@ -132,8 +181,8 @@ nnoremap <silent> <esc> :silent :nohlsearch<CR>
 nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
 " noremap - $|  " easy access to beginning and end of line
 " noremap _ ^|  " ||
-noremap k gk| " for scrolling one screen line at a time
-noremap j gj| " ||
+" noremap k gk| " for scrolling one screen line at a time
+" noremap j gj| " ||
 nnoremap <F3> :set invpaste paste?<CR>| "toggle paste mode in terminal (avoiding autoindent over pasted text)
 set pastetoggle=<F3>| " needed to get out of paste mode
 nmap <silent> <leader>p :set spell!<CR>
@@ -218,11 +267,6 @@ if has('nvim')
 endif
 
 "" Plugins options
-
-" solarized
-set background=dark
-" let g:solarized_contrast = "high"
-colorscheme solarized
 
 " Neomake
 autocmd! BufEnter,BufWritePost * Neomake
@@ -338,32 +382,33 @@ let g:sandwich#recipes += [
       \   },
       \ ]
 
-" airline config
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'solarized'
+" " airline config
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_theme = 'solarized'
+"
+" " custom symbols (avoid problems with powerline fonts not installed)
+" let g:airline_powerline_fonts=0
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_left_alt_sep = '»'
+" let g:airline_right_alt_sep = '«'
+" let g:airline_symbols.crypt = 'X'
+" " let g:airline_symbols.linenr = '␊'
+" " let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" " let g:airline_symbols.paste = 'Þ'
+" " let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.spell = 'Ꞩ'
+" let g:airline_symbols.notexists = '∄'
+" let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_symbols.readonly = 'RO'
 
-" custom symbols (avoid problems with powerline fonts not installed)
-let g:airline_powerline_fonts=0
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = '»'
-let g:airline_right_alt_sep = '«'
-let g:airline_symbols.crypt = 'X'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_symbols.readonly = 'RO'
 
 " has to be defined later in file than was previously
 " to keep transparent background

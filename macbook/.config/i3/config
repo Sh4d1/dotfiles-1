@@ -236,7 +236,7 @@ exec_always --no-startup-id xsetroot -solid '#000000'
 # Startup programs!
 
 # need to start now due to using gnome keyring for passwords
-exec --no-startup-id systemctl start --user offlineimap
+exec --no-startup-id offlineimap
 
 # bluetooth systemtray icon
 exec --no-startup-id blueberry-tray 
