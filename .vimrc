@@ -3,55 +3,62 @@
 "  - http://items.sjbach.com/319/configuring-vim-right
 "  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
 "  - https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim
+"  - https://www.vi-improved.org/{recommendations,plugins} 
 "  - and others...
 
 
 " Load plugins with vim-plug
-
 call plug#begin('~/.vim/plugged')
 
-Plug 'benekastah/neomake'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-speeddating'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'lervag/vimtex'
-Plug 'machakann/vim-sandwich'
-Plug 'tomtom/tcomment_vim'
-Plug 'danro/rename.vim'
-Plug 'ap/vim-css-color'
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}       " javascript autocompleter
-Plug 'ajh17/VimCompletesMe'                   " minimal context completion
-Plug 'majutsushi/tagbar'
-Plug 'davidhalter/jedi-vim'
+                                                     " Misc
+Plug 'tpope/vim-repeat'                              " better repeating for supported plugins
+Plug 'tomtom/tcomment_vim'                           " commenting
+Plug 'danro/rename.vim'                              " easy rename files from vim
+Plug 'tpope/vim-speeddating'                         " make inc/dec numbers work with dates
+Plug 'tpope/vim-surround'                            " edit surrounding things
+Plug 'tommcdo/vim-lion'                              " align things
+Plug 'AndrewRadev/sideways.vim'                      " move function args sideways
+Plug 'rstacruz/sparkup', {'rtp': 'vim'}              " quick insert html tags
+Plug 'justinmk/vim-sneak'                            " alternative to f/t
+Plug 'jamessan/vim-gnupg'                            " seamless editing pgp encrypted files
 
-" for editing pgp encrypted files seamlessly
-Plug 'jamessan/vim-gnupg'
+                                                     " Language help
+Plug 'lervag/vimtex'                                 " latex
+Plug 'wannesm/wmgraphviz.vim'                        " graphviz dot
 
-" better netrw alternative
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+                                                     " Tags
+Plug 'ludovicchabant/vim-gutentags'                  " auto-generate tags file
+Plug 'majutsushi/tagbar'                             " view tags easily
 
-" git integrations
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
 
-" completions
-Plug 'artur-shaik/vim-javacomplete2'
+                                                     " Git integrations
+Plug 'tpope/vim-fugitive'                            " git integration
+Plug 'airblade/vim-gitgutter'                        " view hunks/changes in the gutter
+Plug 'jreybert/vimagit'                              " interactive git stage/view/commit window
 
-Plug 'mbbill/undotree'
-Plug 'benmills/vimux'
-Plug 'wannesm/wmgraphviz.vim'
-Plug 'rstacruz/sparkup', {'rtp': 'vim'}
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+                                                     " Completions
+Plug 'artur-shaik/vim-javacomplete2'                 " java completion
+Plug 'davidhalter/jedi-vim'                          " python completions + refactoring
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}    " javascript completions
 
-Plug 'luochen1990/rainbow'
+                                                     " Utilities
+Plug 'ctrlpvim/ctrlp.vim'                            " fuzzy finder
+Plug 'mbbill/undotree'                               " show the undotree
+Plug 'benmills/vimux'                                " run things in tmux
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'  " snippets
+Plug 'neomake/neomake'                               " async make + gutter signs
+Plug 'ajh17/VimCompletesMe'                          " tab completion
 
-" solarized colorscheme
-Plug 'romainl/flattened'
+                                                     " Pretty
+Plug 'luochen1990/rainbow'                           " easier to see nested parens
+Plug 'ap/vim-css-color'                              " highlight colors in css
+Plug 'romainl/flattened'                             " (solarized)
 
-call plug#end() " add plugins to &runtimepath
+" add plugins to &runtimepath
+call plug#end()
 
-"" Settings
+
+" set options
 
 set encoding=utf-8 " good default
 filetype plugin indent on
@@ -59,7 +66,7 @@ syntax on "set syntax highlighting on
 set exrc " for local .vimrc
 set secure
 set title
-set hidden "so don't lose undo history when switching buffers
+set hidden " so don't lose undo history when switching buffers
 
 " see more lines on scrolling
 set scrolloff=3
@@ -72,13 +79,13 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+" better search behaviour
 set tabstop=2
-set ignorecase " better searching
-
+set ignorecase
 set smartcase
-
 set incsearch
 set hlsearch
+
 set bs=2 " backspace stuff
 set backspace=indent,eol,start " allow backspace over indents, etc.
 set number " turn on line numbering
@@ -124,8 +131,8 @@ set grepformat=%f:%l:%c%m
 " match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
 
-let mapleader = ","      " the map leader key
-let maplocalleader = ","
+let mapleader = "\<space>"
+let maplocalleader = "\<space>"
 
 " better % navigation
 runtime macros/matchit.vim
@@ -144,27 +151,27 @@ hi User6 ctermbg=6 ctermfg=0
 set laststatus=2
 
 function! BuildStatusline()
-  let l:line='%3*'
-  let l:line = l:line . '%2.{mode()}'           " mode
-  let l:line = l:line . ' %1* '
-  let l:line = l:line . '%F'                    " filename
-  let l:line = l:line . '%r%m%w%q%h'            " flags
+  let l:line = '%3*'
+  let l:line .= '%2.{mode()}'                                    " current mode
+  let l:line .= ' %1* '
+  let l:line .= '%F'                                             " filename
+  let l:line .= '%r%m%w%q%h'                                     " flags
 
-  let l:line = l:line . '%1*'
-  let l:line = l:line . '%='                    " separator
+  let l:line .= '%1*'
+  let l:line .= '%='                                             " separator
 
-  let l:line = l:line . '%{tagbar#currenttag("%s « ", "", "fs")}'  " tagbar
-  let l:line = l:line . '%{&ft}'                " filetype
-  let l:line = l:line . ' %2* '
-  let l:line = l:line . '%([%{&fenc}]%)%{&ff}'  " encodings
-  let l:line = l:line . ' %4* '
-  let l:line = l:line . '%v,%l/%L [%p%%] '      " cursor position
+  let l:line .= '%{tagbar#currenttag(''%s « '', '''', ''fs'')}'  " tagbar
+  let l:line .= '%{&ft}'                                         " filetype
+  let l:line .= ' %2* '
+  let l:line .= '%([%{&fenc}]%)%{&ff}'                           " encodings
+  let l:line .= ' %4* '
+  let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
   " git status
-  let l:line = l:line . '%6*%( %{fugitive#statusline()} %)'
+  let l:line .= '%6*%( %{fugitive#statusline()} %)'
   let l:hunks = GitGutterGetHunkSummary()
-  if hunks[0] || hunks[1] || hunks[2]
-    let l:line = l:line . '%#GitGutterAdd# +' . l:hunks[0] .
+  if l:hunks[0] || l:hunks[1] || l:hunks[2]
+    let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .
                         \ ' %#GitGutterChange#~' . l:hunks[1] .
                         \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
   endif
@@ -175,31 +182,36 @@ endfunction
 set statusline=%!BuildStatusline()
 
 
-"" Keymappings
+" Keymappings
 
-inoremap <leader>d <C-R>=strftime('%F')<CR>| " insert current iso date
-" inoremap <S-Tab> <C-V><Tab>| "shift tab to insert real tab
-cmap w!! w !sudo tee % >/dev/null| " save even if opened in readonly
+" insert the current date (iso format)
+inoremap <c-d> <C-R>=strftime('%F')<CR>
+
+" readonly save trick
+cmap w!! w !sudo tee % >/dev/null
 
 " hide search highlighting
 nnoremap <silent> <esc> :silent :nohlsearch<CR>
 
-nmap <silent> <leader>s :set nolist!<CR>| " show/hide whitespace
-" noremap - $|  " easy access to beginning and end of line
-" noremap _ ^|  " ||
-" noremap k gk| " for scrolling one screen line at a time
-" noremap j gj| " ||
-nnoremap <F3> :set invpaste paste?<CR>| "toggle paste mode in terminal (avoiding autoindent over pasted text)
-set pastetoggle=<F3>| " needed to get out of paste mode
+" toggle visible whitespace
+nmap <silent> <leader>s :set nolist!<CR>
+
+" toggle paste mode
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
+
 nmap <silent> <leader>p :set spell!<CR>
 nmap <leader>f 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
-nnoremap - :silent e <C-R>=empty(expand('%')) ? '.' : expand('%:p:h')<CR><CR>
-nnoremap <silent> _ :NERDTreeToggle<CR>
+
+" control + space in terminal hack
 map <C-@> <C-Space>
 imap <C-@> <C-Space>
+
+" omnicomplete
 imap <C-Space> <c-x><c-o>
 
+" use magic by default
 nnoremap / /\v
 vnoremap / /\v
 
@@ -220,7 +232,11 @@ nmap <silent> <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
 
 " ctrl-p
-map <silent> <C-Space> :CtrlP<CR>
+map <silent> <c-space> :CtrlP<CR>
+map <silent> <leader><space>p :CtrlP<CR>
+map <silent> <leader><space>t :CtrlPTag<CR>
+map <silent> <leader><space>m :CtrlPMRU<CR>
+map <silent> <leader><space>b :CtrlPBuffer<CR>
 
 
 " Vimux
@@ -235,31 +251,37 @@ vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
 " Select current paragraph and send it to tmux
 nmap <C-c><C-c> vip<C-c><C-c>
 
-" map <Leader>bp :call VimuxRunCommand("python")<CR>
-
 " Prompt for a command to run
-map <Leader>bp :VimuxPromptCommand<CR>
+map <leader>bp :VimuxPromptCommand<CR>
 
 " Run last command executed by VimuxRunCommand
-map <Leader>bl :VimuxRunLastCommand<CR>
+map <leader>bl :VimuxRunLastCommand<CR>
 
 " Inspect runner pane
-map <Leader>bo :call VimuxOpenRunner()<CR>
+map <leader>bo :call VimuxOpenRunner()<CR>
 
 " Inspect runner pane
-map <Leader>bi :VimuxInspectRunner<CR>
+map <leader>bi :VimuxInspectRunner<CR>
 
 " Close vim tmux runner opened by VimuxRunCommand
-map <Leader>bq :VimuxCloseRunner<CR>
+map <leader>bq :VimuxCloseRunner<CR>
 
 " Interrupt any command running in the runner pane
-map <Leader>bx :VimuxInterruptRunner<CR>
+map <leader>bx :VimuxInterruptRunner<CR>
 " send eof
-map <Leader>bd :call VimuxSendKeys("^D")<CR>
+map <leader>bd :call VimuxSendKeys("^D")<CR>
 
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <Leader>bz :call VimuxZoomRunner()<CR>
+map <leader>bz :call VimuxZoomRunner()<CR>
 
+
+" gitgutter motions
+nmap <leader>hl <Plug>GitGutterNextHunk
+nmap <leader>hh <Plug>GitGutterPrevHunk
+
+" sideways
+nnoremap <silent> <leader>ah :SidewaysLeft<cr>
+nnoremap <silent> <leader>al :SidewaysRight<cr>
 
 " shortcut to system clipboard
 vnoremap + "+
@@ -272,21 +294,34 @@ if has('nvim')
   tnoremap <esc><esc> <c-\><c-n>
 endif
 
-"" Plugins options
+"replace 'f' with 1-char Sneak
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+"replace 't' with 1-char Sneak
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+
+" shortcuts to completions
+inoremap <silent> ,f <C-x><C-f>
+inoremap <silent> ,i <C-x><C-i>
+inoremap <silent> ,l <C-x><C-l>
+inoremap <silent> ,n <C-x><C-n>
+inoremap <silent> ,o <C-x><C-o>
+inoremap <silent> ,t <C-x><C-]>
+inoremap <silent> ,u <C-x><C-u>
 
 " Neomake
 autocmd! BufEnter,BufWritePost * Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
 
-
-" " syntastic
-" let g:syntastic_check_on_open=1
-" let g:syntastic_enable_signs=1
-" " let g:syntastic_cpp_compiler = 'g++'
-" let g:syntastic_cpp_compiler_options = ' -Wall -std=c++11 -stdlib=libc++'
-" let g:syntastic_always_populate_loc_list = 1
-" " let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_wq = 0
 
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
@@ -326,99 +361,9 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_use_caching = 0
 
 
-" vim-sandwich
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-let g:sandwich#recipes += [
-      \   {
-      \     'buns'    : ['TagInput(1)', 'TagInput(0)'],
-      \     'expr'    : 1,
-      \     'filetype': ['html'],
-      \     'kind'    : ['add', 'replace'],
-      \     'action'  : ['add'],
-      \     'input'   : ['t'],
-      \   },
-      \ ]
-
-function! TagInput(is_head) abort
-  if a:is_head
-    let s:TagLast = input('Tag: ')
-    if s:TagLast !=# ''
-      let tag = printf('<%s>', s:TagLast)
-    else
-      throw 'OperatorSandwichCancel'
-    endif
-  else
-    let tag = printf('</%s>', matchstr(s:TagLast, '^\a[^[:blank:]>/]*'))
-  endif
-  return tag
-endfunction
-
-
-let g:sandwich#recipes += [
-      \   {
-      \     'buns'    : ['LatexTagInput(1)', 'LatexTagInput(0)'],
-      \     'expr'    : 1,
-      \     'filetype': ['plaintex', 'tex', 'latex'],
-      \     'kind'    : ['add', 'replace'],
-      \     'action'  : ['add'],
-      \     'input'   : ['t'],
-      \   },
-      \ ]
-
-function! LatexTagInput(is_head) abort
-  if a:is_head
-    let s:TagLast = input('Tag: ')
-    if s:TagLast !=# ''
-      let tag = printf('\%s{', s:TagLast)
-    else
-      throw 'OperatorSandwichCancel'
-    endif
-  else
-    let tag = '}'
-  endif
-  return tag
-endfunction
-
-let g:sandwich#recipes += [
-      \   {
-      \     'external': ['it', 'at'],
-      \     'noremap' : 1,
-      \     'filetype': ['html'],
-      \     'input'   : ['t'],
-      \   },
-      \ ]
-
-" " airline config
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme = 'solarized'
-"
-" " custom symbols (avoid problems with powerline fonts not installed)
-" let g:airline_powerline_fonts=0
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_left_alt_sep = '»'
-" let g:airline_right_alt_sep = '«'
-" let g:airline_symbols.crypt = 'X'
-" " let g:airline_symbols.linenr = '␊'
-" " let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" " let g:airline_symbols.paste = 'Þ'
-" " let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.spell = 'Ꞩ'
-" let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = 'Ξ'
-" let g:airline_symbols.readonly = 'RO'
-
-
 " has to be defined later in file than was previously
 " to keep transparent background
-hi Normal ctermbg=NONE|
+hi Normal ctermbg=NONE
 
 " listchars highlighting
 hi SpecialKey guibg=red ctermbg=red
@@ -431,6 +376,10 @@ let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<c-s>"
 let g:UltiSnipsJumpBackwardTrigger=""
 
+" tagbar
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
+let g:tagbar_sort = 0
 
 " jedi-vim
 " let g:jedi#auto_vim_configuration = 0
