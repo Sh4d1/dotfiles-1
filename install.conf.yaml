@@ -10,13 +10,11 @@
     ~/.zshrc: .zshrc
     ~/.zshenv: .zshenv
     ~/.dircolors: .dircolors
-    ~/.promptline.sh: .promptline.sh
     ~/.octaverc: .octaverc
     ~/.inputrc: .inputrc
     ~/.xinitrc: .xinitrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
-    ~/.tmuxline.conf: .tmuxline.conf
     ~/.Xresources: .Xresources
     ~/.config/awesome:
         create: true

@@ -5,6 +5,52 @@
 "  - https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim
 "  - and others...
 
+
+" Load plugins with vim-plug
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'benekastah/neomake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lervag/vimtex'
+Plug 'machakann/vim-sandwich'
+Plug 'tomtom/tcomment_vim'
+Plug 'danro/rename.vim'
+Plug 'ap/vim-css-color'
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}       " javascript autocompleter
+Plug 'ajh17/VimCompletesMe'                   " minimal context completion
+Plug 'majutsushi/tagbar'
+Plug 'davidhalter/jedi-vim'
+
+" for editing pgp encrypted files seamlessly
+Plug 'jamessan/vim-gnupg'
+
+" better netrw alternative
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" git integrations
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
+
+" completions
+Plug 'artur-shaik/vim-javacomplete2'
+
+Plug 'mbbill/undotree'
+Plug 'benmills/vimux'
+Plug 'wannesm/wmgraphviz.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim'}
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+Plug 'luochen1990/rainbow'
+
+" solarized colorscheme
+Plug 'romainl/flattened'
+
+call plug#end() " add plugins to &runtimepath
+
 "" Settings
 
 set encoding=utf-8 " good default
@@ -46,7 +92,7 @@ set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
 set breakindent
-set showbreak=⤷\   " backslash to escape extra space
+set showbreak=⤷
 " set wildmode=list:longest| " no, i like the vim way
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
@@ -84,47 +130,7 @@ let maplocalleader = ","
 " better % navigation
 runtime macros/matchit.vim
 
-
-"" Load plugins with vim-plug
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'benekastah/neomake'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-speeddating'
-Plug 'altercation/vim-colors-solarized'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'lervag/vimtex'
-Plug 'machakann/vim-sandwich'
-Plug 'tomtom/tcomment_vim'
-Plug 'luochen1990/rainbow'
-Plug 'danro/rename.vim'
-Plug 'ap/vim-css-color'
-Plug 'chriskempson/base16-vim'
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}       " javascript autocompleter
-Plug 'ajh17/VimCompletesMe'                   " minimal context completion
-Plug 'majutsushi/tagbar'
-Plug 'davidhalter/jedi-vim'
-Plug 'jamessan/vim-gnupg'
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'mbbill/undotree'
-Plug 'edkolev/tmuxline.vim'
-Plug 'edkolev/promptline.vim'
-Plug 'jreybert/vimagit'
-Plug 'benmills/vimux'
-Plug 'wannesm/wmgraphviz.vim'
-Plug 'rstacruz/sparkup', {'rtp': 'vim'}
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'romainl/flattened'
-
-call plug#end() " add plugins to &runtimepath
-
-
 colorscheme flattened_dark
-
 
 " statusline highlights
 hi User1 ctermbg=NONE ctermfg=NONE
@@ -132,6 +138,7 @@ hi User2 ctermbg=2 ctermfg=0
 hi User3 ctermbg=3 ctermfg=0
 hi User4 ctermbg=4 ctermfg=0
 hi User5 ctermbg=5 ctermfg=0
+hi User6 ctermbg=6 ctermfg=0
 
 " Status Line
 set laststatus=2
@@ -154,7 +161,7 @@ function! BuildStatusline()
   let l:line = l:line . '%v,%l/%L [%p%%] '      " cursor position
 
   " git status
-  let l:line = l:line . '%5*%( %{fugitive#statusline()} %)'
+  let l:line = l:line . '%6*%( %{fugitive#statusline()} %)'
   let l:hunks = GitGutterGetHunkSummary()
   if hunks[0] || hunks[1] || hunks[2]
     let l:line = l:line . '%#GitGutterAdd# +' . l:hunks[0] .
@@ -164,7 +171,6 @@ function! BuildStatusline()
 
   return line
 endfunction
-
 
 set statusline=%!BuildStatusline()
 
@@ -438,39 +444,6 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = "<leader>r"
 
-" tmuxline.vim
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'b'    : '#(whoami)@#H',
-      \'c'    : '#{session_attached} #{?session_many_attached,clients,client}',
-      \'win'  : '[#I:#W]',
-      \'cwin' : '[#I:#W (#{=20:pane_current_command})]',
-      \'x'    : '#(uptime -p | cut -d "," -f 1,2)',
-      \'y'    : '%R %a %F',
-      \'z'    : ''}
-      " \'options': {'status-justify': 'left'}}
-
-
-" Promptline.vim
-" generate new prompt:
-" :PromptlineSnapshot! ~/.promptline.sh airline
-
-let g:promptline_powerline_symbols = 0
-let g:promptline_symbols = {
-    \ 'left'       : '',
-    \ 'left_alt'   : '',
-    \ 'dir_sep'    : '/',
-    \ 'truncation' : '…',
-    \ 'vcs_branch' : '',
-    \ 'space'      : ' '}
-
-let g:promptline_preset = {
-    \'a' : [ '$USER' ],
-    \'b' : [ promptline#slices#host()],
-    \'c' : [ promptline#slices#python_virtualenv(), promptline#slices#cwd() ],
-    \'y' : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
-    \'warn' : [ promptline#slices#last_exit_code() ]}
 
 let g:WMGraphviz_viewer = 'rifle'
 

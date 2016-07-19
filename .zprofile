@@ -1,7 +1,7 @@
 
 # detect if logged in remotely
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  export REMOTE_SESSION=true
+  export REMOTE_SESSION="true"
 fi
 
 

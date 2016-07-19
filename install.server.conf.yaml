@@ -10,13 +10,11 @@
     ~/.zshrc: .zshrc
     ~/.zshenv: .zshenv
     ~/.dircolors: .dircolors
-    ~/.promptline.sh: .promptline.sh
     ~/.octaverc: .octaverc
     ~/.inputrc: .inputrc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
-    ~/.tmuxline.conf: .tmuxline.conf
     ~/.config/htop: 
         create: true
         path: .config/htop/

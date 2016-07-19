@@ -52,19 +52,6 @@ fi
 
 # VARIABLES
 
-# when using bullet train prompt
-# if [ -n "$REMOTE_SESSION" ]; then
-#   # BULLETTRAIN_CONTEXT_SHOW=true
-#   # BULLETTRAIN_IS_SSH_CLIENT=true
-#   BULLETTRAIN_CUSTOM_MSG="\u26a1 $(hostname)"
-# fi
-#
-# BULLETTRAIN_PROMPT_SEPARATE_LINE=true
-# BULLETTRAIN_PROMPT_CHAR='\$'
-# BULLETTRAIN_TIME_SHOW=false
-# BULLETTRAIN_DIR_EXTENDED=0
-# BULLETTRAIN_VIRTUALENV_PREFIX=""
-# BULLETTRAIN_STATUS_EXIT_SHOW=true
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
@@ -187,9 +174,53 @@ export GPG_TTY=$(tty)
 # anything local to this machine
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
 
-# prompt built with promptline.vim
-[[ -f ~/.promptline.sh ]] && . ~/.promptline.sh
 
-# lets start the shell cleanly
-true
+setopt promptsubst
+
+precmd() {
+  LASTSTATUS=$?
+  PROMPT=""
+  RPROMPT=""
+
+  # last status
+  if [ $LASTSTATUS -ne 0 ]; then
+    RPROMPT+="%F{7}%K{9} $LASTSTATUS %k%f"
+  fi
+
+  # git status
+  BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [ $? = 0 ]; then
+    RPROMPT+="%K{6}%F{0} $BRANCH "
+    DIRTY=$(git status --porcelain | wc -l)
+    if [ $DIRTY -ne 0 ]; then
+      RPROMPT+="[$DIRTY] "
+    fi
+    RPROMPT+="%f%k"
+  fi
+
+  # virtual environment
+  VENV=$(echo $VIRTUAL_ENV | awk -F '/' '{print $NF}')
+  if [ -n "$VENV" ]; then
+    RPROMPT+="%K{3}%F{0} ($VENV) %f%k"
+  fi
+
+  # any background jobs
+  JOBS=$(jobs | wc -l)
+  if [ $JOBS -ne 0 ]; then
+    PROMPT+="%K{2}%F{8} $JOBS %f%k"
+  fi
+
+  # username/host
+  PROMPT+="%K{7}%F{8} %n"
+  if [ "$REMOTE_SESSION" = "true" ]; then
+    PROMPT+="@%m"
+  fi
+  PROMPT+=" %f%k"
+
+  # location
+  PROMPT+="%K{10}%F{0} %~ %f%k"
+
+  # final space
+  PROMPT+=" "
+}
 
