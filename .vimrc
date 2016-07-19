@@ -162,7 +162,7 @@ function! BuildStatusline()
   let l:line .= '%1*'
   let l:line .= '%='                                             " separator
 
-  let l:line .= '%{tagbar#currenttag(''%s « '', '''', ''fs'')}'  " tagbar
+  let l:line .= ' %{tagbar#currenttag(''%s « '', '''', ''fs'')}'  " tagbar
   let l:line .= '%{&ft}'                                         " filetype
   let l:line .= ' %2* '
   let l:line .= '%([%{&fenc}]%)%{&ff}'                           " encodings
