@@ -3,56 +3,56 @@
 "  - http://items.sjbach.com/319/configuring-vim-right
 "  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
 "  - https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim
-"  - https://www.vi-improved.org/{recommendations,plugins} 
+"  - https://www.vi-improved.org/{recommendations,plugins}
 "  - and others...
 
 
 " Load plugins with vim-plug
 call plug#begin('~/.vim/plugged')
 
-                                                     " Misc
-Plug 'tpope/vim-repeat'                              " better repeating for supported plugins
-Plug 'tomtom/tcomment_vim'                           " commenting
-Plug 'danro/rename.vim'                              " easy rename files from vim
-Plug 'tpope/vim-speeddating'                         " make inc/dec numbers work with dates
-Plug 'tpope/vim-surround'                            " edit surrounding things
-Plug 'tommcdo/vim-lion'                              " align things
-Plug 'AndrewRadev/sideways.vim'                      " move function args sideways
-Plug 'rstacruz/sparkup', {'rtp': 'vim'}              " quick insert html tags
-Plug 'justinmk/vim-sneak'                            " alternative to f/t
-Plug 'jamessan/vim-gnupg'                            " seamless editing pgp encrypted files
+                                                                          " Misc
+Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
+Plug 'tomtom/tcomment_vim'                                                " commenting
+Plug 'danro/rename.vim'                                                   " easy rename files from vim
+Plug 'tpope/vim-speeddating'                                              " make inc/dec numbers work with dates
+Plug 'tpope/vim-surround'                                                 " edit surrounding things
+Plug 'tommcdo/vim-lion'                                                   " align things
+Plug 'AndrewRadev/sideways.vim'                                           " move function args sideways
+Plug 'rstacruz/sparkup', {'rtp': 'vim'}                                   " quick insert html tags
+Plug 'justinmk/vim-sneak'                                                 " alternative to f/t
+Plug 'jamessan/vim-gnupg'                                                 " seamless editing pgp encrypted files
 
-                                                     " Language help
-Plug 'lervag/vimtex'                                 " latex
-Plug 'wannesm/wmgraphviz.vim'                        " graphviz dot
+                                                                          " Language help
+Plug 'lervag/vimtex'                                                      " latex
+Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
 
-                                                     " Tags
-Plug 'ludovicchabant/vim-gutentags'                  " auto-generate tags file
-Plug 'majutsushi/tagbar'                             " view tags easily
+                                                                          " Tags
+Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
+Plug 'majutsushi/tagbar'                                                  " view tags easily
 
 
-                                                     " Git integrations
-Plug 'tpope/vim-fugitive'                            " git integration
-Plug 'airblade/vim-gitgutter'                        " view hunks/changes in the gutter
-Plug 'jreybert/vimagit'                              " interactive git stage/view/commit window
+                                                                          " Git integrations
+Plug 'tpope/vim-fugitive'                                                 " git integration
+Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
+Plug 'jreybert/vimagit'                                                   " interactive git stage/view/commit window
 
-                                                     " Completions
-Plug 'artur-shaik/vim-javacomplete2'                 " java completion
-Plug 'davidhalter/jedi-vim'                          " python completions + refactoring
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}    " javascript completions
+                                                                          " Completions
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                     " java completion
+Plug 'davidhalter/jedi-vim', {'for': 'python'}                            " python completions + refactoring
+Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}    " javascript completions
 
-                                                     " Utilities
-Plug 'ctrlpvim/ctrlp.vim'                            " fuzzy finder
-Plug 'mbbill/undotree'                               " show the undotree
-Plug 'benmills/vimux'                                " run things in tmux
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'  " snippets
-Plug 'neomake/neomake'                               " async make + gutter signs
-Plug 'ajh17/VimCompletesMe'                          " tab completion
+                                                                          " Utilities
+Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
+Plug 'benmills/vimux'                                                     " run things in tmux
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
+Plug 'neomake/neomake'                                                    " async make + gutter signs
+Plug 'ajh17/VimCompletesMe'                                               " tab completion
 
-                                                     " Pretty
-Plug 'luochen1990/rainbow'                           " easier to see nested parens
-Plug 'ap/vim-css-color'                              " highlight colors in css
-Plug 'romainl/flattened'                             " (solarized)
+                                                                          " Pretty
+Plug 'luochen1990/rainbow'                                                " easier to see nested parens
+Plug 'ap/vim-css-color'                                                   " highlight colors in css
+Plug 'romainl/flattened'                                                  " (solarized)
 
 " add plugins to &runtimepath
 call plug#end()
@@ -111,6 +111,8 @@ set wildignore+=ve/**,ve-*/**                    " virtualenv folders
 set wildignore+=__pycache__                      " Python 3
 set wildignore+=.*.sw[opq]                       " vim swap files
 set wildignore+=_site                            " jekyll site directory
+set wildignore+=*.pdf                            " compiled docs
+
 set virtualedit=block
 
 set backupdir=~/.vim/backup/
@@ -319,8 +321,36 @@ inoremap <silent> ,t <C-x><C-]>
 inoremap <silent> ,u <C-x><C-u>
 
 " Neomake
-autocmd! BufEnter,BufWritePost * Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
+
+function StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+
+    " save last search
+    let _s=@/
+
+    " save position
+    normal mz
+    normal Hmy
+
+    " strip spaces
+    %s/\s\+$//e
+
+    " restore position
+    normal 'yz<CR>
+    normal `z
+
+    " restore last search
+    let @/=_s
+  endif
+endfunction
+
+
+augroup vimrc
+  autocmd!
+  autocmd BufEnter,BufWritePost * Neomake
+  autocmd BufWritePre * :call StripTrailingWhitespace()
+augroup END
 
 
 " vimtex
