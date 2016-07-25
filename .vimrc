@@ -192,6 +192,11 @@ inoremap <c-d> <C-R>=strftime('%F')<CR>
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
 
+cnoremap <c-h> <s-left>
+cnoremap <c-l> <s-right>
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
+
 " hide search highlighting
 nnoremap <silent> <esc> :silent :nohlsearch<CR>
 
@@ -319,6 +324,11 @@ inoremap <silent> ,n <C-x><C-n>
 inoremap <silent> ,o <C-x><C-o>
 inoremap <silent> ,t <C-x><C-]>
 inoremap <silent> ,u <C-x><C-u>
+
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
 
 " Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
