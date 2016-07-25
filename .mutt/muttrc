@@ -50,6 +50,7 @@ alternative_order text/plain text/html
 
 set crypt_use_gpgme = yes
 set crypt_autosign = yes
+set pgp_auto_decode = yes
 
 set sort = 'threads'
 set sort_aux = 'last-date-received'

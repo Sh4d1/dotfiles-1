@@ -1,5 +1,5 @@
 
-inoremap <leader>t </<c-x><c-o>
+inoremap ,t </<c-x><c-o>
 
 setlocal tw=120
 setlocal fo-=a

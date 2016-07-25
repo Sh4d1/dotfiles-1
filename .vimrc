@@ -11,9 +11,9 @@
 call plug#begin('~/.vim/plugged')
 
                                                                           " Misc
+Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
 Plug 'tomtom/tcomment_vim'                                                " commenting
-Plug 'danro/rename.vim'                                                   " easy rename files from vim
 Plug 'tpope/vim-speeddating'                                              " make inc/dec numbers work with dates
 Plug 'tpope/vim-surround'                                                 " edit surrounding things
 Plug 'tommcdo/vim-lion'                                                   " align things
@@ -21,7 +21,10 @@ Plug 'AndrewRadev/sideways.vim'                                           " move
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}                                   " quick insert html tags
 Plug 'justinmk/vim-sneak'                                                 " alternative to f/t
 Plug 'jamessan/vim-gnupg'                                                 " seamless editing pgp encrypted files
+Plug 'tpope/vim-eunuch'                                                   " shortcuts to shell commands (esp rename files)
+Plug 'justinmk/vim-dirvish'                                               " another alternative to netwr
 
+Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
                                                                           " Language help
 Plug 'lervag/vimtex'                                                      " latex
 Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
@@ -32,7 +35,7 @@ Plug 'majutsushi/tagbar'                                                  " view
 
 
                                                                           " Git integrations
-Plug 'tpope/vim-fugitive'                                                 " git integration
+Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git integration
 Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                   " interactive git stage/view/commit window
 
@@ -424,14 +427,14 @@ let g:tagbar_sort = 0
 " jedi-vim
 " let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_command = ",d"
+let g:jedi#goto_assignments_command = ",g"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
+let g:jedi#usages_command = ",n"
 " already have other keybindings for omnicompletion
 let g:jedi#completions_command = ""
-let g:jedi#rename_command = "<leader>r"
+let g:jedi#rename_command = ",r"
 
 
 let g:WMGraphviz_viewer = 'rifle'
