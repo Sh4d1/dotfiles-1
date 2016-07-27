@@ -191,7 +191,7 @@ precmd() {
   BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [ $? = 0 ]; then
     RPROMPT+="%K{6}%F{0} $BRANCH "
-    DIRTY=$(git status --porcelain | wc -l)
+    DIRTY=$(git status --porcelain 2>/dev/null | wc -l)
     if [ $DIRTY -ne 0 ]; then
       RPROMPT+="[$DIRTY] "
     fi
@@ -218,7 +218,7 @@ precmd() {
   PROMPT+=" %f%k"
 
   # location
-  PROMPT+="%K{10}%F{0} %~ %f%k"
+  PROMPT+="%K{10}%F{0} %20<…<%2~%<< %f%k"
 
   # final space
   PROMPT+=" "
