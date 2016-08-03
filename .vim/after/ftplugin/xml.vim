@@ -1,2 +1,2 @@
 
-inoremap ,t </<c-x><c-o>
+inoremap ,e </<c-x><c-o>

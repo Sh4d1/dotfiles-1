@@ -34,7 +34,6 @@ Plug 'wannesm/wmgraphviz.vim'                                             " grap
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
 Plug 'majutsushi/tagbar'                                                  " view tags easily
 
-
                                                                           " Git integrations
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git integration
 Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
@@ -104,21 +103,12 @@ set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
 set breakindent
 set showbreak=⤷
-" set wildmode=list:longest| " no, i like the vim way
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
-" set wildignore+=.hg,.git,.svn                    " Version control
-" set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-" set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
-" set wildignore+=ve/**,ve-*/**                    " virtualenv folders
-" set wildignore+=__pycache__                      " Python 3
-" set wildignore+=.*.sw[opq]                       " vim swap files
-" set wildignore+=_site                            " jekyll site directory
-" set wildignore+=*.pdf                            " compiled docs
 
 set virtualedit=block
 
+" single global backup/swp/undo dirs
 set backupdir=~/.vim/backup/
 set directory=~/.vim/swp/
 set undodir=~/.vim/undo/
@@ -134,8 +124,8 @@ set colorcolumn=+1,+2,+3
 set grepprg=ag\ --vimgrep
 set grepformat=%f:%l:%c%m
 
-" match ErrorMsg '\(^\(<\|=\|>\)\{7\}\([^=].\+\)\?$\)\|\(\s\+$\)' " Highlight VCS conflict markers and trailing spaces
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Highlight VCS conflict markers
+" VCS conflict markers should be highlighted
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 let mapleader = "\<space>"
 let maplocalleader = "\<space>"
@@ -143,55 +133,27 @@ let maplocalleader = "\<space>"
 " better % navigation
 runtime macros/matchit.vim
 
+" solarized colorscheme
 colorscheme flattened_dark
-
-" statusline highlights
-hi User1 ctermbg=NONE ctermfg=NONE
-hi User2 ctermbg=2 ctermfg=0
-hi User3 ctermbg=3 ctermfg=0
-hi User4 ctermbg=4 ctermfg=0
-hi User5 ctermbg=5 ctermfg=0
-hi User6 ctermbg=6 ctermfg=0
 
 " Status Line
 set laststatus=2
 
-function! BuildStatusline()
-  let l:line = '%3*'
-  let l:line .= '%2.{mode()}'                                    " current mode
-  let l:line .= ' %1* '
-  let l:line .= '%F'                                             " filename
-  let l:line .= '%r%m%w%q%h'                                     " flags
-
-  let l:line .= '%1*'
-  let l:line .= '%='                                             " separator
-
-  let l:line .= ' %{tagbar#currenttag(''%s « '', '''', ''fs'')}'  " tagbar
-  let l:line .= '%{&ft}'                                         " filetype
-  let l:line .= ' %2* '
-  let l:line .= '%([%{&fenc}]%)%{&ff}'                           " encodings
-  let l:line .= ' %4* '
-  let l:line .= '%v,%l/%L [%p%%] '                               " cursor
-
-  " git status
-  let l:line .= '%6*%( %{fugitive#statusline()} %)'
-  let l:hunks = GitGutterGetHunkSummary()
-  if l:hunks[0] || l:hunks[1] || l:hunks[2]
-    let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .
-                        \ ' %#GitGutterChange#~' . l:hunks[1] .
-                        \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
-  endif
-
-  return line
-endfunction
-
-set statusline=%!BuildStatusline()
-
+set statusline=%!functions#buildstatusline()
 
 " Keymappings
 
+nnoremap <silent> <leader>jd :call functions#setjump('default')<cr>
+nnoremap <silent> <leader>js :call functions#setjump('spell')<cr>
+nnoremap <silent> <leader>jh :call functions#setjump('hunk')<cr>
+nnoremap <silent> <leader>ja :call functions#setjump('sideways')<cr>
+nnoremap <silent> <leader>jq :call functions#setjump('qf')<cr>
+nnoremap <silent> <leader>jo :call functions#showjump()<cr>
+
+nnoremap <cr> @:
+
 " insert the current date (iso format)
-inoremap <c-d> <C-R>=strftime('%F')<CR>
+inoremap <c-d> <C-R>=strftime('%F')<cr>
 
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
@@ -201,33 +163,39 @@ cnoremap <c-l> <s-right>
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
+cnoremap <c-v> <c-r>"
+
 " hide search highlighting
-nnoremap <silent> <esc> :silent :nohlsearch<CR>
+nnoremap <silent> <esc> :silent :nohlsearch<cr>
 
 " toggle visible whitespace
-nmap <silent> <leader>s :set nolist!<CR>
+nmap <silent> <leader>w :set nolist!<cr>
 
 " toggle paste mode
-nnoremap <F3> :set invpaste paste?<CR>
+nnoremap <F3> :set invpaste paste?<cr>
 set pastetoggle=<F3>
 
-nmap <silent> <leader>p :set spell!<CR>
-nmap <leader>1 1z=| " for quick fix word spelling
-nnoremap <F2> :Rename | " quick rename current file
+nmap <silent> <leader>s :set spell!<cr>
+
+" quick fix spelling
+nnoremap <leader>1 1z=
+nnoremap <leader>2 2z=
+
+" might as well
+noremap Y y$
+
+" Repeat last macro if in a normal buffer.
+nnoremap <expr> <tab> empty(&buftype) ? '@@' : '<cr>'
+
+nnoremap <F2> :Rename |
 
 " control + space in terminal hack
 map <C-@> <C-Space>
 imap <C-@> <C-Space>
 
-" omnicomplete
-imap <C-Space> <c-x><c-o>
-
 " use magic by default
 nnoremap / /\v
 vnoremap / /\v
-
-" faster saving files
-map <silent> <C-s> :wa<CR>
 
 " easy moving between splits
 nnoremap <C-h> <C-w>h
@@ -236,63 +204,51 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
 " tagbar
-nmap <silent> <leader>t :TagbarToggle<CR>
+nmap <silent> <leader>t :TagbarToggle<cr>
 
 " undotree
-nmap <silent> <leader>u :UndotreeToggle<CR>
+nmap <silent> <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
 
 " ctrl-p
-map <silent> <c-space> :CtrlP<CR>
-map <silent> <leader><space>p :CtrlP<CR>
-map <silent> <leader><space>t :CtrlPTag<CR>
-map <silent> <leader><space>m :CtrlPMRU<CR>
-map <silent> <leader><space>b :CtrlPBuffer<CR>
+map <silent> <c-space> :CtrlP<cr>
+map <silent> <leader>p :CtrlP<cr>
+map <silent> <leader>pp :CtrlP<cr>
+map <silent> <leader>pt :CtrlPTag<cr>
+map <silent> <leader>pm :CtrlPMRU<cr>
+map <silent> <leader>pb :CtrlPBuffer<cr>
 
 
 " Vimux
-function! VimuxSlime()
- call VimuxSendText(@v)
- call VimuxSendKeys("Enter")
-endfunction
-
-" If text is selected, save it in the v buffer and send that buffer it to tmux
-vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
+" If text is selected, save it in the v register and send that register to tmux
+vmap <C-c><C-c> "vy :call functions#vimuxslime()<cr>
 
 " Select current paragraph and send it to tmux
 nmap <C-c><C-c> vip<C-c><C-c>
 
 " Prompt for a command to run
-map <leader>bp :VimuxPromptCommand<CR>
+map <leader>bp :VimuxPromptCommand<cr>
 
 " Run last command executed by VimuxRunCommand
-map <leader>bl :VimuxRunLastCommand<CR>
+map <leader>bl :VimuxRunLastCommand<cr>
 
 " Inspect runner pane
-map <leader>bo :call VimuxOpenRunner()<CR>
+map <leader>bo :call VimuxOpenRunner()<cr>
 
 " Inspect runner pane
-map <leader>bi :VimuxInspectRunner<CR>
+map <leader>bi :VimuxInspectRunner<cr>
 
 " Close vim tmux runner opened by VimuxRunCommand
-map <leader>bq :VimuxCloseRunner<CR>
+map <leader>bq :VimuxCloseRunner<cr>
 
 " Interrupt any command running in the runner pane
-map <leader>bx :VimuxInterruptRunner<CR>
+map <leader>bx :VimuxInterruptRunner<cr>
 " send eof
-map <leader>bd :call VimuxSendKeys("^D")<CR>
+map <leader>bd :call VimuxSendKeys("^D")<cr>
 
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <leader>bz :call VimuxZoomRunner()<CR>
+map <leader>bz :call VimuxZoomRunner()<cr>
 
-
-" gitgutter motions
-nmap <leader>hl <Plug>GitGutterNextHunk
-nmap <leader>hh <Plug>GitGutterPrevHunk
-
-" sideways
-nnoremap <silent> <leader>ah :SidewaysLeft<cr>
-nnoremap <silent> <leader>al :SidewaysRight<cr>
 
 " shortcut to system clipboard
 vnoremap + "+
@@ -325,10 +281,12 @@ inoremap <silent> ,f <C-x><C-f>
 inoremap <silent> ,i <C-x><C-i>
 inoremap <silent> ,l <C-x><C-l>
 inoremap <silent> ,n <C-x><C-n>
-inoremap <silent> ,o <C-x><C-o>
+" oMnicompletion
+inoremap <silent> ,m <C-x><C-o>
 inoremap <silent> ,t <C-x><C-]>
 inoremap <silent> ,u <C-x><C-u>
 
+" Sideways
 omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
@@ -337,40 +295,18 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 " Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
 
-function StripTrailingWhitespace()
-  if !&binary && &filetype != 'diff'
-
-    " save last search
-    let _s=@/
-
-    " save position
-    normal mz
-    normal Hmy
-
-    " strip spaces
-    %s/\s\+$//e
-
-    " restore position
-    normal 'yz<CR>
-    normal `z
-
-    " restore last search
-    let @/=_s
-  endif
-endfunction
-
-nnoremap <silent> <leader>zz :silent :call StripTrailingWhitespace()<cr>
+nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
 augroup vimrc
   autocmd!
   autocmd BufEnter,BufWritePost * Neomake
-  " autocmd BufWritePre * :call StripTrailingWhitespace()
 augroup END
 
 
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 let g:vimtex_view_general_viewer = 'rifle'
+let g:tex_flavor = "latex"
 
 " rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -405,20 +341,12 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 " ag is fast enough that CtrlP doesn't need to cache
 let g:ctrlp_use_caching = 0
 
-
-" has to be defined later in file than was previously
-" to keep transparent background
-hi Normal ctermbg=NONE
-
-" listchars highlighting
-hi SpecialKey guibg=red ctermbg=red
-
 " vimcompletesme config
 let g:vcm_default_maps = 1
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-s>"
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-space>"
 let g:UltiSnipsJumpBackwardTrigger=""
 
 " tagbar
@@ -426,18 +354,38 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_sort = 0
 
+" gitgutter
+let g:gitgutter_diff_base = 'HEAD'
+
 " jedi-vim
 " let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = ",d"
-let g:jedi#goto_assignments_command = ",g"
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>jg"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = ",n"
+let g:jedi#usages_command = "<leader>jn"
 " already have other keybindings for omnicompletion
 let g:jedi#completions_command = ""
-let g:jedi#rename_command = ",r"
+let g:jedi#rename_command = "<leader>jr"
 
-
+" graphviz
 let g:WMGraphviz_viewer = 'rifle'
 
+
+" Highlights
+
+" has to be defined later in file than was previously
+" to keep transparent background
+hi Normal ctermbg=NONE
+
+" statusline highlights
+hi User1 ctermbg=NONE ctermfg=NONE
+hi User2 ctermbg=2 ctermfg=0
+hi User3 ctermbg=3 ctermfg=0
+hi User4 ctermbg=4 ctermfg=0
+hi User5 ctermbg=5 ctermfg=0
+hi User6 ctermbg=6 ctermfg=0
+
+" listchars highlighting
+hi SpecialKey guibg=red ctermbg=red
