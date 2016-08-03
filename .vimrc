@@ -23,8 +23,9 @@ Plug 'justinmk/vim-sneak'                                                 " alte
 Plug 'jamessan/vim-gnupg'                                                 " seamless editing pgp encrypted files
 Plug 'tpope/vim-eunuch'                                                   " shortcuts to shell commands (esp rename files)
 Plug 'justinmk/vim-dirvish'                                               " another alternative to netwr
-
+Plug 'wellle/targets.vim'                                                 " extra text objects
 Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
+
                                                                           " Language help
 Plug 'lervag/vimtex'                                                      " latex
 Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
@@ -106,15 +107,15 @@ set showbreak=⤷
 " set wildmode=list:longest| " no, i like the vim way
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
-set wildignore+=ve/**,ve-*/**                    " virtualenv folders
-set wildignore+=__pycache__                      " Python 3
-set wildignore+=.*.sw[opq]                       " vim swap files
-set wildignore+=_site                            " jekyll site directory
-set wildignore+=*.pdf                            " compiled docs
+" set wildignore+=.hg,.git,.svn                    " Version control
+" set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+" set wildignore+=*.o,*.pyc,*.class,*.so           " compiled files
+" set wildignore+=ve/**,ve-*/**                    " virtualenv folders
+" set wildignore+=__pycache__                      " Python 3
+" set wildignore+=.*.sw[opq]                       " vim swap files
+" set wildignore+=_site                            " jekyll site directory
+" set wildignore+=*.pdf                            " compiled docs
 
 set virtualedit=block
 
@@ -211,7 +212,7 @@ nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 
 nmap <silent> <leader>p :set spell!<CR>
-nmap <leader>f 1z=| " for quick fix word spelling
+nmap <leader>1 1z=| " for quick fix word spelling
 nnoremap <F2> :Rename | " quick rename current file
 
 " control + space in terminal hack
@@ -358,11 +359,12 @@ function StripTrailingWhitespace()
   endif
 endfunction
 
+nnoremap <silent> <leader>zz :silent :call StripTrailingWhitespace()<cr>
 
 augroup vimrc
   autocmd!
   autocmd BufEnter,BufWritePost * Neomake
-  autocmd BufWritePre * :call StripTrailingWhitespace()
+  " autocmd BufWritePre * :call StripTrailingWhitespace()
 augroup END
 
 

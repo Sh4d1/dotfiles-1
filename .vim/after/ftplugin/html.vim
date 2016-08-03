@@ -1,5 +1,5 @@
 
-inoremap ,t </<c-x><c-o>
+inoremap ,e </<c-x><c-o>
 
 setlocal tw=120
 setlocal fo-=a

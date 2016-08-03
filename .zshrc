@@ -16,6 +16,7 @@ setopt appendhistory nomatch
 unsetopt autocd beep extendedglob notify
 setopt hist_ignore_dups hist_ignore_all_dups hist_ignore_space
 setopt menu_complete
+setopt interactivecomments
 
 # so terminal not messed up after program crashed
 ttyctl -f
@@ -23,6 +24,8 @@ ttyctl -f
 # ls colors
 [[ -f ~/.dircolors ]] && eval `dircolors ~/.dircolors`
 
+# config for zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 # PLUGINS WITH ZGEN
 # load zgen
@@ -52,6 +55,7 @@ fi
 
 # VARIABLES
 
+ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
