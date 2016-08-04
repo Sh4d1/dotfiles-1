@@ -82,3 +82,18 @@ func! functions#vimuxslime()
  call VimuxSendText(@v)
  call VimuxSendKeys("Enter")
 endfunc
+
+func! functions#sethighlight()
+  " hi Normal ctermbg=NONE
+
+  " statusline highlights
+  hi User1 ctermbg=NONE ctermfg=NONE
+  hi User2 ctermbg=2 ctermfg=0
+  hi User3 ctermbg=3 ctermfg=0
+  hi User4 ctermbg=4 ctermfg=0
+  hi User5 ctermbg=5 ctermfg=0
+  hi User6 ctermbg=6 ctermfg=0
+
+  " listchars highlighting
+  hi SpecialKey guibg=red ctermbg=red
+endfunc

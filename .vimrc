@@ -56,6 +56,9 @@ Plug 'ajh17/VimCompletesMe'                                               " tab 
 Plug 'luochen1990/rainbow'                                                " easier to see nested parens
 Plug 'ap/vim-css-color'                                                   " highlight colors in css
 Plug 'romainl/flattened'                                                  " (solarized)
+Plug 'tomasr/molokai'                                                     " alternate 256 color colorscheme (for when can't use solarized terminal)
+Plug 'romainl/Apprentice'                                                 " alternate 256 color colorscheme
+Plug 'nanotech/jellybeans.vim'                                            " alternate 256 color colorscheme
 
 " add plugins to &runtimepath
 call plug#end()
@@ -300,6 +303,7 @@ nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<c
 augroup vimrc
   autocmd!
   autocmd BufEnter,BufWritePost * Neomake
+  autocmd ColorScheme * call functions#sethighlight()
 augroup END
 
 
@@ -372,20 +376,6 @@ let g:jedi#rename_command = "<leader>jr"
 " graphviz
 let g:WMGraphviz_viewer = 'rifle'
 
+" set up the custom highlights now, or else would have been overridden
+call functions#sethighlight()
 
-" Highlights
-
-" has to be defined later in file than was previously
-" to keep transparent background
-hi Normal ctermbg=NONE
-
-" statusline highlights
-hi User1 ctermbg=NONE ctermfg=NONE
-hi User2 ctermbg=2 ctermfg=0
-hi User3 ctermbg=3 ctermfg=0
-hi User4 ctermbg=4 ctermfg=0
-hi User5 ctermbg=5 ctermfg=0
-hi User6 ctermbg=6 ctermfg=0
-
-" listchars highlighting
-hi SpecialKey guibg=red ctermbg=red
