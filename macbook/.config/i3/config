@@ -168,7 +168,7 @@ bindsym Mod4+r mode "resize"
 # finds out, if available)
 bar {
     status_command ~/bin/i3pystatus-conf3.py
-        tray_output primary
+        # tray_output primary
         position top
 }
 

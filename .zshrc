@@ -141,6 +141,7 @@ alias mux=tmuxinator
 alias rg=ranger
 alias t=tmux
 alias ta='tmux attach'
+alias hc=herbstclient
 
 # inspiration for git aliases from https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 # don't need that many though

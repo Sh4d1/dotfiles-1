@@ -156,7 +156,7 @@ nnoremap <silent> <leader>jo :call functions#showjump()<cr>
 nnoremap <cr> @:
 
 " insert the current date (iso format)
-inoremap <c-d> <C-R>=strftime('%F')<cr>
+inoremap ,d <c-r>=strftime('%F')<cr>
 
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
@@ -347,6 +347,7 @@ let g:ctrlp_use_caching = 0
 
 " vimcompletesme config
 let g:vcm_default_maps = 1
+let g:vcm_direction = 'p'
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -375,6 +376,11 @@ let g:jedi#rename_command = "<leader>jr"
 
 " graphviz
 let g:WMGraphviz_viewer = 'rifle'
+
+" gnupg
+let g:GPGPossibleRecipients=[ 
+        \"Samuel Walladge <samuel@swalladge.id.au>", 
+      \] 
 
 " set up the custom highlights now, or else would have been overridden
 call functions#sethighlight()

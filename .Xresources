@@ -80,10 +80,10 @@
 Xft.hinting: 1
 ! Xft.hintstyle: hintmedium
 Xft.antialias: 1
-Xft.dpi: 96 
+Xft.dpi: 162
 Xft.rgba: rgb
 
-*dpi: 96
+*dpi: 162
 
 
 !! Rofi config - https://github.com/DaveDavenport/rofi
@@ -129,7 +129,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! Run command to execute
 rofi.run-command:                    {cmd}
 ! Command to get extra run targets
-rofi.run-list-command:               
+rofi.run-list-command:
 ! Run command to execute that runs in shell
 rofi.run-shell-command:              {terminal} --hold -e "{cmd}"
 ! Disable history in run/ssh
@@ -163,7 +163,7 @@ rofi.m:                              -1
 ! Margin between rows
 rofi.line-margin:                    2
 ! Pre-set filter
-rofi.filter:                         
+rofi.filter:
 ! Separator style (none, dash, solid)
 rofi.separator-style:                dash
 ! Hide scroll-bar
@@ -173,7 +173,7 @@ rofi.fullscreen:                     false
 ! Fake transparency
 rofi.fake-transparency:              false
 ! DPI
-rofi.dpi:                            96
+rofi.dpi:                            162
 ! Threads to use for string matching
 rofi.threads:                        1
 ! Scrollbar width

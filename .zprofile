@@ -39,3 +39,5 @@ export AURDEST=~/aur/pkgbuilds
 # steam options
 # export STEAM_RUNTIME=0
 export STEAM_FRAME_FORCE_CLOSE=1
+
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
