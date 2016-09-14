@@ -1,4 +1,6 @@
 
+export PATH="$HOME/bin:$HOME/.local/bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
 # detect if logged in remotely
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export REMOTE_SESSION="true"
@@ -41,3 +43,8 @@ export AURDEST=~/aur/pkgbuilds
 export STEAM_FRAME_FORCE_CLOSE=1
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    export SSH_AUTH_SOCK
+fi
