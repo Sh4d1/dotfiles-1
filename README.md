@@ -1,6 +1,6 @@
 
 
-# Dotfiles
+# dotfiles
 
 These are my dotfiles, on git so I can quickly add sensible config to new machines/servers/etc, and roll back changes that broke something if necessary (although hopefully not necessary).
 
@@ -73,4 +73,23 @@ Plus all the other apps...
 - vim/neovim
 - X11 (xinitrc, Xresources)
 - zsh
+
+## LICENSE
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+This repository contains both original and third party content.
+Original content is copyright © 2016 Samuel Walladge, and can be used and distributed under the terms of
+the GPLv3. All third party content is copyright their respective authors and bound by their original licenses.
+
+All attempts have been made to identify third party content within the repository, with sources and attribution given
+where necessary. Please contact me if any issues are discovered.
 
