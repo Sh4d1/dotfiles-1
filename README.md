@@ -87,6 +87,7 @@ Plus all the other apps...
     GNU General Public License for more details.
 
 This repository contains both original and third party content.
+Content can be assumed to be original unless stated otherwise.
 Original content is copyright © 2016 Samuel Walladge, and can be used and distributed under the terms of
 the GPLv3. All third party content is copyright their respective authors and bound by their original licenses.
 
