@@ -45,7 +45,9 @@ export STEAM_FRAME_FORCE_CLOSE=1
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
-[ -f "$HOME/.ssh_auth_sock" ] && export SSH_AUTH_SOCK=`cat "$HOME/.ssh_auth_sock"`
+if hash gnome-keyring-daemon; then
+  [ -f "$HOME/.ssh_auth_sock" ] && export SSH_AUTH_SOCK=`cat "$HOME/.ssh_auth_sock"`
+fi
 
 
 # eval `keychain --noask --eval --agents ssh id_rsa`
