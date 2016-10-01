@@ -1,0 +1,2 @@
+# source this file to set the path correctly
+export PATH="$HOME/bin:$HOME/.local/bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH"

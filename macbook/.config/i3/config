@@ -224,6 +224,9 @@ workspace 8 output VGA1
 workspace 9 output VGA1
 workspace 10 output VGA1
 
+new_window pixel 1
+# hide_edge_borders both
+focus_on_window_activation urgent
 
 
 

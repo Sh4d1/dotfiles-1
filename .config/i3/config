@@ -175,26 +175,26 @@ bindsym Mod4+r mode "resize"
 bar {
     # status_command i3status
     status_command ~/bin/i3pystatus-conf1.py
-        tray_output DP-0
-        # tray_output DP-1
-        # tray_output DP-2
-        position top
-        output DP-2
-        output DP-1
-        output DP-0
-        output HDMI1
+    tray_output DP-0
+    tray_padding 0
+    position top
+    output DP-2
+    output DP-1
+    output DP-0
+    output HDMI1
 }
 
 bar {
     # status_command i3status --config ~/.config/i3status/config-secondary
     status_command ~/bin/i3pystatus-conf2.py
+    tray_output none
     # status_command i3status
     # status_command ~/bin/conky-i3bar
     # status_command i3blocks
-        position top
-        output VGA1
-        output DVI-I-1
-        output HDMI-0
+    position top
+    output VGA1
+    output DVI-I-1
+    output HDMI-0
 }
 
 
@@ -222,8 +222,8 @@ for_window [ title="^POPUP1$" ] floating enable
 bindsym Mod4+o exec xfce4-appfinder
 
 # bindsym Print exec cd ~/Pictures && scrot -z -d 0
-bindsym Shift+Print exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/$(date +%F-%H.%M.%S).png"
-bindsym Print exec maim "$HOME/Pictures/$(date +%F-%H.%M.%S).png"
+bindsym Shift+Print exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%F-%H.%M.%S).png"
+bindsym Print exec maim "$HOME/Pictures/screenshots/$(date +%F-%H.%M.%S).png"
 
 bindsym Ctrl+Shift+Up exec cmus-remote -s
 bindsym Ctrl+Shift+Left exec cmus-remote -r

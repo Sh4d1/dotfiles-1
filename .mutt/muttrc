@@ -22,6 +22,9 @@ set record = +Sent
 set postponed = +Drafts
 # set imap_user = $my_user
 
+# allows for refreshing the view more often
+set timeout=30
+
 source ~/.mutt/muttrc.mailboxes
 
 # sending mail
