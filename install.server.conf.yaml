@@ -16,9 +16,6 @@
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.todotxt-machinerc: .todotxt-machinerc
     ~/.tmux.conf: .tmux.conf
-    ~/.config/htop: 
-        create: true
-        path: .config/htop/
     ~/.config/ranger/rc.conf:
         path: .config/ranger/rc.conf
         create: true

@@ -23,9 +23,6 @@
     ~/.config/mpd: 
         create: true
         path: .config/mpd/
-    ~/.config/htop: 
-        create: true
-        path: .config/htop/
     ~/.config/clipit: 
         create: true
         path: .config/clipit/
