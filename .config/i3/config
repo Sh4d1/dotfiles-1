@@ -222,8 +222,12 @@ for_window [ title="^POPUP1$" ] floating enable
 bindsym Mod4+o exec xfce4-appfinder
 
 # bindsym Print exec cd ~/Pictures && scrot -z -d 0
-bindsym Shift+Print exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%F-%H.%M.%S).png"
-bindsym Print exec maim "$HOME/Pictures/screenshots/$(date +%F-%H.%M.%S).png"
+# full desktop
+bindsym Print exec maim "$HOME/Pictures/screenshots/$(date +%s).png"
+# active window
+bindsym Shift+Print exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%s).png"
+# select area
+bindsym Ctrl+Print exec maim -s "$HOME/Pictures/screenshots/$(date +%s).png"
 
 bindsym Ctrl+Shift+Up exec cmus-remote -s
 bindsym Ctrl+Shift+Left exec cmus-remote -r

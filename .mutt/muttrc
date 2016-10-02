@@ -68,6 +68,8 @@ bind index G last-entry
 bind pager G bottom
 bind index K first-entry
 bind pager K top
+bind pager \004 half-down # <c-d>
+bind pager \025 half-up   # <c-u>
 
 macro attach 'V' "<pipe-entry>cat >~/.cache/mutt-temp-email.html && $BROWSER ~/.cache/mutt-temp-email.html && rm ~/.cache/mutt-temp-email.html<enter>" \
       "view html attachments or message in browser"
