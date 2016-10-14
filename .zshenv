@@ -1,5 +1,7 @@
 
-source "$HOME/.pathrc"
+if ! [[ -o login ]]; then
+  source "$HOME/.pathrc"
+fi
 
 # detect if logged in remotely
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

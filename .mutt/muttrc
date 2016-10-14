@@ -45,7 +45,7 @@ folder-hook . 'macro pager d ":set confirmappend=no delete=yes\n<save-message>+T
 folder-hook =Trash 'macro pager d <delete-message>'
 
 set mailcap_path 	= ~/.mutt/mailcap
-folder-hook . `rm -r /tmp/mutt/*`
+# folder-hook . `rm -r /tmp/mutt/*`
 
 set editor=`echo \$EDITOR`
 auto_view text/html
@@ -70,8 +70,10 @@ bind index K first-entry
 bind pager K top
 bind pager \004 half-down # <c-d>
 bind pager \025 half-up   # <c-u>
+bind index \004 half-down # <c-d>
+bind index \025 half-up   # <c-u>
 
-macro attach 'V' "<pipe-entry>cat >~/.cache/mutt-temp-email.html && $BROWSER ~/.cache/mutt-temp-email.html && rm ~/.cache/mutt-temp-email.html<enter>" \
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt-temp-email.html && $BROWSER ~/.cache/mutt-temp-email.html<enter>" \
       "view html attachments or message in browser"
 
 set query_command= "khard email -p %s"

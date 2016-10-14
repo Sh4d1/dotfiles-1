@@ -59,7 +59,8 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
-
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word )
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
@@ -89,7 +90,13 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '~/.zshrc'
 
-autoload -Uz compinit
+# http://nion.modprobe.de/blog/archives/521-hostname-completion-with-zsh.html
+local knownhosts
+knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+zstyle ':completion:*' hosts $knownhosts
+
+autoload -Uz compinit edit-command-line
+zle -N edit-command-line
 compinit
 
 # KEY BINDINGS
@@ -113,6 +120,8 @@ bindkey -M emacs '^N' history-substring-search-down
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M viins '^P' history-substring-search-up
+bindkey -M viins '^N' history-substring-search-down
 
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
@@ -128,6 +137,13 @@ bindkey    "^[3;5~"         delete-char
 bindkey '^ ' autosuggest-accept
 bindkey '^[^M' autosuggest-execute
 
+# edit command line in editor
+bindkey -M vicmd v edit-command-line
+bindkey -M viins '^E' edit-command-line
+
+# insert mode bindings - forward-word also partially accepts autosuggest
+bindkey -M viins '^F' forward-word
+bindkey -M viins '^B' backward-word
 
 # ALIASES
 
@@ -163,7 +179,7 @@ alias gmm='git merge'
 alias grb='git rebase'
 alias glog='git log --oneline --decorate --color --graph'
 
-alias upgrade='sudo pacman -Syu'
+alias upgrade='sudo pacman -Syu && pacaur -u --devel'
 alias vimdiff='nvim -d'
 alias status='systemctl status'
 alias ustatus='systemctl status --user'

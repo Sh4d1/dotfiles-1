@@ -25,6 +25,7 @@ Plug 'tpope/vim-eunuch'                                                   " shor
 Plug 'justinmk/vim-dirvish'                                               " another alternative to netwr
 Plug 'wellle/targets.vim'                                                 " extra text objects
 Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
+Plug 'romainl/vim-qf'                                                     " quickfix window improvements
 
                                                                           " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -153,7 +154,7 @@ nnoremap <silent> <leader>ja :call functions#setjump('sideways')<cr>
 nnoremap <silent> <leader>jq :call functions#setjump('qf')<cr>
 nnoremap <silent> <leader>jo :call functions#showjump()<cr>
 
-nnoremap <cr> @:
+" nnoremap <cr> @:
 
 " insert the current date (iso format)
 inoremap ,d <c-r>=strftime('%F')<cr>
@@ -169,7 +170,7 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-nnoremap <silent> <esc> :silent :nohlsearch<cr>
+nnoremap <silent> <esc> <esc>:silent :nohlsearch<cr>
 
 " toggle visible whitespace
 nmap <silent> <leader>w :set nolist!<cr>
@@ -298,11 +299,18 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 " Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
 
+" allow using jshint for json
+let g:neomake_json_jshint_maker = {
+        \ 'args': ['--verbose'],
+        \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+        \ }
+let g:neomake_json_enabled_makers = ['jshint']
+
 nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
 augroup vimrc
   autocmd!
-  autocmd BufEnter,BufWritePost * Neomake
+  autocmd BufWritePost * Neomake
   autocmd ColorScheme * call functions#sethighlight()
 augroup END
 
@@ -385,3 +393,5 @@ let g:GPGPossibleRecipients=[
 " set up the custom highlights now, or else would have been overridden
 call functions#sethighlight()
 
+" vim-qf
+let g:qf_mapping_ack_style = 1
