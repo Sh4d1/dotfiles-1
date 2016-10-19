@@ -84,7 +84,7 @@ func! functions#vimuxslime()
 endfunc
 
 func! functions#sethighlight()
-  " hi Normal ctermbg=NONE
+  hi Normal ctermbg=8
 
   " statusline highlights
   hi User1 ctermbg=NONE ctermfg=NONE
