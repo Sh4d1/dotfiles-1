@@ -22,4 +22,3 @@ color = dark green
 [default]
 highlight_event_days = True
 default_calendar = main
-days = 10

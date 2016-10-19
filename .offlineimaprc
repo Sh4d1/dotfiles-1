@@ -30,9 +30,9 @@ keepalive = 360
 holdconnectionopen = yes
 
 [mbnames]
-enabled = yes
-filename = ~/.mutt/muttrc.mailboxes
-header = "mailboxes "
-peritem = "+%(foldername)s"
-sep = " "
-footer = "\n"
+enabled = no
+# filename = ~/.mutt/muttrc.mailboxes
+# header = "mailboxes "
+# peritem = "+%(foldername)s"
+# sep = " "
+# footer = "\n"

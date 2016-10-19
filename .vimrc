@@ -121,7 +121,7 @@ set iskeyword+=- " better - and essential for css
 
 set cursorline
 set textwidth=80
-set colorcolumn=+1,+2,+3
+" set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
@@ -310,8 +310,10 @@ nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<c
 
 augroup vimrc
   autocmd!
-  autocmd BufWritePost * Neomake
+  autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
+  autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
 augroup END
 
 

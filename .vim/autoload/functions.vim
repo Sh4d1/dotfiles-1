@@ -96,4 +96,6 @@ func! functions#sethighlight()
 
   " listchars highlighting
   hi SpecialKey guibg=red ctermbg=red
+
+  hi link EndOfBuffer ColorColumn
 endfunc
