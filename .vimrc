@@ -60,6 +60,7 @@ Plug 'romainl/flattened'                                                  " (sol
 Plug 'tomasr/molokai'                                                     " alternate 256 color colorscheme (for when can't use solarized terminal)
 Plug 'romainl/Apprentice'                                                 " alternate 256 color colorscheme
 Plug 'nanotech/jellybeans.vim'                                            " alternate 256 color colorscheme
+Plug 'tpope/vim-characterize'                                             " overrides ga
 
 " add plugins to &runtimepath
 call plug#end()
@@ -101,7 +102,11 @@ set ruler " cursor position info
 set history=2000    " more history
 set undolevels=5000 " and undolevels
 set undofile
-set listchars=tab:»·,trail:·,eol:$ " for graphically displaying whitespace
+
+" set listchars=tab:»·,trail:·,eol:$,nbsp:⦸ " for graphically displaying whitespace
+set listchars=tab:»·,trail:•,nbsp:⦸,extends:»,precedes:« " for graphically displaying whitespace
+set list
+
 set wildmenu
 set shortmess=filnxtToO " less 'press ... to continue' maybe
 set showmode
@@ -109,18 +114,25 @@ set breakindent
 set showbreak=⤷
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
+set spellcapcheck=
+
+set lazyredraw " don't redraw while replaying macros
 
 set virtualedit=block
 
+set formatoptions+=n
+
 " single global backup/swp/undo dirs
 set backupdir=~/.vim/backup/
-set directory=~/.vim/swp/
+set directory=~/.vim/swp//
 set undodir=~/.vim/undo/
 
 set iskeyword+=- " better - and essential for css
 
 set cursorline
 set textwidth=80
+
+set highlight+=N:DiffText
 " set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
@@ -146,13 +158,6 @@ set laststatus=2
 set statusline=%!functions#buildstatusline()
 
 " Keymappings
-
-nnoremap <silent> <leader>jd :call functions#setjump('default')<cr>
-nnoremap <silent> <leader>js :call functions#setjump('spell')<cr>
-nnoremap <silent> <leader>jh :call functions#setjump('hunk')<cr>
-nnoremap <silent> <leader>ja :call functions#setjump('sideways')<cr>
-nnoremap <silent> <leader>jq :call functions#setjump('qf')<cr>
-nnoremap <silent> <leader>jo :call functions#showjump()<cr>
 
 " nnoremap <cr> @:
 
@@ -295,6 +300,9 @@ omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
+
+nnoremap <silent> <leader>fl :silent :SidewaysRight<cr>
+nnoremap <silent> <leader>fh :silent :SidewaysLeft<cr>
 
 " Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)

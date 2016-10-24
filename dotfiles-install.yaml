@@ -1,0 +1,141 @@
+- hosts: all
+
+  vars:
+
+  remote_user: samuel
+
+  tasks:
+
+    - name: set up directories
+      file: path={{ item }} state=directory
+      with_items:
+        - ~/.config/awesome
+        - ~/.config/clipit
+        - ~/.config/clipster
+        - ~/.config/cmus
+        - ~/.config/copyq
+        - ~/.config/dunst
+        - ~/.config/i3
+        - ~/.config/i3status
+        - ~/.config/khal
+        - ~/.config/khard
+        - ~/.config/mpd
+        - ~/.config/qutebrowser
+        - ~/.config/ranger
+        - ~/.config/termite
+        - ~/.config/touchegg
+        - ~/.config/udiskie
+        - ~/.config/vdirsyncer
+        - ~/.local/share/qutebrowser/userscripts
+        - ~/.mutt
+        - ~/.vim/after/ftplugin
+        - ~/.vim/autoload
+        - ~/.vim/backup
+        - ~/.vim/ftdetect
+        - ~/.vim/plugged
+        - ~/.vim/spell
+        - ~/.vim/swp
+        - ~/.vim/syntax
+        - ~/.vim/undo
+        - ~/bin
+        - ~/aur/pkgbuilds
+        - ~/aur/packages
+        - ~/aur/sources
+
+
+    - name: copy files
+      copy: src={{ item.src }} dest=~/{{ item.dest }} mode={{ item.mode | default("0640") }}
+      with_items:
+
+        - { src: '.bash_profile', dest: '.bash_profile' }
+        - { src: '.bashrc', dest: '.bashrc' }
+        - { src: '.config/awesome/rc.lua', dest: '.config/awesome/rc.lua' }
+        - { src: '.config/clipit/clipitrc', dest: '.config/clipit/clipitrc' }
+        - { src: '.config/clipster/clipster.ini', dest: '.config/clipster/clipster.ini' }
+        - { src: '.config/cmus/rc', dest: '.config/cmus/rc' }
+        - { src: '.config/copyq/copyq.conf', dest: '.config/copyq/copyq.conf' }
+        - { src: '.config/i3status/config-secondary', dest: '.config/i3status/config-secondary' }
+        - { src: '.config/khal/config', dest: '.config/khal/config' }
+        - { src: '.config/khard/khard.conf', dest: '.config/khard/khard.conf' }
+        - { src: '.config/mpd/mpd.conf', dest: '.config/mpd/mpd.conf' }
+        - { src: '.config/qutebrowser/keys.conf', dest: '.config/qutebrowser/keys.conf' }
+        - { src: '.config/ranger/commands.py', dest: '.config/ranger/commands.py' }
+        - { src: '.config/ranger/rc.conf', dest: '.config/ranger/rc.conf' }
+        - { src: '.config/ranger/rifle.conf', dest: '.config/ranger/rifle.conf' }
+        - { src: '.config/ranger/scope.sh', dest: '.config/ranger/scope.sh', mode: "0750" }
+        - { src: '.config/termite/config', dest: '.config/termite/config' }
+        - { src: '.config/termite/small-font-config', dest: '.config/termite/small-font-config' }
+        - { src: '.config/touchegg/touchegg.conf', dest: '.config/touchegg/touchegg.conf' }
+        - { src: '.config/udiskie/config.yml', dest: '.config/udiskie/config.yml' }
+        - { src: '.config/vdirsyncer/config', dest: '.config/vdirsyncer/config' }
+        - { src: '.dircolors', dest: '.dircolors' }
+        - { src: '.inputrc', dest: '.inputrc' }
+        - { src: '.msmtprc', dest: '.msmtprc' }
+        - { src: '.mutt/mailcap', dest: '.mutt/mailcap' }
+        - { src: '.mutt/muttrc', dest: '.mutt/muttrc' }
+        - { src: '.mutt/muttrc.mailboxes', dest: '.mutt/muttrc.mailboxes' }
+        - { src: '.mutt/sig', dest: '.mutt/sig' }
+        - { src: '.mutt/solarized-dark16.theme', dest: '.mutt/solarized-dark16.theme' }
+        - { src: '.octaverc', dest: '.octaverc' }
+        - { src: '.offlineimap.py', dest: '.offlineimap.py' }
+        - { src: '.offlineimaprc', dest: '.offlineimaprc' }
+        - { src: '.pathrc', dest: '.pathrc' }
+        - { src: '.tmux.conf', dest: '.tmux.conf' }
+        - { src: '.todotxt-machinerc', dest: '.todotxt-machinerc' }
+        - { src: '.vim/after/ftplugin/cpp.vim', dest: '.vim/after/ftplugin/cpp.vim' }
+        - { src: '.vim/after/ftplugin/html.vim', dest: '.vim/after/ftplugin/html.vim' }
+        - { src: '.vim/after/ftplugin/java.vim', dest: '.vim/after/ftplugin/java.vim' }
+        - { src: '.vim/after/ftplugin/mail.vim', dest: '.vim/after/ftplugin/mail.vim' }
+        - { src: '.vim/after/ftplugin/octave.vim', dest: '.vim/after/ftplugin/octave.vim' }
+        - { src: '.vim/after/ftplugin/python.vim', dest: '.vim/after/ftplugin/python.vim' }
+        - { src: '.vim/after/ftplugin/qf.vim', dest: '.vim/after/ftplugin/qf.vim' }
+        - { src: '.vim/after/ftplugin/tex.vim', dest: '.vim/after/ftplugin/tex.vim' }
+        - { src: '.vim/after/ftplugin/xml.vim', dest: '.vim/after/ftplugin/xml.vim' }
+        - { src: '.vim/autoload/functions.vim', dest: '.vim/autoload/functions.vim' }
+        - { src: '.vim/autoload/plug.vim', dest: '.vim/autoload/plug.vim' }
+        - { src: '.vim/filetype.vim', dest: '.vim/filetype.vim' }
+        - { src: '.vim/ftdetect/raml.vim', dest: '.vim/ftdetect/raml.vim' }
+        - { src: '.vim/syntax/cool.vim', dest: '.vim/syntax/cool.vim' }
+        - { src: '.vim/syntax/octave.vim', dest: '.vim/syntax/octave.vim' }
+        - { src: '.vim/syntax/tmux.vim', dest: '.vim/syntax/tmux.vim' }
+        - { src: '.vim/syntax/vala.vim', dest: '.vim/syntax/vala.vim' }
+        - { src: '.vimrc', dest: '.vimrc' }
+        - { src: '.zprofile', dest: '.zprofile' }
+        - { src: '.zshenv', dest: '.zshenv' }
+        - { src: '.zshrc', dest: '.zshrc' }
+        - { src: 'qutebrowser-userscripts/pinboard_add.sh', dest: '.local/share/qutebrowser/userscripts/pinboard_add.sh', mode: "0750" }
+        - { src: 'qutebrowser-userscripts/readerview.py', dest: '.local/share/qutebrowser/userscripts/readerview.py', mode: "0750" }
+        - { src: 'qutebrowser-userscripts/vimgolf.sh', dest: '.local/share/qutebrowser/userscripts/vimgolf.sh', mode: "0750" }
+        - { src: 'qutebrowser-userscripts/wallabag_add.sh', dest: '.local/share/qutebrowser/userscripts/wallabag_add.sh', mode: "0750" }
+        - { src: 'qutebrowser-userscripts/wordreference_fr.sh', dest: '.local/share/qutebrowser/userscripts/wordreference_fr.sh', mode: "0750" }
+        - { src: '.config/dunst/dunstrc', dest: '.config/dunst/dunstrc' }
+        - { src: '.config/qutebrowser/qutebrowser.conf', dest: '.config/qutebrowser/qutebrowser.conf' }
+
+    - name: copy bin files
+      copy: src={{ item }} dest=~/bin mode=0750
+      with_fileglob:
+        - bin/*
+
+    - name: copy files with templates
+      template: src={{ item.src }} dest=~/{{ item.dest }} mode={{ item.mode | default("0640") }}
+      with_items:
+        - { src: '.Xresources', dest: '.Xresources' }
+
+    - name: copy archbook specific files
+      copy: src={{ item.src }} dest=~/{{ item.dest }} mode={{ item.mode | default("0640") }}
+      with_items:
+        - { src: 'archbook/.config/i3status/config', dest: '.config/i3status/config' }
+        - { src: 'archbook/.config/i3/config', dest: '.config/i3/config' }
+      when: ansible_hostname == "archbook"
+
+    - name: link anything required
+      file: src=~/{{ item.src }} dest=~/{{ item.dest }} state=link
+      with_items:
+        - { src: '.vimrc', dest: '.vim/init.vim' }
+        - { src: '.vim', dest: '.config/nvim' }
+
+    - name: install/update zgen
+      git: repo='https://github.com/tarjoilija/zgen.git' dest=~/.zgen
+
+    - name: install vim plugins
+      command: vim +PlugUpdate +qa

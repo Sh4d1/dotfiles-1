@@ -29,8 +29,8 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 keepalive = 360
 holdconnectionopen = yes
 
-[mbnames]
-enabled = no
+# [mbnames]
+# enabled = no
 # filename = ~/.mutt/muttrc.mailboxes
 # header = "mailboxes "
 # peritem = "+%(foldername)s"

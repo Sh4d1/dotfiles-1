@@ -51,40 +51,13 @@ func! functions#buildstatusline()
 endfunc
 
 
-let g:jump_type = 'default'
-" function to map c-p and c-n to pairs of things
-func! functions#setjump(type)
-  let g:jump_type = a:type
-  echo 'c-n/c-p set to ' . a:type
-  if a:type == 'default'
-    unmap <c-p>
-    unmap <c-n>
-  elseif a:type == 'spell'
-    nnoremap <c-p> [s
-    nnoremap <c-n> ]s
-  elseif a:type == 'hunk'
-    nmap <c-p> <Plug>GitGutterPrevHunk
-    nmap <c-n> <Plug>GitGutterNextHunk
-  elseif a:type == 'sideways'
-    nmap <silent> <c-p> :SidewaysLeft<cr>
-    nmap <silent> <c-n> :SidewaysRight<cr>
-  elseif a:type == 'qf'
-    nmap <silent> <c-p> :cp<cr>
-    nmap <silent> <c-n> :cn<cr>
-  endif
-endfunc
-
-func! functions#showjump()
-  echo 'jump type: ' . g:jump_type
-endfunc
-
 func! functions#vimuxslime()
  call VimuxSendText(@v)
  call VimuxSendKeys("Enter")
 endfunc
 
 func! functions#sethighlight()
-  hi Normal ctermbg=8
+  " hi Normal ctermbg=8
 
   " statusline highlights
   hi User1 ctermbg=NONE ctermfg=NONE
@@ -95,7 +68,7 @@ func! functions#sethighlight()
   hi User6 ctermbg=6 ctermfg=0
 
   " listchars highlighting
-  hi SpecialKey guibg=red ctermbg=red
+  " hi SpecialKey guibg=red ctermbg=red
 
   hi link EndOfBuffer ColorColumn
 endfunc

@@ -44,8 +44,8 @@ class local_temperature(IntervalModule):
         try:
             limit = int(time.time()) - (60*60*24)
             params = {'from': limit}
-            current_res = requests.get('http://pi:8888/api/temperature/current', timeout=5)
-            stats_res = requests.get('http://pi:8888/api/temperature/stats', params=params, timeout=5)
+            current_res = requests.get('http://pi-1:8888/api/temperature/current', timeout=5)
+            stats_res = requests.get('http://pi-1:8888/api/temperature/stats', params=params, timeout=5)
 
             assert current_res.status_code == stats_res.status_code == 200
 

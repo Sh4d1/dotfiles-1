@@ -80,10 +80,10 @@
 Xft.hinting: 1
 ! Xft.hintstyle: hintmedium
 Xft.antialias: 1
-Xft.dpi: 162
+Xft.dpi: {{ dpi | default(96) }}
 Xft.rgba: rgb
 
-*dpi: 162
+*dpi: {{ dpi | default(96) }}
 
 
 !! Rofi config - https://github.com/DaveDavenport/rofi
@@ -173,7 +173,7 @@ rofi.fullscreen:                     false
 ! Fake transparency
 rofi.fake-transparency:              false
 ! DPI
-rofi.dpi:                            162
+rofi.dpi:                            {{ dpi | default(96) }}
 ! Threads to use for string matching
 rofi.threads:                        1
 ! Scrollbar width
