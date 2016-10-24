@@ -150,7 +150,11 @@ let maplocalleader = "\<space>"
 runtime macros/matchit.vim
 
 " solarized colorscheme
-colorscheme flattened_dark
+try
+  colorscheme flattened_dark
+catch
+  colorscheme torte
+endtry
 
 " Status Line
 set laststatus=2

@@ -19,3 +19,6 @@ __pycache__/
 
 # tag file
 tags
+
+# ansible retry file
+*.retry

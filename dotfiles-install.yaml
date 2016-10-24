@@ -138,4 +138,5 @@
       git: repo='https://github.com/tarjoilija/zgen.git' dest=~/.zgen
 
     - name: install vim plugins
-      command: vim +PlugUpdate +qa
+      command: nvim --headless +PlugUpdate +qa
+
