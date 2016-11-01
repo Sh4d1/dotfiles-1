@@ -138,3 +138,4 @@
 - name: install/update zgen
   git: repo='https://github.com/tarjoilija/zgen.git' dest=/home/{{ user }}/.zgen
 
+# TODO: install gem files (tmuxinator, etc...)

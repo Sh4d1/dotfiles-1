@@ -9,32 +9,17 @@ Shared here so you can browse through and get ideas. (And everyone needs a dotfi
 
 ## installing
 
-dotfiles are managed and installed with ~[dotbot](https://github.com/anishathalye/dotbot)~
-[ansible](https://www.ansible.com/).
+dotfiles are managed and installed with [ansible](https://www.ansible.com/).
 
-- ~run `./install -c <config file>` from in repo to populate symlinks for dotfiles (chose correct config file!)~
+- run `ansible-playbook dotfiles-install.yaml` to install
 
-- run `ansible-playbook dotfiles-install.yaml` to install ... to be reworked
+It will also make sure dependencies are installed.
 
+## TODO
 
-### dependencies
+- Install ruby dependencies - ie with `gem install tmuxinator` (but use the gem module in ansible)
 
-- ruby
-- vim (or gvim) (actually neovim is recommended)
-- python (version 3)
-- python-pip
-
-Plus all the other apps...
-
-- install most through package manager (`pacman -S ...`)
-- `gem install tmuxinator`
-- `pip install --user i3pystatus`
-
-### install config files
-
-- `install.macbook.conf.yaml` - installs all config along with some macbook specific files (from `macbook` dir), designed for my macbook
-- `install.conf.yaml` - main config which installs everything, designed for my desktop
-- `install.server.conf.yaml` - only installs stuff for console apps on my servers
+- split out a minimal set of dotfiles for small servers, etc.
 
 
 ### post install tasks
