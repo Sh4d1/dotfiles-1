@@ -181,7 +181,7 @@ rofi.scrollbar-width:                8
 ! Scrolling method. (0: Page, 1: Centered)
 rofi.scroll-method:                  0
 ! Pidfile location
-rofi.pid:                            /run/user/1000/rofi.pid
+rofi.pid:                            /home/samuel/.rofi.pid
 ! Keybinding
 rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
 ! Keybinding

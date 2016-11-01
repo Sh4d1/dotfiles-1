@@ -1,0 +1,7 @@
+
+# quick setup for new machine - runs on localhost as current user
+- hosts: localhost
+  roles:
+    - { role: global, become: yes }
+    - { role: user, user: '{{ ansible_user_id }}', become_user: '{{ ansible_user_id }}' }
+

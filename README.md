@@ -9,9 +9,12 @@ Shared here so you can browse through and get ideas. (And everyone needs a dotfi
 
 ## installing
 
-dotfiles are managed and installed with [dotbot](https://github.com/anishathalye/dotbot)
+dotfiles are managed and installed with ~[dotbot](https://github.com/anishathalye/dotbot)~
+[ansible](https://www.ansible.com/).
 
-- run `./install -c <config file>` from in repo to populate symlinks for dotfiles (chose correct config file!)
+- ~run `./install -c <config file>` from in repo to populate symlinks for dotfiles (chose correct config file!)~
+
+- run `ansible-playbook dotfiles-install.yaml` to install ... to be reworked
 
 
 ### dependencies

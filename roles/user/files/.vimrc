@@ -181,9 +181,6 @@ cnoremap <c-v> <c-r>"
 " hide search highlighting
 nnoremap <silent> <esc> <esc>:silent :nohlsearch<cr>
 
-" toggle visible whitespace
-nmap <silent> <leader>w :set nolist!<cr>
-
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
 set pastetoggle=<F3>
