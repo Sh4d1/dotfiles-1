@@ -48,6 +48,7 @@
     - npm
     - pinentry
     - gnupg
+    - the_silver_searcher
 
 
     # python libraries
@@ -90,6 +91,9 @@
     - compton
     - network-manager-applet
     - gvim
+    - python2-gnomekeyring # for .offlineimap.py
+    - pavucontrol
+    - xorg-xbacklight
 
     # screenshots
     - maim
@@ -100,6 +104,7 @@
     - xbanish-git
     - xcape-git
     - qutebrowser-git
+    - pulseaudio-ctl
 
 
 # python packages

@@ -1,8 +1,67 @@
 #!/usr/bin/env python3
 
-from i3pystatus import Status
+from i3pystatus import IntervalModule, Status
 from i3pystatus.mail import maildir
 import os
+import time
+import requests
+
+class local_temperature(IntervalModule):
+    """
+    Retrieves local temperature from rpi-temperature-server running on my RPi
+
+    Requires pypi package `requests`.
+
+    .. rubric:: Available formatters
+
+    * `{temp}` - current temperature
+    * `{min}` - 24 hour min
+    * `{max}` - 24 hour max
+    """
+
+    format = "{temp:0.1f}°C | 24h min: {min:0.1f}°C, max: {max:0.1f}°C"
+    err_format = "error"
+    color = "#0088EE"
+    alert_color = "#FF0000"
+
+    settings = (
+        ("format", "format string used for output."),
+        ("err_format", "format string used for when can't retrieve the temperature."),
+        ("color", "standard color"),
+        ("alert_color",
+         "defines the color used when failed to retrieve public ip")
+    )
+
+    def run(self):
+        cdict = {
+            'temp': float('Inf'),
+            'min': float('Inf'),
+            'max': float('Inf')
+        }
+
+        try:
+            limit = int(time.time()) - (60*60*24)
+            params = {'from': limit}
+            current_res = requests.get('http://pi-1:8888/api/temperature/current', timeout=5)
+            stats_res = requests.get('http://pi-1:8888/api/temperature/stats', params=params, timeout=5)
+
+            assert current_res.status_code == stats_res.status_code == 200
+
+            cdict['temp'] = current_res.json()['data']['temperature']
+            cdict['min'] = stats_res.json()['data']['min']['temperature']
+            cdict['max'] = stats_res.json()['data']['max']['temperature']
+
+            self.output = {
+                "full_text": self.format.format(**cdict),
+                "color": self.color
+            }
+        except Exception as e:
+            self.output = {
+                "full_text": self.err_format.format(**cdict),
+                "color": self.alert_color
+            }
+
+        self.data = cdict
 
 status = Status()
 
@@ -69,9 +128,12 @@ status.register("mail",
             directory=os.path.join(os.path.expanduser('~'), 'Maildir/INBOX/'))],
         format="MAIL: {unread}",format_plural="MAIL: {unread}")
 
-status.register("cmus",
-                format="{status} {title:.27s} - {artist:.18s}",
-                color="#7070ff")
-
+# status.register("cmus",
+#                 format="{status} {title:.27s} - {artist:.18s}",
+#                 color="#7070ff")
+#
+status.register(local_temperature,
+        format='{temp:0.1f}°C | 24h ▼ {min:0.1f}°C ▲ {max:0.1f}°C',
+                interval=300)
 
 status.run()

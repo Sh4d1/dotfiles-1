@@ -2,8 +2,18 @@
 ### sets up per-user dotfiles and config
 #   - expected to be run as the user
 
+- name: getent home directory
+  shell: 'getent passwd {{ user }} | cut -d: -f6'
+  changed_when: false
+  register: user_home_cmd
+
+- name: save variable for home directory
+  set_fact:
+    user_home: '{{ user_home_cmd.stdout }}'
+
+
 - name: set up directories
-  file: path=/home/{{ user }}/{{ item }} state=directory mode="0750"
+  file: path={{ user_home }}/{{ item }} state=directory mode="0750"
   with_items:
     - .config/awesome
     - .config/clipit
@@ -39,12 +49,12 @@
     - aur/sources
 
 - name: set up files
-  file: path=/home/{{ user }}/{{ item }} state=touch mode="0640"
+  file: path={{ user_home }}/{{ item }} state=touch mode="0640"
   with_items:
     - .ssh/authorized_keys
 
 - name: copy files
-  copy: src={{ item.src }} dest=/home/{{ user }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
+  copy: src={{ item.src }} dest={{ user_home }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
   with_items:
 
     - { src: '.bash_profile', dest: '.bash_profile' }
@@ -111,31 +121,31 @@
     - { src: '.config/qutebrowser/qutebrowser.conf', dest: '.config/qutebrowser/qutebrowser.conf' }
 
 - name: copy bin files
-  copy: src={{ item }} dest=/home/{{ user }}/bin mode=0750
+  copy: src={{ item }} dest={{ user_home }}/bin mode=0750
   with_fileglob:
     - bin/*
 
 - name: copy files with templates
-  template: src={{ item.src }} dest=/home/{{ user }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
+  template: src={{ item.src }} dest={{ user_home }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
   with_items:
     - { src: '.Xresources', dest: '.Xresources' }
     - { src: '.zshenv', dest: '.zshenv' }
 
 - name: copy archbook specific files
-  copy: src={{ item.src }} dest=/home/{{ user }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
+  copy: src={{ item.src }} dest={{ user_home }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
   with_items:
     - { src: 'archbook/.config/i3status/config', dest: '.config/i3status/config' }
     - { src: 'archbook/.config/i3/config', dest: '.config/i3/config' }
   when: ansible_hostname == "archbook"
 
 - name: link anything required
-  file: src=/home/{{ user }}/{{ item.src }} dest=/home/{{ user }}/{{ item.dest }} state=link
+  file: src={{ user_home }}/{{ item.src }} dest={{ user_home }}/{{ item.dest }} state=link
   with_items:
     # neovim config paths
     - { src: '.vimrc', dest: '.vim/init.vim' }
     - { src: '.vim', dest: '.config/nvim' }
 
 - name: install/update zgen
-  git: repo='https://github.com/tarjoilija/zgen.git' dest=/home/{{ user }}/.zgen
+  git: repo='https://github.com/tarjoilija/zgen.git' dest={{ user_home }}/.zgen
 
 # TODO: install gem files (tmuxinator, etc...)

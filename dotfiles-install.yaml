@@ -8,5 +8,5 @@
 # just my user on these hosts
 - hosts: laptops, desktops, servers
   roles:
-    - { role: user, user: 'samuel', become_user: 'samuel' }
+    - { role: user, user: 'samuel', become: yes, become_user: 'samuel' }
 
