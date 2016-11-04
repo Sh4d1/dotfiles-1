@@ -119,6 +119,7 @@
     - { src: 'qutebrowser-userscripts/wordreference_fr.sh', dest: '.local/share/qutebrowser/userscripts/wordreference_fr.sh', mode: "0750" }
     - { src: '.config/dunst/dunstrc', dest: '.config/dunst/dunstrc' }
     - { src: '.config/qutebrowser/qutebrowser.conf', dest: '.config/qutebrowser/qutebrowser.conf' }
+    - { src: '.config/todoman/todoman.conf', dest: '.config/todoman/todoman.conf' }
 
 - name: copy bin files
   copy: src={{ item }} dest={{ user_home }}/bin mode=0750

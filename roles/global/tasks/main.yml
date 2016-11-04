@@ -68,6 +68,7 @@
     # aur
     - todotxt-machine-git
     - neovim-git
+    - todoman
 
 
 - name: ensure software present (arch, graphical)

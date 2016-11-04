@@ -54,6 +54,7 @@ It will also make sure dependencies are installed.
 - rofi
 - termite
 - tmux
+- todoman
 - todotxt-machine
 - touchegg
 - udiskie
