@@ -9,15 +9,15 @@
 
 [general]
 # A folder where vdirsyncer can store some metadata about each pair.
-status_path = ~/.vdirsyncer/status/
+status_path = "~/.vdirsyncer/status/"
 
 # CARDDAV
 [pair main_contacts]
 # A `[pair <name>]` block defines two storages `a` and `b` that should be
 # synchronized. The definition of these storages follows in `[storage <name>]`
 # blocks. This is similar to accounts in OfflineIMAP.
-a = main_contacts_local
-b = main_contacts_remote
+a = "main_contacts_local"
+b = "main_contacts_remote"
 
 # Synchronize all collections that can be found.
 # You need to run `vdirsyncer discover` if new calendars/addressbooks are added
@@ -37,14 +37,14 @@ conflict_resolution = "b wins"
 [storage main_contacts_local]
 # A storage references actual data on a remote server or on the local disk.
 # Similar to repositories in OfflineIMAP.
-type = filesystem
-path = ~/.contacts/
-fileext = .vcf
+type = "filesystem"
+path = "~/.contacts/"
+fileext = ".vcf"
 
 [storage main_contacts_remote]
-type = carddav
-url = https://nextcloud.walladge.net/
-username = samuel
+type = "carddav"
+url = "https://nextcloud.walladge.net/"
+username = "samuel"
 password.fetch = ["command", "vdirsyncer-password.sh"]
 #username =
 # The password can also be fetched from the system password storage, netrc or a
@@ -53,8 +53,8 @@ password.fetch = ["command", "vdirsyncer-password.sh"]
 
 # CALDAV
 [pair main_calendar]
-a = main_calendar_local
-b = main_calendar_remote
+a = "main_calendar_local"
+b = "main_calendar_remote"
 collections = ["from a", "from b"]
 conflict_resolution = "b wins"
 
@@ -62,13 +62,13 @@ conflict_resolution = "b wins"
 metadata = ["displayname", "color"]
 
 [storage main_calendar_local]
-type = filesystem
-path = ~/.calendars/
-fileext = .ics
+type = "filesystem"
+path = "~/.calendars/"
+fileext = ".ics"
 
 [storage main_calendar_remote]
-type = caldav
-url = https://nextcloud.walladge.net/
-username = samuel
+type = "caldav"
+url = "https://nextcloud.walladge.net/"
+username = "samuel"
 password.fetch = ["command", "vdirsyncer-password.sh"]
 

@@ -6,7 +6,6 @@
     - global
 
 # just my user on these hosts
-- hosts: laptops, desktops, servers
+- hosts: laptops, desktops
   roles:
     - { role: user, user: 'samuel', become: yes, become_user: 'samuel' }
-
