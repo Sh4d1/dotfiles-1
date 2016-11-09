@@ -51,7 +51,7 @@ export STEAM_FRAME_FORCE_CLOSE=1
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
-if hash gnome-keyring-daemon 2>/dev/null && [ -n "$DESKTOP_SESSION" ]; then
+if hash gnome-keyring-daemon 2>/dev/null; then
   eval $(gnome-keyring-daemon --start 2>/dev/null)
   export SSH_AUTH_SOCK
 fi

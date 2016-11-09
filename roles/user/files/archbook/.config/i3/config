@@ -271,6 +271,8 @@ exec --no-startup-id dunst
 # external drive management
 exec --no-startup-id udiskie
 
+# nextcloud!
+exec --no-startup-id nextcloud
 
 # startup kdeconnect (refresh on restart i3)
 exec_always --no-startup-id kdeconnect-cli --refresh

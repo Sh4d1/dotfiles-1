@@ -339,6 +339,9 @@ exec --no-startup-id dunst
 # external drive management
 exec --no-startup-id udiskie
 
+# nextcloud!
+exec --no-startup-id nextcloud
+
 # start console apps (irc, music player, etc) in tmux session in background
 exec --no-startup-id zsh -c 'tmuxinator start apps'
 
