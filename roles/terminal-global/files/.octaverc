@@ -1,0 +1,3 @@
+edit mode sync
+EDITOR('$EDITOR %s');
+PS1('>> ');

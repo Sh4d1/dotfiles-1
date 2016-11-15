@@ -1,3 +1,0 @@
-edit mode async
-EDITOR('gvim %s');
-PS1('>> ');

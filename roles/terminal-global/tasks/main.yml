@@ -1,0 +1,79 @@
+---
+
+- name: terminal (global) | check installed packages
+  pacman: name={{ item }} state=present
+  become: yes
+  with_items:
+    - git
+    - gnupg
+    - htop
+    - octave
+    - openssh
+    - pinentry
+    - python
+    - python-jedi
+    - python-neovim
+    - python-netifaces
+    - python-pip
+    - python-virtualenv
+    - python2
+    - python2-jedi
+    - python2-neovim
+    - python2-pip
+    - python2-requests
+    - python2-virtualenv
+    - ranger
+    - ruby
+    - the_silver_searcher
+    - tmux
+    - zsh
+
+- name: terminal (global) | set up directories
+  file: path={{ ansible_env.HOME }}/{{ item }} state=directory mode="0750"
+  with_items:
+    - .config/ranger
+    - bin
+
+- name: terminal (global) | create authorized_keys file if not existing (check)
+  stat: path={{ ansible_env.HOME }}/.ssh/authorized_keys
+  register: authorized_keys_file
+
+- name: terminal (global) | create authorized_keys file if not existing (create)
+  file: path={{ ansible_env.HOME }}/.ssh/authorized_keys state=touch mode="0640"
+  when: not authorized_keys_file.stat.exists or authorized_keys_file.stat.mode != "0640"
+
+- name: terminal (global) | copy files
+  copy: src={{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
+  with_items:
+    - { src: '.bash_profile', dest: '.bash_profile' }
+    - { src: '.bashrc', dest: '.bashrc' }
+    - { src: '.config/ranger/commands.py', dest: '.config/ranger/commands.py' }
+    - { src: '.config/ranger/rc.conf', dest: '.config/ranger/rc.conf' }
+    - { src: '.config/ranger/rifle.conf', dest: '.config/ranger/rifle.conf' }
+    - { src: '.config/ranger/scope.sh', dest: '.config/ranger/scope.sh', mode: "0750" }
+    - { src: '.dircolors', dest: '.dircolors' }
+    - { src: '.inputrc', dest: '.inputrc' }
+    - { src: '.octaverc', dest: '.octaverc' }
+    - { src: '.pathrc', dest: '.pathrc' }
+    - { src: '.tmux.conf', dest: '.tmux.conf' }
+    - { src: '.zprofile', dest: '.zprofile' }
+    - { src: '.zshrc', dest: '.zshrc' }
+    - { src: '.gitignore', dest: '.gitignore' }
+    - { src: '.gitconfig', dest: '.gitconfig' }
+
+- name: terminal (global) | copy bin files
+  copy: src={{ item }} dest={{ ansible_env.HOME }}/bin mode=0750
+  with_fileglob:
+    - bin/*
+
+- name: copy files with templates
+  template: src={{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
+  with_items:
+    - { src: '.zshenv', dest: '.zshenv' }
+
+- name: terminal (global) | install/update zgen
+  git: repo='https://github.com/tarjoilija/zgen.git' dest={{ ansible_env.HOME }}/.zgen
+
+# TODO: install gem files (tmuxinator, etc...)
+# TODO: import my gpg public key
+# TODO: add htop config

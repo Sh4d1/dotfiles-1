@@ -1,0 +1,11 @@
+[push]
+    default = simple
+
+[user]
+    email = samuel@swalladge.id.au
+    name = Samuel Walladge
+
+[commit]
+	gpgsign = true
+[core]
+	excludesfile = /home/samuel/.gitignore

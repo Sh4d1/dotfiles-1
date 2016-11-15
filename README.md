@@ -56,7 +56,6 @@ It will also make sure dependencies are installed.
 - tmux
 - todoman
 - todotxt-machine
-- touchegg
 - udiskie
 - vdirsyncer
 - vim/neovim

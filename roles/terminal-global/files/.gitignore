@@ -1,0 +1,16 @@
+
+# swap files
+*.swp
+*.swo
+
+# other random files
+.DS_Store
+
+# python
+__pycache__/
+
+# tag file
+tags
+
+# ansible retry file
+*.retry

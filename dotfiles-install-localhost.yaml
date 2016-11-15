@@ -1,7 +1,16 @@
 
-# quick setup for new machine - runs on localhost as current user
+# runs on localhost as current user
 - hosts: localhost
-  roles:
-    - { role: global, become: yes }
-    - { role: user, user: '{{ ansible_user_id }}', become_user: '{{ ansible_user_id }}' }
+  connection: local
 
+  # default variables - override in host config or command line
+  vars:
+    dpi: 162
+    aurdest: false
+
+  roles:
+    - { role: "terminal-global", tags: ["terminal-global"]}
+    - { role: "terminal-personal", tags: ["terminal-personal"]}
+    - { role: "vim", tags: ["vim"]}
+    - { role: "email", tags: ["email"]}
+    - { role: "desktop-personal", tags: ["desktop-personal"]}
