@@ -11,15 +11,14 @@ Shared here so you can browse through and get ideas. (And everyone needs a dotfi
 
 dotfiles are managed and installed with [ansible](https://www.ansible.com/).
 
-- run `ansible-playbook dotfiles-install.yaml` to install
+1. clone the repo
 
-It will also make sure dependencies are installed.
+2. cd into the repo directory
 
-## TODO
+3. run `ansible-playbook dotfiles-install-localhost.yaml -e 'somevars=maybeneeded` to install
 
-- Install ruby dependencies - ie with `gem install tmuxinator` (but use the gem module in ansible)
+It will also make sure dependencies are installed, etc.
 
-- split out a minimal set of dotfiles for small servers, etc.
 
 
 ### post install tasks
