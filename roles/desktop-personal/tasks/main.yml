@@ -2,6 +2,7 @@
 
 - name: desktop | software
   pacman: name={{ item }} state=present
+  when: ansible_distribution == "Archlinux"
   become: yes
   with_items:
     - awesome
