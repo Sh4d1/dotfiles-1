@@ -1,6 +1,6 @@
 ---
 
-- name: terminal (global) | check installed packages
+- name: terminal (global) | check installed packages (arch)
   pacman: name={{ item }} state=present
   become: yes
   with_items:
@@ -27,6 +27,38 @@
     - the_silver_searcher
     - tmux
     - zsh
+  when: ansible_distribution == "Archlinux"
+
+- name: terminal (global) | check installed packages (fedora)
+  dnf: name={{ item }} state=present
+  become: yes
+  with_items:
+    - git
+    - gnupg
+    - htop
+    - openssh
+    - pinentry
+    - python
+    - python
+    - python-devel
+    - python-jedi
+    - python-neovim
+    - python-netifaces
+    - python-pip
+    - python-pip
+    - python-requests
+    - python-virtualenv
+    - python3
+    - python3-devel
+    - python3-pip
+    - python3-requests
+    - ranger
+    - ruby
+    - the_silver_searcher
+    - tmux
+    - zsh
+  when: ansible_distribution == "Fedora"
+
 
 - name: terminal (global) | set up directories
   file: path={{ ansible_env.HOME }}/{{ item }} state=directory mode="0750"
@@ -73,7 +105,3 @@
 
 - name: terminal (global) | install/update zgen
   git: repo='https://github.com/tarjoilija/zgen.git' dest={{ ansible_env.HOME }}/.zgen
-
-# TODO: install gem files (tmuxinator, etc...)
-# TODO: import my gpg public key
-# TODO: add htop config
