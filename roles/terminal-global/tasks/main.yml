@@ -39,17 +39,15 @@
     - openssh
     - pinentry
     - python
-    - python
     - python-devel
     - python-jedi
-    - python-neovim
     - python-netifaces
-    - python-pip
     - python-pip
     - python-requests
     - python-virtualenv
     - python3
     - python3-devel
+    - python3-jedi
     - python3-pip
     - python3-requests
     - ranger
