@@ -26,6 +26,8 @@ Plug 'justinmk/vim-dirvish'                                               " anot
 Plug 'wellle/targets.vim'                                                 " extra text objects
 Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
 Plug 'romainl/vim-qf'                                                     " quickfix window improvements
+Plug 'tpope/vim-characterize'                                             " overrides ga
+Plug 'machakann/vim-highlightedyank'                                      " highlights currently yanked region
 
                                                                           " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -60,7 +62,6 @@ Plug 'romainl/flattened'                                                  " (sol
 Plug 'tomasr/molokai'                                                     " alternate 256 color colorscheme (for when can't use solarized terminal)
 Plug 'romainl/Apprentice'                                                 " alternate 256 color colorscheme
 Plug 'nanotech/jellybeans.vim'                                            " alternate 256 color colorscheme
-Plug 'tpope/vim-characterize'                                             " overrides ga
 
 " add plugins to &runtimepath
 call plug#end()
@@ -116,7 +117,7 @@ set nospell " spellchecking off by default
 set spelllang=en_au " correct language
 set spellcapcheck=
 
-set lazyredraw " don't redraw while replaying macros
+" set lazyredraw " don't redraw while replaying macros
 
 set virtualedit=block
 
@@ -127,18 +128,36 @@ set backupdir=~/.vim/backup/
 set directory=~/.vim/swp//
 set undodir=~/.vim/undo/
 
+set backup
+set writebackup
+
+" http://albertomiorin.com/blog/2012/12/10/autoread-and-autowrite-in-vim/index.html
+set autoread
+set nohidden
+set noswapfile
+set autowriteall
+
+augroup save
+  au!
+  au FocusLost * wall
+augroup END
+
 set iskeyword+=- " better - and essential for css
 
 set cursorline
 set textwidth=80
 
 set highlight+=N:DiffText
-" set colorcolumn=+1,+2,+3
+set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
 set grepprg=ag\ --vimgrep
 set grepformat=%f:%l:%c%m
+
+if has('nvim')
+  set inccommand=split
+endif
 
 " VCS conflict markers should be highlighted
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -321,8 +340,8 @@ augroup vimrc
   autocmd!
   autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
-  autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
+  " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
+  " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
 augroup END
 
 
@@ -397,12 +416,16 @@ let g:jedi#rename_command = "<leader>jr"
 let g:WMGraphviz_viewer = 'rifle'
 
 " gnupg
-let g:GPGPossibleRecipients=[ 
-        \"Samuel Walladge <samuel@swalladge.id.au>", 
-      \] 
+let g:GPGPossibleRecipients=[
+        \"Samuel Walladge <samuel@swalladge.id.au>",
+      \]
 
 " set up the custom highlights now, or else would have been overridden
 call functions#sethighlight()
 
 " vim-qf
 let g:qf_mapping_ack_style = 1
+
+if !has('nvim')
+  map y <Plug>(highlightedyank)
+endif

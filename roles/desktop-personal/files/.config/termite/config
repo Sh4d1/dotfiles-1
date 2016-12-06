@@ -13,6 +13,7 @@ allow_bold = true
 foreground = #839496
 foreground_bold = #eee8d5
 #foreground_dim = #888888
+# background = #002b36
 background = #002630
 cursor = #93a1a1
 
@@ -20,11 +21,7 @@ cursor = #93a1a1
 #highlight = #839496
 
 # colors from color0 to color254 can be set
-
-# highlight colour
-# color0 = #073642
-color0 = #062e38
-
+color0 = #073642
 color1 = #dc322f
 color2 = #859900
 color3 = #b58900
@@ -32,10 +29,8 @@ color4 = #268bd2
 color5 = #d33682
 color6 = #2aa198
 color7 = #eee8d5
-
 # color8 = #002b36
 color8 = #002630
-
 color9 = #cb4b16
 color10 = #586e75
 color11 = #657b83
