@@ -133,7 +133,6 @@ set writebackup
 
 " http://albertomiorin.com/blog/2012/12/10/autoread-and-autowrite-in-vim/index.html
 set autoread
-set nohidden
 set noswapfile
 set autowriteall
 

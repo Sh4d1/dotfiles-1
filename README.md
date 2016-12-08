@@ -15,7 +15,7 @@ dotfiles are managed and installed with [ansible](https://www.ansible.com/).
 
 2. cd into the repo directory
 
-3. run `ansible-playbook dotfiles-install-localhost.yaml -e 'somevars=maybeneeded` to install
+3. run `ansible-playbook dotfiles-install-localhost.yaml -e 'somevars=maybeneeded'` to install
 
 It will also make sure dependencies are installed, etc.
 
