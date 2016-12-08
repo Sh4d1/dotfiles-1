@@ -139,7 +139,7 @@ set autowriteall
 
 augroup save
   au!
-  au FocusLost * wall
+  au FocusLost ?* wall
 augroup END
 
 set iskeyword+=- " better - and essential for css

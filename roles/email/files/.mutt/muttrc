@@ -44,7 +44,7 @@ folder-hook =Trash 'macro index d <delete-message>'
 folder-hook . 'macro pager d ":set confirmappend=no delete=yes\n<save-message>+Trash\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Trash"'
 folder-hook =Trash 'macro pager d <delete-message>'
 
-set mailcap_path 	= ~/.mutt/mailcap
+set mailcap_path = ~/.mutt/mailcap
 # folder-hook . `rm -r /tmp/mutt/*`
 
 set editor=`echo \$EDITOR`
@@ -93,3 +93,4 @@ macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
 
 macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Archive"
 
+macro index B ":set sendmail = \"/usr/bin/msmtp -a " "prompt for sending account (ie. default or backup)"

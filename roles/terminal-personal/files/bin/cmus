@@ -1,6 +1,8 @@
 #!/bin/bash
 # more info at https://github.com/cmus/cmus/wiki/detachable-cmus
 
+export TMUX=""
+
 if ! tmux has-session -t cmus 2>/dev/null; then
     tmux new-session -s cmus -d -n cmus -d "/usr/bin/cmus $@"
 fi
