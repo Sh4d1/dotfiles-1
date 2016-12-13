@@ -54,6 +54,7 @@ Plug 'benmills/vimux'                                                     " run 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
 Plug 'neomake/neomake'                                                    " async make + gutter signs
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
+Plug 'vimwiki/vimwiki'                                                    " vim wiki
 
                                                                           " Pretty
 Plug 'luochen1990/rainbow'                                                " easier to see nested parens
@@ -139,12 +140,15 @@ set autowriteall
 augroup save
   au!
   au FocusLost ?* wall
+  au BufHidden ?* wall
 augroup END
 
 set iskeyword+=- " better - and essential for css
 
 set cursorline
 set textwidth=80
+
+set foldlevel=100
 
 set highlight+=N:DiffText
 set colorcolumn=+1,+2,+3
@@ -428,3 +432,20 @@ let g:qf_mapping_ack_style = 1
 if !has('nvim')
   map y <Plug>(highlightedyank)
 endif
+
+let g:vimwiki_list = [{
+    \ 'path': '~/vimwiki',
+    \ 'template_path': '~/vimwiki/templates/',
+    \ 'path_html': '~/vimwiki/html/',
+    \ 'template_default': 'default',
+    \ 'nested_syntaxes': {'python': 'python'},
+    \ 'automatic_nested_syntaxes': 1,
+    \ 'auto_toc': 1,
+    \ 'auto_tags': 1,
+    \ 'template_ext': '.tpl'
+    \ }]
+
+let g:vimwiki_auto_chdir = 1
+let g:vimwiki_dir_link = 'index'
+let g:vimwiki_folding = 'expr'
+

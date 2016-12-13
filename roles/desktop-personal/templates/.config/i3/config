@@ -379,11 +379,12 @@ exec --no-startup-id dunst
 # external drive management
 exec --no-startup-id udiskie
 
+{% if ansible_hostname == "archdesk" %}
+exec --no-startup-id zsh -c 'tmuxinator start apps'
+{% endif %}
+
 # nextcloud!
 exec --no-startup-id nextcloud
-
-# start console apps (irc, music player, etc) in tmux session in background
-# exec --no-startup-id zsh -c 'tmuxinator start apps'
 
 exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
 
