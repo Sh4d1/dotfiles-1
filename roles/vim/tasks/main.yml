@@ -12,6 +12,7 @@
     - .vim/swp
     - .vim/syntax
     - .vim/undo
+    - .vim/UltiSnips
 
 - name: vim | copy files
   copy: src={{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
@@ -34,6 +35,11 @@
     - { src: '.vim/syntax/tmux.vim', dest: '.vim/syntax/tmux.vim' }
     - { src: '.vim/syntax/vala.vim', dest: '.vim/syntax/vala.vim' }
     - { src: '.vimrc', dest: '.vimrc' }
+
+- name: vim | copy ultisnips files
+  copy: src={{ item }} dest={{ ansible_env.HOME }}/.vim/UltiSnips
+  with_fileglob:
+    - .vim/UltiSnips/*
 
 - name: vim | link neovim config
   file: src={{ ansible_env.HOME }}/{{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} state=link

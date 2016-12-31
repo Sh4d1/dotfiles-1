@@ -146,7 +146,7 @@ augroup END
 set iskeyword+=- " better - and essential for css
 
 set cursorline
-set textwidth=80
+set textwidth=79
 
 set foldlevel=100
 
@@ -394,6 +394,10 @@ let g:vcm_direction = 'p'
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-space>"
 let g:UltiSnipsJumpBackwardTrigger=""
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips']
+let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
+let g:UltiSnipsEnableSnipMate=0
+
 
 " tagbar
 let g:tagbar_autofocus = 1
@@ -438,7 +442,6 @@ let g:vimwiki_list = [{
     \ 'template_path': '~/vimwiki/templates/',
     \ 'path_html': '~/vimwiki/html/',
     \ 'template_default': 'default',
-    \ 'nested_syntaxes': {'python': 'python'},
     \ 'automatic_nested_syntaxes': 1,
     \ 'auto_toc': 1,
     \ 'auto_tags': 1,
@@ -448,4 +451,3 @@ let g:vimwiki_list = [{
 let g:vimwiki_auto_chdir = 1
 let g:vimwiki_dir_link = 'index'
 let g:vimwiki_folding = 'expr'
-

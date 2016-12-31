@@ -359,7 +359,10 @@ exec --no-startup-id offlineimap
 exec --no-startup-id blueberry-tray
 
 # wifi/network systemtray icon
+{% if ansible_hostname != "archdesk" %}
 exec --no-startup-id nm-applet
+{% endif %}
+
 
 # clipboard management
 # Why are all the clipboard apps not working when called from here on startup??
