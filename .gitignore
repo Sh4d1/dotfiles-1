@@ -1,3 +1,5 @@
 
-# ansible retry file
-*.retry
+# ignore custom per-computer pillar variables
+/pillar/*
+!/pillar/top.sls
+!/pillar/default.sls

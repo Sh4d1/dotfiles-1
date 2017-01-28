@@ -1,4 +1,4 @@
----
+# TODO: port to salt
 
 - name: vim | set up directories
   file: path={{ ansible_env.HOME }}/{{ item }} state=directory mode="0750"

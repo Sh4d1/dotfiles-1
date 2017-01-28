@@ -1,5 +1,11 @@
 # vim:set ft=yaml:
 
+file_client: local
+
 file_roots:
   base:
-    - ./salt-base
+    - ./salt
+
+pillar_roots:
+  base:
+    - ./pillar

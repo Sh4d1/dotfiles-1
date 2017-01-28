@@ -9,13 +9,12 @@ Shared here so you can browse through and get ideas. (And everyone needs a dotfi
 
 ## installing
 
-dotfiles are managed and installed with [ansible](https://www.ansible.com/).
+dotfiles are managed and installed with [Salt](https://saltstack.com/).
 
 1. clone the repo
-
 2. cd into the repo directory
-
-3. run `ansible-playbook dotfiles-install-localhost.yaml -e 'somevars=maybeneeded'` to install
+3. install saltstack
+4. run `./install.sh` to install
 
 It will also make sure dependencies are installed, etc.
 
