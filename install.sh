@@ -12,4 +12,7 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 cd "$DIR"
 
+sudo salt-call --local --config=./salt-config --state-output=changes grains.setvals \
+  "{ \"USER\": \"$(whoami)\", \"HOME\": \"$HOME\", \"GROUP\": \"$(id -ng)\" }"
+
 sudo salt-call --local --config=./salt-config --state-output=changes --log-level=quiet state.highstate

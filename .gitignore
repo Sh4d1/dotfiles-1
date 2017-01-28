@@ -1,5 +1,5 @@
 
-# ignore custom per-computer pillar variables
-/pillar/*
-!/pillar/top.sls
-!/pillar/default.sls
+/salt-config/grains
+/cache/*
+*.log
+

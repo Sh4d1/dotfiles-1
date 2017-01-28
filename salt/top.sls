@@ -2,7 +2,7 @@
 base:
   '*':
     - terminal-global
-    - terminal-personal
-    - email
-    - vim
-    - desktop
+    # - terminal-personal
+    # - email
+    # - vim
+    # - desktop
