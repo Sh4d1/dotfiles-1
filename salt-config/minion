@@ -1,0 +1,5 @@
+# vim:set ft=yaml:
+
+file_roots:
+  base:
+    - ./salt-base
