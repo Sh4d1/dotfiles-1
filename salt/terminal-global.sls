@@ -196,7 +196,7 @@ copy ~/.gitconfig:
 copy bin files:
   file.recurse:
     - name: {{ grains['HOME'] }}/bin/
-    - source: salt://files/bin-terminal-global/
+    - source: salt://files/bin/cli-global
     - file_mode: 750
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}

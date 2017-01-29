@@ -1,43 +1,86 @@
----
 
-- name: terminal (personal) | software
-  pacman: name={{ item }} state=present
-  when: ansible_distribution == "Archlinux"
-  become: yes
-  with_items:
-    - todoman
-    - cmus
-    - mpd
-    - ranger
-    - vdirsyncer-git
-    - khal-git
-    - khard-git
-    - todotxt-machine-git
+{% if grains['os'] == 'Arch' %}
+personal terminal packages installed (Arch):
+  pkg.installed:
+    - pkgs:
+      - todoman
+      - cmus
+      - mpd
+      - ranger
+      - vdirsyncer-git
+      - khal-git
+      - khard-git
+      - todotxt-machine-git
+{% endif %}
 
-- name: terminal (personal) | set up directories
-  file: path={{ ansible_env.HOME }}/{{ item }} state=directory mode="0750"
-  with_items:
-    - .config/cmus
-    - .config/khal
-    - .config/khard
-    - .config/mpd
-    - .config/ranger
-    - .config/todoman
-    - .config/vdirsyncer
-    - bin
+copy ~/.config/cmus/rc:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/cmus/rc
+    - source: salt://files/.config/cmus/rc
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
 
-- name: terminal (personal) | copy files
-  copy: src={{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
-  with_items:
-    - { src: '.config/cmus/rc', dest: '.config/cmus/rc' }
-    - { src: '.config/khal/config', dest: '.config/khal/config' }
-    - { src: '.config/khard/khard.conf', dest: '.config/khard/khard.conf' }
-    - { src: '.config/mpd/mpd.conf', dest: '.config/mpd/mpd.conf' }
-    - { src: '.config/vdirsyncer/config', dest: '.config/vdirsyncer/config' }
-    - { src: '.todotxt-machinerc', dest: '.todotxt-machinerc' }
-    - { src: '.config/todoman/todoman.conf', dest: '.config/todoman/todoman.conf' }
+copy ~/.config/khal/config:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/khal/config
+    - source: salt://files/.config/khal/config
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
 
-- name: copy bin files
-  copy: src={{ item }} dest={{ ansible_env.HOME }}/bin mode=0750
-  with_fileglob:
-    - bin/*
+copy ~/.config/khard/khard.conf:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/khard/khard.conf
+    - source: salt://files/.config/khard/khard.conf
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.config/mpd/mpd.conf:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/mpd/mpd.conf
+    - source: salt://files/.config/mpd/mpd.conf
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.config/vdirsyncer/config:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/vdirsyncer/config
+    - source: salt://files/.config/vdirsyncer/config
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.config/todoman/todoman.conf:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/todoman/todoman.conf
+    - source: salt://files/.config/todoman/todoman.conf
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.todotxt-machinerc:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.todotxt-machinerc
+    - source: salt://files/.todotxt-machinerc
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+
+copy cli personal scripts:
+  file.recurse:
+    - name: {{ grains['HOME'] }}/bin/
+    - source: salt://files/bin/cli-personal
+    - file_mode: 750
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
