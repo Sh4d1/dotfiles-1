@@ -1,49 +1,60 @@
-# TODO: port to salt
 
-- name: vim | set up directories
-  file: path={{ ansible_env.HOME }}/{{ item }} state=directory mode="0750"
-  with_items:
-    - .vim/after/ftplugin
-    - .vim/autoload
-    - .vim/backup
-    - .vim/ftdetect
-    - .vim/plugged
-    - .vim/spell
-    - .vim/swp
-    - .vim/syntax
-    - .vim/undo
-    - .vim/UltiSnips
+vim backup dir exists:
+  file.directory:
+    - name: {{ grains['HOME'] }}/.vim/backup
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
 
-- name: vim | copy files
-  copy: src={{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
-  with_items:
-    - { src: '.vim/after/ftplugin/cpp.vim', dest: '.vim/after/ftplugin/cpp.vim' }
-    - { src: '.vim/after/ftplugin/html.vim', dest: '.vim/after/ftplugin/html.vim' }
-    - { src: '.vim/after/ftplugin/java.vim', dest: '.vim/after/ftplugin/java.vim' }
-    - { src: '.vim/after/ftplugin/mail.vim', dest: '.vim/after/ftplugin/mail.vim' }
-    - { src: '.vim/after/ftplugin/octave.vim', dest: '.vim/after/ftplugin/octave.vim' }
-    - { src: '.vim/after/ftplugin/python.vim', dest: '.vim/after/ftplugin/python.vim' }
-    - { src: '.vim/after/ftplugin/qf.vim', dest: '.vim/after/ftplugin/qf.vim' }
-    - { src: '.vim/after/ftplugin/tex.vim', dest: '.vim/after/ftplugin/tex.vim' }
-    - { src: '.vim/after/ftplugin/xml.vim', dest: '.vim/after/ftplugin/xml.vim' }
-    - { src: '.vim/autoload/functions.vim', dest: '.vim/autoload/functions.vim' }
-    - { src: '.vim/autoload/plug.vim', dest: '.vim/autoload/plug.vim' }
-    - { src: '.vim/filetype.vim', dest: '.vim/filetype.vim' }
-    - { src: '.vim/ftdetect/raml.vim', dest: '.vim/ftdetect/raml.vim' }
-    - { src: '.vim/syntax/cool.vim', dest: '.vim/syntax/cool.vim' }
-    - { src: '.vim/syntax/octave.vim', dest: '.vim/syntax/octave.vim' }
-    - { src: '.vim/syntax/tmux.vim', dest: '.vim/syntax/tmux.vim' }
-    - { src: '.vim/syntax/vala.vim', dest: '.vim/syntax/vala.vim' }
-    - { src: '.vimrc', dest: '.vimrc' }
+vim swp dir exists:
+  file.directory:
+    - name: {{ grains['HOME'] }}/.vim/swp
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
 
-- name: vim | copy ultisnips files
-  copy: src={{ item }} dest={{ ansible_env.HOME }}/.vim/UltiSnips
-  with_fileglob:
-    - .vim/UltiSnips/*
+vim spell dir exists:
+  file.directory:
+    - name: {{ grains['HOME'] }}/.vim/spell
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
 
-- name: vim | link neovim config
-  file: src={{ ansible_env.HOME }}/{{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} state=link
-  with_items:
-    - { src: '.vimrc', dest: '.vim/init.vim' }
-    - { src: '.vim', dest: '.config/nvim' }
+vim undo dir exists:
+  file.directory:
+    - name: {{ grains['HOME'] }}/.vim/undo
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
 
+copy .vim directory:
+  file.recurse:
+    - name: {{ grains['HOME'] }}/.vim/
+    - source: salt://files/.vim/
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
+copy .vimrc:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.vimrc
+    - source: salt://files/.vimrc
+    - template: jinja
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
+symlink neovim config dir:
+  file.symlink:
+    - name: {{ grains['HOME'] }}/.config/nvim
+    - target: {{ grains['HOME'] }}/.vim
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
+symlink neovim config file:
+  file.symlink:
+    - name: {{ grains['HOME'] }}/.vim/init.vim
+    - target: {{ grains['HOME'] }}/.vimrc
+    - makedirs: true
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}

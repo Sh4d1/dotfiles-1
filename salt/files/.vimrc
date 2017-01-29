@@ -32,10 +32,11 @@ Plug 'machakann/vim-highlightedyank'                                      " high
                                                                           " Language help
 Plug 'lervag/vimtex'                                                      " latex
 Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
+Plug 'saltstack/salt-vim'                                                 " saltstack syntax
 
                                                                           " Tags
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
-Plug 'majutsushi/tagbar'                                                  " view tags easily
+" Plug 'majutsushi/tagbar'                                                  " view tags easily
 
                                                                           " Git integrations
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git integration
@@ -236,7 +237,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
 " tagbar
-nmap <silent> <leader>t :TagbarToggle<cr>
+" nmap <silent> <leader>t :TagbarToggle<cr>
 
 " undotree
 nmap <silent> <leader>u :UndotreeToggle<cr>
@@ -329,6 +330,7 @@ nnoremap <silent> <leader>fh :silent :SidewaysLeft<cr>
 
 " Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
+let g:neomake_haskell_enabled_makers = [] " disable haskell
 
 " allow using jshint for json
 let g:neomake_json_jshint_maker = {
@@ -400,9 +402,9 @@ let g:UltiSnipsEnableSnipMate=0
 
 
 " tagbar
-let g:tagbar_autofocus = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_sort = 0
+" let g:tagbar_autofocus = 1
+" let g:tagbar_autoclose = 1
+" let g:tagbar_sort = 0
 
 " gitgutter
 let g:gitgutter_diff_base = 'HEAD'
