@@ -44,11 +44,20 @@ personal desktop packages installed (Arch):
       - xorg-xbacklight
 {% endif %}
 
-install pip software (python3):
+install i3pystatus from pip (python3):
   pip.installed:
+    - name: i3pystatus
     - bin_env: /usr/bin/pip3
-    - requirements: salt://server-files/pip/desktop-requirements.txt
 
+install colour from pip - for i3pystatus (python3):
+  pip.installed:
+    - name: colour
+    - bin_env: /usr/bin/pip3
+
+install readability-lxml from pip - for qutebrowser readerview script (python3):
+  pip.installed:
+    - name: readability-lxml
+    - bin_env: /usr/bin/pip3
 
 copy ~/.config/awesome/rc.lua:
   file.managed:

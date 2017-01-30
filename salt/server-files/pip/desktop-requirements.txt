@@ -1,8 +1,0 @@
-
-# for i3 status bar
-i3pystatus
-# for i3pystatus
-colour
-
-# qutebrowser script readerview.py requires this
-readability-lxml
