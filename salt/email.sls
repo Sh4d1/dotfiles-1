@@ -1,28 +1,46 @@
 ---
 
-- name: email | install software
-  pacman: name={{ item }} state=present
-  when: ansible_distribution == "Archlinux"
-  become: yes
-  with_items:
-    - msmtp
-    - mutt
-    - offlineimap-git
+{% if grains['os'] == 'Arch' %}
+email client packages installed (Arch):
+  pkg.installed:
+    - pkgs:
+      - msmtp
+      - mutt
+      - offlineimap-git
+{% endif %}
 
-- name: email | set up directories
-  file: path={{ ansible_env.HOME }}/{{ item }} state=directory mode="0750"
-  with_items:
-    - .mutt
+copy mutt config:
+  file.recurse:
+    - name: {{ grains['HOME'] }}/.mutt/
+    - source: salt://files/.mutt/
+    - file_mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
 
-- name: email | copy config files
-  copy: src={{ item.src }} dest={{ ansible_env.HOME }}/{{ item.dest }} mode={{ item.mode | default("0640") }}
-  with_items:
-    - { src: '.msmtprc', dest: '.msmtprc' }
-    - { src: '.mutt/mailcap', dest: '.mutt/mailcap' }
-    - { src: '.mutt/muttrc', dest: '.mutt/muttrc' }
-    - { src: '.mutt/muttrc.mailboxes', dest: '.mutt/muttrc.mailboxes' }
-    - { src: '.mutt/sig', dest: '.mutt/sig' }
-    - { src: '.mutt/solarized-dark16.theme', dest: '.mutt/solarized-dark16.theme' }
-    - { src: '.offlineimap.py', dest: '.offlineimap.py' }
-    - { src: '.offlineimaprc', dest: '.offlineimaprc' }
+copy ~/.msmtprc:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.msmtprc
+    - source: salt://files/.msmtprc
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.offlineimap.py:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.offlineimap.py
+    - source: salt://files/.offlineimap.py
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.offlineimaprc:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.offlineimaprc
+    - source: salt://files/.offlineimaprc
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
 

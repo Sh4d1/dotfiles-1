@@ -3,6 +3,6 @@ base:
   '*':
     - terminal-global
     - terminal-personal
-    # - email
+    - email
     - vim
     - desktop

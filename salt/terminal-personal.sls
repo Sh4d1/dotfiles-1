@@ -76,7 +76,6 @@ copy ~/.todotxt-machinerc:
     - group: {{ grains['GROUP'] }}
     - makedirs: true
 
-
 copy cli personal scripts:
   file.recurse:
     - name: {{ grains['HOME'] }}/bin/
