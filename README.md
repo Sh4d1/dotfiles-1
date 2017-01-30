@@ -1,15 +1,16 @@
 
+# Dotfiles
 
-# dotfiles
+These are my dotfiles, including other setup tasks such as installing software, creating directories, etc.
 
-These are my dotfiles, on git so I can quickly add sensible config to new machines/servers/etc, and roll back changes that broke something if necessary (although hopefully not necessary).
+Shared here so you can browse through and get ideas. And everyone needs a dotfiles repo hey?
 
-Shared here so you can browse through and get ideas. (And everyone needs a dotfiles repo hey?)
+Copyright © 2017 Samuel Walladge
 
 
-## installing
+## Installing
 
-dotfiles are managed and installed with [Salt](https://saltstack.com/).
+Dotfiles are managed and installed with [Salt](https://saltstack.com/).
 
 1. clone the repo
 2. cd into the repo directory
@@ -19,13 +20,12 @@ dotfiles are managed and installed with [Salt](https://saltstack.com/).
 It will also make sure dependencies are installed, etc.
 
 
-
-### post install tasks
+### Post install tasks
 
 - run `:PlugInstall` in vim/nvim to install plugins
 
 
-## app config included
+## Config included
 
 - awesome wm (currently use/prefer i3)
 - bash
