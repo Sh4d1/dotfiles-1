@@ -104,6 +104,7 @@ copy ~/.config/ranger/commands.py:
     - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
+    - makedirs: true
 
 copy ~/.config/ranger/rc.conf:
   file.managed:
@@ -112,6 +113,7 @@ copy ~/.config/ranger/rc.conf:
     - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
+    - makedirs: true
 
 copy ~/.config/ranger/rifle.conf:
   file.managed:
@@ -120,6 +122,7 @@ copy ~/.config/ranger/rifle.conf:
     - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
+    - makedirs: true
 
 copy ~/.dircolors:
   file.managed:

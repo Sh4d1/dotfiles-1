@@ -5,4 +5,4 @@ base:
     - terminal-personal
     # - email
     - vim
-    # - desktop
+    - desktop
