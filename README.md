@@ -15,7 +15,7 @@ Dotfiles are managed and installed with [Salt](https://saltstack.com/).
 1. clone the repo
 2. cd into the repo directory
 3. install saltstack
-4. run `./install.sh` to install
+4. run `./install.sh` to edit variables and install
 
 It will also make sure dependencies are installed, etc.
 

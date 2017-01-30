@@ -2,4 +2,5 @@
 /salt-config/grains
 /cache/*
 *.log
+/pillar/custom.sls
 

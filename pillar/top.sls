@@ -2,5 +2,4 @@
 base:
   '*':
     - default
-  'archdesk.lan':
-    - archdesk
+    - custom
