@@ -12,12 +12,17 @@ Copyright © 2017 Samuel Walladge
 
 Dotfiles are managed and installed with [Salt](https://saltstack.com/).
 
-1. clone the repo
-2. cd into the repo directory
-3. install saltstack
-4. run `./install.sh` to edit variables and install
+```bash
+cd ~
+git clone git@github.com:swalladge/dotfiles.git
+cd dotfiles
+./install.sh
+```
 
 It will also make sure dependencies are installed, etc.
+
+The pillar configuration variables should be entered into `pillar/custom.sls` (this file is created from `default.sls`
+and opened in an editor by `install.sh`).
 
 
 ### Post install tasks

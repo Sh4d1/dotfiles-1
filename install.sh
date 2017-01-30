@@ -2,6 +2,8 @@
 
 # inspired by https://gitlab.com/rawkode/saltstack-dotfiles/
 
+set -e
+
 # http://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -12,11 +14,32 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 cd "$DIR"
 
+# make sure saltstack is installed
+echo "INSTALLER: Attempting to detect package manager and install salt"
+if [ -z "`command -v salt-call`" ]; then
+  # install saltstack
+  if [ -n "`command -v pacman`" ]; then
+    sudo pacman -S salt
+  elif [ -n "`command -v dnf`" ]; then
+    sudo dnf install salt-minion
+  else
+    echo "INSTALLER: Please manually install salt before continuing"
+    exit 1
+  fi
+fi
+
 # copy and edit the custom configuration if not already
 CUSTOM_CONF="pillar/custom.sls"
 if [ ! -f "$CUSTOM_CONF" ]; then
   cp pillar/default.sls "$CUSTOM_CONF"
-  vi "$CUSTOM_CONF"
+  if [ -z "$EDITOR" ]; then
+    printf 'INSTALLER: EDITOR not set - type the editor to use temporarily: '
+    read $EDITOR
+    export $EDITOR
+  fi
+  $EDITOR "$CUSTOM_CONF"
+else
+  echo "INSTALLER: pillar/custom.sls already exists - don't forget to edit to modify variables"
 fi
 
 # automatically set up the user and home variables
@@ -24,7 +47,7 @@ sudo salt-call --local --config=./salt-config --state-output=changes grains.setv
   "{ \"USER\": \"$(whoami)\", \"HOME\": \"$HOME\", \"GROUP\": \"$(id -ng)\" }"
 
 # run it in test mode to check changes
-echo "Running in test mode - check below changes before applying!"
+echo "INSTALLER: Running in test mode - check below changes before applying!"
 sudo salt-call --local --config=./salt-config --state-output=changes --log-level=quiet state.highstate test=true
 
 # prompt to actually do it
@@ -34,5 +57,5 @@ if [ "$OK" = "" -o "$OK" = "y" -o "$OK" = "Y" ]; then
   # do it!
   sudo salt-call --local --config=./salt-config --state-output=changes --log-level=quiet state.highstate
 else
-  echo 'Quitting. No changes have been made.'
+  echo 'INSTALLER: Quitting. No changes have been made.'
 fi
