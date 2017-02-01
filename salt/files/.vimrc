@@ -344,6 +344,11 @@ let g:neomake_python_enabled_makers = ['pylint']
 
 nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
+nnoremap <silent> <leader>se :silent :Sedit<cr>
+nnoremap <silent> <leader>st :silent :Stabedit<cr>
+nnoremap <silent> <leader>sv :silent :Svsplit<cr>
+nnoremap <silent> <leader>ss :silent :Ssplit<cr>
+
 augroup vimrc
   autocmd!
   autocmd BufWritePost ?* Neomake

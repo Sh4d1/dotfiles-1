@@ -72,3 +72,19 @@ func! functions#sethighlight()
 
   hi link EndOfBuffer ColorColumn
 endfunc
+
+
+" http://dhruvasagar.com/2014/03/11/creating-custom-scratch-buffers-in-vim
+" with modifications
+function! functions#ScratchEdit(cmd, options)
+  silent exe a:cmd tempname() . '-SCRATCH'
+  silent setl buftype=nofile
+  if !empty(a:options) | silent exe 'setl' a:options | endif
+  exe 'normal! ggi# SCRATCH BUFFER'
+endfunction
+
+command! -bar -nargs=* Sedit call functions#ScratchEdit('edit', <q-args>)
+command! -bar -nargs=* Ssplit call functions#ScratchEdit('split', <q-args>)
+command! -bar -nargs=* Svsplit call functions#ScratchEdit('vsplit', <q-args>)
+command! -bar -nargs=* Stabedit call functions#ScratchEdit('tabe', <q-args>)
+
