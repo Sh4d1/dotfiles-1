@@ -28,6 +28,7 @@ Plug 'francoiscabrol/ranger.vim'                                          " rang
 Plug 'romainl/vim-qf'                                                     " quickfix window improvements
 Plug 'tpope/vim-characterize'                                             " overrides ga
 Plug 'machakann/vim-highlightedyank'                                      " highlights currently yanked region
+Plug 'editorconfig/editorconfig-vim'                                      " editorconfig support
 
                                                                           " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -339,6 +340,8 @@ let g:neomake_json_jshint_maker = {
         \ }
 let g:neomake_json_enabled_makers = ['jshint']
 
+let g:neomake_python_enabled_makers = ['pylint']
+
 nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
 augroup vimrc
@@ -453,3 +456,5 @@ let g:vimwiki_list = [{
 let g:vimwiki_auto_chdir = 1
 let g:vimwiki_dir_link = 'index'
 let g:vimwiki_folding = 'expr'
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']

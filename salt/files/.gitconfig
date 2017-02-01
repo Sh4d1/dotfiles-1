@@ -9,3 +9,5 @@
 	gpgsign = true
 [core]
 	excludesfile = /home/samuel/.gitignore
+[merge]
+	tool = vimdiff
