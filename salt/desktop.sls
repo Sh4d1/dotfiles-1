@@ -94,6 +94,7 @@ copy ~/.config/copyq/copyq.conf:
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
     - makedirs: true
+    - template: jinja
 
 copy ~/.config/i3status/config:
   file.managed:
@@ -113,14 +114,24 @@ copy ~/.config/i3status/:
     - group: {{ grains['GROUP'] }}
     - makedirs: true
 
-copy ~/.config/qutebrowser/:
-  file.recurse:
-    - name: {{ grains['HOME'] }}/.config/qutebrowser/
-    - source: salt://files/.config/qutebrowser/
-    - file_mode: 640
+copy ~/.config/qutebrowser/keys.conf:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/qutebrowser/keys.conf
+    - source: salt://files/.config/qutebrowser/keys.conf
+    - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
     - makedirs: true
+
+copy ~/.config/qutebrowser/qutebrowser.conf:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/qutebrowser/qutebrowser.conf
+    - source: salt://files/.config/qutebrowser/qutebrowser.conf
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+    - template: jinja
 
 copy ~/.config/termite/:
   file.recurse:

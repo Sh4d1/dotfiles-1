@@ -3,4 +3,4 @@
 /cache/*
 *.log
 /pillar/custom.sls
-
+/var/*

@@ -208,6 +208,7 @@ copy ~/.gitconfig:
     - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
+    - template: jinja
 
 copy bin files:
   file.recurse:
