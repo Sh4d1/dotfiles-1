@@ -76,15 +76,6 @@ make sure known_hosts file exists:
     - mode: 644
     - makedirs: true
 
-copy ranger scope script:
-  file.managed:
-    - name: {{ grains['HOME'] }}/.config/ranger/scope.sh
-    - source: salt://files/.config/ranger/scope.sh
-    - mode: 750
-    - makedirs: true
-    - user: {{ grains['USER'] }}
-    - group: {{ grains['GROUP'] }}
-
 copy ~/.bash_profile:
   file.managed:
     - name: {{ grains['HOME'] }}/.bash_profile
@@ -98,6 +89,15 @@ copy ~/.bashrc:
     - name: {{ grains['HOME'] }}/.bashrc
     - source: salt://files/.bashrc
     - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
+copy ranger scope script:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/ranger/scope.sh
+    - source: salt://files/.config/ranger/scope.sh
+    - mode: 750
+    - makedirs: true
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
 
@@ -123,6 +123,15 @@ copy ~/.config/ranger/rifle.conf:
   file.managed:
     - name: {{ grains['HOME'] }}/.config/ranger/rifle.conf
     - source: salt://files/.config/ranger/rifle.conf
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.config/ranger/rifle-x.conf:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/ranger/rifle-x.conf
+    - source: salt://files/.config/ranger/rifle-x.conf
     - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}

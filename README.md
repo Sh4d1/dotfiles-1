@@ -39,6 +39,7 @@ and opened in an editor by `install.sh`).
 - cmus
 - copyq (new preferred clipboard manager)
 - dunst
+- gnupg
 - htop
 - i3
 - i3pystatus
@@ -54,6 +55,7 @@ and opened in an editor by `install.sh`).
 - qutebrowser (plus userscripts)
 - ranger
 - readline/login/init stuff
+- rifle (part of ranger)
 - rofi
 - termite
 - tmux
