@@ -451,6 +451,8 @@ let g:vimwiki_list = [{
     \ 'path': '~/vimwiki',
     \ 'template_path': '~/vimwiki/templates/',
     \ 'path_html': '~/vimwiki/html/',
+    \ 'syntax': 'markdown',
+    \ 'ext': '.md',
     \ 'template_default': 'default',
     \ 'automatic_nested_syntaxes': 1,
     \ 'auto_toc': 1,
