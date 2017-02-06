@@ -233,3 +233,20 @@ install/update zgen from git:
     - target: {{ grains['HOME'] }}/.zgen
     - branch: master
     - user: {{ grains['USER'] }}
+
+copy gnupg config:
+  file.recurse:
+    - name: {{ grains['HOME'] }}/.gnupg
+    - source: salt://files/.gnupg
+    - file_mode: 600
+    - dir_mode: 700
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - template: jinja
+
+import my public key:
+  cmd.run:
+    - name: gpg --keyserver keyserver.ubuntu.com --recv 1732CF7BFA3EFD14DF2A5C14437A44815AC10404
+    - user: {{ grains['USER'] }}
+    - unless: gpg -k | grep '^ *1732CF7BFA3EFD14DF2A5C14437A44815AC10404$'
+
