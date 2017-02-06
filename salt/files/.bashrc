@@ -26,7 +26,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # set up homebrew cask for global install
     export HOMEBREW_CASK_OPTS="--appdir=/Applications --prefpanedir=/Library/PreferencePanes --qlplugindir=/Library/QuickLook --fontdir=/Library/Fonts --input_methoddir=/Library/Input\ Methods --screen_saverdir=/Library/Screen\ Savers"
     alias vim='vi'
-     
+
 
 elif [ "$(uname -s)" == "Linux" ]; then
     # Do something under GNU/Linux platform
@@ -42,7 +42,7 @@ elif [ "$(uname -s)" == "Linux" ]; then
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"
 
     # simple stopwatch function
-    function stopwatch(){ local tempdate=`date +%s`; while true; do echo -ne "$(date -u --date @$((`date +%s` - $tempdate)) +'   %H:%M:%S')\r"; sleep 0.2; done }; 
+    function stopwatch(){ local tempdate=`date +%s`; while true; do echo -ne "$(date -u --date @$((`date +%s` - $tempdate)) +'   %H:%M:%S')\r"; sleep 0.2; done };
 fi
 
 

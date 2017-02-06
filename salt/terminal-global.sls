@@ -55,6 +55,10 @@ terminal packages installed (Fedora):
       - zsh
 {% endif %}
 
+install tmuxinator:
+  gem.installed:
+    - name: tmuxinator
+    - user: {{ grains['USER'] }}
 
 make sure authorized_keys file exists:
   file.managed:
