@@ -6,7 +6,6 @@ personal terminal packages installed (Arch):
       - todoman
       - cmus
       - mpd
-      - ranger
       - vdirsyncer-git
       - khal-git
       - khard-git

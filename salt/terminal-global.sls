@@ -22,7 +22,7 @@ terminal packages installed (Arch):
       - python2-pip
       - python2-requests
       - python2-virtualenv
-      - ranger
+      - ranger-git
       - ruby
       - the_silver_searcher
       - tmux
@@ -119,6 +119,15 @@ copy ~/.config/ranger/rifle.conf:
   file.managed:
     - name: {{ grains['HOME'] }}/.config/ranger/rifle.conf
     - source: salt://files/.config/ranger/rifle.conf
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy ~/.config/htop/htoprc:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.config/htop/htoprc
+    - source: salt://files/.config/htop/htoprc
     - mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
