@@ -354,7 +354,7 @@ exec_always --no-startup-id xrandr --output HDMI-0  --auto --pos 3840x1080
 
 exec_always --no-startup-id xrandr --output DP-0 --primary
 {% elif grains['id'] == "archbook.lan" %}
-# TODO: laptop config
+exec_always --no-startup-id xrandr --output eDP1 --auto --pos 0x0 --dpi {{ pillar['dpi'] }}
 {% endif %}
 
 exec_always --no-startup-id xsetroot -solid '#000000'
