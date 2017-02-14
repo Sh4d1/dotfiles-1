@@ -219,7 +219,8 @@ nnoremap <leader>2 2z=
 noremap Y y$
 
 " Repeat last macro if in a normal buffer.
-nnoremap <expr> <tab> empty(&buftype) ? '@@' : '<cr>'
+" NO! I want to use it for the default - opposite of <c-o>
+" nnoremap <expr> <tab> empty(&buftype) ? '@@' : '<cr>'
 
 nnoremap <F2> :Rename |
 
@@ -264,7 +265,7 @@ nmap <C-c><C-c> vip<C-c><C-c>
 map <leader>bp :VimuxPromptCommand<cr>
 
 " Run last command executed by VimuxRunCommand
-map <leader>bl :VimuxRunLastCommand<cr>
+map <leader>bl :w <bar> :VimuxRunLastCommand<cr>
 
 " Inspect runner pane
 map <leader>bo :call VimuxOpenRunner()<cr>

@@ -14,3 +14,6 @@ tags
 
 # ansible retry file
 *.retry
+
+# local tmuxinator project configs
+.tmuxinator.yml
