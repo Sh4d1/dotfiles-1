@@ -192,6 +192,8 @@ alias rsyncp="rsync -e 'ssh -o PubkeyAuthentication=no'"
 
 alias swipl-test='swipl -g true -t halt. -s'
 
+alias ww='nvim +VimwikiIndex'
+
 export GPG_TTY=$(tty)
 
 # anything local to this machine
