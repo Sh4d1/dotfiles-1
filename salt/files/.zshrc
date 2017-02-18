@@ -100,7 +100,7 @@ zle -N edit-command-line
 compinit
 
 # gopass completions
-command -v gopass && source <(gopass completion zsh)
+command -v gopass >/dev/null && source <(gopass completion zsh)
 
 # KEY BINDINGS
 
