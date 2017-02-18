@@ -99,6 +99,9 @@ autoload -Uz compinit edit-command-line
 zle -N edit-command-line
 compinit
 
+# gopass completions
+command -v gopass && source <(gopass completion zsh)
+
 # KEY BINDINGS
 
 bindkey -v

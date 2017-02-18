@@ -29,13 +29,17 @@ parser.add_argument('--unmount', '-u', action='store_true', default=False,
 
 args = parser.parse_args()
 
-RE_match = re.compile(r'sd[c-z]\d+')
+RE_match = re.compile(r'sd[c-z]\d*')
 def is_mountable(dir_name):
     return RE_match.match(dir_name) is not None
 
+dirs = list(filter(is_mountable, os.listdir('/dev/')))
+if len(dirs) == 0:
+    print('no drives found')
+    sys.exit(0)
+
 print('Choose drive to ' + ('un' if args.unmount else '') + 'mount.')
 
-dirs = list(filter(is_mountable, os.listdir('/dev/')))
 
 for i, d in enumerate(dirs):
     print('[{}] /dev/{}'.format(i, d))

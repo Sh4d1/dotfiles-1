@@ -403,6 +403,10 @@ exec --no-startup-id nextcloud
 # toggl time tracking
 exec --no-startup-id toggldesktop -b
 
+# password manager in tray
+exec --no-startup-id qtpass
+
+# wallpaper
 exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
 
 # startup kdeconnect (refresh on restart i3)
