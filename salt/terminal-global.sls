@@ -60,6 +60,14 @@ install tmuxinator:
     - name: tmuxinator
     - user: {{ grains['USER'] }}
 
+make sure gopath dir exists:
+  file.directory:
+    - name: {{ grains['HOME'] }}/go
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - mode: 750
+    - makedirs: true
+
 make sure authorized_keys file exists:
   file.managed:
     - name: {{ grains['HOME'] }}/.ssh/authorized_keys

@@ -19,6 +19,7 @@
 
 
 import os
+import sys
 import re
 import subprocess
 import argparse
@@ -56,5 +57,5 @@ while True:
     except Exception as e:
         print(e.args[0])
 
-subprocess.run(['udiskie-' + ('u' if args.unmount else '') + 'mount', '/dev/' + dirs[choice-1]])
+subprocess.run(['udiskie-' + ('u' if args.unmount else '') + 'mount', '/dev/' + dirs[choice]])
 

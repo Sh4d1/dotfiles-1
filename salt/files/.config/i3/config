@@ -286,6 +286,8 @@ bindsym Mod4+Shift+space exec rofi -show window
 bindsym Mod4+Ctrl+Shift+space exec rofi -show run
 bindsym Mod4+Ctrl+space exec rofi -show combi
 
+bindsym Mod4+Ctrl+c exec pass-rofi.sh
+
 # workspace 1 output HDMI1
 workspace 1 output DP-0
 # workspace 1 output DP-1
