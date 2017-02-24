@@ -3,3 +3,4 @@
 dpi: 96
 laptop: false
 aurdest: false
+redshift-gps: ''

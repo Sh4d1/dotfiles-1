@@ -252,3 +252,27 @@ precmd() {
   PROMPT+=" "
 }
 
+
+# cd to the root of current project if currently in a project
+cdr() {
+  # add other root marker files/dirs here
+  local MARKERS=('.git' '.hg')
+
+  local TARGET="`pwd`"
+  local DONE="false"
+
+  while true; do
+    for MARKER in $MARKERS; do
+      if [ -e $MARKER ]; then
+        DONE="true"
+        TARGET="`pwd`"
+        break
+      fi
+    done
+    [[ "$DONE" = "true" || "`pwd`" = "/" ]] && break
+    cd ..
+  done
+
+  cd "$TARGET"
+}
+

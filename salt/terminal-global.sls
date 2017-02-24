@@ -60,6 +60,11 @@ install tmuxinator:
     - name: tmuxinator
     - user: {{ grains['USER'] }}
 
+install neovim gem:
+  gem.installed:
+    - name: neovim
+    - user: {{ grains['USER'] }}
+
 make sure gopath dir exists:
   file.directory:
     - name: {{ grains['HOME'] }}/go

@@ -34,6 +34,8 @@ Plug 'editorconfig/editorconfig-vim'                                      " edit
 Plug 'lervag/vimtex'                                                      " latex
 Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
 Plug 'saltstack/salt-vim'                                                 " saltstack syntax
+Plug 'chrisbra/csv.vim'                                                   " csv sheets
+Plug 'rust-lang/rust.vim'                                                 " rust
 
                                                                           " Tags
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
@@ -48,15 +50,21 @@ Plug 'jreybert/vimagit'                                                   " inte
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                     " java completion
 Plug 'davidhalter/jedi-vim', {'for': 'python'}                            " python completions + refactoring
 Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}    " javascript completions
+Plug 'racer-rust/vim-racer'                                               " rust completion
 
                                                                           " Utilities
 Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
+Plug 'wincent/command-t', {
+    \   'do': 'cd ruby/command-t && ruby extconf.rb && make'
+    \ }
+
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
 Plug 'benmills/vimux'                                                     " run things in tmux
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
 Plug 'neomake/neomake'                                                    " async make + gutter signs
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
 Plug 'vimwiki/vimwiki'                                                    " vim wiki
+Plug 'wincent/ferret'                                                     " search in files
 
                                                                           " Pretty
 Plug 'luochen1990/rainbow'                                                " easier to see nested parens
@@ -124,7 +132,7 @@ set spellcapcheck=
 
 set virtualedit=block
 
-set formatoptions+=n
+" set formatoptions+=n
 
 " single global backup/swp/undo dirs
 set backupdir=~/.vim/backup/
@@ -141,8 +149,7 @@ set autowriteall
 
 augroup save
   au!
-  au FocusLost ?* wall
-  au BufHidden ?* wall
+  au FocusLost,BufHidden,InsertLeave,TextChanged ?* silent! wa
 augroup END
 
 set iskeyword+=- " better - and essential for css
@@ -157,8 +164,8 @@ set colorcolumn=+1,+2,+3
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
-set grepprg=ag\ --vimgrep
-set grepformat=%f:%l:%c%m
+" set grepprg=ag\ --vimgrep
+" set grepformat=%f:%l:%c%m
 
 if has('nvim')
   set inccommand=split
@@ -356,6 +363,7 @@ augroup vimrc
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
   " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
+  autocmd FocusGained,CursorHold ?* checktime
 augroup END
 
 
@@ -466,3 +474,24 @@ let g:vimwiki_dir_link = 'index'
 let g:vimwiki_folding = 'expr'
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+let g:CommandTFileScanner = "git"
+
+let g:racer_cmd = "/usr/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" let g:gutentags_ctags_exclude = [
+"   \ "env/*",
+"   \ "venv/*",
+"   \ ]
+
+let g:gutentags_file_list_command = {
+\ 'markers': {
+   \ '.git': 'git ls-files',
+   \ '.hg': 'hg files',
+   \ },
+\ }
