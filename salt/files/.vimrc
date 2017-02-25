@@ -63,7 +63,6 @@ Plug 'benmills/vimux'                                                     " run 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
 Plug 'neomake/neomake'                                                    " async make + gutter signs
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
-Plug 'vimwiki/vimwiki'                                                    " vim wiki
 Plug 'wincent/ferret'                                                     " search in files
 
                                                                           " Pretty
@@ -132,7 +131,11 @@ set spellcapcheck=
 
 set virtualedit=block
 
-" set formatoptions+=n
+set formatoptions+=n " for numbered lists
+set formatoptions-=tc " don't auto wrap - use gq manually
+set formatoptions-=a " don't auto format paragraphs
+set formatoptions-=o " don't auto add comment leading on pressing 'o' in normal mode
+
 
 " single global backup/swp/undo dirs
 set backupdir=~/.vim/backup/
@@ -161,6 +164,8 @@ set foldlevel=100
 
 set highlight+=N:DiffText
 set colorcolumn=+1,+2,+3
+
+set autochdir
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
@@ -364,6 +369,9 @@ augroup vimrc
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
   " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
   autocmd FocusGained,CursorHold ?* checktime
+  "
+  " " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file - use autochdir instead
+  " autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 augroup END
 
 
@@ -456,23 +464,6 @@ if !has('nvim')
   map y <Plug>(highlightedyank)
 endif
 
-let g:vimwiki_list = [{
-    \ 'path': '~/vimwiki',
-    \ 'template_path': '~/vimwiki/templates/',
-    \ 'path_html': '~/vimwiki/html/',
-    \ 'syntax': 'markdown',
-    \ 'ext': '.md',
-    \ 'template_default': 'default',
-    \ 'automatic_nested_syntaxes': 1,
-    \ 'auto_toc': 1,
-    \ 'auto_tags': 1,
-    \ 'template_ext': '.tpl'
-    \ }]
-
-let g:vimwiki_auto_chdir = 1
-let g:vimwiki_dir_link = 'index'
-let g:vimwiki_folding = 'expr'
-
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 let g:CommandTFileScanner = "git"
@@ -495,3 +486,6 @@ let g:gutentags_file_list_command = {
    \ '.hg': 'hg files',
    \ },
 \ }
+
+nnoremap <leader>ww :e ~/projects/private-wiki/Home.md<cr>
+nnoremap <leader>wp :e ~/projects/wiki/Home.md<cr>
