@@ -51,9 +51,9 @@ echo "INSTALLER: Running in test mode - check below changes before applying!"
 sudo salt-call --local --config=./salt-config --state-output=changes --log-level=quiet state.highstate test=true
 
 # prompt to actually do it
-printf 'Ok to actually perform changes? [Y/n] '
+printf 'Ok to actually perform changes? [y/N] '
 read OK
-if [ "$OK" = "" -o "$OK" = "y" -o "$OK" = "Y" ]; then
+if [ "$OK" = "yes" -o "$OK" = "y" -o "$OK" = "Y" ]; then
   # do it!
   sudo salt-call --local --config=./salt-config --state-output=changes --log-level=quiet state.highstate
 else

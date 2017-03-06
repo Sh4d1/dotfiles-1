@@ -109,7 +109,7 @@ bindsym Mod4+Shift+minus move scratchpad
 # move window to scratchpad and set it fullscreen (will stay focused on screen)
 {% if grains['id'] == "archdesk.lan" %}
 bindsym Mod4+Ctrl+minus mark "FULLSCREEN", move scratchpad, [con_mark="^FULLSCREEN$"] resize set 3840 2160, [con_mark="^FULLSCREEN$"] move position 0 0
-{% elif grains['id'] == "archbook.lan" %}
+{% elif grains['host'] == "archbook" %}
 bindsym Mod4+Ctrl+minus mark "FULLSCREEN", move scratchpad, [con_mark="^FULLSCREEN$"] resize set 2560 1600, [con_mark="^FULLSCREEN$"] move position 0 0
 {% endif %}
 
@@ -203,7 +203,7 @@ bar {
     output HDMI-0
 }
 
-{% elif grains['id'] == "archbook.lan" %}
+{% elif grains['host'] == "archbook" %}
 bar {
     status_command ~/bin/i3pystatus-conf3.py
         # tray_output primary
@@ -212,7 +212,7 @@ bar {
 {% endif %}
 
 # media keys available
-{% if grains['id'] == "archbook.lan" %}
+{% if grains['host'] == "archbook" %}
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
@@ -235,7 +235,7 @@ mode "$mode_system" {
     bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+p exec --no-startup-id systemctl poweroff -i, mode "default"
 
-    {% if grains['id'] == "archbook.lan" %}
+    {% if grains['host'] == "archbook" %}
     bindsym XF86PowerOff  exec --no-startup-id $Locker, mode "default"
     {% endif %}
 
@@ -246,7 +246,7 @@ mode "$mode_system" {
 
 {% if grains['id'] == "archdesk.lan" %}
 bindsym Mod4+Escape mode "$mode_system"
-{% elif grains['id'] == "archbook.lan" %}
+{% elif grains['host'] == "archbook" %}
 bindsym XF86PowerOff mode "$mode_system"
 {% endif %}
 
@@ -258,7 +258,7 @@ for_window [ title="^POPUP1$" ] floating enable
 for_window [class="Toggl Desktop"] floating enable
 {% if grains['id'] == "archdesk.lan" %}
 for_window [class="Toggl Desktop"] resize set 1000 1000
-{% elif grains['id'] == "archbook.lan" %}
+{% elif grains['host'] == "archbook" %}
 {% endif %}
 
 bindsym Mod4+o exec xfce4-appfinder
@@ -356,7 +356,7 @@ exec_always --no-startup-id xrandr --output DP-0 --auto --pos 0x0 --dpi 162
 exec_always --no-startup-id xrandr --output HDMI-0  --auto --pos 3840x1080
 
 exec_always --no-startup-id xrandr --output DP-0 --primary
-{% elif grains['id'] == "archbook.lan" %}
+{% elif grains['host'] == "archbook" %}
 exec_always --no-startup-id xrandr --output eDP1 --auto --pos 0x0 --dpi {{ pillar['dpi'] }}
 {% endif %}
 
