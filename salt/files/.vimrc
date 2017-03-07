@@ -36,6 +36,9 @@ Plug 'wannesm/wmgraphviz.vim'                                             " grap
 Plug 'saltstack/salt-vim'                                                 " saltstack syntax
 Plug 'chrisbra/csv.vim'                                                   " csv sheets
 Plug 'rust-lang/rust.vim'                                                 " rust
+Plug 'fatih/vim-go'                                                       " golang
+Plug 'godlygeek/tabular'                                                  " tabular
+Plug 'plasticboy/vim-markdown'                                            " markdown
 
                                                                           " Tags
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
@@ -165,7 +168,7 @@ set foldlevel=100
 set highlight+=N:DiffText
 set colorcolumn=+1,+2,+3
 
-set autochdir
+" set autochdir
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 " better grep with the silver searcher
@@ -369,9 +372,9 @@ augroup vimrc
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
   " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
   autocmd FocusGained,CursorHold ?* checktime
-  "
-  " " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file - use autochdir instead
-  " autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+
+  " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file - use autochdir instead
+  autocmd BufEnter * call functions#autochdir_hacked()
 augroup END
 
 
@@ -487,5 +490,23 @@ let g:gutentags_file_list_command = {
    \ },
 \ }
 
+" gollum wikis
 nnoremap <leader>ww :e ~/projects/private-wiki/Home.md<cr>
-nnoremap <leader>wp :e ~/projects/wiki/Home.md<cr>
+nnoremap <leader>wp :e ~/projects/public-wiki/Home.md<cr>
+
+" markdown
+let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_math = 1
+
+" vim-go
+let g:go_list_type = "quickfix"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports" "auto-populate imports

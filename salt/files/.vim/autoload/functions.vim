@@ -73,6 +73,16 @@ func! functions#sethighlight()
   hi link EndOfBuffer ColorColumn
 endfunc
 
+" like 'set autochdir', but with rules
+func! functions#autochdir_hacked()
+  if &ft =~ 'dirvish' " or other filetypes?
+    return
+  endif
+  if expand("%:p:h") =~ '^/tmp' " don't chdir to /tmp
+    return
+  endif
+  silent! lcd %:p:h
+endfunc
 
 " http://dhruvasagar.com/2014/03/11/creating-custom-scratch-buffers-in-vim
 " with modifications
