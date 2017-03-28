@@ -10,7 +10,7 @@
 " Load plugins with vim-plug
 call plug#begin('~/.vim/plugged')
 
-                                                                          " Misc
+" Misc
 Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
 Plug 'tomtom/tcomment_vim'                                                " commenting
@@ -29,8 +29,14 @@ Plug 'romainl/vim-qf'                                                     " quic
 Plug 'tpope/vim-characterize'                                             " overrides ga
 Plug 'machakann/vim-highlightedyank'                                      " highlights currently yanked region
 Plug 'editorconfig/editorconfig-vim'                                      " editorconfig support
+Plug 'terryma/vim-expand-region'                                          " expand selected region of text
+Plug 'wellle/visual-split.vim'                                            " easier splits
+Plug 'wellle/tmux-complete.vim'
+Plug 'sbdchd/neoformat'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'mhinz/vim-startify'
 
-                                                                          " Language help
+" Language help
 Plug 'lervag/vimtex'                                                      " latex
 Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
 Plug 'saltstack/salt-vim'                                                 " saltstack syntax
@@ -39,27 +45,27 @@ Plug 'rust-lang/rust.vim'                                                 " rust
 Plug 'fatih/vim-go'                                                       " golang
 Plug 'godlygeek/tabular'                                                  " tabular
 Plug 'plasticboy/vim-markdown'                                            " markdown
-
-                                                                          " Tags
+Plug 'metakirby5/codi.vim'
+" Tags
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
 " Plug 'majutsushi/tagbar'                                                  " view tags easily
 
-                                                                          " Git integrations
+" Git integrations
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git integration
 Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                   " interactive git stage/view/commit window
 
-                                                                          " Completions
+" Completions
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                     " java completion
 Plug 'davidhalter/jedi-vim', {'for': 'python'}                            " python completions + refactoring
 Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}    " javascript completions
 Plug 'racer-rust/vim-racer'                                               " rust completion
 
-                                                                          " Utilities
+" Utilities
 Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
 Plug 'wincent/command-t', {
-    \   'do': 'cd ruby/command-t && ruby extconf.rb && make'
-    \ }
+      \   'do': 'cd ruby/command-t && ruby extconf.rb && make'
+      \ }
 
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
 Plug 'benmills/vimux'                                                     " run things in tmux
@@ -68,17 +74,21 @@ Plug 'neomake/neomake'                                                    " asyn
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
 Plug 'wincent/ferret'                                                     " search in files
 
-                                                                          " Pretty
+" Pretty
 Plug 'luochen1990/rainbow'                                                " easier to see nested parens
 Plug 'ap/vim-css-color'                                                   " highlight colors in css
 Plug 'romainl/flattened'                                                  " (solarized)
 Plug 'tomasr/molokai'                                                     " alternate 256 color colorscheme (for when can't use solarized terminal)
 Plug 'romainl/Apprentice'                                                 " alternate 256 color colorscheme
 Plug 'nanotech/jellybeans.vim'                                            " alternate 256 color colorscheme
+Plug 'chriskempson/base16-vim'
 
 " add plugins to &runtimepath
 call plug#end()
 
+call yankstack#setup()
+nmap <c-p> <Plug>yankstack_substitute_older_paste
+nmap <c-n> <Plug>yankstack_substitute_newer_paste
 
 " set options
 
@@ -139,6 +149,7 @@ set formatoptions-=tc " don't auto wrap - use gq manually
 set formatoptions-=a " don't auto format paragraphs
 set formatoptions-=o " don't auto add comment leading on pressing 'o' in normal mode
 
+set nostartofline
 
 " single global backup/swp/undo dirs
 set backupdir=~/.vim/backup/
@@ -155,7 +166,9 @@ set autowriteall
 
 augroup save
   au!
-  au FocusLost,BufHidden,InsertLeave,TextChanged ?* silent! wa
+  au FocusLost,BufHidden,InsertLeave ?* silent! wa
+  " TODO: autosave on edit in normal mode
+  " can't use TextChanged event on above, since it messes up repeat.vim
 augroup END
 
 set iskeyword+=- " better - and essential for css
@@ -167,6 +180,8 @@ set foldlevel=100
 
 set highlight+=N:DiffText
 set colorcolumn=+1,+2,+3
+
+set mouse=
 
 " set autochdir
 
@@ -299,10 +314,6 @@ map <leader>bd :call VimuxSendKeys("^D")<cr>
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <leader>bz :call VimuxZoomRunner()<cr>
 
-
-" shortcut to system clipboard
-vnoremap + "+
-noremap + "+
 
 " NVIM specific stuff
 if has('nvim')
@@ -510,3 +521,57 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports" "auto-populate imports
+
+" vim-startify
+
+autocmd User Startified setlocal cursorline
+
+let g:startify_enable_special         = 1
+let g:startify_files_number           = 8
+let g:startify_relative_path          = 1
+" let g:startify_change_to_dir          = 1
+let g:startify_update_oldfiles        = 1
+" let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+
+let g:startify_skiplist = [
+        \ 'COMMIT_EDITMSG',
+        \ '~/.vim/plugged/.*',
+        \ ]
+
+let g:startify_bookmarks = [
+        \ { 'v': '~/.vimrc' },
+        \ { 'z': '~/.zshrc' },
+        \ { 'w': '~/projects/private-wiki/Home.md' },
+        \ { 'p': '~/projects/public-wiki/Home.md' },
+        \ ]
+
+let g:startify_custom_header = [ '   VIM' ]
+" " ascii art from http://www.vim.org/images/vim.txt
+" let g:startify_custom_header = [
+"     \ "        ________ ++     ________",
+"     \ "       /VVVVVVVV\\++++  /VVVVVVVV\\",
+"     \ "       \\VVVVVVVV/++++++\\VVVVVVVV/",
+"     \ "        |VVVVVV|++++++++/VVVVV/'",
+"     \ "        |VVVVVV|++++++/VVVVV/'",
+"     \ "       +|VVVVVV|++++/VVVVV/'+",
+"     \ "     +++|VVVVVV|++/VVVVV/'+++++",
+"     \ "   +++++|VVVVVV|/VVVVV/'+++++++++",
+"     \ "     +++|VVVVVVVVVVV/'+++++++++",
+"     \ "       +|VVVVVVVVV/'+++++++++",
+"     \ "        |VVVVVVV/'+++++++++",
+"     \ "        |VVVVV/'+++++++++",
+"     \ "        |VVV/'+++++++++",
+"     \ "        'V/'   ++++++",
+"     \ "                 ++",
+"     \ ]
+"
+let g:startify_custom_footer =
+       \ ['', "   Vim is charityware. Run ':h iccf' for more information.", '']
+
+let g:startify_commands = [
+    \ {'U': 'PlugUpdate'},
+    \ {'P': 'Sedit | Codi python'},
+    \ ]
+
+autocmd User Startified setlocal buftype=nofile

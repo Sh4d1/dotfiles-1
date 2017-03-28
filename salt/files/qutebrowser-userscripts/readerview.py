@@ -27,12 +27,10 @@ head = '''<html>
 <title>''' + title + ''' [readerview]</title>
 <style>
 body {
- max-width: 1000px;
+ max-width: 800px;
  margin: 0 auto;
- background-color: #002b36;
- color: #839496;
- // background-color: #fdf6e3;
- // color: #657b83;
+ background-color: #fdf6e3;
+ color: #657b83;
 }
 #qute_orig_link {
  font-weight: bold;

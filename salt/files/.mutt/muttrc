@@ -36,6 +36,9 @@ set use_from = yes
 
 set maildir_trash = no
 
+set pager_format="-%Z- %C/%m: [%[%a %Y-%m-%d %H:%M:%S]] %-20.20n   %s%*  -- (%P)"
+set index_format="%4C %Z [%[%a %Y-%m-%d %H:%M:%S]] %-15.15L (%?l?%4l&%4c?) %s"
+
 # delete/trash messages from index
 folder-hook . 'macro index d ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Trash\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Trash"'
 folder-hook =Trash 'macro index d <delete-message>'

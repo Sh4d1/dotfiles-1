@@ -102,6 +102,10 @@ compinit
 # gopass completions
 command -v gopass >/dev/null && source <(gopass completion zsh)
 
+# exercism completion
+[ -f ~/.config/exercism/exercism_completion.zsh ] && . ~/.config/exercism/exercism_completion.zsh
+
+
 # KEY BINDINGS
 
 bindkey -v
@@ -157,7 +161,7 @@ alias c=z
 alias e=$EDITOR
 alias ni=nvim
 alias mux=tmuxinator
-alias rg=ranger
+alias rgr=ranger
 alias t=tmux
 alias ta='tmux attach'
 alias hc=herbstclient

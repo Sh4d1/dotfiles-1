@@ -119,13 +119,13 @@ status = Status()
 
 # Displays clock
 status.register("clock",
-                format="%Y-%m-%d %H:%M:%S")
+            format=("%Y-%m-%d %H:%M:%S UTC", 'Etc/UTC'))
 
 status.register(public_ip,
                 format='ip: {ip}',
                 err_format='no ip: {ip}',
                 interval=2400,)
-                
+
 status.register(local_temperature,
                 interval=300)
 

@@ -24,7 +24,7 @@ password=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu -i -p "pass ($MODE
 
 # copy to primary clipboard
 if [ "$MODE" = "type" ]; then
-  xdotool type "`gopass show "$password" | head -n 1`"
+  xdotool type -- "`gopass show "$password" | head -n 1`"
 else
   gopass show "$password" | head -n 1 | xsel -ip
 fi

@@ -215,6 +215,22 @@ copy ~/.zshrc:
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}
 
+copy ~/.rgignore:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.rgignore
+    - source: salt://files/.rgignore
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
+copy ~/.agignore:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.agignore
+    - source: salt://files/.agignore
+    - mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
 copy ~/.gitignore:
   file.managed:
     - name: {{ grains['HOME'] }}/.gitignore

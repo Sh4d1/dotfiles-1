@@ -1,0 +1,32 @@
+
+# web/javascript dev libraries
+bower_components
+node_modules
+
+# syncthing backugs
+.stversions
+
+# unwanted dotfiles
+~/.local/lib/
+~/.local/share/
+
+# vcs
+.git/
+
+# who wants to edit an image?
+*.png
+*.jpg
+
+# or a movie?
+*.mp4
+*.avi
+*.mkv
+
+# or an archive
+*.gz
+*.tar
+*.zip
+
+# backup files
+*~
+
