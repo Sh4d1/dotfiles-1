@@ -10,20 +10,18 @@ Copyright © 2017 Samuel Walladge
 
 ## Installing
 
-Dotfiles are managed and installed with [Salt](https://saltstack.com/).
+Dotfiles are managed and installed with [rcm](https://github.com/thoughtbot/rcm).
 
 ```bash
-cd ~
+# install rcm for your platform - eg:
+pacaur -y rcm
+
+cd
 git clone git@github.com:swalladge/dotfiles.git
-cd dotfiles
-./install.sh
+RCRC=~/dotfiles/rcrc rcup
+
+# note that future runs of rcup don't require the RCRC var
 ```
-
-It will also make sure dependencies are installed, etc.
-
-The pillar configuration variables should be entered into `pillar/custom.sls` (this file is created from `default.sls`
-and opened in an editor by `install.sh`).
-
 
 ### Post install tasks
 

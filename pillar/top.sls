@@ -1,5 +1,0 @@
-
-base:
-  '*':
-    - default
-    - custom

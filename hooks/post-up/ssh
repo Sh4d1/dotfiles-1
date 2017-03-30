@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# make sure appropriate .ssh files exist
+# otherwise some things complain
+
+[ -e ~/.ssh/known_hosts ] || touch .ssh/known_hosts
+[ -e ~/.ssh/authorized_keys ] || touch .ssh/authorized_keys
+

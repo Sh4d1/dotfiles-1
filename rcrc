@@ -1,0 +1,2 @@
+EXCLUDES="LICENSE README.md bin"
+DOTFILES_DIRS="$HOME/dotfiles"

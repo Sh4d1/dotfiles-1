@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir -p ~/.vim/{backup,swp,spell,undo}
+
+# neovim config location symlinks
+ln -sf ~/.vim/ ~/.config/nvim
+ln -sf ~/.vimrc ~/.vim/init.vim
+

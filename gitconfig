@@ -8,6 +8,6 @@
 [commit]
 	gpgsign = true
 [core]
-	excludesfile = {{ grains['HOME'] }}/.gitignore
+	excludesfile = /home/samuel/.gitignore
 [merge]
 	tool = vimdiff

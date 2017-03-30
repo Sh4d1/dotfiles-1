@@ -37,9 +37,9 @@ export TERMINFO="$HOME/.terminfo"
 # export GPGKEY=5AC10404
 
 # aur/makepkg stuff
-{% if pillar['aurdest'] %}
-export AURDEST={{ pillar['aurdest'] }}
-{% endif %}
+
+export AURDEST=/mnt/storage/aur/pkgbuilds
+
 
 # steam options
 # export STEAM_RUNTIME=0

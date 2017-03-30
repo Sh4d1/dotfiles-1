@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# create the gopath directory
+mkdir -p ~/go

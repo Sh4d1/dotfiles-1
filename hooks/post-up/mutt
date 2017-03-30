@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# create mutt cache directory
+mkdir -p ~/.mutt/cache/

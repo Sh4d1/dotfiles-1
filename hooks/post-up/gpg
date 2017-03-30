@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# import my public key
+if ! gpg -k | grep '^ *1732CF7BFA3EFD14DF2A5C14437A44815AC10404$' >/dev/null 2>&1; then
+  gpg --keyserver keyserver.ubuntu.com --recv 1732CF7BFA3EFD14DF2A5C14437A44815AC1040
+fi
