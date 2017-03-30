@@ -2,7 +2,6 @@
 # Dotfiles
 
 These are my dotfiles, including other setup tasks such as installing software, creating directories, etc.
-
 Shared here so you can browse through and get ideas. And everyone needs a dotfiles repo hey?
 
 Copyright © 2017 Samuel Walladge
@@ -33,21 +32,22 @@ RCRC=~/dotfiles/rcrc rcup
 - awesome wm (currently use/prefer i3)
 - bash
 - clipit
-- clipster
+- clipster (preferred clipboard manager)
 - cmus
-- copyq (new preferred clipboard manager)
+- copyq
 - dunst
 - gnupg
 - htop
 - i3
 - i3pystatus
 - i3status
+- ignore files (silver_searcher, ripgrep, git)
 - khal
 - khard
 - ls dircolors
 - mpd (don't use - only basic config)
 - msmtp
-- mutt (neomutt)
+- mutt/neomutt
 - notmuch
 - octave
 - offlineimap
@@ -80,7 +80,7 @@ RCRC=~/dotfiles/rcrc rcup
 
 This repository contains both original and third party content.
 Content can be assumed to be original unless stated otherwise.
-Original content is copyright © 2016 Samuel Walladge, and can be used and distributed under the terms of
+Original content is copyright © 2017 Samuel Walladge, and can be used and distributed under the terms of
 the GPLv3. All third party content is copyright their respective authors and bound by their original licenses.
 
 All attempts have been made to identify third party content within the repository, with sources and attribution given
