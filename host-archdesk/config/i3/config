@@ -180,7 +180,7 @@ bindsym Mod4+r mode "resize"
 
 bar {
     # status_command i3status
-    status_command ~/bin/i3pystatus-conf1.py
+    status_command ~/dotfiles/bin/i3pystatus-conf1.py
     tray_output DP-0
     tray_padding 0
     position top
@@ -192,7 +192,7 @@ bar {
 
 bar {
     # status_command i3status --config ~/.config/i3status/config-secondary
-    status_command ~/bin/i3pystatus-conf2.py
+    status_command ~/dotfiles/bin/i3pystatus-conf2.py
     tray_output none
     # status_command i3status
     # status_command ~/bin/conky-i3bar

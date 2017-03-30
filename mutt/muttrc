@@ -122,6 +122,6 @@ bind index,pager \CO sidebar-open       # Ctrl-Shift-O - Open Highlighted Mailbo
 color sidebar_highlight white color10
 
 # notmuch
-set nm_default_uri = "notmuch:///home/samuel/Maildir"
+set nm_default_uri = "notmuch://$HOME/Maildir"
 bind index,pager X vfolder-from-query
 set nm_query_type = messages

@@ -8,6 +8,6 @@
 [commit]
 	gpgsign = true
 [core]
-	excludesfile = /home/samuel/.gitignore
+	excludesfile = ~/.gitignore
 [merge]
 	tool = vimdiff
