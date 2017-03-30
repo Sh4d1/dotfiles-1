@@ -16,10 +16,11 @@ source ~/.mutt/solarized-dark16.theme
 # inbox
 set mbox_type=Maildir
 set folder=~/Maildir
+set header_cache = "~/.mutt/cache/headers"
 set spoolfile=+INBOX
-set header_cache=~/.cache/mutt
 set record = +Sent
 set postponed = +Drafts
+set trash = '+Trash'
 # set imap_user = $my_user
 
 # allows for refreshing the view more often
@@ -57,11 +58,16 @@ alternative_order text/plain text/html
 set crypt_use_gpgme = yes
 set crypt_autosign = yes
 set pgp_auto_decode = yes
+set pgp_sign_as = "1732CF7BFA3EFD14DF2A5C14437A44815AC10404"
 
 set sort = 'threads'
 set sort_aux = 'last-date-received'
 
 set signature="~/.mutt/sig"
+
+set sleep_time=0
+
+set wait_key = no
 
 
 # keybindings
@@ -97,3 +103,25 @@ macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
 macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Archive"
 
 macro index B ":set sendmail = \"/usr/bin/msmtp -a " "prompt for sending account (ie. default or backup)"
+
+
+####### NEOMUTT ONLY OPTIONS
+
+set abort_noattach = "ask-yes"
+set pgp_encrypt_self = yes
+set new_mail_command="notify-send --icon='~/.mutt.png' 'New email!' '%n new messages, %u unread.' &"
+
+# sidebar
+set sidebar_visible
+set sidebar_format = "%B%?F? [%!]? %?N?(%N unread)? %* %S"
+set mail_check_stats
+bind index,pager \CP sidebar-prev       # Ctrl-Shift-P - Previous Mailbox
+bind index,pager \CN sidebar-next       # Ctrl-Shift-N - Next Mailbox
+bind index,pager \CO sidebar-open       # Ctrl-Shift-O - Open Highlighted Mailbox
+
+color sidebar_highlight white color10
+
+# notmuch
+set nm_default_uri = "notmuch:///home/samuel/Maildir"
+bind index,pager X vfolder-from-query
+set nm_query_type = messages

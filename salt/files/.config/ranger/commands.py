@@ -138,7 +138,7 @@ class compress(Command):
 # the following taken from Arch Wiki - https://wiki.archlinux.org/index.php/Ranger#Archives
 class extractto(Command):
     def execute(self):
-        """ Extract copied files to current directory """
+        """ Extract copied files to """
         copied_files = tuple(self.fm.copy_buffer)
 
         if not copied_files:
@@ -157,7 +157,7 @@ class extractto(Command):
         cwd = self.fm.thisdir
         original_path = cwd.path
         au_flags = ['-X', target_dir]
-        au_flags += self.line.split()[1:]
+        au_flags += self.line.split()[2:]
         au_flags += ['-e']
 
         self.fm.copy_buffer.clear()

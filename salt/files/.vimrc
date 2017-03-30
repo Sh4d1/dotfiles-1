@@ -233,7 +233,7 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-nnoremap <silent> <esc> <esc>:silent :nohlsearch<cr>
+nnoremap <silent> <esc> <esc>:silent :nohlsearch \| :silent w<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
@@ -508,7 +508,7 @@ nnoremap <leader>wp :e ~/projects/public-wiki/Home.md<cr>
 " markdown
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_autowrite = 1
-let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
 
@@ -536,7 +536,7 @@ let g:startify_session_persistence    = 1
 
 let g:startify_skiplist = [
         \ 'COMMIT_EDITMSG',
-        \ '~/.vim/plugged/.*',
+        \ $HOME . '/.vim/plugged/.*',
         \ ]
 
 let g:startify_bookmarks = [

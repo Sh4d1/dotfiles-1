@@ -5,14 +5,30 @@ email client packages installed (Arch):
   pkg.installed:
     - pkgs:
       - msmtp
-      - mutt
+      - neomutt
       - offlineimap-git
+      - notmuch
 {% endif %}
 
 copy mutt config:
   file.recurse:
     - name: {{ grains['HOME'] }}/.mutt/
     - source: salt://files/.mutt/
+    - file_mode: 640
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+
+cache dir for mutt:
+  file.directory:
+    - name: {{ grains['HOME'] }}/.mutt/cache/
+    - user: {{ grains['USER'] }}
+    - group: {{ grains['GROUP'] }}
+    - makedirs: true
+
+copy notmuch config:
+  file.managed:
+    - name: {{ grains['HOME'] }}/.notmuch-config
+    - source: salt://files/.notmuch-config
     - file_mode: 640
     - user: {{ grains['USER'] }}
     - group: {{ grains['GROUP'] }}

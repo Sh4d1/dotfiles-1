@@ -49,7 +49,8 @@ and opened in an editor by `install.sh`).
 - ls dircolors
 - mpd (don't use - only basic config)
 - msmtp
-- mutt
+- mutt (neomutt)
+- notmuch
 - octave
 - offlineimap
 - qutebrowser (plus userscripts)
