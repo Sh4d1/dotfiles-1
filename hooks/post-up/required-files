@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# check if required files like encrypted password files are present
+
+# vdirsyncer
+[ -e ~/.vdirsyncer-main.gpg ] || echo "~/.vdirsyncer-main.gpg does not exist"
+
+# msmtp (smtp sending emails)
+[ -e ~/.msmtp-main.gpg ] || echo "~/.msmtp-main.gpg does not exist"
+[ -e ~/.msmtp-backup.gpg ] || echo "~/.msmtp-backup.gpg does not exist"
+
+# redshift
+[ -e ~/.coords ] || echo "~/.coords does not exist (coords for redshift)"
