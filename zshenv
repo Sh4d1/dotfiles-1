@@ -36,10 +36,6 @@ export TERMINFO="$HOME/.terminfo"
 
 # export GPGKEY=5AC10404
 
-# aur/makepkg stuff
-
-export AURDEST=/mnt/storage/aur/pkgbuilds
-
 
 # steam options
 # export STEAM_RUNTIME=0

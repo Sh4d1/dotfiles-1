@@ -48,6 +48,7 @@ Plug 'plasticboy/vim-markdown'                                            " mark
 Plug 'metakirby5/codi.vim'
 " Tags
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
+Plug 'ElmCast/elm-vim'                                       " elm
 " Plug 'majutsushi/tagbar'                                                  " view tags easily
 
 " Git integrations
@@ -359,6 +360,7 @@ nnoremap <silent> <leader>fh :silent :SidewaysLeft<cr>
 " Neomake
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
 let g:neomake_haskell_enabled_makers = [] " disable haskell
+let g:neomake_elm_enabled_makers = [] " also disable elm
 
 " allow using jshint for json
 let g:neomake_json_jshint_maker = {
