@@ -109,7 +109,7 @@ macro index B ":set sendmail = \"/usr/bin/msmtp -a " "prompt for sending account
 
 set abort_noattach = "ask-yes"
 set pgp_encrypt_self = yes
-set new_mail_command="notify-send --icon='~/.mutt.png' 'New email!' '%n new messages, %u unread.' &"
+set new_mail_command='[ "%n" != "0" ] && notify-send --icon="/home/samuel/.mutt.png" "New email!" "%n new messages, %u unread." &'
 
 # sidebar
 set sidebar_visible

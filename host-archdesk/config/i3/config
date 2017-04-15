@@ -390,7 +390,7 @@ exec --no-startup-id qtpass
 exec --no-startup-id redshift-gtk -l $(cat ~/.coords)
 
 # wallpaper
-exec_always --no-startup-id feh --bg-fill ~/wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 
 # startup kdeconnect (refresh on restart i3)
 exec_always --no-startup-id kdeconnect-cli --refresh

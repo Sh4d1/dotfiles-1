@@ -269,6 +269,9 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
+" run a macro on selected lines - press @, then the register name, then <enter>
+xnoremap @ :normal @
+
 " tagbar
 " nmap <silent> <leader>t :TagbarToggle<cr>
 
@@ -577,3 +580,8 @@ let g:startify_commands = [
     \ ]
 
 autocmd User Startified setlocal buftype=nofile
+
+
+" ferret
+" my function to run ferret from the root of the current project
+nmap <leader>a :Pack |

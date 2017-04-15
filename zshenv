@@ -36,7 +36,6 @@ export TERMINFO="$HOME/.terminfo"
 
 # export GPGKEY=5AC10404
 
-
 # steam options
 # export STEAM_RUNTIME=0
 export STEAM_FRAME_FORCE_CLOSE=1
@@ -50,3 +49,5 @@ fi
 
 
 # eval `keychain --noask --eval --agents ssh id_rsa`
+
+[[ -f ~/.zshenv_local ]] && . ~/.zshenv_local

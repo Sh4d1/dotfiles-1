@@ -98,3 +98,13 @@ command! -bar -nargs=* Ssplit call functions#ScratchEdit('split', <q-args>)
 command! -bar -nargs=* Svsplit call functions#ScratchEdit('vsplit', <q-args>)
 command! -bar -nargs=* Stabedit call functions#ScratchEdit('tabe', <q-args>)
 
+" wrapper around ferret to search from the project root
+function! functions#pack(...)
+  let l:wd = getcwd()
+  execute 'cd' fnameescape(fnamemodify(finddir('.git', escape(expand('%:p:h'), ' ') . ';'), ':h'))
+  call call('ferret#private#ack', a:000)
+  execute 'cd' fnameescape(wd)
+endfunction
+
+command! -nargs=+ -complete=customlist,ferret#private#ackcomplete Pack call functions#pack(<f-args>)
+
