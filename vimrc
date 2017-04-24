@@ -35,6 +35,7 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'sbdchd/neoformat'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mhinz/vim-startify'
+Plug 'tommcdo/vim-exchange' " swap two things
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -44,7 +45,7 @@ Plug 'chrisbra/csv.vim'                                                   " csv 
 Plug 'rust-lang/rust.vim'                                                 " rust
 Plug 'fatih/vim-go'                                                       " golang
 Plug 'godlygeek/tabular'                                                  " tabular
-Plug 'plasticboy/vim-markdown'                                            " markdown
+" Plug 'plasticboy/vim-markdown'                                            " markdown - don't really need it
 Plug 'metakirby5/codi.vim'
 " Tags
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
@@ -87,6 +88,7 @@ Plug 'chriskempson/base16-vim'
 " add plugins to &runtimepath
 call plug#end()
 
+let g:yankstack_yank_keys = ['y', 'd', 'D', 'C', 'c']
 call yankstack#setup()
 nmap <c-p> <Plug>yankstack_substitute_older_paste
 nmap <c-n> <Plug>yankstack_substitute_newer_paste
@@ -119,7 +121,6 @@ set smartcase
 set incsearch
 set hlsearch
 
-set bs=2 " backspace stuff
 set backspace=indent,eol,start " allow backspace over indents, etc.
 set number " turn on line numbering
 set relativenumber " turn on relative line numbering as well
@@ -145,10 +146,9 @@ set spellcapcheck=
 
 set virtualedit=block
 
-set formatoptions+=n " for numbered lists
-set formatoptions-=tc " don't auto wrap - use gq manually
-set formatoptions-=a " don't auto format paragraphs
-set formatoptions-=o " don't auto add comment leading on pressing 'o' in normal mode
+set formatoptions+=ncrqjl
+set formatoptions-=t " don't auto wrap text - use gq manually
+set formatoptions-=a " don't format the entire paragraph automatically
 
 set nostartofline
 
@@ -511,11 +511,11 @@ nnoremap <leader>ww :e ~/projects/private-wiki/Home.md<cr>
 nnoremap <leader>wp :e ~/projects/public-wiki/Home.md<cr>
 
 " markdown
-let g:vim_markdown_no_extensions_in_markdown = 1
-let g:vim_markdown_autowrite = 1
-let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_math = 1
+" let g:vim_markdown_no_extensions_in_markdown = 1
+" let g:vim_markdown_autowrite = 1
+" let g:vim_markdown_new_list_item_indent = 0
+" let g:vim_markdown_frontmatter = 1
+" let g:vim_markdown_math = 1
 
 " vim-go
 let g:go_list_type = "quickfix"

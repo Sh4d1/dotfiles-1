@@ -1,2 +1,2 @@
 
-inoremap ,e </<c-x><c-o>
+inoremap <buffer> ,e </<c-x><c-o>
