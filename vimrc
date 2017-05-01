@@ -10,7 +10,7 @@
 " Load plugins with vim-plug
 call plug#begin('~/.vim/plugged')
 
-" Misc
+                                                                          " Misc
 Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
 Plug 'tomtom/tcomment_vim'                                                " commenting
@@ -35,7 +35,8 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'sbdchd/neoformat'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mhinz/vim-startify'
-Plug 'tommcdo/vim-exchange' " swap two things
+Plug 'tommcdo/vim-exchange'                                               " swap two things
+Plug 'tpope/vim-abolish'                                                  " random useful text things
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
