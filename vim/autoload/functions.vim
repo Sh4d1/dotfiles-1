@@ -38,6 +38,15 @@ func! functions#buildstatusline()
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
+  let l:ale = ALEGetStatusLine()
+  if l:ale =~# '[⨉]'
+    let l:line .= '%7*' " red
+  elseif l:ale =~# '[⚠]'
+    let l:line .= '%3*' " orange
+  endif
+
+  let l:line .= '%( %{ALEGetStatusLine()} %)'
+
   " git status
   let l:line .= '%6*%( %{fugitive#statusline()} %)'
   let l:hunks = GitGutterGetHunkSummary()
@@ -66,6 +75,7 @@ func! functions#sethighlight()
   hi User4 ctermbg=4 ctermfg=0
   hi User5 ctermbg=5 ctermfg=0
   hi User6 ctermbg=6 ctermfg=0
+  hi User7 ctermbg=1 ctermfg=0
 
   " listchars highlighting
   " hi SpecialKey guibg=red ctermbg=red

@@ -73,7 +73,8 @@ Plug 'wincent/command-t', {
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
 Plug 'benmills/vimux'                                                     " run things in tmux
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
-Plug 'neomake/neomake'                                                    " async make + gutter signs
+" Plug 'neomake/neomake'                                                    " async make + gutter signs
+Plug 'w0rp/ale'                                                           " another linter
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
 Plug 'wincent/ferret'                                                     " search in files
 
@@ -361,7 +362,7 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 nnoremap <silent> <leader>fl :silent :SidewaysRight<cr>
 nnoremap <silent> <leader>fh :silent :SidewaysLeft<cr>
 
-" Neomake
+" Neomake (unused - see ALE below)
 let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
 let g:neomake_haskell_enabled_makers = [] " disable haskell
 let g:neomake_elm_enabled_makers = [] " also disable elm
@@ -372,8 +373,22 @@ let g:neomake_json_jshint_maker = {
         \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
         \ }
 let g:neomake_json_enabled_makers = ['jshint']
-
 let g:neomake_python_enabled_makers = ['pylint']
+
+
+" ALE
+
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+let g:ale_sign_error = '⨉'
+let g:ale_sign_warning = '⚠'
+
+let g:ale_linters = {
+      \ 'python': ['pylint'],
+      \ 'javascript': ['jshint'],
+      \ 'elm': [],
+      \ 'text': ['vale', 'proselint'],
+      \ 'markdown': ['proselint', 'mdl', 'vale']
+      \ }
 
 nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
@@ -384,7 +399,7 @@ nnoremap <silent> <leader>ss :silent :Ssplit<cr>
 
 augroup vimrc
   autocmd!
-  autocmd BufWritePost ?* Neomake
+  " autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
   " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
