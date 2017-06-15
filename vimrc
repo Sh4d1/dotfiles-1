@@ -14,11 +14,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
 Plug 'tomtom/tcomment_vim'                                                " commenting
+" Plug 'tpope/vim-commentary'                                                " commenting
 Plug 'tpope/vim-speeddating'                                              " make inc/dec numbers work with dates
-Plug 'tpope/vim-surround'                                                 " edit surrounding things
+" Plug 'tpope/vim-surround'                                                 " edit surrounding things
+Plug 'machakann/vim-sandwich'                                             " different surround - more features
 Plug 'tommcdo/vim-lion'                                                   " align things
 Plug 'AndrewRadev/sideways.vim'                                           " move function args sideways
-Plug 'rstacruz/sparkup', {'rtp': 'vim'}                                   " quick insert html tags
+" Plug 'rstacruz/sparkup', {'rtp': 'vim'}                                   " quick insert html tags
+Plug 'mattn/emmet-vim'                                                    " emmet for html (like sparkup)
 Plug 'justinmk/vim-sneak'                                                 " alternative to f/t
 Plug 'jamessan/vim-gnupg'                                                 " seamless editing pgp encrypted files
 Plug 'tpope/vim-eunuch'                                                   " shortcuts to shell commands (esp rename files)
@@ -37,6 +40,11 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mhinz/vim-startify'
 Plug 'tommcdo/vim-exchange'                                               " swap two things
 Plug 'tpope/vim-abolish'                                                  " random useful text things
+Plug 'tpope/vim-sleuth'                                                   " auto-set indent options
+Plug 'google/vim-searchindex'                                             " display info about current search position
+Plug 'AndrewRadev/splitjoin.vim'                                          " switch between single and multi lines quickly
+Plug 'AndrewRadev/switch.vim'                                             " toggle things
+Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -67,7 +75,7 @@ Plug 'racer-rust/vim-racer'                                               " rust
 " Utilities
 Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
 Plug 'wincent/command-t', {
-      \   'do': 'cd ruby/command-t && ruby extconf.rb && make'
+      \   'do': 'cd ruby/command-t && make clean && ruby extconf.rb && make'
       \ }
 
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
@@ -174,7 +182,6 @@ augroup save
   " can't use TextChanged event on above, since it messes up repeat.vim
 augroup END
 
-set iskeyword+=- " better - and essential for css
 
 set cursorline
 set textwidth=79
@@ -185,6 +192,10 @@ set highlight+=N:DiffText
 set colorcolumn=+1,+2,+3
 
 set mouse=
+
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " set autochdir
 
@@ -270,6 +281,14 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+
+" https://www.reddit.com/r/vim/comments/6h0dy7/which_autoclosing_plugin_do_you_use/diujtbd/
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
 
 " run a macro on selected lines - press @, then the register name, then <enter>
 xnoremap @ :normal @
@@ -359,25 +378,24 @@ xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
-nnoremap <silent> <leader>fl :silent :SidewaysRight<cr>
-nnoremap <silent> <leader>fh :silent :SidewaysLeft<cr>
+nnoremap <silent> >, :silent :SidewaysRight<cr>
+nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 " Neomake (unused - see ALE below)
-let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
-let g:neomake_haskell_enabled_makers = [] " disable haskell
-let g:neomake_elm_enabled_makers = [] " also disable elm
-
-" allow using jshint for json
-let g:neomake_json_jshint_maker = {
-        \ 'args': ['--verbose'],
-        \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-        \ }
-let g:neomake_json_enabled_makers = ['jshint']
-let g:neomake_python_enabled_makers = ['pylint']
+" let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
+" let g:neomake_haskell_enabled_makers = [] " disable haskell
+" let g:neomake_elm_enabled_makers = [] " also disable elm
+"
+" " allow using jshint for json
+" let g:neomake_json_jshint_maker = {
+"         \ 'args': ['--verbose'],
+"         \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+"         \ }
+" let g:neomake_json_enabled_makers = ['jshint']
+" let g:neomake_python_enabled_makers = ['pylint']
 
 
 " ALE
-
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
@@ -389,6 +407,7 @@ let g:ale_linters = {
       \ 'text': ['vale', 'proselint'],
       \ 'markdown': ['proselint', 'mdl', 'vale']
       \ }
+
 
 nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
@@ -413,7 +432,7 @@ augroup END
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 let g:vimtex_view_general_viewer = 'rifle'
-let g:tex_flavor = "latex"
+let g:tex_flavor = 'latex'
 
 " rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -455,7 +474,7 @@ let g:vcm_direction = 'p'
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-space>"
-let g:UltiSnipsJumpBackwardTrigger=""
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips']
 let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
 let g:UltiSnipsEnableSnipMate=0
@@ -601,3 +620,18 @@ autocmd User Startified setlocal buftype=nofile
 " ferret
 " my function to run ferret from the root of the current project
 nmap <leader>a :Pack |
+
+
+" vim sandwich
+" vim-surround style keymappings
+runtime macros/sandwich/keymap/surround.vim
+
+
+" sparkup
+" let g:sparkupNextMapping = ',<c-e>'
+
+
+" emmet - note, conflicts with sparkup using this binding
+let g:user_emmet_leader_key = '<c-e>'
+
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1

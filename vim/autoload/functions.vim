@@ -81,6 +81,8 @@ func! functions#sethighlight()
   " hi SpecialKey guibg=red ctermbg=red
 
   hi link EndOfBuffer ColorColumn
+
+  hi Comment cterm=italic
 endfunc
 
 " like 'set autochdir', but with rules
@@ -113,8 +115,8 @@ function! functions#pack(...)
   let l:wd = getcwd()
   execute 'cd' fnameescape(fnamemodify(finddir('.git', escape(expand('%:p:h'), ' ') . ';'), ':h'))
   call call('ferret#private#ack', a:000)
-  execute 'cd' fnameescape(wd)
+  execute 'cd' fnameescape(l:wd)
 endfunction
 
-command! -nargs=+ -complete=customlist,ferret#private#ackcomplete Pack call functions#pack(<f-args>)
+command! -bang -nargs=+ -complete=customlist,ferret#private#ackcomplete Pack call functions#pack(<bang>0, <f-args>)
 
