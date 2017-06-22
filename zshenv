@@ -48,6 +48,9 @@ if hash gnome-keyring-daemon 2>/dev/null; then
 fi
 
 
+# for https://github.com/rupa/v
+export vim=nvim
+
 # eval `keychain --noask --eval --agents ssh id_rsa`
 
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local

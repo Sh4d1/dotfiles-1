@@ -38,14 +38,14 @@ func! functions#buildstatusline()
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
-  let l:ale = ALEGetStatusLine()
-  if l:ale =~# '[⨉]'
-    let l:line .= '%7*' " red
-  elseif l:ale =~# '[⚠]'
-    let l:line .= '%3*' " orange
-  endif
-
-  let l:line .= '%( %{ALEGetStatusLine()} %)'
+  " let l:ale = ALEGetStatusLine()
+  " if l:ale =~# '[⨉]'
+  "   let l:line .= '%7*' " red
+  " elseif l:ale =~# '[⚠]'
+  "   let l:line .= '%3*' " orange
+  " endif
+  "
+  " let l:line .= '%( %{ALEGetStatusLine()} %)'
 
   " git status
   let l:line .= '%6*%( %{fugitive#statusline()} %)'

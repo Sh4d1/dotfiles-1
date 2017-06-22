@@ -26,6 +26,13 @@ RCRC=~/dotfiles/rcrc rcup
 
 - run `:PlugInstall` in vim/nvim to install plugins
 
+## Notes
+
+- run `mkrc ~/path/to/.file` to quickly track a new dotfile. See [rcm blog
+  post](https://robots.thoughtbot.com/rcm-for-rc-files-in-dotfiles-repos) and
+  [github repo](https://github.com/thoughtbot/rcm) for more info on management
+  commands.
+
 
 ## Config included
 

@@ -10,7 +10,7 @@
 " Load plugins with vim-plug
 call plug#begin('~/.vim/plugged')
 
-                                                                          " Misc
+" Misc
 Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
 Plug 'tomtom/tcomment_vim'                                                " commenting
@@ -27,7 +27,7 @@ Plug 'jamessan/vim-gnupg'                                                 " seam
 Plug 'tpope/vim-eunuch'                                                   " shortcuts to shell commands (esp rename files)
 Plug 'justinmk/vim-dirvish'                                               " another alternative to netwr
 Plug 'wellle/targets.vim'                                                 " extra text objects
-Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
+" Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
 Plug 'romainl/vim-qf'                                                     " quickfix window improvements
 Plug 'tpope/vim-characterize'                                             " overrides ga
 Plug 'machakann/vim-highlightedyank'                                      " highlights currently yanked region
@@ -74,15 +74,15 @@ Plug 'racer-rust/vim-racer'                                               " rust
 
 " Utilities
 Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
-Plug 'wincent/command-t', {
-      \   'do': 'cd ruby/command-t && make clean && ruby extconf.rb && make'
-      \ }
+" Plug 'wincent/command-t', {
+"       \   'do': 'cd ruby/command-t && make clean && ruby extconf.rb && make'
+"       \ }
 
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
 Plug 'benmills/vimux'                                                     " run things in tmux
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
-" Plug 'neomake/neomake'                                                    " async make + gutter signs
-Plug 'w0rp/ale'                                                           " another linter
+Plug 'neomake/neomake'                                                    " async make + gutter signs
+" Plug 'w0rp/ale'                                                           " another linter
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
 Plug 'wincent/ferret'                                                     " search in files
 
@@ -175,14 +175,6 @@ set autoread
 set noswapfile
 set autowriteall
 
-augroup save
-  au!
-  au FocusLost,BufHidden,InsertLeave ?* silent! wa
-  " TODO: autosave on edit in normal mode
-  " can't use TextChanged event on above, since it messes up repeat.vim
-augroup END
-
-
 set cursorline
 set textwidth=79
 
@@ -196,6 +188,8 @@ set mouse=
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
       \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
       \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+set gdefault " global substitute by default
 
 " set autochdir
 
@@ -247,7 +241,7 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-nnoremap <silent> <esc> <esc>:silent :nohlsearch \| :silent w<cr>
+nnoremap <esc> <esc>:nohlsearch \| w<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
@@ -259,11 +253,11 @@ nmap <silent> <leader>s :set spell!<cr>
 nnoremap <leader>1 1z=
 nnoremap <leader>2 2z=
 
-" might as well
+" more consistent mapping
 noremap Y y$
 
 " Repeat last macro if in a normal buffer.
-" NO! I want to use it for the default - opposite of <c-o>
+" NO! I want to use it for the default - <c-i> or tab is opposite of <c-o>
 " nnoremap <expr> <tab> empty(&buftype) ? '@@' : '<cr>'
 
 nnoremap <F2> :Rename |
@@ -381,21 +375,24 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 nnoremap <silent> >, :silent :SidewaysRight<cr>
 nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
+
 " Neomake (unused - see ALE below)
-" let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
-" let g:neomake_haskell_enabled_makers = [] " disable haskell
-" let g:neomake_elm_enabled_makers = [] " also disable elm
-"
-" " allow using jshint for json
-" let g:neomake_json_jshint_maker = {
-"         \ 'args': ['--verbose'],
-"         \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-"         \ }
-" let g:neomake_json_enabled_makers = ['jshint']
-" let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_open_list = 0
+let g:airline#extensions#neomake#enabled = 0
+let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
+let g:neomake_haskell_enabled_makers = [] " disable haskell
+let g:neomake_elm_enabled_makers = [] " also disable elm
+
+" allow using jshint for json
+let g:neomake_json_jshint_maker = {
+      \ 'args': ['--verbose'],
+      \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+      \ }
+let g:neomake_json_enabled_makers = ['jshint']
+let g:neomake_python_enabled_makers = ['pylint']
 
 
-" ALE
+" ALE (crashing currently, so neomake is actually in use)
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
@@ -418,6 +415,11 @@ nnoremap <silent> <leader>ss :silent :Ssplit<cr>
 
 augroup vimrc
   autocmd!
+  autocmd BufHidden ?* silent! wa
+  autocmd FocusLost,InsertLeave ?* silent! wa | Neomake
+  autocmd TextChanged ?* silent! w | Neomake
+  " TODO: autosave on edit in normal mode
+  " can't use TextChanged event on above, since it messes up repeat.vim
   " autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
@@ -437,33 +439,33 @@ let g:tex_flavor = 'latex'
 " rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
-    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-    \   'operators': '_,_',
-    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-    \   'separately': {
-    \       '*': {},
-    \       'tex': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-    \       },
-    \       'lisp': {
-    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \       },
-    \       'vim': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-    \       },
-    \       'html': {
-    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-    \       },
-    \       'css': 0,
-    \   }
-    \}
+      \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+      \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+      \   'operators': '_,_',
+      \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+      \   'separately': {
+      \       '*': {},
+      \       'tex': {
+      \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+      \       },
+      \       'lisp': {
+      \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+      \       },
+      \       'vim': {
+      \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+      \       },
+      \       'html': {
+      \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+      \       },
+      \       'css': 0,
+      \   }
+      \}
 
 " ctrlp
 let g:ctrlp_map = '' " managing it myself
 let g:ctrlp_cmd = 'CtrlP'
 " let g:ctrlp_show_hidden = 1
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
 " ag is fast enough that CtrlP doesn't need to cache
 let g:ctrlp_use_caching = 0
 
@@ -505,7 +507,7 @@ let g:WMGraphviz_viewer = 'rifle'
 
 " gnupg
 let g:GPGPossibleRecipients=[
-        \"Samuel Walladge <samuel@swalladge.id.au>",
+      \"Samuel Walladge <samuel@swalladge.id.au>",
       \]
 
 " set up the custom highlights now, or else would have been overridden
@@ -535,11 +537,11 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 "   \ ]
 
 let g:gutentags_file_list_command = {
-\ 'markers': {
-   \ '.git': 'git ls-files',
-   \ '.hg': 'hg files',
-   \ },
-\ }
+      \ 'markers': {
+      \ '.git': 'git ls-files',
+      \ '.hg': 'hg files',
+      \ },
+      \ }
 
 " gollum wikis
 nnoremap <leader>ww :e ~/projects/private-wiki/Home.md<cr>
@@ -575,16 +577,16 @@ let g:startify_update_oldfiles        = 1
 let g:startify_session_persistence    = 1
 
 let g:startify_skiplist = [
-        \ 'COMMIT_EDITMSG',
-        \ $HOME . '/.vim/plugged/.*',
-        \ ]
+      \ 'COMMIT_EDITMSG',
+      \ $HOME . '/.vim/plugged/.*',
+      \ ]
 
 let g:startify_bookmarks = [
-        \ { 'v': '~/.vimrc' },
-        \ { 'z': '~/.zshrc' },
-        \ { 'w': '~/projects/private-wiki/Home.md' },
-        \ { 'p': '~/projects/public-wiki/Home.md' },
-        \ ]
+      \ { 'v': '~/.vimrc' },
+      \ { 'z': '~/.zshrc' },
+      \ { 'w': '~/projects/private-wiki/Home.md' },
+      \ { 'p': '~/projects/public-wiki/Home.md' },
+      \ ]
 
 let g:startify_custom_header = [ '   VIM' ]
 " " ascii art from http://www.vim.org/images/vim.txt
@@ -607,12 +609,12 @@ let g:startify_custom_header = [ '   VIM' ]
 "     \ ]
 "
 let g:startify_custom_footer =
-       \ ['', "   Vim is charityware. Run ':h iccf' for more information.", '']
+      \ ['', "   Vim is charityware. Run ':h iccf' for more information.", '']
 
 let g:startify_commands = [
-    \ {'U': 'PlugUpdate'},
-    \ {'P': 'Sedit | Codi python'},
-    \ ]
+      \ {'U': 'PlugUpdate'},
+      \ {'P': 'Sedit | Codi python'},
+      \ ]
 
 autocmd User Startified setlocal buftype=nofile
 
@@ -634,4 +636,35 @@ runtime macros/sandwich/keymap/surround.vim
 " emmet - note, conflicts with sparkup using this binding
 let g:user_emmet_leader_key = '<c-e>'
 
-" let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+" committia
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+  " If no commit message, start with insert mode
+  " if a:info.vcs ==# 'git' && getline(1) ==# ''
+  "     startinsert
+  " end
+
+  " Scroll the diff window from edit window
+  nmap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
+  nmap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
+  imap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
+  imap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
+
+endfunction
+
+function! g:committia_hooks.diff_open(info)
+  setlocal norelativenumber
+  setlocal number
+
+endfunction
+
+
+" neoformat
+let g:neoformat_run_all_formatters = 1
+let g:neoformat_only_msg_on_error = 1
+let g:neoformat_basic_format_trim = 1
+let g:neoformat_basic_format_align = 1
+let g:neoformat_basic_format_retab = 1
+let g:neoformat_try_formatprg = 1
+let g:neoformat_enabled_python = ['yapf']
+nnoremap <leader>f :Neoformat<cr>

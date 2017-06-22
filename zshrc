@@ -27,30 +27,42 @@ ttyctl -f
 # config for zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
-# PLUGINS WITH ZGEN
-# load zgen
-source ~/.zgen/zgen.zsh
+# PLUGINS WITH ZPLUG
 
-# check if there's no init script
-if ! zgen saved; then
-    echo "Creating a zgen save"
-
-    # plugins
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-history-substring-search
-    zgen load zsh-users/zsh-autosuggestions
-    # zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
-    zgen load rupa/z
-
-    # completions
-    zgen load zsh-users/zsh-completions src
-
-    # theme
-    # zgen oh-my-zsh themes/arrow
-
-    # save all to init script
-    zgen save
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
 fi
+
+# https://github.com/zplug/zplug/
+source ~/.zplug/init.zsh
+
+# plugins
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+
+# completions
+zplug "zsh-users/zsh-completions"
+
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  else
+    echo
+  fi
+fi
+
+# load the plugins!
+zplug load
+
+
+# autojump plugin (installed via pacman)
+source /etc/profile.d/autojump.zsh
+
 
 
 # VARIABLES
@@ -157,7 +169,7 @@ bindkey -M viins '^B' backward-word
 alias ls='ls --color=auto'
 alias rm='rm -I'
 alias td='todotxt-machine'
-alias c=z
+alias c=j
 alias e=$EDITOR
 alias ni=nvim
 alias mux=tmuxinator
@@ -199,8 +211,6 @@ alias rsyncp="rsync -e 'ssh -o PubkeyAuthentication=no'"
 
 alias swipl-test='swipl -g true -t halt. -s'
 
-alias ww='nvim +VimwikiIndex'
-
 export GPG_TTY=$(tty)
 
 # anything local to this machine
@@ -223,10 +233,11 @@ precmd() {
   BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [ $? = 0 ]; then
     RPROMPT+="%K{6}%F{0} $BRANCH "
-    DIRTY=$(git status --porcelain 2>/dev/null | wc -l)
-    if [ $DIRTY -ne 0 ]; then
-      RPROMPT+="[$DIRTY] "
-    fi
+    # unbelievable slow on large repos
+    # DIRTY=$(git status --porcelain 2>/dev/null | wc -l)
+    # if [ $DIRTY -ne 0 ]; then
+    #   RPROMPT+="[$DIRTY] "
+    # fi
     RPROMPT+="%f%k"
   fi
 
