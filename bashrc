@@ -60,3 +60,5 @@ shopt -s histappend
 
 [[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

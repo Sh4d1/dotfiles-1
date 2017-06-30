@@ -32,7 +32,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.zplug
-  source ~/.zplug/init.zsh && zplug update --self
 fi
 
 # https://github.com/zplug/zplug/
@@ -45,6 +44,8 @@ zplug "zsh-users/zsh-autosuggestions"
 
 # completions
 zplug "zsh-users/zsh-completions"
+
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -177,6 +178,7 @@ alias rgr=ranger
 alias t=tmux
 alias ta='tmux attach'
 alias hc=herbstclient
+alias ml='tmuxinator local'
 
 # inspiration for git aliases from https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 # don't need that many though
@@ -308,3 +310,5 @@ zle -N zle-keymap-select
 
 # no delay on pressing escape
 KEYTIMEOUT=1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -38,6 +38,7 @@ func! functions#buildstatusline()
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
+  let l:line .= '%3*%( %{neomake#statusline#LoclistStatus()} %)'
   " let l:ale = ALEGetStatusLine()
   " if l:ale =~# '[⨉]'
   "   let l:line .= '%7*' " red
@@ -109,14 +110,3 @@ command! -bar -nargs=* Sedit call functions#ScratchEdit('edit', <q-args>)
 command! -bar -nargs=* Ssplit call functions#ScratchEdit('split', <q-args>)
 command! -bar -nargs=* Svsplit call functions#ScratchEdit('vsplit', <q-args>)
 command! -bar -nargs=* Stabedit call functions#ScratchEdit('tabe', <q-args>)
-
-" wrapper around ferret to search from the project root
-function! functions#pack(...)
-  let l:wd = getcwd()
-  execute 'cd' fnameescape(fnamemodify(finddir('.git', escape(expand('%:p:h'), ' ') . ';'), ':h'))
-  call call('ferret#private#ack', a:000)
-  execute 'cd' fnameescape(l:wd)
-endfunction
-
-command! -bang -nargs=+ -complete=customlist,ferret#private#ackcomplete Pack call functions#pack(<bang>0, <f-args>)
-

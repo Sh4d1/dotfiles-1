@@ -45,6 +45,7 @@ Plug 'google/vim-searchindex'                                             " disp
 Plug 'AndrewRadev/splitjoin.vim'                                          " switch between single and multi lines quickly
 Plug 'AndrewRadev/switch.vim'                                             " toggle things
 Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
+Plug 'airblade/vim-rooter'                                                " auto change to project root
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -74,6 +75,8 @@ Plug 'racer-rust/vim-racer'                                               " rust
 
 " Utilities
 Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }         " another fuzzy finder
+Plug 'junegunn/fzf.vim'
 " Plug 'wincent/command-t', {
 "       \   'do': 'cd ruby/command-t && make clean && ruby extconf.rb && make'
 "       \ }
@@ -180,7 +183,9 @@ set textwidth=79
 
 set foldlevel=100
 
-set highlight+=N:DiffText
+" no longer supported in neovim
+" set highlight+=N:DiffText
+
 set colorcolumn=+1,+2,+3
 
 set mouse=
@@ -390,7 +395,7 @@ let g:neomake_json_jshint_maker = {
       \ }
 let g:neomake_json_enabled_makers = ['jshint']
 let g:neomake_python_enabled_makers = ['pylint']
-
+let g:neomake_vim_enabled_makers = ['vint']
 
 " ALE (crashing currently, so neomake is actually in use)
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
@@ -417,17 +422,17 @@ augroup vimrc
   autocmd!
   autocmd BufHidden ?* silent! wa
   autocmd FocusLost,InsertLeave ?* silent! wa | Neomake
-  autocmd TextChanged ?* silent! w | Neomake
-  " TODO: autosave on edit in normal mode
-  " can't use TextChanged event on above, since it messes up repeat.vim
-  " autocmd BufWritePost ?* Neomake
+  " NOTE: can't use TextChanged event as below when using vim-surround - breaks repeating its actions with repeat.vim
+  " https://github.com/tpope/vim-repeat/issues/59
+  autocmd TextChanged ?* silent! wa | Neomake
+  autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
   " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
   autocmd FocusGained,CursorHold ?* checktime
 
   " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file - use autochdir instead
-  autocmd BufEnter * call functions#autochdir_hacked()
+  " autocmd BufEnter * call functions#autochdir_hacked()
 augroup END
 
 
@@ -619,11 +624,6 @@ let g:startify_commands = [
 autocmd User Startified setlocal buftype=nofile
 
 
-" ferret
-" my function to run ferret from the root of the current project
-nmap <leader>a :Pack |
-
-
 " vim sandwich
 " vim-surround style keymappings
 runtime macros/sandwich/keymap/surround.vim
@@ -631,7 +631,6 @@ runtime macros/sandwich/keymap/surround.vim
 
 " sparkup
 " let g:sparkupNextMapping = ',<c-e>'
-
 
 " emmet - note, conflicts with sparkup using this binding
 let g:user_emmet_leader_key = '<c-e>'
@@ -668,3 +667,15 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_try_formatprg = 1
 let g:neoformat_enabled_python = ['yapf']
 nnoremap <leader>f :Neoformat<cr>
+
+
+
+let g:rooter_targets = '/,*'
+let g:rooter_manual_only = 1
+let g:rooter_silent_chdir = 1
+let g:rooter_resolve_links = 0
+let g:rooter_use_lcd = 1
+let g:rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'README.md']
+
+nnoremap <leader>cr :Rooter<cr>:pwd<cr>
+nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>

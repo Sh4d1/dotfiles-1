@@ -47,9 +47,7 @@ if hash gnome-keyring-daemon 2>/dev/null; then
   export SSH_AUTH_SOCK
 fi
 
-
-# for https://github.com/rupa/v
-export vim=nvim
+export FZF_DEFAULT_COMMAND='rg --files --color=never --glob ""'
 
 # eval `keychain --noask --eval --agents ssh id_rsa`
 
