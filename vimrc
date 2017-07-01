@@ -520,6 +520,15 @@ call functions#sethighlight()
 
 " vim-qf
 let g:qf_mapping_ack_style = 1
+" https://github.com/neomake/neomake/issues/1097#issuecomment-298780826
+" Causes issues with resizing (https://github.com/vim/vim/issues/931).
+let g:qf_loclist_window_bottom = 0
+let g:qf_window_bottom = 0
+
+" Annoying with Neomake, but only on Vim?!
+" Even with let `g:neomake_open_list = 2` !
+let g:qf_auto_open_quickfix = 0
+let g:qf_auto_open_loclist = 0
 
 if !has('nvim')
   map y <Plug>(highlightedyank)
