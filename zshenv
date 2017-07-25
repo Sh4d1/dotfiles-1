@@ -17,6 +17,8 @@ else
   export EDITOR="vi"
 fi
 
+export PAGER=less
+
 export VISUAL=$EDITOR
 
 export TERMINAL="termite"

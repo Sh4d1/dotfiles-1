@@ -259,6 +259,11 @@ bindsym Ctrl+Shift+Left exec cmus-remote -r
 bindsym Ctrl+Shift+Right exec cmus-remote -n
 bindsym Ctrl+Shift+Down exec cmus-remote -u
 
+bindsym Mod4+Ctrl+Up exec playerctl stop
+bindsym Mod4+Ctrl+Left exec playerctl previous
+bindsym Mod4+Ctrl+Right exec playerctl next
+bindsym Mod4+Ctrl+Down exec playerctl play-pause
+
 bindsym Mod4+space exec rofi -show drun
 bindsym Mod4+Shift+space exec rofi -show window
 bindsym Mod4+Ctrl+Shift+space exec rofi -show run

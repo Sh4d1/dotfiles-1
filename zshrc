@@ -71,7 +71,7 @@ source /etc/profile.d/autojump.zsh
 ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
+ZSH_AUTOSUGGEST_STRATEGY='default'
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word )
 HISTFILE=~/.histfile
@@ -192,7 +192,7 @@ alias gb='git branch'
 alias gps='git push'
 alias gpl='git pull'
 alias gss='git status -sb'
-alias gcm='git commit'
+alias gcm='git commit -v'
 alias gco='git checkout'
 alias gf='git fetch'
 alias grv='git remote -v'
@@ -212,6 +212,8 @@ alias sshp='ssh -o PubkeyAuthentication=no'
 alias rsyncp="rsync -e 'ssh -o PubkeyAuthentication=no'"
 
 alias swipl-test='swipl -g true -t halt. -s'
+
+alias :q='exit'
 
 export GPG_TTY=$(tty)
 

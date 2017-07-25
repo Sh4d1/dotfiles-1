@@ -44,8 +44,9 @@ Plug 'tpope/vim-sleuth'                                                   " auto
 Plug 'google/vim-searchindex'                                             " display info about current search position
 Plug 'AndrewRadev/splitjoin.vim'                                          " switch between single and multi lines quickly
 Plug 'AndrewRadev/switch.vim'                                             " toggle things
-Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
+" Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
 Plug 'airblade/vim-rooter'                                                " auto change to project root
+Plug 'johngrib/vim-game-code-break'                                       " random
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -233,7 +234,8 @@ set statusline=%!functions#buildstatusline()
 " nnoremap <cr> @:
 
 " insert the current date (iso format)
-inoremap ,d <c-r>=strftime('%F')<cr>
+" Ultisnips makes this redundant: type `date<trigger>`
+" inoremap ,d <c-r>=strftime('%F')<cr>
 
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
@@ -424,7 +426,8 @@ augroup vimrc
   autocmd FocusLost,InsertLeave ?* silent! wa | Neomake
   " NOTE: can't use TextChanged event as below when using vim-surround - breaks repeating its actions with repeat.vim
   " https://github.com/tpope/vim-repeat/issues/59
-  autocmd TextChanged ?* silent! wa | Neomake
+  " also breaks repeat with sneak
+  " autocmd TextChanged ?* silent! wa | Neomake
   autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
@@ -470,7 +473,7 @@ let g:rainbow_conf = {
 let g:ctrlp_map = '' " managing it myself
 let g:ctrlp_cmd = 'CtrlP'
 " let g:ctrlp_show_hidden = 1
-let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
 " ag is fast enough that CtrlP doesn't need to cache
 let g:ctrlp_use_caching = 0
 
@@ -645,26 +648,26 @@ runtime macros/sandwich/keymap/surround.vim
 let g:user_emmet_leader_key = '<c-e>'
 
 " committia
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-  " If no commit message, start with insert mode
-  " if a:info.vcs ==# 'git' && getline(1) ==# ''
-  "     startinsert
-  " end
-
-  " Scroll the diff window from edit window
-  nmap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
-  nmap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
-  imap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
-  imap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
-
-endfunction
-
-function! g:committia_hooks.diff_open(info)
-  setlocal norelativenumber
-  setlocal number
-
-endfunction
+" let g:committia_hooks = {}
+" function! g:committia_hooks.edit_open(info)
+"   " If no commit message, start with insert mode
+"   " if a:info.vcs ==# 'git' && getline(1) ==# ''
+"   "     startinsert
+"   " end
+"
+"   " Scroll the diff window from edit window
+"   nmap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
+"   nmap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
+"   imap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
+"   imap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
+"
+" endfunction
+"
+" function! g:committia_hooks.diff_open(info)
+"   setlocal norelativenumber
+"   setlocal number
+"
+" endfunction
 
 
 " neoformat
