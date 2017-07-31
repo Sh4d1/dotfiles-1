@@ -13,8 +13,8 @@ call plug#begin('~/.vim/plugged')
 " Misc
 Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
-Plug 'tomtom/tcomment_vim'                                                " commenting
-" Plug 'tpope/vim-commentary'                                                " commenting
+" Plug 'tomtom/tcomment_vim'                                                " commenting
+Plug 'tpope/vim-commentary'                                                " commenting
 Plug 'tpope/vim-speeddating'                                              " make inc/dec numbers work with dates
 " Plug 'tpope/vim-surround'                                                 " edit surrounding things
 Plug 'machakann/vim-sandwich'                                             " different surround - more features
@@ -248,7 +248,7 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-nnoremap <esc> <esc>:nohlsearch \| w<cr>
+nnoremap <esc> <esc>:nohlsearch \| wa<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
@@ -420,6 +420,15 @@ nnoremap <silent> <leader>st :silent :Stabedit<cr>
 nnoremap <silent> <leader>sv :silent :Svsplit<cr>
 nnoremap <silent> <leader>ss :silent :Ssplit<cr>
 
+
+set viewoptions-=options
+
+augroup vimrc_views
+ autocmd!
+ autocmd BufWinLeave ?* mkview
+ autocmd BufWinEnter ?* silent! loadview
+augroup END
+
 augroup vimrc
   autocmd!
   autocmd BufHidden ?* silent! wa
@@ -441,7 +450,8 @@ augroup END
 
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
-let g:vimtex_view_general_viewer = 'rifle'
+" let g:vimtex_view_general_viewer = 'rifle'
+let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
 
 " rainbow
@@ -691,3 +701,9 @@ let g:rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'README.m
 
 nnoremap <leader>cr :Rooter<cr>:pwd<cr>
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
+
+" Ferret
+let g:FerretMap = 0
+" let g:FerretQFCommands = 0
+nmap <leader>a <Plug>(FerretAck)
+nmap <leader>r <Plug>(FerretAcks)
