@@ -26,6 +26,6 @@ password=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu -i -p "pass ($MODE
 if [ "$MODE" = "type" ]; then
   xdotool type -- "`gopass show "$password" | head -n 1`"
 else
-  gopass show "$password" | head -n 1 | xsel -ip
+  gopass show "$password" | head -n 1 | tr -d '\n' | xsel -ip
 fi
 

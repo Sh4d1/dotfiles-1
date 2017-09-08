@@ -30,6 +30,8 @@ export MAIL=~/Maildir/INBOX/
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
+export ANDROID_HOME="/home/samuel/Android/Sdk"
+
 # https://github.com/neovim/neovim/issues/2048#issuecomment-187227417
 export TERMINFO="$HOME/.terminfo"
 
@@ -53,4 +55,14 @@ export FZF_DEFAULT_COMMAND='rg --files --color=never --glob ""'
 
 # eval `keychain --noask --eval --agents ssh id_rsa`
 
+if hash rustc 2>/dev/null && hash rustup 2>/dev/null; then
+  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
+export GTK_IM_MODULE="xim"
+export XMODIFIERS="@im=none"
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never --glob ""'
+
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
+

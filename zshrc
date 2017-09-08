@@ -121,7 +121,9 @@ command -v gopass >/dev/null && source <(gopass completion zsh)
 
 # KEY BINDINGS
 
-bindkey -v
+# ok let's try normal readline mode - that way i can be comfortable even in
+# shells where i haven't set that up...
+bindkey -e
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo

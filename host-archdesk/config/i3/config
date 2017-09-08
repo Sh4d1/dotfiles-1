@@ -232,6 +232,7 @@ bindsym Mod4+Escape mode "$mode_system"
 
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [ title="^POPUP1$" ] floating enable
+for_window [class="Pinentry"] floating enable
 
 # toggl desktop window options
 for_window [class="Toggl Desktop"] floating enable
@@ -271,6 +272,8 @@ bindsym Mod4+Ctrl+space exec rofi -show combi
 
 bindsym Mod4+Ctrl+c exec pass-rofi.sh
 bindsym Mod4+Shift+c exec pass-rofi.sh type
+
+bindsym Mod4+Ctrl+s exec sleep 0.2 && xdotool type -- '¯\_(ツ)_/¯'
 
 # workspace 1 output HDMI1
 workspace 1 output DP-0

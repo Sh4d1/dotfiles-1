@@ -1,6 +1,9 @@
 $include /etc/inputrc
 
-set editing-mode vi
+
+# let's try emacs mode for a while
+# set editing-mode vi
+
 $if mode=vi
 set keymap vi-command
 # these are for vi-command mode

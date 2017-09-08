@@ -106,6 +106,17 @@ function! functions#ScratchEdit(cmd, options)
   exe 'normal! ggi# SCRATCH BUFFER'
 endfunction
 
+function! functions#toggle_lexima()
+  if get(b:, 'lexima_disabled', 0) == 0
+    let b:lexima_disabled = 1
+    echo 'lexima disabled'
+  else
+    let b:lexima_disabled = 0
+    echo 'lexima enabled'
+  endif
+endfunction
+
+
 command! -bar -nargs=* Sedit call functions#ScratchEdit('edit', <q-args>)
 command! -bar -nargs=* Ssplit call functions#ScratchEdit('split', <q-args>)
 command! -bar -nargs=* Svsplit call functions#ScratchEdit('vsplit', <q-args>)

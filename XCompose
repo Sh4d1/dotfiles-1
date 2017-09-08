@@ -1,0 +1,10 @@
+include "%L"
+
+<Multi_key> <d> <underscore>            : "ḏ"   U0331   # d with macron below
+<Multi_key> <n> <underscore>            : "ṉ"   U0331   # n with macron below
+<Multi_key> <t> <underscore>            : "ṯ"   U0331   # t with macron below
+<Multi_key> <l> <underscore>            : "ḻ"   U0331   # l with macron below
+<Multi_key> <D> <underscore>            : "Ḏ"   U0331   # D with macron below
+<Multi_key> <N> <underscore>            : "Ṉ"   U0331   # N with macron below
+<Multi_key> <T> <underscore>            : "Ṯ"   U0331   # T with macron below
+<Multi_key> <L> <underscore>            : "Ḻ"   U0331   # L with macron below

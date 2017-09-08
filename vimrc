@@ -47,6 +47,12 @@ Plug 'AndrewRadev/switch.vim'                                             " togg
 " Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
 Plug 'airblade/vim-rooter'                                                " auto change to project root
 Plug 'johngrib/vim-game-code-break'                                       " random
+Plug 'wincent/loupe'                                                     " highlighted search
+Plug 'tpope/vim-unimpaired'                                                     " pair mappings
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'kshenoy/vim-signature'                 " show marks in gutter
+Plug 'tpope/vim-rsi'                 " readlink bindings in insert mode
+
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -55,6 +61,8 @@ Plug 'saltstack/salt-vim'                                                 " salt
 Plug 'chrisbra/csv.vim'                                                   " csv sheets
 Plug 'rust-lang/rust.vim'                                                 " rust
 Plug 'fatih/vim-go'                                                       " golang
+Plug 'leafgarland/typescript-vim' " typescript syntax + settings
+Plug 'Quramy/tsuquyomi' " typescript omnicompletion and other good stuff
 Plug 'godlygeek/tabular'                                                  " tabular
 " Plug 'plasticboy/vim-markdown'                                            " markdown - don't really need it
 Plug 'metakirby5/codi.vim'
@@ -62,32 +70,39 @@ Plug 'metakirby5/codi.vim'
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
 Plug 'ElmCast/elm-vim'                                       " elm
 " Plug 'majutsushi/tagbar'                                                  " view tags easily
+" Plug 'jiangmiao/auto-pairs'                                                  " auto insert pairs of things
+Plug 'cohama/lexima.vim'                                        " endwise + auto-pairs
 
 " Git integrations
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git integration
 Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                   " interactive git stage/view/commit window
+Plug 'cohama/agit.vim'  " git log viewer
 
 " Completions
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                     " java completion
 Plug 'davidhalter/jedi-vim', {'for': 'python'}                            " python completions + refactoring
 Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}    " javascript completions
 Plug 'racer-rust/vim-racer'                                               " rust completion
+Plug 'ajh17/VimCompletesMe'                                               " tab completion
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Utilities
+" for now, I think I'll keep ctrlp for situations where can't install other
+" deps, and fzf for main use
 Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }         " another fuzzy finder
 Plug 'junegunn/fzf.vim'
 " Plug 'wincent/command-t', {
 "       \   'do': 'cd ruby/command-t && make clean && ruby extconf.rb && make'
 "       \ }
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                         " another fuzzy finder
 
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
 Plug 'benmills/vimux'                                                     " run things in tmux
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
 Plug 'neomake/neomake'                                                    " async make + gutter signs
 " Plug 'w0rp/ale'                                                           " another linter
-Plug 'ajh17/VimCompletesMe'                                               " tab completion
 Plug 'wincent/ferret'                                                     " search in files
 
 " Pretty
@@ -248,13 +263,12 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-nnoremap <esc> <esc>:nohlsearch \| wa<cr>
+" nnoremap <esc> <esc>:nohlsearch \| wa<cr>
+nnoremap <silent> <esc> <esc>:execute "normal \<Plug>(LoupeClearHighlight)" \|:wa<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
 set pastetoggle=<F3>
-
-nmap <silent> <leader>s :set spell!<cr>
 
 " quick fix spelling
 nnoremap <leader>1 1z=
@@ -283,6 +297,10 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
+" moving between buffers
+nnoremap <A-h> :bp<cr>
+nnoremap <A-l> :bn<cr>
+
 " https://www.reddit.com/r/vim/comments/6h0dy7/which_autoclosing_plugin_do_you_use/diujtbd/
 inoremap (; (<CR>);<C-c>O
 inoremap (, (<CR>),<C-c>O
@@ -302,12 +320,17 @@ nmap <silent> <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
 
 " ctrl-p
-map <silent> <c-space> :CtrlP<cr>
-map <silent> <leader>p :CtrlP<cr>
+map <silent> <c-p> :CtrlP<cr>
 map <silent> <leader>pp :CtrlP<cr>
 map <silent> <leader>pt :CtrlPTag<cr>
 map <silent> <leader>pm :CtrlPMRU<cr>
 map <silent> <leader>pb :CtrlPBuffer<cr>
+
+" fzf
+map <silent> <c-space> :Files<cr>
+map <silent> <leader>t :Tags<cr>
+map <silent> <leader>m :Marks<cr>
+let g:fzf_layout = { 'down': '~20%' }
 
 
 " Vimux
@@ -420,13 +443,15 @@ nnoremap <silent> <leader>st :silent :Stabedit<cr>
 nnoremap <silent> <leader>sv :silent :Svsplit<cr>
 nnoremap <silent> <leader>ss :silent :Ssplit<cr>
 
+imap <C-h> <BS>
+cmap <C-h> <BS>
 
 set viewoptions-=options
 
 augroup vimrc_views
  autocmd!
- autocmd BufWinLeave ?* mkview
- autocmd BufWinEnter ?* silent! loadview
+ autocmd BufWinLeave ?* if expand('%') != '' && expand('%') !~ '^fugitive' && &ft != 'gitcommit' | silent! mkview | endif
+ autocmd BufWinEnter ?* if expand('%') != '' && expand('%') !~ '^fugitive' && &ft != 'gitcommit' | silent! loadview | endif
 augroup END
 
 augroup vimrc
@@ -497,7 +522,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-space>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips']
 let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
-let g:UltiSnipsEnableSnipMate=0
+let g:UltiSnipsEnableSnipMate=1
 
 
 " tagbar
@@ -557,6 +582,12 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 1
+
+let g:rust_fold = 1
+
+
 
 " let g:gutentags_ctags_exclude = [
 "   \ "env/*",
@@ -598,7 +629,7 @@ autocmd User Startified setlocal cursorline
 let g:startify_enable_special         = 1
 let g:startify_files_number           = 8
 let g:startify_relative_path          = 1
-" let g:startify_change_to_dir          = 1
+let g:startify_change_to_dir          = 0
 let g:startify_update_oldfiles        = 1
 " let g:startify_session_autoload       = 1
 let g:startify_session_persistence    = 1
@@ -707,3 +738,18 @@ let g:FerretMap = 0
 " let g:FerretQFCommands = 0
 nmap <leader>a <Plug>(FerretAck)
 nmap <leader>r <Plug>(FerretAcks)
+
+" loupe
+let g:LoupeCenterResults=0
+
+" deoplete
+" let g:deoplete#enable_at_startup = 1
+
+" let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+" let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+
+" AutoPairs
+" let g:AutoPairsCenterLine = 0
+
+" lexima
+nnoremap <silent> cop :call functions#toggle_lexima()<cr>

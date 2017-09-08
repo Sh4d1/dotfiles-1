@@ -69,6 +69,8 @@ set sleep_time=0
 
 set wait_key = no
 
+# so that it processes quoted printables when piping
+set pipe_decode = yes
 
 # keybindings
 bind pager j next-line
