@@ -2,17 +2,26 @@
 # -*- coding: utf-8 -*-
 # Copyright © 2017 Samuel Walladge
 # fuzzy search for text snippets to copy to clipboard
-# depends on PyYaml, rofi, xsel, and a yaml file containing key:snippet pairs
+# depends on PyYaml, rofi, xsel, xdotool, and a yaml file containing key:snippet pairs
 
 import yaml
 import sys
 import subprocess
 
-if len(sys.argv) < 2:
-    print('Usage: clip-snippet.py YAML_DB_FILENAME')
+COPY = 'copy'
+TYPE = 'type'
+
+if len(sys.argv) < 3:
+    print('Usage: clip-snippet.py copy|type YAML_DB_FILENAME')
     sys.exit()
 
-db_filename = sys.argv[1] if len(sys.argv) > 1 else None
+mode = sys.argv[1]
+db_filename = sys.argv[2]
+
+if mode not in (COPY, TYPE):
+    print('Invalid mode! Must be either copy or type.')
+    sys.exit(-1)
+
 
 try:
     # { 'name': 'snippet' }
@@ -25,7 +34,8 @@ except Exception as e:
 
 
 keys = '\n'.join(db.keys())
-result = subprocess.run(['rofi', '-dmenu', '-no-custom', '-p', 'snippet:'], input=keys, stdout=subprocess.PIPE, encoding='utf-8')
+result = subprocess.run(['rofi', '-dmenu', '-no-custom', '-p', 'snippet:', '-matching', 'fuzzy'],
+        input=keys, stdout=subprocess.PIPE, encoding='utf-8')
 if result.returncode != 0:
     sys.exit(-1)
 
@@ -35,5 +45,8 @@ if snippet is None:
     sys.exit(-1)
 
 # copy to primary and clipboard selection
-subprocess.run(['xsel', '-ip'], encoding='utf-8', input=str(snippet))
-subprocess.run(['xsel', '-ib'], encoding='utf-8', input=str(snippet))
+if mode == COPY:
+    subprocess.run(['xsel', '-ip'], encoding='utf-8', input=str(snippet))
+    subprocess.run(['xsel', '-ib'], encoding='utf-8', input=str(snippet))
+elif mode == TYPE:
+    subprocess.run(['xdotool', 'type', '--', snippet], encoding='utf-8')
