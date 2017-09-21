@@ -298,19 +298,19 @@ cdr() {
 }
 
 
-function zle-keymap-select zle-line-init zle-line-finish {
-  case $KEYMAP in
-    vicmd)      print -n -- "\e[1 q";; # block cursor
-    viins|main) print -n -- "\e[5 q";; # line cursor
-  esac
+# function zle-keymap-select zle-line-init zle-line-finish {
+#   case $KEYMAP in
+#     vicmd)      print -n -- "\e[1 q";; # block cursor
+#     viins|main) print -n -- "\e[5 q";; # line cursor
+#   esac
 
-  zle reset-prompt
-  zle -R
-}
+#   zle reset-prompt
+#   zle -R
+# }
 
-zle -N zle-line-init
-zle -N zle-line-finish
-zle -N zle-keymap-select
+# zle -N zle-line-init
+# zle -N zle-line-finish
+# zle -N zle-keymap-select
 
 # no delay on pressing escape
 KEYTIMEOUT=1

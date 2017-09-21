@@ -72,6 +72,8 @@ set wait_key = no
 # so that it processes quoted printables when piping
 set pipe_decode = yes
 
+set text_flowed = yes
+
 # keybindings
 bind pager j next-line
 bind pager k previous-line
@@ -91,6 +93,9 @@ set query_command= "khard email -p %s"
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
+bind attach <enter> view-mailcap # Normally <view-attach>.
+bind attach <return> view-mailcap
+
 # save sender address to contacts
 macro index,pager S \
     "<pipe-message>khard add-email<return>" \
@@ -106,6 +111,7 @@ macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Arch
 
 macro index B ":set sendmail = \"/usr/bin/msmtp -a " "prompt for sending account (ie. default or backup)"
 
+macro pager l <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
 ####### NEOMUTT ONLY OPTIONS
 
@@ -117,9 +123,9 @@ set new_mail_command='[ "%n" != "0" ] && notify-send --icon="/home/samuel/.mutt.
 set sidebar_visible
 set sidebar_format = "%B%?F? [%!]? %?N?(%N unread)? %* %S"
 set mail_check_stats
-bind index,pager \CP sidebar-prev       # Ctrl-Shift-P - Previous Mailbox
-bind index,pager \CN sidebar-next       # Ctrl-Shift-N - Next Mailbox
-bind index,pager \CO sidebar-open       # Ctrl-Shift-O - Open Highlighted Mailbox
+bind index,pager \CP sidebar-prev       # Ctrl-P - Previous Mailbox
+bind index,pager \CN sidebar-next       # Ctrl-N - Next Mailbox
+bind index,pager \CO sidebar-open       # Ctrl-O - Open Highlighted Mailbox
 
 color sidebar_highlight white color10
 

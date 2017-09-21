@@ -13,7 +13,8 @@ from __future__ import (absolute_import, division, print_function)
 import os
 
 # You always need to import ranger.api.commands here to get the Command class:
-from ranger.api.commands import Command, CommandLoader
+from ranger.api.commands import Command
+from ranger.core.loader import CommandLoader
 
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a

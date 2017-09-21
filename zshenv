@@ -64,5 +64,7 @@ export XMODIFIERS="@im=none"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never --glob ""'
 
+export TERMCMD='termite'
+
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
 

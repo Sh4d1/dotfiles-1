@@ -1,2 +1,3 @@
 text/html; elinks -dump ; copiousoutput;
 image/*; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; rifle /tmp/mutt/$(basename %s) 
+text/plain; ~/.mutt/view_mail.sh %s; needsterminal

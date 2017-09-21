@@ -49,9 +49,12 @@ Plug 'airblade/vim-rooter'                                                " auto
 Plug 'johngrib/vim-game-code-break'                                       " random
 Plug 'wincent/loupe'                                                     " highlighted search
 Plug 'tpope/vim-unimpaired'                                                     " pair mappings
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'kshenoy/vim-signature'                 " show marks in gutter
 Plug 'tpope/vim-rsi'                 " readlink bindings in insert mode
+Plug 'Yggdroot/indentLine' " help for showing indent levels
+Plug 'AndrewRadev/linediff.vim'
+Plug 'tpope/vim-obsession'
 
 
 " Language help
@@ -70,8 +73,12 @@ Plug 'metakirby5/codi.vim'
 Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
 Plug 'ElmCast/elm-vim'                                       " elm
 " Plug 'majutsushi/tagbar'                                                  " view tags easily
+Plug 'tmux-plugins/vim-tmux'
+
+" this auto pairs things are kind of annoying mostly...
 " Plug 'jiangmiao/auto-pairs'                                                  " auto insert pairs of things
-Plug 'cohama/lexima.vim'                                        " endwise + auto-pairs
+" Plug 'cohama/lexima.vim'                                        " endwise + auto-pairs
+
 
 " Git integrations
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git integration
@@ -197,7 +204,10 @@ set autowriteall
 set cursorline
 set textwidth=79
 
-set foldlevel=100
+" set foldlevel=100
+set foldclose=all
+
+set conceallevel=2
 
 " no longer supported in neovim
 " set highlight+=N:DiffText
@@ -753,3 +763,9 @@ let g:LoupeCenterResults=0
 
 " lexima
 nnoremap <silent> cop :call functions#toggle_lexima()<cr>
+
+" indentLine
+let g:indentLine_setConceal = 0
+" let g:indentLine_setColors = 0
+let g:indentLine_char = '▏'
+

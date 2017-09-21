@@ -22,3 +22,5 @@ tags
 # python environments
 venv/*
 env/*
+
+Session.vim

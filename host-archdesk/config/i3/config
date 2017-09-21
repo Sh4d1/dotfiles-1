@@ -273,7 +273,8 @@ bindsym Mod4+Ctrl+space exec rofi -show combi
 bindsym Mod4+Ctrl+c exec pass-rofi.sh
 bindsym Mod4+Shift+c exec pass-rofi.sh type
 
-bindsym Mod4+Ctrl+s exec sleep 0.2 && xdotool type -- '¯\_(ツ)_/¯'
+# fuzzy search snippets to copy to clipboard
+bindsym Mod4+z exec clip-snippet.py ~/Documents/snippets.yml
 
 # workspace 1 output HDMI1
 workspace 1 output DP-0
