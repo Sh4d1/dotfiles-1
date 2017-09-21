@@ -55,6 +55,7 @@ Plug 'tpope/vim-rsi'                 " readlink bindings in insert mode
 Plug 'Yggdroot/indentLine' " help for showing indent levels
 Plug 'AndrewRadev/linediff.vim'
 Plug 'tpope/vim-obsession'
+Plug 'Valloric/MatchTagAlways'
 
 
 " Language help
@@ -85,6 +86,7 @@ Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'                        " git 
 Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                   " interactive git stage/view/commit window
 Plug 'cohama/agit.vim'  " git log viewer
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 " Completions
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                     " java completion
