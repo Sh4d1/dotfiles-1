@@ -18,7 +18,7 @@ password_files=( "$prefix"/**/*.gpg )
 password_files=( "${password_files[@]#"$prefix"/}" )
 password_files=( "${password_files[@]%.gpg}" )
 
-password=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu -i -p "pass ($MODE): " "$@")
+password=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu -no-custom  -i -p "pass ($MODE): " "$@")
 
 [[ -n $password ]] || exit
 
@@ -28,4 +28,3 @@ if [ "$MODE" = "type" ]; then
 else
   gopass show "$password" | head -n 1 | tr -d '\n' | xsel -ip
 fi
-

@@ -49,4 +49,4 @@ if mode == COPY:
     subprocess.run(['xsel', '-ip'], encoding='utf-8', input=str(snippet))
     subprocess.run(['xsel', '-ib'], encoding='utf-8', input=str(snippet))
 elif mode == TYPE:
-    subprocess.run(['xdotool', 'type', '--', snippet], encoding='utf-8')
+    subprocess.run(['xdotool', 'type', '--clearmodifiers', '--', snippet], encoding='utf-8')

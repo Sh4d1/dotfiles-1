@@ -66,7 +66,7 @@ Plug 'chrisbra/csv.vim'                                                   " csv 
 Plug 'rust-lang/rust.vim'                                                 " rust
 Plug 'fatih/vim-go'                                                       " golang
 Plug 'leafgarland/typescript-vim' " typescript syntax + settings
-Plug 'Quramy/tsuquyomi' " typescript omnicompletion and other good stuff
+" Plug 'Quramy/tsuquyomi' " typescript omnicompletion and other good stuff
 Plug 'godlygeek/tabular'                                                  " tabular
 " Plug 'plasticboy/vim-markdown'                                            " markdown - don't really need it
 Plug 'metakirby5/codi.vim'
@@ -771,3 +771,11 @@ let g:indentLine_setConceal = 0
 " let g:indentLine_setColors = 0
 let g:indentLine_char = '▏'
 
+
+" so we don't leak
+augroup vimrc_security
+  autocmd!
+  autocmd BufNewFile,BufRead /dev/shm/gopass* set noundofile nobackup nowritebackup noswapfile viminfo=""
+  autocmd BufNewFile,BufRead /dev/shm/pass* set noundofile nobackup nowritebackup noswapfile viminfo=""
+  autocmd BufNewFile,BufRead /tmp/* set noundofile nobackup nowritebackup noswapfile viminfo=""
+augroup END

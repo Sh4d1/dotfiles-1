@@ -3,7 +3,4 @@
 " useful for my wiki pages
 xmap <buffer> <cr> S]"tyi]f]a()<esc>:let @t = substitute(@t, ' ', '-', 'g')<cr>"tP
 
-nmap <buffer> ge :e <cfile>.md<cr>
-
-" useful for wikis
-set suffixesadd=.md,.markdown
+set suffixesadd=.md,.markdown,.txt

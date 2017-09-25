@@ -5,16 +5,11 @@ func! functions#striptrailingwhitespace()
     " save last search
     let _s=@/
 
-    " save position
-    normal mz
-    normal Hmy
-
     " strip spaces
     %s/\s\+$//e
 
     " restore position
-    normal 'yz<cr>
-    normal `z
+    normal ``
 
     " restore last search
     let @/=_s
