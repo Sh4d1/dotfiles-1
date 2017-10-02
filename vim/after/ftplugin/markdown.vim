@@ -4,3 +4,5 @@
 xmap <buffer> <cr> S]"tyi]f]a()<esc>:let @t = substitute(@t, ' ', '-', 'g')<cr>"tP
 
 set suffixesadd=.md,.markdown,.txt
+
+set conceallevel=0

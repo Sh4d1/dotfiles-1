@@ -779,3 +779,9 @@ augroup vimrc_security
   autocmd BufNewFile,BufRead /dev/shm/pass* set noundofile nobackup nowritebackup noswapfile viminfo=""
   autocmd BufNewFile,BufRead /tmp/* set noundofile nobackup nowritebackup noswapfile viminfo=""
 augroup END
+
+" Switch
+let g:switch_custom_definitions = 
+  \ [
+  \   switch#NormalizedCase(['left', 'right'])
+  \ ]
