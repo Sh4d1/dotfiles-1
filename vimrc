@@ -57,6 +57,10 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'tpope/vim-obsession'
 Plug 'Valloric/MatchTagAlways'
 
+Plug 'inkarkat/vim-ingo-library' " library - spellcheck depends on this
+Plug 'inkarkat/vim-SpellCheck'
+" Plug 'inkarkat/vim-mark'
+
 
 " Language help
 Plug 'lervag/vimtex'                                                      " latex
@@ -94,7 +98,14 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}                            " pyth
 Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}    " javascript completions
 Plug 'racer-rust/vim-racer'                                               " rust completion
 Plug 'ajh17/VimCompletesMe'                                               " tab completion
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" endif
+
+" Plug 'roxma/nvim-completion-manager'
+" if !has('nvim')
+"     Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 " Utilities
 " for now, I think I'll keep ctrlp for situations where can't install other
@@ -152,6 +163,9 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+" more accurate sentence text objects
+" set cpoptions+=J
+
 " better search behaviour
 set tabstop=2
 set ignorecase
@@ -172,7 +186,7 @@ set listchars=tab:»·,trail:•,nbsp:⦸,extends:»,precedes:« " for graphical
 set list
 
 set wildmenu
-set shortmess=filnxtToO " less 'press ... to continue' maybe
+set shortmess+=filnxtToOc " less 'press ... to continue' maybe
 set showmode
 set breakindent
 set showbreak=⤷
@@ -223,6 +237,10 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
       \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 set gdefault " global substitute by default
+
+
+set thesaurus+=~/.vim/mthesaur.txt
+
 
 " set autochdir
 
@@ -283,8 +301,8 @@ nnoremap <F3> :set invpaste paste?<cr>
 set pastetoggle=<F3>
 
 " quick fix spelling
-nnoremap <leader>1 1z=
-nnoremap <leader>2 2z=
+nmap <leader>1 1z=
+nmap <leader>2 2z=
 
 " more consistent mapping
 noremap Y y$
@@ -614,7 +632,6 @@ let g:gutentags_file_list_command = {
       \ }
 
 " gollum wikis
-nnoremap <leader>ww :e ~/projects/private-wiki/Home.md<cr>
 nnoremap <leader>wp :e ~/projects/public-wiki/Home.md<cr>
 
 " markdown
@@ -654,7 +671,6 @@ let g:startify_skiplist = [
 let g:startify_bookmarks = [
       \ { 'v': '~/.vimrc' },
       \ { 'z': '~/.zshrc' },
-      \ { 'w': '~/projects/private-wiki/Home.md' },
       \ { 'p': '~/projects/public-wiki/Home.md' },
       \ ]
 
@@ -755,10 +771,27 @@ nmap <leader>r <Plug>(FerretAcks)
 let g:LoupeCenterResults=0
 
 " deoplete
-" let g:deoplete#enable_at_startup = 1
 
-" let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-" let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+function! s:check_back_space() abort
+  let l:col = col('.') - 1
+  return !l:col || getline('.')[l:col - 1]  =~ '\s'
+endfunction
+
+" if has('nvim')
+"   let g:deoplete#enable_at_startup = 1
+
+"   " let g:deoplete#disable_auto_complete = 1
+
+"   inoremap <silent><expr> <TAB>
+"     \ pumvisible() ? "\<C-n>" :
+"     \ <SID>check_back_space() ? "\<TAB>" :
+"     \ deoplete#mappings#manual_complete()
+
+"    call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+
+"   let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+"   let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+" endif
 
 " AutoPairs
 " let g:AutoPairsCenterLine = 0

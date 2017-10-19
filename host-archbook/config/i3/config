@@ -386,8 +386,8 @@ exec_always --no-startup-id kdeconnect-cli --refresh
 ## dvorak, composekey, swap caps and ctrl
 exec_always --no-startup-id setxkbmap us -variant dvorak -option caps:ctrl_modifier -option compose:ralt
 ## speed up keyrepeat
-# exec_always --no-startup-id xset r rate 175 80
-exec_always --no-startup-id xset r off
+exec_always --no-startup-id xset r rate 175 20
+# exec_always --no-startup-id xset r off
 ## double up on capslock key (now acts as either esc or ctrl)
 exec --no-startup-id xcape -e 'Caps_Lock=Escape' -t 300
 ## turn on numberlock

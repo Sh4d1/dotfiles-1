@@ -45,6 +45,11 @@ zplug "zsh-users/zsh-autosuggestions"
 # completions
 zplug "zsh-users/zsh-completions"
 
+# pure prompt
+zplug "mafredri/zsh-async", from:github
+zplug "swalladge/pure", use:pure.zsh, from:github, as:theme
+# zplug "~/projects/pure/", from:local, as:theme, use:pure.zsh
+
 # zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Install packages that have not been installed yet
@@ -62,7 +67,7 @@ zplug load
 
 
 # autojump plugin (installed via pacman)
-source /etc/profile.d/autojump.zsh
+source /etc/profile.d/autojump.zsh 2>/dev/null
 
 
 
@@ -163,6 +168,9 @@ bindkey '^[^M' autosuggest-execute
 bindkey -M vicmd v edit-command-line
 bindkey -M viins '^E' edit-command-line
 
+# for emacs mode
+bindkey -M emacs "^X^E" edit-command-line
+
 # insert mode bindings - forward-word also partially accepts autosuggest
 bindkey -M viins '^F' forward-word
 bindkey -M viins '^B' backward-word
@@ -223,55 +231,57 @@ export GPG_TTY=$(tty)
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
 
 
-setopt promptsubst
+# my original custom prompt styled after my vim/tmux status bar - uncomment and
+# remove pure prompt from zplug plugins to enable
+#
+# setopt promptsubst
+# precmd() {
+#   LASTSTATUS=$?
+#   PROMPT=""
+#   RPROMPT=""
 
-precmd() {
-  LASTSTATUS=$?
-  PROMPT=""
-  RPROMPT=""
+#   # last status
+#   if [ $LASTSTATUS -ne 0 ]; then
+#     RPROMPT+="%F{7}%K{9} $LASTSTATUS %k%f"
+#   fi
 
-  # last status
-  if [ $LASTSTATUS -ne 0 ]; then
-    RPROMPT+="%F{7}%K{9} $LASTSTATUS %k%f"
-  fi
+#   # git status
+#   BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+#   if [ $? = 0 ]; then
+#     RPROMPT+="%K{6}%F{0} $BRANCH "
+#     # can be unbelievable slow on large repos?
+#     DIRTY=$(git status --porcelain 2>/dev/null | wc -l)
+#     if [ $DIRTY -ne 0 ]; then
+#       RPROMPT+="[$DIRTY] "
+#     fi
+#     RPROMPT+="%f%k"
+#   fi
 
-  # git status
-  BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  if [ $? = 0 ]; then
-    RPROMPT+="%K{6}%F{0} $BRANCH "
-    # unbelievable slow on large repos
-    # DIRTY=$(git status --porcelain 2>/dev/null | wc -l)
-    # if [ $DIRTY -ne 0 ]; then
-    #   RPROMPT+="[$DIRTY] "
-    # fi
-    RPROMPT+="%f%k"
-  fi
+#   # virtual environment
+#   VENV=$(echo $VIRTUAL_ENV | awk -F '/' '{print $NF}')
+#   if [ -n "$VENV" ]; then
+#     RPROMPT+="%K{3}%F{0} ($VENV) %f%k"
+#   fi
 
-  # virtual environment
-  VENV=$(echo $VIRTUAL_ENV | awk -F '/' '{print $NF}')
-  if [ -n "$VENV" ]; then
-    RPROMPT+="%K{3}%F{0} ($VENV) %f%k"
-  fi
+#   # any background jobs
+#   JOBS=$(jobs | wc -l)
+#   if [ $JOBS -ne 0 ]; then
+#     PROMPT+="%K{2}%F{8} $JOBS %f%k"
+#   fi
 
-  # any background jobs
-  JOBS=$(jobs | wc -l)
-  if [ $JOBS -ne 0 ]; then
-    PROMPT+="%K{2}%F{8} $JOBS %f%k"
-  fi
+#   # username/host
+#   PROMPT+="%K{7}%F{8} %n"
+#   if [ "$REMOTE_SESSION" = "true" ]; then
+#     PROMPT+="@%m"
+#   fi
+#   PROMPT+=" %f%k"
 
-  # username/host
-  PROMPT+="%K{7}%F{8} %n"
-  if [ "$REMOTE_SESSION" = "true" ]; then
-    PROMPT+="@%m"
-  fi
-  PROMPT+=" %f%k"
+#   # location
+#   PROMPT+="%K{10}%F{0} %20<…<%2~%<< %f%k"
 
-  # location
-  PROMPT+="%K{10}%F{0} %20<…<%2~%<< %f%k"
-
-  # final space
-  PROMPT+=" "
-}
+#   # final space
+#   PROMPT+=" "
+# }
 
 
 # cd to the root of current project if currently in a project

@@ -52,8 +52,10 @@ RCRC=~/dotfiles/rcrc rcup
 - khal
 - khard
 - ls dircolors
+- moc (nice looking player, but I still use cmus)
 - mpd (don't use - only basic config)
 - msmtp
+- nitrogen
 - mutt/neomutt
 - notmuch
 - octave
@@ -63,6 +65,7 @@ RCRC=~/dotfiles/rcrc rcup
 - readline/login/init stuff
 - rifle (part of ranger)
 - rofi
+- streamlink
 - termite
 - tmux
 - todoman
