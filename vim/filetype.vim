@@ -8,4 +8,6 @@ augroup filetypedetect
   au! BufNewFile,BufRead *.vala,*.vapi              setf vala
   au! BufNewFile,BufRead *.raml                     setf yaml
   au! BufNewFile,BufRead *.rs                       setf rust
+  au! BufNewFile,BufRead /tmp/mutt*                 setf mail
+  au! BufNewFile,BufRead /tmp/neomutt*              setf mail
 augroup END

@@ -13,11 +13,15 @@ call plug#begin('~/.vim/plugged')
 " Misc
 Plug 'rbgrouleff/bclose.vim'                                              " close buffer without closing vim (needed by ranger vim)
 Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
+
 " Plug 'tomtom/tcomment_vim'                                                " commenting
 Plug 'tpope/vim-commentary'                                                " commenting
+
 Plug 'tpope/vim-speeddating'                                              " make inc/dec numbers work with dates
+
 " Plug 'tpope/vim-surround'                                                 " edit surrounding things
 Plug 'machakann/vim-sandwich'                                             " different surround - more features
+
 Plug 'tommcdo/vim-lion'                                                   " align things
 Plug 'AndrewRadev/sideways.vim'                                           " move function args sideways
 " Plug 'rstacruz/sparkup', {'rtp': 'vim'}                                   " quick insert html tags
@@ -27,7 +31,6 @@ Plug 'jamessan/vim-gnupg'                                                 " seam
 Plug 'tpope/vim-eunuch'                                                   " shortcuts to shell commands (esp rename files)
 Plug 'justinmk/vim-dirvish'                                               " another alternative to netwr
 Plug 'wellle/targets.vim'                                                 " extra text objects
-" Plug 'francoiscabrol/ranger.vim'                                          " ranger file-picker in vim
 Plug 'romainl/vim-qf'                                                     " quickfix window improvements
 Plug 'tpope/vim-characterize'                                             " overrides ga
 Plug 'machakann/vim-highlightedyank'                                      " highlights currently yanked region
@@ -44,14 +47,14 @@ Plug 'tpope/vim-sleuth'                                                   " auto
 Plug 'google/vim-searchindex'                                             " display info about current search position
 Plug 'AndrewRadev/splitjoin.vim'                                          " switch between single and multi lines quickly
 Plug 'AndrewRadev/switch.vim'                                             " toggle things
-" Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
+Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
 Plug 'airblade/vim-rooter'                                                " auto change to project root
 Plug 'johngrib/vim-game-code-break'                                       " random
 Plug 'wincent/loupe'                                                     " highlighted search
 Plug 'tpope/vim-unimpaired'                                                     " pair mappings
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'kshenoy/vim-signature'                 " show marks in gutter
-Plug 'tpope/vim-rsi'                 " readlink bindings in insert mode
+" Plug 'tpope/vim-rsi'                 " readline bindings in insert mode
 Plug 'Yggdroot/indentLine' " help for showing indent levels
 Plug 'AndrewRadev/linediff.vim'
 Plug 'tpope/vim-obsession'
@@ -121,7 +124,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
 Plug 'benmills/vimux'                                                     " run things in tmux
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                       " snippets
-Plug 'neomake/neomake'                                                    " async make + gutter signs
+" Plug 'neomake/neomake'                                                    " async make + gutter signs
 " Plug 'w0rp/ale'                                                           " another linter
 Plug 'wincent/ferret'                                                     " search in files
 
@@ -249,9 +252,10 @@ set thesaurus+=~/.vim/mthesaur.txt
 " set grepprg=ag\ --vimgrep
 " set grepformat=%f:%l:%c%m
 
-if has('nvim')
-  set inccommand=split
-endif
+" seems to crash neovim with the other settings i have
+" if has('nvim')
+"   set inccommand=split
+" endif
 
 " VCS conflict markers should be highlighted
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -437,20 +441,20 @@ nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 
 " Neomake (unused - see ALE below)
-let g:neomake_open_list = 0
-let g:airline#extensions#neomake#enabled = 0
-let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
-let g:neomake_haskell_enabled_makers = [] " disable haskell
-let g:neomake_elm_enabled_makers = [] " also disable elm
+" let g:neomake_open_list = 0
+" let g:airline#extensions#neomake#enabled = 0
+" let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
+" let g:neomake_haskell_enabled_makers = [] " disable haskell
+" let g:neomake_elm_enabled_makers = [] " also disable elm
 
-" allow using jshint for json
-let g:neomake_json_jshint_maker = {
-      \ 'args': ['--verbose'],
-      \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-      \ }
-let g:neomake_json_enabled_makers = ['jshint']
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_vim_enabled_makers = ['vint']
+" " allow using jshint for json
+" let g:neomake_json_jshint_maker = {
+"       \ 'args': ['--verbose'],
+"       \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+"       \ }
+" let g:neomake_json_enabled_makers = ['jshint']
+" let g:neomake_python_enabled_makers = ['pylint']
+" let g:neomake_vim_enabled_makers = ['vint']
 
 " ALE (crashing currently, so neomake is actually in use)
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
@@ -487,12 +491,12 @@ augroup END
 augroup vimrc
   autocmd!
   autocmd BufHidden ?* silent! wa
-  autocmd FocusLost,InsertLeave ?* silent! wa | Neomake
+  autocmd FocusLost,InsertLeave ?* silent! wa
   " NOTE: can't use TextChanged event as below when using vim-surround - breaks repeating its actions with repeat.vim
   " https://github.com/tpope/vim-repeat/issues/59
   " also breaks repeat with sneak
   " autocmd TextChanged ?* silent! wa | Neomake
-  autocmd BufWritePost ?* Neomake
+  " autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
   " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')

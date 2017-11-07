@@ -5,7 +5,7 @@
 # # get encrypted password
 # source "gpg2 -dq ~/.mutt-passwords.gpg |"
 # set my_pass=$my_pw_main
-# set smtp_url=smtp://$my_user:$my_pass@mail.swalladge.id.au:25
+# set smtp_url=smtp://$my_user:$my_pass@mail.swalladge.id.au:587
 # set ssl_force_tls = yes
 # set ssl_starttls = yes
 

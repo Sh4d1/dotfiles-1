@@ -33,7 +33,7 @@ func! functions#buildstatusline()
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
-  let l:line .= '%3*%( %{neomake#statusline#LoclistStatus()} %)'
+  " let l:line .= '%3*%( %{neomake#statusline#LoclistStatus()} %)'
   " let l:ale = ALEGetStatusLine()
   " if l:ale =~# '[⨉]'
   "   let l:line .= '%7*' " red

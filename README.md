@@ -74,6 +74,7 @@ RCRC=~/dotfiles/rcrc rcup
 - vdirsyncer
 - vim/neovim
 - X11 (xinitrc, Xresources)
+- yakuake
 - zsh
 
 ## LICENSE

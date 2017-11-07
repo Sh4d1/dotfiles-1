@@ -64,7 +64,7 @@ status.register("mail",
             directory=os.path.join(os.path.expanduser('~'), 'Maildir/INBOX/'))],
         format="MAIL: {unread}",format_plural="MAIL: {unread}")
 
-status.register("cmus",
+status.register("now_playing",
                 format="{status} {title} - {artist}",
                 color="#7070ff")
 
