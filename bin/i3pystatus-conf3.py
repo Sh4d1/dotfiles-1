@@ -21,7 +21,7 @@ class local_temperature(IntervalModule):
 
     format = "{temp:0.1f}°C | 24h min: {min:0.1f}°C, max: {max:0.1f}°C"
     err_format = "error"
-    color = "#0088EE"
+    color = "#b58900"
     alert_color = "#FF0000"
 
     settings = (
@@ -93,7 +93,7 @@ status.register("cpu_usage",
 # Shows your CPU temperature, if you have a Intel CPU
 status.register("temp",
                 alert_temp=70,
-                file="/sys/class/hwmon/hwmon1/temp1_input",
+                file="/sys/class/hwmon/hwmon0/temp1_input",
                 format="{temp:.0f}°C",)
 status.register("temp",
                 alert_temp=70,
@@ -133,7 +133,7 @@ status.register("mail",
 #                 color="#7070ff")
 #
 status.register(local_temperature,
-        format='{temp:0.1f}°C | 24h ▼ {min:0.1f}°C ▲ {max:0.1f}°C',
+        format='☀ {temp:0.1f}°C',
                 interval=300)
 
 status.run()
