@@ -34,14 +34,14 @@ func! functions#buildstatusline()
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
   " let l:line .= '%3*%( %{neomake#statusline#LoclistStatus()} %)'
-  " let l:ale = ALEGetStatusLine()
-  " if l:ale =~# '[⨉]'
-  "   let l:line .= '%7*' " red
-  " elseif l:ale =~# '[⚠]'
-  "   let l:line .= '%3*' " orange
-  " endif
-  "
-  " let l:line .= '%( %{ALEGetStatusLine()} %)'
+  let l:ale = ALEGetStatusLine()
+  if l:ale =~# '[⨉]'
+    let l:line .= '%7*' " red
+  elseif l:ale =~# '[•]'
+    let l:line .= '%3*' " orange
+  endif
+
+   let l:line .= '%( %{ALEGetStatusLine()} %)'
 
   " git status
   let l:line .= '%6*%( %{fugitive#statusline()} %)'
@@ -79,17 +79,16 @@ func! functions#sethighlight()
   hi link EndOfBuffer ColorColumn
 
   hi Comment cterm=italic
-endfunc
 
-" like 'set autochdir', but with rules
-func! functions#autochdir_hacked()
-  if &ft =~ 'dirvish' " or other filetypes?
-    return
+  " make sure the ale sign column highlighting keeps the same background
+  let l:prefix = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui' : 'cterm')
+  let l:sign_col_color = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', l:prefix)
+  if (l:sign_col_color ==# "")
+    let l:sign_col_color = 0
   endif
-  if expand("%:p:h") =~ '^/tmp' " don't chdir to /tmp
-    return
-  endif
-  silent! lcd %:p:h
+  execute 'highlight ALEWarningSign ctermfg=3 ' . l:prefix . 'bg=' . l:sign_col_color
+  execute 'highlight ALEErrorSign ctermfg=1 ' . l:prefix . 'bg=' . l:sign_col_color
+
 endfunc
 
 " http://dhruvasagar.com/2014/03/11/creating-custom-scratch-buffers-in-vim

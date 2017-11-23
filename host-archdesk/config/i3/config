@@ -407,6 +407,9 @@ exec --no-startup-id qtpass
 # redshift - note: put lat/long in salt pillar data
 exec --no-startup-id redshift-gtk -l $(cat ~/.coords)
 
+# indicator icon for kdeconnect
+exec --no-startup-id kdeconnect-indicator
+
 # wallpaper
 # exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 exec_always --no-startup-id nitrogen --restore

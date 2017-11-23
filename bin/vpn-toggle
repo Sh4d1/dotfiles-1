@@ -1,0 +1,33 @@
+#!/bin/bash
+# Copyright © 2017 Samuel Walladge
+# toggles openvpn vpns with systemd
+
+VPN="$1"
+
+if [ -z "$VPN" ]; then
+  echo 'Usage: vpn-toggle <vpn-name>'
+  exit 1
+fi
+
+systemctl show "openvpn-client@${VPN}.service" 2>/dev/null | grep 'ActiveState=active' 2>/dev/null >/dev/null
+
+
+if [ $? = 0 ]; then
+  sub='stop'
+  echo 'vpn active'
+else
+  echo 'vpn inactive'
+  sub='start'
+fi
+
+printf "do you wish to $sub it? [Y/n]"
+read R
+
+if [ "$R" = "" -o "$R" = "y" -o "$R" = "Y" ]; then
+  echo 'Accepted, please enter sudo password if requested.'
+else
+  echo 'Aborting.'
+  exit 1
+fi
+
+sudo systemctl $sub "openvpn-client@${VPN}.service"

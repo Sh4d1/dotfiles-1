@@ -1,4 +1,6 @@
 
+export ANDROID_HOME="/home/samuel/Android/Sdk"
+
 if ! [[ -o login ]]; then
   source "$HOME/.pathrc"
 fi
@@ -22,7 +24,7 @@ export PAGER=less
 export VISUAL=$EDITOR
 
 export TERMINAL="termite"
-export BROWSER="qutebrowser"
+export BROWSER="firefox"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export MAILDIR=~/Maildir/INBOX/
@@ -30,7 +32,6 @@ export MAIL=~/Maildir/INBOX/
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
-export ANDROID_HOME="/home/samuel/Android/Sdk"
 
 # https://github.com/neovim/neovim/issues/2048#issuecomment-187227417
 export TERMINFO="$HOME/.terminfo"

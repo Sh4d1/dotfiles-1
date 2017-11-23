@@ -126,6 +126,18 @@ status.register(public_ip,
                 err_format='no ip: {ip}',
                 interval=2400,)
 
+status.register('openvpn',
+                format='vpn: {vpn_name} {status}',
+                color_up='#93a1a1',
+                color_down='#93a1a1',
+                status_up='<span color="#859900">▲</span>',
+                status_down='<span color="#dc322f">▼</span>',
+                use_new_service_name=True,
+                vpn_name='pia-mel',
+                on_rightclick='vpn_down_command',
+                hints={'markup': 'pango'},
+                interval=10,)
+
 status.register(local_temperature,
                 interval=300)
 

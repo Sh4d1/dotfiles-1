@@ -9,7 +9,7 @@ PS1='[\u@\h \W]\$ '
 
 export EDITOR="vim"
 export TERMINAL="termite"
-export BROWSER="qutebrowser"
+export BROWSER="firefox"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export TERM=screen-256color

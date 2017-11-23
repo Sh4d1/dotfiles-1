@@ -1,0 +1,24 @@
+#!/bin/bash
+# Copyright © 2017 Samuel Walladge
+
+echo "List of available vpns."
+echo "Start with 'sudo systemctl start openvpn-client@<vpn-name>.service'."
+echo "---"
+echo ""
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+for vpn in `find /etc/openvpn/client/ -type f -name '*.conf' | awk -F'.' '{print $1}' | awk -F'/' '{print $(NF)}'`; do
+  systemctl status "openvpn-client@${vpn}.service" 2>/dev/null >/dev/null
+  if [ $? = 0 ]; then
+    colour=$GREEN
+    stat="▲"
+  else
+    colour=$RED
+    stat="▼"
+  fi
+
+  printf "${colour}${stat}${NC} ${vpn}\n"
+done
