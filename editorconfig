@@ -1,0 +1,4 @@
+# editorconfig global defaults
+
+[*]
+max_line_length = 80

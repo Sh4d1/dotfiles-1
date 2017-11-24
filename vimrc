@@ -11,127 +11,104 @@
 call plug#begin('~/.vim/plugged')
 
 " enhancements that don't need (much) configuring
-Plug 'ap/vim-css-color'                                                   " highlight colors in css
-Plug 'ludovicchabant/vim-gutentags'                                       " auto-generate tags file
-Plug 'luochen1990/rainbow'                                                " easier to see nested parens
-Plug 'machakann/vim-highlightedyank'                                      " highlights currently yanked region
-Plug 'romainl/Apprentice'                                                 " alternate 256 color colorscheme
-Plug 'romainl/flattened'                                                  " (solarized)
-Plug 'tpope/vim-characterize'                                             " overrides ga
-Plug 'tpope/vim-repeat'                                                   " better repeating for supported plugins
-Plug 'tpope/vim-sleuth'                                                   " auto-set indent options
-Plug 'tpope/vim-speeddating'                                              " make inc/dec numbers work with dates
-Plug 'Yggdroot/indentLine'                                                " help for showing indent levels
-Plug 'kshenoy/vim-signature'                 " show marks in gutter
-Plug 'Valloric/MatchTagAlways' " highlight enclosing xml tags
-
-Plug 'editorconfig/editorconfig-vim'                                      " editorconfig support
-
-Plug 'google/vim-searchindex'                                             " display info about current search position
-
-Plug 'tpope/vim-obsession'
-
-" more commands
-Plug 'tpope/vim-commentary'                                               " commenting
-Plug 'machakann/vim-sandwich'                                             " like tpope's surround, but more configurable
-Plug 'tommcdo/vim-lion'                                                   " align things
-Plug 'AndrewRadev/sideways.vim'                                           " move function args sideways
-Plug 'wellle/visual-split.vim'                                            " easier splits
-
-Plug 'tpope/vim-eunuch'                                                   " shortcuts to shell commands (esp rename files)
-
-Plug 'mattn/emmet-vim'                                                    " emmet for html (like sparkup)
-Plug 'justinmk/vim-sneak'                                                 " alternative to f/t
-
-" specific filetype help
-Plug 'jamessan/vim-gnupg'                                                 " seamless editing pgp encrypted files
-
-Plug 'justinmk/vim-dirvish'                                               " another alternative to netwr
-
-Plug 'wellle/targets.vim'                                                 " extra text objects
-
-Plug 'romainl/vim-qf'                                                     " quickfix window improvements
-Plug 'terryma/vim-expand-region'                                          " expand selected region of text
-Plug 'wellle/tmux-complete.vim'
+"   and don't provide commands/mappings
+Plug 'ap/vim-css-color'                                                 " highlight colors in css
+Plug 'ludovicchabant/vim-gutentags'                                     " auto-generate tags file
+Plug 'luochen1990/rainbow'                                              " easier to see nested parens
+Plug 'machakann/vim-highlightedyank'                                    " highlights currently yanked region
+Plug 'tpope/vim-characterize'                                           " overrides ga
+Plug 'tpope/vim-repeat'                                                 " better repeating for supported plugins
+Plug 'tpope/vim-sleuth'                                                 " auto-set indent options
+Plug 'tpope/vim-speeddating'                                            " make inc/dec numbers work with dates
+Plug 'Yggdroot/indentLine'                                              " help for showing indent levels
+Plug 'kshenoy/vim-signature'                                            " show marks in gutter
+Plug 'Valloric/MatchTagAlways'                                          " highlight enclosing xml tags
 Plug 'mhinz/vim-startify'
-Plug 'tommcdo/vim-exchange'                                               " swap two things
-Plug 'tpope/vim-abolish'                                                  " random useful text things
-Plug 'AndrewRadev/splitjoin.vim'                                          " switch between single and multi lines quickly
-Plug 'AndrewRadev/switch.vim'                                             " toggle things
-" Plug 'wincent/loupe'                                                     " highlighted search
-Plug 'tpope/vim-unimpaired'                                                     " pair mappings
+Plug 'editorconfig/editorconfig-vim'                                    " editorconfig support
+Plug 'google/vim-searchindex'                                           " display info about current search position
 
-" Plug 'tpope/vim-rsi'                 " readline bindings in insert mode
+" colorschemes
+Plug 'romainl/flattened'                                                " (solarized)
+Plug 'romainl/Apprentice'                                               " alternate 256 color colorscheme
+
+
+" general enhancements providing various functions
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-commentary'                                             " commenting
+Plug 'machakann/vim-sandwich'                                           " like tpope's surround, but more configurable
+Plug 'tommcdo/vim-lion'                                                 " align things
+Plug 'AndrewRadev/sideways.vim'                                         " move function args sideways
+Plug 'mattn/emmet-vim'                                                  " emmet for html (like sparkup)
+Plug 'justinmk/vim-sneak'                                               " alternative to f/t
+Plug 'wellle/targets.vim'                                               " extra text objects
+Plug 'tpope/vim-unimpaired'                                             " pair mappings
+Plug 'terryma/vim-expand-region'                                        " expand selected region of text
+Plug 'wellle/visual-split.vim'                                          " easier splits
+Plug 'romainl/vim-qf'                                                   " quickfix window improvements
+Plug 'tpope/vim-eunuch'                                                 " shortcuts to shell commands (esp rename files)
+Plug 'tpope/vim-abolish'                                                " random useful text things
+Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck'       " spellcheck/proofreading enhancements
+Plug 'tommcdo/vim-exchange'                                             " swap two things
 Plug 'AndrewRadev/linediff.vim'
-
-Plug 'inkarkat/vim-ingo-library' " library - spellcheck depends on this
-Plug 'inkarkat/vim-SpellCheck'
+Plug 'AndrewRadev/splitjoin.vim'                                        " switch between single and multi lines quickly
+Plug 'AndrewRadev/switch.vim'                                           " toggle things
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                        " show the undotree
+Plug 'benmills/vimux'                                                   " run things in tmux
+Plug 'justinmk/vim-dirvish'                                             " another alternative to netwr
+Plug 'wincent/ferret'                                                   " search in files (plus qf enhancements)
 
 
 " Language syntax/help
-Plug 'lervag/vimtex'                                                      " latex
-Plug 'wannesm/wmgraphviz.vim'                                             " graphviz dot
-Plug 'saltstack/salt-vim'                                                 " saltstack syntax
-Plug 'chrisbra/csv.vim'                                                   " csv sheets
-Plug 'leafgarland/typescript-vim'                                         " typescript syntax + settings
-" Plug 'Quramy/tsuquyomi' " typescript omnicompletion and other good stuff
-Plug 'godlygeek/tabular'                                                  " tabular
-Plug 'metakirby5/codi.vim'
-Plug 'tmux-plugins/vim-tmux'                                              " tmux syntax
-Plug 'fatih/vim-go'                                                       " golang
+Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files
+Plug 'lervag/vimtex'                                                    " latex
+Plug 'wannesm/wmgraphviz.vim'                                           " graphviz dot
+Plug 'saltstack/salt-vim'                                               " saltstack syntax
+Plug 'chrisbra/csv.vim'                                                 " csv sheets
+Plug 'leafgarland/typescript-vim'                                       " typescript syntax + settings
+Plug 'godlygeek/tabular'                                                " tabular
+Plug 'tmux-plugins/vim-tmux'                                            " tmux syntax
+Plug 'fatih/vim-go'                                                     " golang
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx' " jsx syntax/indenting support
-Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}    " javascript completions
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                     " java completion
-Plug 'davidhalter/jedi-vim', {'for': 'python'}                            " python completions + refactoring
-Plug 'rust-lang/rust.vim'                                                 " rust
-Plug 'racer-rust/vim-racer'                                               " rust completion
-Plug 'ElmCast/elm-vim'                                       " elm
-
+Plug 'mxw/vim-jsx'                                                      " jsx syntax/indenting support
+Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}  " javascript completions
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                   " java completion
+Plug 'davidhalter/jedi-vim', {'for': 'python'}                          " python completions + refactoring
+Plug 'rust-lang/rust.vim'                                               " rust
+Plug 'racer-rust/vim-racer'                                             " rust completion
+Plug 'ElmCast/elm-vim'                                                  " elm
 
 
 " Git integrations
-Plug 'tpope/vim-fugitive'                                                 " git commands from in vim
-Plug 'airblade/vim-gitgutter'                                             " view hunks/changes in the gutter
-Plug 'jreybert/vimagit'                                                   " interactive git stage/view/commit window
-Plug 'junegunn/gv.vim'                                                    " git log viewer
-Plug 'rhysd/committia.vim'                                                " nicer editing git commit messages
+Plug 'tpope/vim-fugitive'                                               " git commands from in vim
+Plug 'airblade/vim-gitgutter'                                           " view hunks/changes in the gutter
+Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
+Plug 'junegunn/gv.vim'                                                  " git log viewer
+Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
 
-" Completions
-Plug 'ajh17/VimCompletesMe'                                               " tab completion
+" Completion
+Plug 'ajh17/VimCompletesMe'                                             " tab completion
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " endif
 
-" Plug 'roxma/nvim-completion-manager'
-" if !has('nvim')
-"     Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-
+" fuzzy finder
 " for now, I think I'll keep ctrlp for situations where can't install other
 " deps, and fzf for main use
-Plug 'ctrlpvim/ctrlp.vim'                                                 " fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }         " another fuzzy finder
+Plug 'ctrlpvim/ctrlp.vim'                                               " fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }       " another fuzzy finder
 Plug 'junegunn/fzf.vim'
 
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                          " show the undotree
+" Snippets
+Plug 'SirVer/ultisnips'                                                 " snippets machine
+Plug 'honza/vim-snippets'                                               " extra snippets
 
-Plug 'benmills/vimux'                                                     " run things in tmux
+" linter/fixer
+Plug 'w0rp/ale'                                                         " another linter (better?)
 
-Plug 'SirVer/ultisnips' " snippets machine
-Plug 'honza/vim-snippets'                       " extra snippets
-Plug 'w0rp/ale'                                                           " another linter (better?)
-
-Plug 'wincent/ferret'                                                     " search in files
 
 
 " add plugins to &runtimepath
 call plug#end()
-
-" let g:yankstack_yank_keys = ['y', 'd', 'D', 'C', 'c']
-" call yankstack#setup()
-" nmap <c-p> <Plug>yankstack_substitute_older_paste
-" nmap <c-n> <Plug>yankstack_substitute_newer_paste
 
 " set options
 
@@ -216,10 +193,7 @@ set foldclose=all
 
 set conceallevel=2
 
-" no longer supported in neovim
-" set highlight+=N:DiffText
-
-set colorcolumn=+1,+2,+3
+" set colorcolumn=+1,+2,+3
 
 set signcolumn=yes " always show
 
@@ -236,11 +210,6 @@ set thesaurus+=~/.vim/mthesaur.txt
 
 
 " set autochdir
-
-" https://robots.thoughtbot.com/faster-grepping-in-vim
-" better grep with the silver searcher
-" set grepprg=ag\ --vimgrep
-" set grepformat=%f:%l:%c%m
 
 " seems to crash neovim with the other settings i have
 " if has('nvim')
@@ -272,10 +241,6 @@ set statusline=%!functions#buildstatusline()
 
 " nnoremap <cr> @:
 
-" insert the current date (iso format)
-" Ultisnips makes this redundant: type `date<trigger>`
-" inoremap ,d <c-r>=strftime('%F')<cr>
-
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
 
@@ -287,8 +252,7 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-" nnoremap <esc> <esc>:nohlsearch \| wa<cr>
-nnoremap <silent> <esc> <esc>:execute "normal \<Plug>(LoupeClearHighlight)" \|:wa<cr>
+nnoremap <silent> <esc> <esc>:nohlsearch \| wa<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
@@ -430,26 +394,9 @@ nnoremap <silent> >, :silent :SidewaysRight<cr>
 nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 
-" Neomake (unused - see ALE below)
-" let g:neomake_open_list = 0
-" let g:airline#extensions#neomake#enabled = 0
-" let g:neomake_tex_enabled_makers = ['chktex'] " use chktex by default (lacheck is also available)
-" let g:neomake_haskell_enabled_makers = [] " disable haskell
-" let g:neomake_elm_enabled_makers = [] " also disable elm
-
-" " allow using jshint for json
-" let g:neomake_json_jshint_maker = {
-"       \ 'args': ['--verbose'],
-"       \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-"       \ }
-" let g:neomake_json_enabled_makers = ['jshint']
-" let g:neomake_python_enabled_makers = ['pylint']
-" let g:neomake_vim_enabled_makers = ['vint']
-
-" ALE (crashing currently, so neomake is actually in use)
-let g:ale_statusline_format = ['⨉ %d', '• %d', '']
-let g:ale_sign_error = '⨉'
-let g:ale_sign_warning = '•'
+let g:ale_statusline_format = ['%dE', '%dW', '']
+let g:ale_sign_error = ' ✗'
+let g:ale_sign_warning = ' ⨯'
 
 let g:ale_linters = {
       \ 'python': ['pylint'],
@@ -605,9 +552,9 @@ if !has('nvim')
 endif
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_max_line_indicator = "fill"
 
-let g:CommandTFileScanner = "git"
-
+" rust
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
@@ -620,12 +567,7 @@ let g:rustfmt_fail_silently = 1
 let g:rust_fold = 1
 
 
-
-" let g:gutentags_ctags_exclude = [
-"   \ "env/*",
-"   \ "venv/*",
-"   \ ]
-
+" gutentags
 let g:gutentags_file_list_command = {
       \ 'markers': {
       \ '.git': 'git ls-files',
@@ -633,15 +575,6 @@ let g:gutentags_file_list_command = {
       \ },
       \ }
 
-" gollum wikis
-nnoremap <leader>wp :e ~/projects/public-wiki/Home.md<cr>
-
-" markdown
-" let g:vim_markdown_no_extensions_in_markdown = 1
-" let g:vim_markdown_autowrite = 1
-" let g:vim_markdown_new_list_item_indent = 0
-" let g:vim_markdown_frontmatter = 1
-" let g:vim_markdown_math = 1
 
 " vim-go
 let g:go_list_type = "quickfix"
@@ -700,7 +633,6 @@ let g:startify_custom_footer =
 
 let g:startify_commands = [
       \ {'U': 'PlugUpdate'},
-      \ {'P': 'Sedit | Codi python'},
       \ ]
 
 autocmd User Startified setlocal buftype=nofile
@@ -711,9 +643,6 @@ autocmd User Startified setlocal buftype=nofile
 runtime macros/sandwich/keymap/surround.vim
 
 
-" sparkup
-" let g:sparkupNextMapping = ',<c-e>'
-
 " emmet - note, conflicts with sparkup using this binding
 let g:user_emmet_leader_key = '<c-e>'
 let g:user_emmet_settings = {
@@ -723,34 +652,13 @@ let g:user_emmet_settings = {
   \}
 
 
-" committia
-" let g:committia_hooks = {}
-" function! g:committia_hooks.edit_open(info)
-"   " If no commit message, start with insert mode
-"   " if a:info.vcs ==# 'git' && getline(1) ==# ''
-"   "     startinsert
-"   " end
-"
-"   " Scroll the diff window from edit window
-"   nmap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
-"   nmap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
-"   imap <buffer><c-f> <Plug>(committia-scroll-diff-down-half)
-"   imap <buffer><c-b> <Plug>(committia-scroll-diff-up-half)
-"
-" endfunction
-"
-" function! g:committia_hooks.diff_open(info)
-"   setlocal norelativenumber
-"   setlocal number
-"
-" endfunction
-
 
 " Ferret
 let g:FerretMap = 0
-" let g:FerretQFCommands = 0
+let g:FerrerLazyInit=0
 nmap <leader>a <Plug>(FerretAck)
 nmap <leader>r <Plug>(FerretAcks)
+nmap <leader>w <Plug>(FerretAckWord)
 
 " loupe
 let g:LoupeCenterResults=0
@@ -826,3 +734,4 @@ let g:jsx_ext_required = 0
 
 " vim-signature
 nnoremap <silent> com :SignatureToggleSigns<cr>
+

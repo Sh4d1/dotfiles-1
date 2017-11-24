@@ -12,7 +12,6 @@ export TERMINAL="termite"
 export BROWSER="firefox"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
-export TERM=screen-256color
 export MAIL=~/Maildir
 
 

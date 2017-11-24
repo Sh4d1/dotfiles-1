@@ -26,22 +26,22 @@ func! functions#buildstatusline()
   let l:line .= '%1*'
   let l:line .= '%='                                             " separator
 
-  " let l:line .= ' %{tagbar#currenttag(''%s « '', '''', ''fs'')}'  " tagbar
   let l:line .= '%{&ft}'                                         " filetype
   let l:line .= ' %2* '
   let l:line .= '%([%{&fenc}]%)%{&ff}'                           " encodings
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
-  " let l:line .= '%3*%( %{neomake#statusline#LoclistStatus()} %)'
   let l:ale = ALEGetStatusLine()
-  if l:ale =~# '[⨉]'
-    let l:line .= '%7*' " red
-  elseif l:ale =~# '[•]'
-    let l:line .= '%3*' " orange
+  if l:ale =~# '.'
+    if l:ale =~# '[E]'
+      let l:line .= '%7*%( ' " red
+    elseif l:ale =~# '[W]'
+      let l:line .= '%3*%( ' " orange
+    endif
+    let l:line .= l:ale
+    let l:line .= ' %)'
   endif
-
-   let l:line .= '%( %{ALEGetStatusLine()} %)'
 
   " git status
   let l:line .= '%6*%( %{fugitive#statusline()} %)'
@@ -52,17 +52,16 @@ func! functions#buildstatusline()
                         \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
   endif
 
-  return line
+  return l:line
 endfunc
 
 
 func! functions#vimuxslime()
  call VimuxSendText(@v)
- call VimuxSendKeys("Enter")
+ call VimuxSendKeys('Enter')
 endfunc
 
 func! functions#sethighlight()
-  " hi Normal ctermbg=8
 
   " statusline highlights
   hi User1 ctermbg=NONE ctermfg=NONE
@@ -73,9 +72,6 @@ func! functions#sethighlight()
   hi User6 ctermbg=6 ctermfg=0
   hi User7 ctermbg=1 ctermfg=0
 
-  " listchars highlighting
-  " hi SpecialKey guibg=red ctermbg=red
-
   hi link EndOfBuffer ColorColumn
 
   hi Comment cterm=italic
@@ -83,7 +79,7 @@ func! functions#sethighlight()
   " make sure the ale sign column highlighting keeps the same background
   let l:prefix = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui' : 'cterm')
   let l:sign_col_color = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', l:prefix)
-  if (l:sign_col_color ==# "")
+  if (l:sign_col_color ==# '')
     let l:sign_col_color = 0
   endif
   execute 'highlight ALEWarningSign ctermfg=3 ' . l:prefix . 'bg=' . l:sign_col_color
