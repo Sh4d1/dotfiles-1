@@ -39,6 +39,6 @@ c.scrolling.bar = False
 c.spellcheck.languages = []
 c.tabs.background = True
 c.tabs.position = 'left'
-c.tabs.width.bar = '15%'
+c.tabs.width = '15%'
 c.url.start_pages = 'https://walladge.net'
 c.zoom.default = '80%'

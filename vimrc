@@ -26,6 +26,9 @@ Plug 'Valloric/MatchTagAlways'                                          " highli
 Plug 'mhinz/vim-startify'
 Plug 'editorconfig/editorconfig-vim'                                    " editorconfig support
 Plug 'google/vim-searchindex'                                           " display info about current search position
+Plug 'roxma/vim-tmux-clipboard'                                         " clipboard integration with tmux
+Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode
+Plug 'chr4/sslsecure.vim'                                               " highlight insecure ssl configuration
 
 " colorschemes
 Plug 'romainl/flattened'                                                " (solarized)
@@ -60,11 +63,13 @@ Plug 'wincent/ferret'                                                   " search
 
 " Language syntax/help
 Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files
+Plug 'cespare/vim-toml'                                                 " toml syntax
 Plug 'lervag/vimtex'                                                    " latex
 Plug 'wannesm/wmgraphviz.vim'                                           " graphviz dot
 Plug 'saltstack/salt-vim'                                               " saltstack syntax
 Plug 'chrisbra/csv.vim'                                                 " csv sheets
 Plug 'leafgarland/typescript-vim'                                       " typescript syntax + settings
+" Plug 'Quramy/vim-js-pretty-template'                                    " javascript template string syntax
 Plug 'godlygeek/tabular'                                                " tabular
 Plug 'tmux-plugins/vim-tmux'                                            " tmux syntax
 Plug 'fatih/vim-go'                                                     " golang
@@ -76,6 +81,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}                          " python
 Plug 'rust-lang/rust.vim'                                               " rust
 Plug 'racer-rust/vim-racer'                                             " rust completion
 Plug 'ElmCast/elm-vim'                                                  " elm
+Plug 'chr4/nginx.vim' " nginx config help
 
 
 " Git integrations
@@ -86,10 +92,16 @@ Plug 'junegunn/gv.vim'                                                  " git lo
 Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
 
 " Completion
-Plug 'ajh17/VimCompletesMe'                                             " tab completion
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" endif
+" Plug 'ajh17/VimCompletesMe'                                             " tab completion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  Plug 'zchee/deoplete-jedi'
+  Plug 'zchee/deoplete-go', { 'do': 'make' }
+  Plug 'fszymanski/deoplete-emoji'
+  Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+endif
+
 
 " fuzzy finder
 " for now, I think I'll keep ctrlp for situations where can't install other
@@ -105,6 +117,10 @@ Plug 'honza/vim-snippets'                                               " extra 
 " linter/fixer
 Plug 'w0rp/ale'                                                         " another linter (better?)
 
+" edit firefox text areas with neovim
+if has('nvim')
+  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+endif
 
 
 " add plugins to &runtimepath
@@ -205,6 +221,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 
 set gdefault " global substitute by default
 
+set noshowmode
 
 set thesaurus+=~/.vim/mthesaur.txt
 
@@ -236,6 +253,10 @@ endtry
 set laststatus=2
 
 set statusline=%!functions#buildstatusline()
+
+" neovim python provider
+let g:python_host_prog  = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Keymappings
 
@@ -395,13 +416,13 @@ nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 
 let g:ale_statusline_format = ['%dE', '%dW', '']
-let g:ale_sign_error = ' ✗'
-let g:ale_sign_warning = ' ⨯'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⨯'
 
 let g:ale_linters = {
       \ 'python': ['pylint'],
       \ 'javascript': ['eslint'],
-      \ 'jsx': ['eslint'],
+      \ 'typescript': ['tslint'],
       \ 'elm': [],
       \ 'text': ['vale', 'proselint'],
       \ 'markdown': ['proselint', 'mdl', 'vale']
@@ -410,6 +431,13 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ 'javascript': [
       \    'eslint'
+      \ ],
+      \ 'typescript': [
+      \    'tslint'
+      \ ],
+      \ 'python': [
+      \    'yapf',
+      \    'isort'
       \ ],
       \ }
 
@@ -487,42 +515,16 @@ let g:ctrlp_map = '' " managing it myself
 let g:ctrlp_cmd = 'CtrlP'
 " let g:ctrlp_show_hidden = 1
 let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
-" ag is fast enough that CtrlP doesn't need to cache
+" rg is fast enough that CtrlP doesn't need to cache
 let g:ctrlp_use_caching = 0
 
 " vimcompletesme config
 let g:vcm_default_maps = 1
 let g:vcm_direction = 'p'
 
-" ultisnips
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsJumpForwardTrigger="<c-space>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips']
-let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
-let g:UltiSnipsEnableSnipMate=1
-
-
-" tagbar
-" let g:tagbar_autofocus = 1
-" let g:tagbar_autoclose = 1
-" let g:tagbar_sort = 0
-
 " gitgutter
 let g:gitgutter_diff_base = 'HEAD'
 " nnoremap <silent> cog :GitGutterSignsToggle<cr>
-
-" jedi-vim
-" let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>jg"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>jn"
-" already have other keybindings for omnicompletion
-let g:jedi#completions_command = ""
-let g:jedi#rename_command = "<leader>jr"
 
 " graphviz
 let g:WMGraphviz_viewer = 'rifle'
@@ -633,6 +635,9 @@ let g:startify_custom_footer =
 
 let g:startify_commands = [
       \ {'U': 'PlugUpdate'},
+      \ {'I': 'PlugInstall'},
+      \ {'E': 'GhostStart'},
+      \ {'V': 'GV'},
       \ ]
 
 autocmd User Startified setlocal buftype=nofile
@@ -649,6 +654,9 @@ let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
     \  },
+  \  'typescript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
   \}
 
 
@@ -660,38 +668,60 @@ nmap <leader>a <Plug>(FerretAck)
 nmap <leader>r <Plug>(FerretAcks)
 nmap <leader>w <Plug>(FerretAckWord)
 
-" loupe
-let g:LoupeCenterResults=0
+" jedi-vim
+let g:jedi#completions_enabled = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = ""
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>jg"
+let g:jedi#goto_definitions_command = "gd"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>jn"
+let g:jedi#rename_command = "<leader>jr"
+
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-space>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips']
+let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
+let g:UltiSnipsEnableSnipMate=1
+
+" vim-go
+" map 
 
 " deoplete
+
+set completeopt=menu
 
 function! s:check_back_space() abort
   let l:col = col('.') - 1
   return !l:col || getline('.')[l:col - 1]  =~ '\s'
 endfunction
 
-" if has('nvim')
-"   let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
 
-"   " let g:deoplete#disable_auto_complete = 1
+  " let g:deoplete#disable_auto_complete = 1
 
-"   inoremap <silent><expr> <TAB>
-"     \ pumvisible() ? "\<C-n>" :
-"     \ <SID>check_back_space() ? "\<TAB>" :
-"     \ deoplete#mappings#manual_complete()
+  inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
 
-"    call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+  inoremap <silent><expr> <S-TAB>
+    \ pumvisible() ? "\<C-p>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
 
-"   let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-"   let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-" endif
+   call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
-" AutoPairs
-" let g:AutoPairsCenterLine = 0
+  let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+  let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
-" lexima
-nnoremap <silent> cop :call functions#toggle_lexima()<cr>
-
+  let g:nvim_typescript#default_mappings = 1
+endif
 
 " indentLine
 let g:indentLine_setConceal = 0
@@ -734,4 +764,3 @@ let g:jsx_ext_required = 0
 
 " vim-signature
 nnoremap <silent> com :SignatureToggleSigns<cr>
-

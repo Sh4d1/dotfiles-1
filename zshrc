@@ -15,8 +15,10 @@
 setopt appendhistory nomatch
 unsetopt autocd beep extendedglob notify
 setopt hist_ignore_dups hist_ignore_all_dups hist_ignore_space
-setopt menu_complete
 setopt interactivecomments
+
+# <https://unix.stackexchange.com/questions/295508/zsh-completion-menu-and-unambiguous-prefix-with-a-single-tab>
+setopt nolistambiguous
 
 # so terminal not messed up after program crashed
 ttyctl -f
@@ -26,6 +28,11 @@ ttyctl -f
 
 # config for zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+# must be loaded before zsh-syntax-highlighting <https://github.com/zsh-users/zsh-syntax-highlighting/issues/67>
+autoload -Uz select-word-style
+select-word-style bash
+
 
 # PLUGINS WITH ZPLUG
 
@@ -99,12 +106,13 @@ zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' match-original both
 zstyle ':completion:*' max-errors 3
 zstyle ':completion:*' menu select=1
-zstyle ':completion:*' original true
+# zstyle ':completion:*' original true
 zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' substitute 1
 zstyle ':completion:*' verbose true
+zstyle ':completion:*' rehash true
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '~/.zshrc'
 
@@ -125,6 +133,7 @@ command -v gopass >/dev/null && source <(gopass completion zsh)
 
 
 # KEY BINDINGS
+
 
 # ok let's try normal readline mode - that way i can be comfortable even in
 # shells where i haven't set that up...
@@ -208,7 +217,7 @@ alias gf='git fetch'
 alias grv='git remote -v'
 alias gmm='git merge'
 alias grb='git rebase'
-alias glog='git log --oneline --decorate --color --graph'
+alias glog='git lg'
 
 alias upgrade='sudo pacman -Syu && pacaur -u --devel'
 alias vimdiff='nvim -d'
@@ -224,6 +233,14 @@ alias rsyncp="rsync -e 'ssh -o PubkeyAuthentication=no'"
 alias swipl-test='swipl -g true -t halt. -s'
 
 alias :q='exit'
+
+# shortcut to run the android emulator manager installed with android studio
+emulator() {
+  (
+    cd ~/Android/Sdk/tools/
+    ./emulator "$@"
+  )
+}
 
 export GPG_TTY=$(tty)
 

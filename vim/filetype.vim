@@ -10,4 +10,7 @@ augroup filetypedetect
   au! BufNewFile,BufRead *.rs                       setf rust
   au! BufNewFile,BufRead /tmp/mutt*                 setf mail
   au! BufNewFile,BufRead /tmp/neomutt*              setf mail
+  au! BufNewFile,BufRead *.tsx                      setf typescript.jsx
+  " for vim-ghost (GhostText)
+  au! BufNewFile,BufRead /tmp/*ghost*.txt           setf markdown
 augroup END

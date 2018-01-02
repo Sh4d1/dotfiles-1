@@ -6,8 +6,13 @@
     name = Samuel Walladge
 
 [commit]
-	gpgsign = true
+    gpgsign = true
+
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
+
 [merge]
-	tool = vimdiff
+    tool = vimdiff
+
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
