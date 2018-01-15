@@ -365,10 +365,12 @@ exec --no-startup-id udiskie
 
 
 # nextcloud!
-exec --no-startup-id nextcloud
+# exec --no-startup-id nextcloud
+exec --no-startup-id /home/samuel/bin/Nextcloud-2.3.3-x86_64.AppImage
 
 # toggl time tracking
-exec --no-startup-id toggldesktop -b
+# broken on linux atm
+# exec --no-startup-id toggldesktop -b
 
 # password manager in tray
 exec --no-startup-id qtpass
