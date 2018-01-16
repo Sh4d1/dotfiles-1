@@ -17,18 +17,19 @@ func! functions#striptrailingwhitespace()
 endfunc
 
 func! functions#buildstatusline()
-  let l:line = '%3*'
-  let l:line .= '%2.{mode()}'                                    " current mode
-  let l:line .= ' %1* '
+  let l:line = '%1*'
   let l:line .= '%F'                                             " filename
   let l:line .= '%r%m%w%q%h'                                     " flags
 
-  let l:line .= '%1*'
+  let l:line .= ' %1* '
   let l:line .= '%='                                             " separator
 
+  let l:line .= ' %3* '
   let l:line .= '%{&ft}'                                         " filetype
-  let l:line .= ' %2* '
+  let l:line .= ' %4* '
   let l:line .= '%([%{&fenc}]%)%{&ff}'                           " encodings
+  let l:line .= ' %3* '
+  let l:line .= '%n' " buffer number
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 

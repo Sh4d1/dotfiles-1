@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 " enhancements that don't need (much) configuring
 "   and don't provide commands/mappings
-Plug 'ap/vim-css-color'                                                 " highlight colors in css
+" Plug 'ap/vim-css-color'                                                 " highlight colors in css
 Plug 'ludovicchabant/vim-gutentags'                                     " auto-generate tags file
 Plug 'luochen1990/rainbow'                                              " easier to see nested parens
 Plug 'machakann/vim-highlightedyank'                                    " highlights currently yanked region
@@ -225,6 +225,8 @@ set noshowmode
 
 set thesaurus+=~/.vim/mthesaur.txt
 
+" faster diff?
+let g:diff_translations = 0
 
 " set autochdir
 
@@ -404,6 +406,12 @@ inoremap <silent> ,n <C-x><C-n>
 inoremap <silent> ,m <C-x><C-o>
 inoremap <silent> ,t <C-x><C-]>
 inoremap <silent> ,u <C-x><C-u>
+
+" diff
+" map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
+" map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
+" map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
+map <silent> du :diffupdate<CR>
 
 " Sideways
 omap aa <Plug>SidewaysArgumentTextobjA
