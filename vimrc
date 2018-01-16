@@ -28,7 +28,6 @@ Plug 'editorconfig/editorconfig-vim'                                    " editor
 Plug 'google/vim-searchindex'                                           " display info about current search position
 Plug 'roxma/vim-tmux-clipboard'                                         " clipboard integration with tmux
 Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode
-Plug 'chr4/sslsecure.vim'                                               " highlight insecure ssl configuration
 
 " colorschemes
 Plug 'romainl/flattened'                                                " (solarized)
