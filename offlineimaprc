@@ -1,7 +1,6 @@
 [general]
 # List of accounts to be synced, separated by a comma.
 accounts = main
-pythonfile = ~/.offlineimap.py
 maxsyncaccounts = 1
 
 [Account main]
@@ -22,17 +21,15 @@ localfolders = ~/Maildir
 [Repository main-remote]
 # Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
 type = IMAP
-remotehost = mail.swalladge.id.au
-remoteusereval = get_username('main')
-remotepasseval = get_password('main')
+remotehost = imap.fastmail.com
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 keepalive = 360
 holdconnectionopen = yes
 
-# [mbnames]
-# enabled = no
-# filename = ~/.mutt/muttrc.mailboxes
-# header = "mailboxes "
-# peritem = "+%(foldername)s"
-# sep = " "
-# footer = "\n"
+[mbnames]
+enabled = yes
+filename = ~/.mutt/muttrc.mailboxes
+header = "mailboxes "
+peritem = "+%(foldername)s"
+sep = " "
+footer = "\n"
