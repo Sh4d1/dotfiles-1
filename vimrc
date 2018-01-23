@@ -410,7 +410,7 @@ inoremap <silent> ,u <C-x><C-u>
 " map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
 " map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
 " map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
-map <silent> du :diffupdate<CR>
+nnoremap <silent> du :diffupdate<CR>
 
 " Sideways
 omap aa <Plug>SidewaysArgumentTextobjA
@@ -445,6 +445,9 @@ let g:ale_fixers = {
       \ 'python': [
       \    'yapf',
       \    'isort'
+      \ ],
+      \ 'css': [
+      \    'prettier'
       \ ],
       \ }
 

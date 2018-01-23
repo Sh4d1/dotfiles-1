@@ -125,8 +125,8 @@ autoload -Uz compinit edit-command-line
 zle -N edit-command-line
 compinit
 
-# gopass completions
-command -v gopass >/dev/null && source <(gopass completion zsh)
+# gopass completions (now integrated in archlinux)
+# command -v gopass >/dev/null && source <(gopass completion zsh)
 
 # exercism completion
 [ -f ~/.config/exercism/exercism_completion.zsh ] && . ~/.config/exercism/exercism_completion.zsh

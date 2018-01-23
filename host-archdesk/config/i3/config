@@ -288,12 +288,12 @@ bindsym Mod4+Shift+space exec rofi -show window
 bindsym Mod4+Ctrl+Shift+space exec rofi -show run
 bindsym Mod4+Ctrl+space exec rofi -show combi
 
-bindsym Mod4+Ctrl+c exec pass-rofi.sh
-bindsym Mod4+Shift+c exec pass-rofi.sh type
+bindsym Mod4+Shift+c exec pass-rofi.sh
+# bindsym Mod4+Shift+c exec pass-rofi.sh type
 
 # fuzzy search snippets to copy to clipboard or type
-bindsym Mod4+z exec clip-snippet.py type ~/Documents/snippets.yml
-bindsym Mod4+Shift+z exec clip-snippet.py copy ~/Documents/snippets.yml
+bindsym Mod4+z exec clip-snippet.py copy ~/Documents/snippets.yml
+# bindsym Mod4+Shift+z exec clip-snippet.py copy ~/Documents/snippets.yml
 
 workspace 1 output HDMI-0
 workspace 2 output HDMI-0
