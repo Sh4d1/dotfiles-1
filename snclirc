@@ -1,0 +1,6 @@
+[sncli]
+cfg_sn_username = samuel@swalladge.id.au
+cfg_sn_password_eval = sncli_pass get
+cfg_db_path     = /home/samuel/Backup/SimpleNote
+cfg_editor = nvim {fname} +{line}
+cfg_pager = less -c +{line} -N {fname}

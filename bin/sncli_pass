@@ -1,0 +1,32 @@
+#! /usr/bin/env python2
+
+import sys
+import gnomekeyring as gkey
+
+
+def set_credentials(user, pw):
+    KEYRING_NAME = "sncli"
+    attrs = {"repo": "snclirc", "user": user}
+    keyring = gkey.get_default_keyring_sync()
+    gkey.item_create_sync(keyring, gkey.ITEM_NETWORK_PASSWORD,
+                          KEYRING_NAME, attrs, pw, True)
+
+
+def get_credentials():
+    attrs = {"repo": "snclirc"}
+    items = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
+    return(items[0].secret)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1].lower() == 'set':
+        import os
+        import getpass
+        username = raw_input('Enter username for sncli: ')
+        password = getpass.getpass("Enter password for user '%s': " % username)
+        set_credentials(username, password)
+    elif len(sys.argv) > 1 and sys.argv[1].lower() == 'get':
+        print(get_credentials())
+    else:
+        print('Usage: <progname> <get|set>')
+        sys.exit(1)
