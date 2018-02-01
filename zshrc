@@ -198,26 +198,7 @@ alias t=tmux
 alias ta='tmux attach'
 alias hc=herbstclient
 alias ml='tmuxinator local'
-
-# inspiration for git aliases from https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
-# don't need that many though
 alias g='git'
-alias gg='git grep'
-alias ga='git add'
-alias gaa='git add --all'
-alias gd='git diff'
-alias gdh='git diff HEAD'
-alias gb='git branch'
-alias gps='git push'
-alias gpl='git pull'
-alias gss='git status -sb'
-alias gcm='git commit -v'
-alias gco='git checkout'
-alias gf='git fetch'
-alias grv='git remote -v'
-alias gmm='git merge'
-alias grb='git rebase'
-alias glog='git lg'
 
 alias upgrade='sudo pacman -Syu && pacaur -u --devel'
 alias vimdiff='nvim -d'

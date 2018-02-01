@@ -34,3 +34,10 @@
 
 [alias]
     lg = log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    rv = remote -v
+    co = checkout
+    cm = commit -v
+    ss = status -sb
+    pl = pull
+    ps = push
+    aa = add -A
