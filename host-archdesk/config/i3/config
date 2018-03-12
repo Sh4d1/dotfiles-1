@@ -50,8 +50,9 @@ bindsym Mod4+Shift+q kill
 bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 bindsym Mod4+Shift+d exec --no-startup-id dmenu_run # still handy to have though
 
-# for ghost editor firefox
-bindsym Mod4+Shift+g exec --no-startup-id termite -t "GHOST" -e "nvim +'let g:startify_disable_at_vimenter=1' +GhostStart +'setf markdown'"
+# for clipboard editor
+bindsym Mod4+Shift+g exec --no-startup-id termite -t "GHOST" -e "edit-anywhere"
+bindsym Mod4+Control+g exec --no-startup-id termite -t "GHOST" -e "edit-clip"
 
 # change focus
 bindsym Mod4+$left focus left
@@ -294,6 +295,9 @@ bindsym Mod4+Shift+c exec pass-rofi.sh
 # fuzzy search snippets to copy to clipboard or type
 bindsym Mod4+z exec clip-snippet.py copy ~/Documents/snippets.yml
 # bindsym Mod4+Shift+z exec clip-snippet.py copy ~/Documents/snippets.yml
+
+# open a book quickly
+bindsym Mod4+Shift+b exec /home/samuel/dotfiles/bin/open-book
 
 workspace 1 output HDMI-0
 workspace 2 output HDMI-0

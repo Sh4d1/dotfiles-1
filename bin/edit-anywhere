@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Samuel Walladge 2018
+# opens the editor on a temporary file
+# copies file contents to clipboard on close
+# - requires xsel
+# - inspired by https://github.com/cknadler/vim-anywhere
+
+tmpfile=$(mktemp -t edit-anywhere-XXXX.md)
+${EDITOR:-vi} "${tmpfile}"
+xsel -ib < "${tmpfile}"

@@ -8,3 +8,4 @@ include "%L"
 <Multi_key> <N> <underscore>            : "Ṉ"   U0331   # N with macron below
 <Multi_key> <T> <underscore>            : "Ṯ"   U0331   # T with macron below
 <Multi_key> <L> <underscore>            : "Ḻ"   U0331   # L with macron below
+<Multi_key> <t> <a> <d> <a>             : "🎉"  U1F389  # "tada" party popper

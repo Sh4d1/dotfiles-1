@@ -34,6 +34,7 @@
 
 [alias]
     lg = log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     rv = remote -v
     co = checkout
     cm = commit -v
@@ -41,3 +42,5 @@
     pl = pull
     ps = push
     aa = add -A
+    dh = diff HEAD
+    dh1 = diff HEAD~1

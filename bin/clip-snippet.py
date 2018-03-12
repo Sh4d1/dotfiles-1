@@ -8,6 +8,9 @@ import yaml
 import sys
 import subprocess
 
+# import things here to use in snippets
+import time
+
 COPY = 'copy'
 TYPE = 'type'
 
@@ -41,12 +44,29 @@ if result.returncode != 0:
 
 key = result.stdout.strip()
 snippet = db.get(key, None)
+out = ''
+
+# invalid, drop out
 if snippet is None:
     sys.exit(-1)
 
+# more processing?
+elif type(snippet) == dict:
+    # run as a python snippet
+    if snippet.get('type', '') == 'python':
+        out = str(eval(snippet.get('eval')))
+
+    # otherwise, drop out
+    else:
+        sys.exit(-1)
+
+# just use the snippet contents as the value
+else:
+    out = str(snippet)
+
 # copy to primary and clipboard selection
 if mode == COPY:
-    subprocess.run(['xsel', '-ip'], encoding='utf-8', input=str(snippet))
-    subprocess.run(['xsel', '-ib'], encoding='utf-8', input=str(snippet))
+    subprocess.run(['xsel', '-ip'], encoding='utf-8', input=out)
+    subprocess.run(['xsel', '-ib'], encoding='utf-8', input=out)
 elif mode == TYPE:
-    subprocess.run(['xdotool', 'type', '--clearmodifiers', '--', snippet], encoding='utf-8')
+    subprocess.run(['xdotool', 'type', '--clearmodifiers', '--', out], encoding='utf-8')

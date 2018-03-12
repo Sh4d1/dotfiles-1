@@ -1,3 +1,7 @@
 edit mode sync
 EDITOR('$EDITOR %s');
 PS1('>> ');
+warning('off', 'Octave:possible-matlab-short-circuit-operator');
+## Begin savepath auto-created section, do not edit
+  addpath ('/home/samuel/Documents/courses/laff/Programming/laff:/home/samuel/Documents/courses/laff/Programming/laff/matmat:/home/samuel/Documents/courses/laff/Programming/laff/matvec:/home/samuel/Documents/courses/laff/Programming/laff/util:/home/samuel/Documents/courses/laff/Programming/laff/vecvec', '-begin');
+## End savepath auto-created section

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Samuel Walladge 2018
+# opens the editor on a temporary file _populated with the clipboard contents_
+# copies file contents to clipboard on close
+# - requires xsel
+
+tmpfile=$(mktemp -t edit-clip-XXXX.md)
+xsel -ob > "${tmpfile}"
+${EDITOR:-vi} "${tmpfile}"
+xsel -ib < "${tmpfile}"

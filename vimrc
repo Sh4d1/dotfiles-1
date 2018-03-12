@@ -58,6 +58,7 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                        " show t
 Plug 'benmills/vimux'                                                   " run things in tmux
 Plug 'justinmk/vim-dirvish'                                             " another alternative to netwr
 Plug 'wincent/ferret'                                                   " search in files (plus qf enhancements)
+Plug 'tpope/vim-db'                                                     " database interface
 
 
 " Language syntax/help
@@ -116,11 +117,7 @@ Plug 'honza/vim-snippets'                                               " extra 
 " linter/fixer
 Plug 'w0rp/ale'                                                         " another linter (better?)
 
-" edit firefox text areas with neovim
-if has('nvim')
-  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-endif
-
+Plug 'blindFS/vim-taskwarrior'
 
 " add plugins to &runtimepath
 call plug#end()
@@ -432,6 +429,7 @@ let g:ale_linters = {
       \ 'typescript': ['tslint'],
       \ 'elm': [],
       \ 'text': ['vale', 'proselint'],
+      \ 'tex': ['vale', 'proselint'],
       \ 'markdown': ['proselint', 'mdl', 'vale']
       \ }
 
@@ -449,6 +447,9 @@ let g:ale_fixers = {
       \ 'css': [
       \    'prettier'
       \ ],
+      \ 'rust': [
+      \    'rustfmt'
+      \ ],
       \ }
 
 nnoremap <leader>f :ALEFix<cr>
@@ -464,6 +465,9 @@ nnoremap <silent> <leader>ss :silent :Ssplit<cr>
 
 imap <C-h> <BS>
 cmap <C-h> <BS>
+
+nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
+
 
 set viewoptions-=options
 
@@ -494,6 +498,10 @@ let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 " let g:vimtex_view_general_viewer = 'rifle'
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
+
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_quickfix_open_on_warning = 0
 
 " rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -569,13 +577,8 @@ let g:EditorConfig_max_line_indicator = "fill"
 " rust
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
-
 let g:rust_fold = 1
 
 
@@ -646,7 +649,6 @@ let g:startify_custom_footer =
 let g:startify_commands = [
       \ {'U': 'PlugUpdate'},
       \ {'I': 'PlugInstall'},
-      \ {'E': 'GhostStart'},
       \ {'V': 'GV'},
       \ ]
 
@@ -724,6 +726,11 @@ if has('nvim')
     \ pumvisible() ? "\<C-p>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ deoplete#mappings#manual_complete()
+
+  if !exists('g:deoplete#omni#input_patterns')
+      let g:deoplete#omni#input_patterns = {}
+  endif
+  let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
    call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 

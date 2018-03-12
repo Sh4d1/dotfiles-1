@@ -16,6 +16,7 @@ setopt appendhistory nomatch
 unsetopt autocd beep extendedglob notify
 setopt hist_ignore_dups hist_ignore_all_dups hist_ignore_space
 setopt interactivecomments
+setopt correct
 
 # <https://unix.stackexchange.com/questions/295508/zsh-completion-menu-and-unambiguous-prefix-with-a-single-tab>
 setopt nolistambiguous

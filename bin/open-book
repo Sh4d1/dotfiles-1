@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# search for and open a pdf book on my desktop
+
+
+shopt -s nullglob globstar
+
+cd ~/Books/
+
+book_file=$(find . -name '*pdf' | rofi -dmenu -no-custom  -i -p "open: ")
+
+[[ -n $book_file ]] || exit
+
+rifle "${book_file}"
