@@ -8,6 +8,7 @@
 
 # minor modifications by Samuel Walladge (port to python3, change config file
 # location)
+# XXX: disabled syncing due dates from taskwarrior to trello due to https://github.com/ogarcia/trellowarrior/issues/7
 
 import os
 from configparser import RawConfigParser
@@ -168,7 +169,9 @@ def upload_tw_task(tw_task, trello_list):
     """
     new_trello_card = trello_list.add_card(tw_task['description'])
     if tw_task['due']:
-        new_trello_card.set_due(tw_task['due'])
+        # don't overwrite trello card due date
+        # new_trello_card.set_due(tw_task['due'])
+        pass
     # Save the Trello Card ID into Task
     tw_task['trelloid'] = new_trello_card.id
     tw_task.save()
@@ -315,12 +318,16 @@ def sync_task_card(tw_task, trello_card, board_name, trello_lists, list_name, to
     if tw_task['due']:
         if trello_card.due_date:
             if tw_task['modified'] > trello_card.date_last_activity:
-                trello_card.set_due(tw_task['due'])
+                # don't overwrite trello card due date
+                # trello_card.set_due(tw_task['due'])
+                pass
             else:
                 tw_task['due'] = trello_card.due_date
                 tw_task_modified = True
         else:
-            trello_card.set_due(tw_task['due'])
+            # don't overwrite trello card due date
+            # trello_card.set_due(tw_task['due'])
+            pass
     else:
         if trello_card.due_date:
             tw_task['due'] = trello_card.due_date

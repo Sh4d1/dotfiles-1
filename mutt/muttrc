@@ -121,7 +121,7 @@ set new_mail_command='[ "%n" != "0" ] && notify-send --icon="/home/samuel/.mutt.
 
 # sidebar
 set sidebar_visible
-set sidebar_format = "%B%?F? [%!]? %?N?(%N unread)? %* %S"
+set sidebar_format = "%B%?F? [%!]? %?N?(%N)? %* %S"
 set mail_check_stats
 bind index,pager \CP sidebar-prev       # Ctrl-P - Previous Mailbox
 bind index,pager \CN sidebar-next       # Ctrl-N - Next Mailbox

@@ -379,7 +379,7 @@ exec --no-startup-id yakuake
 
 
 # nextcloud!
-exec --no-startup-id ~/apps/Nextcloud-2.3.3-x86_64.AppImage
+exec --no-startup-id nextcloud
 
 # toggl time tracking
 exec --no-startup-id toggldesktop -b
@@ -392,6 +392,9 @@ exec --no-startup-id redshift-gtk -l $(cat ~/.coords)
 
 # indicator icon for kdeconnect
 exec --no-startup-id kdeconnect-indicator
+
+# mount samba shares
+exec --no-startup-id ~/.mount-shares.sh
 
 # wallpaper
 # exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg

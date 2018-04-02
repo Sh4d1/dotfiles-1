@@ -44,3 +44,4 @@
     aa = add -A
     dh = diff HEAD
     dh1 = diff HEAD~1
+    ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"

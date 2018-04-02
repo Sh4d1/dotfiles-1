@@ -200,6 +200,8 @@ alias ta='tmux attach'
 alias hc=herbstclient
 alias ml='tmuxinator local'
 alias g='git'
+alias tk='task'
+alias m='neomutt'
 
 alias upgrade='sudo pacman -Syu && pacaur -u --devel'
 alias vimdiff='nvim -d'

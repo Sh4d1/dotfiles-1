@@ -117,8 +117,6 @@ Plug 'honza/vim-snippets'                                               " extra 
 " linter/fixer
 Plug 'w0rp/ale'                                                         " another linter (better?)
 
-Plug 'blindFS/vim-taskwarrior'
-
 " add plugins to &runtimepath
 call plug#end()
 
@@ -309,6 +307,7 @@ nnoremap <A-h> :bp<cr>
 nnoremap <A-l> :bn<cr>
 
 " https://www.reddit.com/r/vim/comments/6h0dy7/which_autoclosing_plugin_do_you_use/diujtbd/
+" just discovered this again... i don't think i've ever actually used these
 inoremap (; (<CR>);<C-c>O
 inoremap (, (<CR>),<C-c>O
 inoremap {; {<CR>};<C-c>O

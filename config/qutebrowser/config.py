@@ -42,3 +42,4 @@ c.tabs.position = 'left'
 c.tabs.width = '15%'
 c.url.start_pages = 'https://walladge.net'
 c.zoom.default = '80%'
+c.session.lazy_restore = True
