@@ -327,3 +327,4 @@ cdr() {
 KEYTIMEOUT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias x=startx

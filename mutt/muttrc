@@ -73,6 +73,9 @@ set wait_key = no
 set pipe_decode = yes
 
 set text_flowed = yes
+set reflow_text = yes
+set reflow_wrap = 78
+set wrap = 78
 
 # keybindings
 bind pager j next-line
@@ -108,8 +111,6 @@ macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
       "syncronize contacts with server"
 
 macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Archive"
-
-macro index B ":set sendmail = \"/usr/bin/msmtp -a " "prompt for sending account (ie. default or backup)"
 
 macro pager l <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 

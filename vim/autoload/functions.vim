@@ -24,6 +24,9 @@ func! functions#buildstatusline()
   let l:line .= ' %1* '
   let l:line .= '%='                                             " separator
 
+  " show keymap
+  " let l:line .= '%6*%( %k%)'
+
   let l:line .= ' %3* '
   let l:line .= '%{&ft}'                                         " filetype
   let l:line .= ' %4* '

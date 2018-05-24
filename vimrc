@@ -28,6 +28,7 @@ Plug 'editorconfig/editorconfig-vim'                                    " editor
 Plug 'google/vim-searchindex'                                           " display info about current search position
 Plug 'roxma/vim-tmux-clipboard'                                         " clipboard integration with tmux
 Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode
+Plug 'cspeterson/vim-convert'                                           " use `units` to convert unit values
 
 " colorschemes
 Plug 'romainl/flattened'                                                " (solarized)
@@ -75,13 +76,14 @@ Plug 'tmux-plugins/vim-tmux'                                            " tmux s
 Plug 'fatih/vim-go'                                                     " golang
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'                                                      " jsx syntax/indenting support
-Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}  " javascript completions
+" Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}  " javascript completions
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                   " java completion
 Plug 'davidhalter/jedi-vim', {'for': 'python'}                          " python completions + refactoring
 Plug 'rust-lang/rust.vim'                                               " rust
 Plug 'racer-rust/vim-racer'                                             " rust completion
 Plug 'ElmCast/elm-vim'                                                  " elm
-Plug 'chr4/nginx.vim' " nginx config help
+Plug 'chr4/nginx.vim'                                                   " nginx config help
+Plug 'udalov/kotlin-vim'                                                " kotlin
 
 
 " Git integrations
@@ -96,6 +98,8 @@ Plug 'rhysd/committia.vim'                                              " nicer 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+  " Plug 'carlitux/deoplete-ternjs'  " requires `tern` to be installed - `npm install -g tern` (or supply full path to bin)
+  Plug 'wokalski/autocomplete-flow' " requires `flow-bin` to be installed somewhere
   Plug 'zchee/deoplete-jedi'
   Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'fszymanski/deoplete-emoji'
@@ -423,13 +427,14 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⨯'
 
 let g:ale_linters = {
-      \ 'python': ['pylint'],
-      \ 'javascript': ['eslint'],
+      \ 'python': ['pylint', 'mypy'],
+      \ 'javascript': ['flow'],
       \ 'typescript': ['tslint'],
       \ 'elm': [],
       \ 'text': ['vale', 'proselint'],
       \ 'tex': ['vale', 'proselint'],
-      \ 'markdown': ['proselint', 'mdl', 'vale']
+      \ 'markdown': ['proselint', 'mdl', 'vale'],
+      \ 'kotlin': ['kotlinc']
       \ }
 
 let g:ale_fixers = {
@@ -739,6 +744,8 @@ if has('nvim')
   let g:nvim_typescript#default_mappings = 1
 endif
 
+let g:autocomplete_flow#insert_paren_after_function = 0
+
 " indentLine
 let g:indentLine_setConceal = 0
 " let g:indentLine_setColors = 0
@@ -780,3 +787,7 @@ let g:jsx_ext_required = 0
 
 " vim-signature
 nnoremap <silent> com :SignatureToggleSigns<cr>
+
+
+" so that enter key also inserts a newline even if popup visible
+inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"

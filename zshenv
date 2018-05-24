@@ -1,6 +1,4 @@
 
-export ANDROID_HOME="/home/samuel/Android/Sdk"
-
 if ! [[ -o login ]]; then
   source "$HOME/.pathrc"
 fi
@@ -47,14 +45,17 @@ export STEAM_FRAME_FORCE_CLOSE=1
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
-if hash gnome-keyring-daemon 2>/dev/null; then
-  eval $(gnome-keyring-daemon --start 2>/dev/null)
-  export SSH_AUTH_SOCK
-fi
+# # commented - it seems to bug out when called by cron...
+# if hash gnome-keyring-daemon 2>/dev/null; then
+#   eval $(gnome-keyring-daemon --start 2>/dev/null)
+#   export SSH_AUTH_SOCK
+# fi
+
+# replacement for gnome-keyring-daemon
+eval `keychain --noask --eval --agents ssh id_rsa 2>/dev/null`
 
 export FZF_DEFAULT_COMMAND='rg --files --color=never --glob ""'
 
-# eval `keychain --noask --eval --agents ssh id_rsa`
 
 if hash rustc 2>/dev/null && hash rustup 2>/dev/null; then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -66,6 +67,9 @@ export XMODIFIERS="@im=none"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never --glob ""'
 
 export TERMCMD='termite'
+
+export GRADLE_USER_HOME="$HOME/.gradle/"
+export USER_HOME="$HOME"
 
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
 

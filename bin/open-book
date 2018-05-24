@@ -7,8 +7,8 @@ shopt -s nullglob globstar
 
 cd ~/Books/
 
-book_file=$(find . -name '*pdf' | rofi -dmenu -no-custom  -i -p "open: ")
+book_file=$(find . -name '*pdf' | rofi -dmenu -no-custom  -i -p "open")
 
 [[ -n $book_file ]] || exit
 
-rifle "${book_file}"
+zathura "${book_file}"

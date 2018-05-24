@@ -6,6 +6,8 @@
 #
 # Distributed under terms of the MIT license.
 
+# requires `tasklib` and `py-trello` from pypi
+
 # minor modifications by Samuel Walladge (port to python3, change config file
 # location)
 # XXX: disabled syncing due dates from taskwarrior to trello due to https://github.com/ogarcia/trellowarrior/issues/7

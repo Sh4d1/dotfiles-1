@@ -218,7 +218,8 @@ bar {
 # media keys available
 
 
-set $Locker i3lock -c 002b36 -f && sleep 1
+# set $Locker i3lock -c 002b36 -f && sleep 1
+set $Locker i3lock -c 000000 -f && sleep 1
 
 set $mode_system System (s) lock, (e) logout, (Shift+s) suspend, (Shift+r) reboot, (Shift+p) shutdown
 mode "$mode_system" {
