@@ -21,7 +21,16 @@ nmap <buffer> <leader>< <Plug>VimwikiRemoveHeaderLevel
 nmap <buffer> <leader>> <Plug>VimwikiAddHeaderLevel
 
 " reassign default dirvish mapping
-nnoremap <silent><buffer> - :Dirvish<cr>
+map <silent><buffer> - <Plug>(dirvish_up)
 
 " disable fzf tags mapping here
 map <silent><buffer> <leader>t <nop>
+
+" TODO: colour these nicely
+" hi VimwikiHeader1 guifg=#FF0000
+" hi VimwikiHeader2 guifg=#00FF00
+" hi VimwikiHeader3 guifg=#0000FF
+" hi VimwikiHeader4 guifg=#FF00FF
+" hi VimwikiHeader5 guifg=#00FFFF
+" hi VimwikiHeader6 guifg=#FFFF00
+

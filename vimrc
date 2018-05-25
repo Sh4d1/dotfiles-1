@@ -814,3 +814,6 @@ let g:vimwiki_list = [
   \ ]
 let g:vimwiki_folder = 'expr'
 let g:vimwiki_auto_chdir = 1
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_dir_link = 'index'
+

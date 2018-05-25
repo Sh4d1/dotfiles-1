@@ -330,7 +330,5 @@ KEYTIMEOUT=1
 
 alias x=startx
 
-alias wiki='nvim +VimwikiIndex'
+alias wi='nvim +VimwikiIndex'
 alias diary='nvim +VimwikiDiaryIndex'
-alias diary-today='nvim +VimwikiMakeDiaryNote'
-alias diary-yesterday='nvim +VimwikiMakeYesterdayDiaryNote'
