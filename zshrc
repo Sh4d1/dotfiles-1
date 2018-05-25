@@ -327,4 +327,10 @@ cdr() {
 KEYTIMEOUT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 alias x=startx
+
+alias wiki='nvim +VimwikiIndex'
+alias diary='nvim +VimwikiDiaryIndex'
+alias diary-today='nvim +VimwikiMakeDiaryNote'
+alias diary-yesterday='nvim +VimwikiMakeYesterdayDiaryNote'

@@ -45,7 +45,7 @@ Plug 'mattn/emmet-vim'                                                  " emmet 
 Plug 'justinmk/vim-sneak'                                               " alternative to f/t
 Plug 'wellle/targets.vim'                                               " extra text objects
 Plug 'tpope/vim-unimpaired'                                             " pair mappings
-Plug 'terryma/vim-expand-region'                                        " expand selected region of text
+" Plug 'terryma/vim-expand-region'                                        " expand selected region of text
 Plug 'wellle/visual-split.vim'                                          " easier splits
 Plug 'romainl/vim-qf'                                                   " quickfix window improvements
 Plug 'tpope/vim-eunuch'                                                 " shortcuts to shell commands (esp rename files)
@@ -120,6 +120,10 @@ Plug 'honza/vim-snippets'                                               " extra 
 
 " linter/fixer
 Plug 'w0rp/ale'                                                         " another linter (better?)
+
+" wiki/notes
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'tbabej/taskwiki'
 
 " add plugins to &runtimepath
 call plug#end()
@@ -273,7 +277,7 @@ cnoremap <c-n> <down>
 cnoremap <c-v> <c-r>"
 
 " hide search highlighting
-nnoremap <silent> <esc> <esc>:nohlsearch \| wa<cr>
+nnoremap <silent> <esc> <esc>:nohlsearch \| w \| wa<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
@@ -483,8 +487,8 @@ augroup END
 
 augroup vimrc
   autocmd!
-  autocmd BufHidden ?* silent! wa
-  autocmd FocusLost,InsertLeave ?* silent! wa
+  " why doesn't this send bufwritepost event consistently?
+  autocmd BufHidden,FocusLost,InsertLeave ?* silent! up | silent! wa
   " NOTE: can't use TextChanged event as below when using vim-surround - breaks repeating its actions with repeat.vim
   " https://github.com/tpope/vim-repeat/issues/59
   " also breaks repeat with sneak
@@ -705,7 +709,7 @@ let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
 let g:UltiSnipsEnableSnipMate=1
 
 " vim-go
-" map 
+" map
 
 " deoplete
 
@@ -761,7 +765,7 @@ augroup vimrc_security
 augroup END
 
 " Switch
-let g:switch_custom_definitions = 
+let g:switch_custom_definitions =
   \ [
   \   switch#NormalizedCase(['left', 'right'])
   \ ]
@@ -791,3 +795,22 @@ nnoremap <silent> com :SignatureToggleSigns<cr>
 
 " so that enter key also inserts a newline even if popup visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+
+
+" vimwiki config
+let g:vimwiki_list = [
+    \ {
+      \ 'path': '~/wiki/',
+      \ 'path_html': '~/wiki_html/',
+      \ 'auto_toc': 1,
+      \ 'index': 'index',
+      \ 'automatic_nested_syntaxes': 1,
+      \ 'template_path': '~/wiki/templates/',
+      \ 'template_ext': '.html',
+      \ 'template_default': 'default',
+      \ 'css_name': 'style.css',
+      \ 'auto_tags': 1,
+    \ }
+  \ ]
+let g:vimwiki_folder = 'expr'
+let g:vimwiki_auto_chdir = 1
