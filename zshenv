@@ -54,8 +54,6 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # replacement for gnome-keyring-daemon
 eval `keychain --noask --eval --agents ssh id_rsa 2>/dev/null`
 
-export FZF_DEFAULT_COMMAND='rg --files --color=never --glob ""'
-
 
 if hash rustc 2>/dev/null && hash rustup 2>/dev/null; then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -64,7 +62,7 @@ fi
 export GTK_IM_MODULE="xim"
 export XMODIFIERS="@im=none"
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never --glob ""'
+export FZF_DEFAULT_COMMAND='rg --follow --files --hidden --color=never --glob ""'
 
 export TERMCMD='termite'
 

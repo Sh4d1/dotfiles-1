@@ -33,4 +33,3 @@ map <silent><buffer> <leader>t <nop>
 " hi VimwikiHeader4 guifg=#FF00FF
 " hi VimwikiHeader5 guifg=#00FFFF
 " hi VimwikiHeader6 guifg=#FFFF00
-

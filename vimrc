@@ -209,7 +209,9 @@ set textwidth=79
 " set foldlevel=100
 set foldclose=all
 
+" allow conceal, but not if the cursor is on the line
 set conceallevel=2
+set concealcursor=
 
 " set colorcolumn=+1,+2,+3
 
@@ -274,7 +276,8 @@ cnoremap <c-l> <s-right>
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
-cnoremap <c-v> <c-r>"
+" NO THIS BAD
+" cnoremap <c-v> <c-r>"
 
 " hide search highlighting
 nnoremap <silent> <esc> <esc>:nohlsearch \| w \| wa<cr>
@@ -324,7 +327,7 @@ inoremap [; [<CR>];<C-c>O
 inoremap [, [<CR>],<C-c>O
 
 " run a macro on selected lines - press @, then the register name, then <enter>
-xnoremap @ :normal @
+" xnoremap @ :normal @
 
 " tagbar
 " nmap <silent> <leader>t :TagbarToggle<cr>
@@ -810,6 +813,15 @@ let g:vimwiki_list = [
       \ 'template_default': 'default',
       \ 'css_name': 'style.css',
       \ 'auto_tags': 1,
+    \ },
+    \ {
+      \ 'path': '~/.nextcloud-notes/',
+      \ 'auto_toc': 1,
+      \ 'index': 'index',
+      \ 'automatic_nested_syntaxes': 1,
+      \ 'ext': '.txt',
+      \ 'syntax': 'markdown',
+      \ 'auto_tags': 1,
     \ }
   \ ]
 let g:vimwiki_folder = 'expr'
@@ -817,3 +829,6 @@ let g:vimwiki_auto_chdir = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_dir_link = 'index'
 
+let g:taskwiki_disable_concealcursor = 'yes'
+" i want to manage mk/load views myself
+let g:taskwiki_dont_preserve_folds = 'yes'

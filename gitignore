@@ -20,7 +20,9 @@ tags
 .tmuxinator.yml
 
 # python environments
-venv/*
-env/*
+venv/
+env/
 
 Session.vim
+
+.mypy_cache/
