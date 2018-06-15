@@ -4,6 +4,7 @@
 "  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
 "  - https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim
 "  - https://www.vi-improved.org/{recommendations,plugins}
+"  - /r/vim
 "  - and others...
 
 
@@ -12,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 
 " enhancements that don't need (much) configuring
 "   and don't provide commands/mappings
-" Plug 'ap/vim-css-color'                                                 " highlight colors in css
+Plug 'ap/vim-css-color'                                                 " highlight colors in css
 Plug 'ludovicchabant/vim-gutentags'                                     " auto-generate tags file
 Plug 'luochen1990/rainbow'                                              " easier to see nested parens
 Plug 'machakann/vim-highlightedyank'                                    " highlights currently yanked region
@@ -36,7 +37,7 @@ Plug 'romainl/Apprentice'                                               " altern
 
 
 " general enhancements providing various functions
-Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'                                              " saves sessions
 Plug 'tpope/vim-commentary'                                             " commenting
 Plug 'machakann/vim-sandwich'                                           " like tpope's surround, but more configurable
 Plug 'tommcdo/vim-lion'                                                 " align things
@@ -60,7 +61,8 @@ Plug 'benmills/vimux'                                                   " run th
 Plug 'justinmk/vim-dirvish'                                             " another alternative to netwr
 Plug 'wincent/ferret'                                                   " search in files (plus qf enhancements)
 Plug 'tpope/vim-db'                                                     " database interface
-
+Plug 'zirrostig/vim-schlepp'                                            " move blockwise text
+Plug 'pelodelfuego/vim-swoop'                                           " thing
 
 " Language syntax/help
 Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files
@@ -103,6 +105,7 @@ if has('nvim')
   Plug 'zchee/deoplete-jedi'
   Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'fszymanski/deoplete-emoji'
+  " Plug 'sebastianmarkow/deoplete-rust'
   Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 endif
 
@@ -687,9 +690,10 @@ let g:user_emmet_settings = {
 " Ferret
 let g:FerretMap = 0
 let g:FerrerLazyInit=0
-nmap <leader>a <Plug>(FerretAck)
-nmap <leader>r <Plug>(FerretAcks)
-nmap <leader>w <Plug>(FerretAckWord)
+nmap <leader>aa <Plug>(FerretAck)
+nmap <leader>ar <Plug>(FerretAcks)
+nmap <leader>aw <Plug>(FerretAckWord)
+nmap <leader>al <Plug>(FerretLack)
 
 " jedi-vim
 let g:jedi#completions_enabled = 0
@@ -832,3 +836,15 @@ let g:vimwiki_dir_link = 'index'
 let g:taskwiki_disable_concealcursor = 'yes'
 " i want to manage mk/load views myself
 let g:taskwiki_dont_preserve_folds = 'yes'
+let g:vimwiki_global_ext = 0
+
+
+" schlepp
+vmap <up>    <Plug>SchleppUp
+vmap <down>  <Plug>SchleppDown
+vmap <left>  <Plug>SchleppLeft
+vmap <right> <Plug>SchleppRight
+vmap <leader>d       <Plug>SchleppDup
+let g:Schlepp#allowSquishingLines = 1
+let g:Schlepp#allowSquishingBlock = 1
+let g:Schlepp#reindent = 1

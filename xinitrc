@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/zsh
 
 #source resources
 [ -f /etc/xprofile ] && source /etc/xprofile
