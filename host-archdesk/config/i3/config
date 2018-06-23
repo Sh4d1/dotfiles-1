@@ -270,11 +270,11 @@ bindsym Mod4+p exec maim "$HOME/Pictures/screenshots/$(date +%s).png"
 bindsym Mod4+Shift+p exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%s).png"
 bindsym Mod4+Ctrl+p exec maim -s "$HOME/Pictures/screenshots/$(date +%s).png"
 
-# bindsym Ctrl+Shift+Up exec
-bindsym Ctrl+Shift+Left exec spot previous
-bindsym Ctrl+Shift+Right exec spot next
+# bindsym Mod4+Ctrl+Shift+Up exec
+bindsym Mod4+Ctrl+Shift+Left exec spot previous
+bindsym Mod4+Ctrl+Shift+Right exec spot next
 # NOTE: spot toggle is only supported by my fork - PR https://github.com/mikejholly/spot/pull/5
-bindsym Ctrl+Shift+Down exec spot toggle
+bindsym Mod4+Ctrl+Shift+Down exec spot toggle
 
 # bindsym Ctrl+Shift+Up exec mocp --stop
 # bindsym Ctrl+Shift+Left exec mocp --previous
@@ -376,9 +376,6 @@ exec --no-startup-id udiskie
 
 
 exec --no-startup-id zsh -c 'tmuxinator start apps'
-
-exec --no-startup-id yakuake
-
 
 # nextcloud!
 exec --no-startup-id nextcloud

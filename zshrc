@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
@@ -36,6 +38,8 @@ select-word-style bash
 
 
 # PLUGINS WITH ZPLUG
+
+# export ZPLUG_LOG_LOAD_
 
 # Check if zplug is installed
 if [[ ! -d ~/.zplug ]]; then
@@ -227,10 +231,6 @@ emulator() {
 
 export GPG_TTY=$(tty)
 
-# anything local to this machine
-[[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
-
-
 # my original custom prompt styled after my vim/tmux status bar - uncomment and
 # remove pure prompt from zplug plugins to enable
 #
@@ -307,6 +307,22 @@ cdr() {
   cd "$TARGET"
 }
 
+# show a grid of 256 colours - useful for quick reference
+colours() {
+  for i in {0..255}; do
+    printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i
+    if ! (( ($i + 1 ) % 8 )); then
+      echo
+    fi
+  done
+}
+
+# ascii weather over http https://github.com/chubin/wttr.in
+wttr()
+{
+    curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Adelaide}"
+}
+
 
 # function zle-keymap-select zle-line-init zle-line-finish {
 #   case $KEYMAP in
@@ -331,3 +347,9 @@ alias x=startx
 
 alias wi='nvim +VimwikiIndex'
 alias diary='nvim +VimwikiDiaryIndex'
+
+# anything local to this machine
+[[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
+
+
+# zprof

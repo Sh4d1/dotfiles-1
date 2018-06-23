@@ -69,5 +69,7 @@ export TERMCMD='termite'
 export GRADLE_USER_HOME="$HOME/.gradle/"
 export USER_HOME="$HOME"
 
-[[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
+# I prefer to not have production deploy logs littered with cows
+export ANSIBLE_NOCOWS=1
 
+[[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
