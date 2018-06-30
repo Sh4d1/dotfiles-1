@@ -63,6 +63,7 @@ Plug 'wincent/ferret'                                                   " search
 Plug 'tpope/vim-db'                                                     " database interface
 Plug 'zirrostig/vim-schlepp'                                            " move blockwise text
 Plug 'pelodelfuego/vim-swoop'                                           " thing
+Plug 'dyng/ctrlsf.vim' "searching
 
 " Language syntax/help
 Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files

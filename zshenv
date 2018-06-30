@@ -72,4 +72,6 @@ export USER_HOME="$HOME"
 # I prefer to not have production deploy logs littered with cows
 export ANSIBLE_NOCOWS=1
 
+export AUR_PAGER="ranger"
+
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
