@@ -87,6 +87,7 @@ Plug 'racer-rust/vim-racer'                                             " rust c
 Plug 'ElmCast/elm-vim'                                                  " elm
 Plug 'chr4/nginx.vim'                                                   " nginx config help
 Plug 'udalov/kotlin-vim'                                                " kotlin
+Plug 'ledger/vim-ledger'                                                " ledger/hledger plaint text accounting language support
 
 
 " Git integrations
@@ -754,6 +755,11 @@ if has('nvim')
   let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
   let g:nvim_typescript#default_mappings = 1
+
+
+  call deoplete#custom#option('omni_patterns', {
+  \ 'ledger': '^    \(\w \w\|\w\|:\)\+',
+  \})
 endif
 
 let g:autocomplete_flow#insert_paren_after_function = 0

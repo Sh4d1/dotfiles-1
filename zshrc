@@ -347,6 +347,7 @@ alias x=startx
 
 alias wi='nvim +VimwikiIndex'
 alias diary='nvim +VimwikiDiaryIndex'
+alias hl='hledger'
 
 # anything local to this machine
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
