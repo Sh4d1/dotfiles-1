@@ -446,7 +446,8 @@ let g:ale_linters = {
       \ 'text': ['vale', 'proselint'],
       \ 'tex': ['vale', 'proselint'],
       \ 'markdown': ['proselint', 'mdl', 'vale'],
-      \ 'kotlin': ['kotlinc']
+      \ 'kotlin': ['kotlinc'],
+      \ 'ledger': ['ledger']
       \ }
 
 let g:ale_fixers = {
@@ -495,12 +496,9 @@ augroup END
 
 augroup vimrc
   autocmd!
-  " why doesn't this send bufwritepost event consistently?
-  autocmd BufHidden,FocusLost,InsertLeave ?* silent! up | silent! wa
-  " NOTE: can't use TextChanged event as below when using vim-surround - breaks repeating its actions with repeat.vim
-  " https://github.com/tpope/vim-repeat/issues/59
-  " also breaks repeat with sneak
-  " autocmd TextChanged ?* silent! wa | Neomake
+  " TODO: check if need to preserve '[ marks, add check to only save if buffer modifiable and file exists
+  autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! up | silent! wa
+  autocmd TextChanged ?* nested silent! wa
   " autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')

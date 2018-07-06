@@ -349,6 +349,10 @@ alias wi='nvim +VimwikiIndex'
 alias diary='nvim +VimwikiDiaryIndex'
 alias hl='hledger'
 
+mksrcinfo() {
+  makepkg --printsrcinfo > .SRCINFO
+}
+
 # anything local to this machine
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
 
