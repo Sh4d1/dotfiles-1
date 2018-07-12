@@ -276,16 +276,10 @@ let g:python3_host_prog = '/usr/bin/python3'
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
 
-cnoremap <c-h> <s-left>
-cnoremap <c-l> <s-right>
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
-" NO THIS BAD
-" cnoremap <c-v> <c-r>"
-
-" hide search highlighting
-nnoremap <silent> <esc> <esc>:nohlsearch \| w \| wa<cr>
+nnoremap <silent> <esc> <esc>:nohlsearch \| redraw! \| silent! wa<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
@@ -297,10 +291,6 @@ nmap <leader>2 2z=
 
 " more consistent mapping
 noremap Y y$
-
-" Repeat last macro if in a normal buffer.
-" NO! I want to use it for the default - <c-i> or tab is opposite of <c-o>
-" nnoremap <expr> <tab> empty(&buftype) ? '@@' : '<cr>'
 
 nnoremap <F2> :Rename |
 
@@ -322,20 +312,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <A-h> :bp<cr>
 nnoremap <A-l> :bn<cr>
 
-" https://www.reddit.com/r/vim/comments/6h0dy7/which_autoclosing_plugin_do_you_use/diujtbd/
-" just discovered this again... i don't think i've ever actually used these
-inoremap (; (<CR>);<C-c>O
-inoremap (, (<CR>),<C-c>O
-inoremap {; {<CR>};<C-c>O
-inoremap {, {<CR>},<C-c>O
-inoremap [; [<CR>];<C-c>O
-inoremap [, [<CR>],<C-c>O
-
 " run a macro on selected lines - press @, then the register name, then <enter>
 " xnoremap @ :normal @
-
-" tagbar
-" nmap <silent> <leader>t :TagbarToggle<cr>
 
 " undotree
 nmap <silent> <leader>u :UndotreeToggle<cr>
@@ -497,8 +475,8 @@ augroup END
 augroup vimrc
   autocmd!
   " TODO: check if need to preserve '[ marks, add check to only save if buffer modifiable and file exists
-  autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! up | silent! wa
-  autocmd TextChanged ?* nested silent! wa
+  autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! wa
+  " autocmd TextChanged ?* nested wa
   " autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
@@ -591,8 +569,8 @@ let g:EditorConfig_max_line_indicator = "fill"
 " rust
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
-let g:rustfmt_autosave = 1
-let g:rustfmt_fail_silently = 1
+" let g:rustfmt_autosave = 1
+" let g:rustfmt_fail_silently = 1
 let g:rust_fold = 1
 
 
