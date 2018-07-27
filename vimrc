@@ -30,6 +30,8 @@ Plug 'google/vim-searchindex'                                           " displa
 Plug 'roxma/vim-tmux-clipboard'                                         " clipboard integration with tmux
 Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode
 Plug 'cspeterson/vim-convert'                                           " use `units` to convert unit values
+Plug 'https://github.com/mattn/webapi-vim.git'                          " library for interfacing with web apis
+Plug 'https://github.com/AndrewRadev/undoquit.vim.git'  " undo close buffer/split/tab
 
 " colorschemes
 Plug 'romainl/flattened'                                                " (solarized)
@@ -71,7 +73,7 @@ Plug 'cespare/vim-toml'                                                 " toml s
 Plug 'lervag/vimtex'                                                    " latex
 Plug 'wannesm/wmgraphviz.vim'                                           " graphviz dot
 Plug 'saltstack/salt-vim'                                               " saltstack syntax
-Plug 'chrisbra/csv.vim'                                                 " csv sheets
+" Plug 'chrisbra/csv.vim'                                                 " csv sheets
 Plug 'leafgarland/typescript-vim'                                       " typescript syntax + settings
 " Plug 'Quramy/vim-js-pretty-template'                                    " javascript template string syntax
 Plug 'godlygeek/tabular'                                                " tabular
@@ -92,7 +94,8 @@ Plug 'ledger/vim-ledger'                                                " ledger
 
 " Git integrations
 Plug 'tpope/vim-fugitive'                                               " git commands from in vim
-Plug 'airblade/vim-gitgutter'                                           " view hunks/changes in the gutter
+" Plug 'airblade/vim-gitgutter'                                         " view hunks/changes in the gutter
+Plug 'mhinz/vim-signify'                                                " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
 Plug 'junegunn/gv.vim'                                                  " git log viewer
 Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
@@ -185,7 +188,7 @@ set nospell " spellchecking off by default
 set spelllang=en_au " correct language
 set spellcapcheck=
 
-" set lazyredraw " don't redraw while replaying macros
+set lazyredraw " don't redraw while replaying macros
 
 set virtualedit=block
 
@@ -234,10 +237,10 @@ set noshowmode
 
 set thesaurus+=~/.vim/mthesaur.txt
 
+let g:netrw_browsex_viewer = 'rifle'
+
 " faster diff?
 let g:diff_translations = 0
-
-" set autochdir
 
 " seems to crash neovim with the other settings i have
 " if has('nvim')
@@ -344,7 +347,7 @@ nmap <C-c><C-c> vip<C-c><C-c>
 map <leader>bp :VimuxPromptCommand<cr>
 
 " Run last command executed by VimuxRunCommand
-map <leader>bl :w <bar> :VimuxRunLastCommand<cr>
+map <leader>bl :silent! wa <bar> :VimuxRunLastCommand<cr>
 
 " Inspect runner pane
 map <leader>bo :call VimuxOpenRunner()<cr>
@@ -356,7 +359,8 @@ map <leader>bi :VimuxInspectRunner<cr>
 map <leader>bq :VimuxCloseRunner<cr>
 
 " Interrupt any command running in the runner pane
-map <leader>bx :VimuxInterruptRunner<cr>
+map <leader>bc :VimuxInterruptRunner<cr>
+
 " send eof
 map <leader>bd :call VimuxSendKeys("^D")<cr>
 
@@ -464,7 +468,9 @@ cmap <C-h> <BS>
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
 
-set viewoptions-=options
+" what I want saved/restored with views - previously the curdir was saved, which
+" resulted in unexpected cwd when editing files at times...
+set viewoptions=folds,cursor
 
 augroup vimrc_views
  autocmd!
@@ -474,14 +480,9 @@ augroup END
 
 augroup vimrc
   autocmd!
-  " TODO: check if need to preserve '[ marks, add check to only save if buffer modifiable and file exists
   autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! wa
-  " autocmd TextChanged ?* nested wa
-  " autocmd BufWritePost ?* Neomake
   autocmd ColorScheme * call functions#sethighlight()
-  " autocmd BufEnter,FocusGained,VimEnter,WinEnter ?* let &l:colorcolumn='+' . join(range(1, 3), ',+')
-  " autocmd FocusLost,WinLeave ?* let &l:colorcolumn=join(range(1,255), ',')
-  autocmd FocusGained,CursorHold ?* checktime
+  autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 augroup END
 
 
@@ -572,6 +573,8 @@ let g:racer_experimental_completer = 1
 " let g:rustfmt_autosave = 1
 " let g:rustfmt_fail_silently = 1
 let g:rust_fold = 1
+" let g:rust_shortener_url = ''
+let g:rust_clip_command = 'xsel -ib'
 
 
 " gutentags
@@ -725,10 +728,9 @@ if has('nvim')
   endif
   let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
-   call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+  call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
-  let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-  let g:deoplete#sources#rust#rust_source_path='/home/samuel/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+  " let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 
   let g:nvim_typescript#default_mappings = 1
 
@@ -745,14 +747,6 @@ let g:indentLine_setConceal = 0
 " let g:indentLine_setColors = 0
 let g:indentLine_char = '▏'
 
-
-" so we don't leak
-augroup vimrc_security
-  autocmd!
-  autocmd BufNewFile,BufRead /dev/shm/gopass* set noundofile nobackup nowritebackup noswapfile viminfo=""
-  autocmd BufNewFile,BufRead /dev/shm/pass* set noundofile nobackup nowritebackup noswapfile viminfo=""
-  autocmd BufNewFile,BufRead /tmp/* set noundofile nobackup nowritebackup noswapfile viminfo=""
-augroup END
 
 " Switch
 let g:switch_custom_definitions =
@@ -831,3 +825,13 @@ vmap <leader>d       <Plug>SchleppDup
 let g:Schlepp#allowSquishingLines = 1
 let g:Schlepp#allowSquishingBlock = 1
 let g:Schlepp#reindent = 1
+
+" vim-signify
+let g:signify_vcs_list = ['git']
+let g:signify_realtime = 0
+
+" hunk text object
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)

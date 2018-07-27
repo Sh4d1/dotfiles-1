@@ -1,9 +1,16 @@
 
+let s:ale_running = 0
+augroup ALEProgress
+  autocmd!
+  autocmd User ALELintPre  let s:ale_running = 1 | redrawstatus
+  autocmd User ALELintPost let s:ale_running = 0 | redrawstatus
+augroup end
+
 func! functions#striptrailingwhitespace()
-  if !&binary && &filetype != 'diff'
+  if !&binary && &filetype !=# 'diff'
 
     " save last search
-    let _s=@/
+    let l:_s=@/
 
     " strip spaces
     %s/\s\+$//e
@@ -12,9 +19,28 @@ func! functions#striptrailingwhitespace()
     normal ``
 
     " restore last search
-    let @/=_s
+    let @/=l:_s
   endif
 endfunc
+
+function! functions#sy_stats_wrapper()
+  let l:symbols = ['+', '-', '~']
+  let [l:added, l:modified, l:removed] = sy#repo#get_stats()
+  let l:stats = [l:added, l:removed, l:modified]  " reorder
+  let l:hunkline = ''
+
+  for l:i in range(3)
+    if l:stats[l:i] > 0
+      let l:hunkline .= printf('%s%s ', l:symbols[l:i], l:stats[l:i])
+    endif
+  endfor
+
+  if !empty(l:hunkline)
+    let l:hunkline = printf('[%s]', l:hunkline[:-2])
+  endif
+
+  return l:hunkline
+endfunction
 
 func! functions#buildstatusline()
   let l:line = '%1*'
@@ -36,29 +62,30 @@ func! functions#buildstatusline()
   let l:line .= ' %4* '
   let l:line .= '%v,%l/%L [%p%%] '                               " cursor
 
-  let l:ale = ALEGetStatusLine()
-  if l:ale =~# '.'
-    if l:ale =~# '[E]'
-      let l:line .= '%7*%( ' " red
-    elseif l:ale =~# '[W]'
-      let l:line .= '%3*%( ' " orange
+  if s:ale_running
+    let l:line .= '%1*%( ale… %)'
+  else
+    let l:ale = ale#statusline#Count(bufnr('%'))
+    if l:ale.total > 0
+      if l:ale.error > 0
+        let l:line .= '%7*%( ' " red
+      else
+        let l:line .= '%3*%( ' " orange
+      endif
+      let l:line .= printf('E:%d W:%d', l:ale.error + l:ale.style_error, l:ale.warning + l:ale.style_warning + l:ale.info)
+      let l:line .= ' %)'
+    else
+      let l:line .= '%2*%( ale :) %)'
     endif
-    let l:line .= l:ale
-    let l:line .= ' %)'
   endif
+
 
   " git status
   let l:line .= '%6*%( %{fugitive#statusline()} %)'
-  let l:hunks = GitGutterGetHunkSummary()
-  if l:hunks[0] || l:hunks[1] || l:hunks[2]
-    let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .
-                        \ ' %#GitGutterChange#~' . l:hunks[1] .
-                        \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
-  endif
+  let l:line .= '%2*%( %{functions#sy_stats_wrapper()} %)'
 
   return l:line
 endfunc
-
 
 func! functions#vimuxslime()
  call VimuxSendText(@v)

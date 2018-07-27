@@ -4,6 +4,10 @@
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
 
+# disable catching <c-q> and <c-s>
+stty stop undef
+stty start undef
+
 # Below are some various methods for automatically running tmux on opening a
 # shell. They work well, but I like access to the shell sometimes without tmux
 # around it...
