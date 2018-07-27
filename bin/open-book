@@ -2,6 +2,7 @@
 
 # search for and open a pdf book on my desktop
 
+set -e
 
 shopt -s nullglob globstar
 
