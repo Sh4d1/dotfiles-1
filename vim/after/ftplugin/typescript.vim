@@ -1,0 +1,2 @@
+
+nnoremap gd :TSDef<cr>
