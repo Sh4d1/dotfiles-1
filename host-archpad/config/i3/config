@@ -149,11 +149,12 @@ bindsym Mod4+r mode "resize"
 bar {
     status_command ~/dotfiles/bin/i3pystatus-archpad
     tray_padding 0
-    position bottom
+    position top
 }
 
 
-# media keys available
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 
 set $Locker i3lock -c 000000 -f && sleep 1
@@ -172,9 +173,20 @@ mode "$mode_system" {
 }
 
 
-bindsym Mod4+Escape mode "$mode_system"
+bindsym Mod4+Delete mode "$mode_system"
+bindsym XF86PowerOff mode "$mode_system"
 
+# media
+bindsym XF86AudioRaiseVolume exec ponymix increase 5
+bindsym XF86AudioLowerVolume exec ponymix decrease 5
+bindsym XF86AudioMute exec ponymix toggle
+bindsym XF86AudioMicMute exec ponymix --input toggle
 
+bindsym XF86Display exec sh -c 'pgrep "^/usr/bin/python2 /usr/bin/arandr" -f || arandr'
+
+# F9
+#bindsym XF86Tools exec false
+# TODO: user define F11 and F12
 
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [ title="^POPUP1$" ] floating enable
@@ -244,9 +256,6 @@ exec --no-startup-id compton -GC -b -r 0 -o 0 -l 0 -t 0 --backend glx --vsync op
 
 # Startup programs!
 
-# need to start now due to using gnome keyring for passwords
-exec --no-startup-id offlineimap
-
 # bluetooth systemtray icon
 exec --no-startup-id blueberry-tray
 
@@ -254,8 +263,8 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # clipboard management
-#exec --no-startup-id clipster -d
-#bindsym Mod4+c exec clipster -cs
+exec --no-startup-id clipster -d
+bindsym Mod4+c exec clipster -cs
 
 # pulseaudio system tray icon
 #exec --no-startup-id pasystray
@@ -266,9 +275,11 @@ exec --no-startup-id dunst
 # external drive management
 exec --no-startup-id udiskie
 
-# exec --no-startup-id zsh -c 'tmuxinator start apps'
+# load the tmux session with cli apps to run in background (mutt, etc.)
+exec --no-startup-id tmuxp load -d apps
 
-exec --no-startup-id nextcloud
+# NOTE: using owncloud client instead of nextcloud because bugs
+exec --no-startup-id owncloud
 
 # toggl time tracking
 #exec --no-startup-id toggldesktop -b

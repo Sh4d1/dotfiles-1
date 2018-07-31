@@ -131,6 +131,7 @@ Plug 'w0rp/ale'                                                         " anothe
 
 " wiki/notes
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+" NOTE: requires tasklib installed: `pip install --user tasklib`
 Plug 'tbabej/taskwiki'
 
 " add plugins to &runtimepath
