@@ -1,8 +1,3 @@
-# An example configuration for vdirsyncer.
-#
-# Move it to ~/.vdirsyncer/config or ~/.config/vdirsyncer/config and edit it.
-# Run `vdirsyncer --help` for CLI usage.
-#
 # Optional parameters are commented out.
 # This file doesn't document all available parameters, see
 # http://vdirsyncer.readthedocs.io/ for the rest of them.
@@ -45,11 +40,7 @@ fileext = ".vcf"
 type = "carddav"
 url = "https://nextcloud.walladge.net/"
 username = "samuel"
-password.fetch = ["command", "vdirsyncer-password.sh"]
-#username =
-# The password can also be fetched from the system password storage, netrc or a
-# custom command. See http://vdirsyncer.readthedocs.io/en/stable/keyring.html
-#password =
+password.fetch = ["command", "python", "-c", "print(__import__('netrc').netrc().authenticators('nextcloud.walladge.net')[2])"]
 
 # CALDAV
 [pair main_calendar]
@@ -70,5 +61,4 @@ fileext = ".ics"
 type = "caldav"
 url = "https://nextcloud.walladge.net/"
 username = "samuel"
-password.fetch = ["command", "vdirsyncer-password.sh"]
-
+password.fetch = ["command", "python", "-c", "print(__import__('netrc').netrc().authenticators('nextcloud.walladge.net')[2])"]

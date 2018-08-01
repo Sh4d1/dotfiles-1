@@ -35,4 +35,4 @@ map <silent><buffer> <leader>t <nop>
 " hi VimwikiHeader6 guifg=#FFFF00
 
 
-" inoremap <silent><buffer> <c-cr> <esc>:VimwikiReturn 2 2<cr>
+inoremap <silent><buffer> <m-cr> <cr>

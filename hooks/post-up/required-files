@@ -2,9 +2,6 @@
 
 # check if required files like encrypted password files are present
 
-# vdirsyncer
-[ -e ~/.vdirsyncer-main.gpg ] || echo "~/.vdirsyncer-main.gpg does not exist"
-
 # msmtp (smtp sending emails)
 [ -e ~/.msmtp-main.gpg ] || echo "~/.msmtp-main.gpg does not exist"
 

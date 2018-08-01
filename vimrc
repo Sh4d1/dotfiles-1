@@ -66,6 +66,7 @@ Plug 'tpope/vim-db'                                                     " databa
 Plug 'zirrostig/vim-schlepp'                                            " move blockwise text
 Plug 'pelodelfuego/vim-swoop'                                           " thing
 Plug 'dyng/ctrlsf.vim' "searching
+Plug 'tpope/vim-rhubarb'
 
 " Language syntax/help
 Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files
@@ -176,15 +177,15 @@ set history=2000    " more history
 set undolevels=5000 " and undolevels
 set undofile
 
-" set listchars=tab:»·,trail:·,eol:$,nbsp:⦸ " for graphically displaying whitespace
-set listchars=tab:»·,trail:•,nbsp:⦸,extends:»,precedes:« " for graphically displaying whitespace
+" set listchars=tab:»·,trail:·,eol:$,nbsp:• " for graphically displaying whitespace
+set listchars=tab:»·,trail:•,nbsp:•,extends:»,precedes:« " for graphically displaying whitespace
 set list
 
 set wildmenu
 set shortmess+=filnxtToOc " less 'press ... to continue' maybe
 set showmode
 set breakindent
-set showbreak=⤷
+set showbreak=…
 set nospell " spellchecking off by default
 set spelllang=en_au " correct language
 set spellcapcheck=
