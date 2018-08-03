@@ -37,7 +37,7 @@ except Exception as e:
 
 
 keys = '\n'.join(db.keys())
-result = subprocess.run(['rofi', '-dmenu', '-no-custom', '-p', 'snippet:', '-matching', 'fuzzy'],
+result = subprocess.run(['rofi', '-dmenu', '-no-custom', '-p', 'snippet', '-matching', 'fuzzy'],
         input=keys, stdout=subprocess.PIPE, encoding='utf-8')
 if result.returncode != 0:
     sys.exit(-1)

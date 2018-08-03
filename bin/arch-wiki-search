@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# arch-wiki-search
+#
+# Copyright © 2018 Samuel Walladge
+#
+# A short script to quickly search and open a page from the Arch Wiki.
+# Depends on the `arch-wiki-docs` package.
+
+
+import subprocess
+import glob
+import sys
+
+# CONFIG
+DOCSPATH = '/usr/share/doc/arch-wiki/html/'
+LANG = 'en'
+PROCESS_ARGS = ['rofi', '-dmenu', '-no-custom', '-p', 'wiki', '-matching', 'glob', '-i']
+OPEN_ARGS = ['rifle']
+
+BASEPATH = DOCSPATH + LANG + '/'
+
+
+def pretty_name(name):
+
+    name = name[len(BASEPATH):]
+
+    # clean
+    name = name.replace('_', ' ')
+    name = name.replace('/', ' > ')
+
+    # strip '.html'
+    name = name[:-5]
+
+    return name
+
+
+if __name__ == '__main__':
+
+    files = glob.glob(BASEPATH + '**/*.html', recursive=True)
+    # also get hidden files
+    files.extend(glob.glob(BASEPATH + '**/.*.html', recursive=True))
+
+    mapping = {pretty_name(name): name for name in files}
+
+    keys = '\n'.join(sorted(mapping.keys()))
+    result = subprocess.run(PROCESS_ARGS,
+            input=keys, stdout=subprocess.PIPE, encoding='utf-8')
+    if result.returncode != 0:
+        sys.exit(-1)
+
+    key = result.stdout.strip()
+    page = mapping.get(key, None)
+
+    subprocess.run(OPEN_ARGS + [page])

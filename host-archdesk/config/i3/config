@@ -299,10 +299,13 @@ bindsym Mod4+z exec clip-snippet.py copy ~/Documents/snippets.yml
 # bindsym Mod4+Shift+z exec clip-snippet.py copy ~/Documents/snippets.yml
 
 # open a book quickly
-bindsym Mod4+Shift+b exec /home/samuel/dotfiles/bin/open-book
+bindsym Mod4+Shift+b exec open-book
 
 # open a local webserver quickly
-bindsym Mod4+Ctrl+l exec /home/samuel/dotfiles/bin/open-local-url
+bindsym Mod4+Ctrl+l exec open-local-url
+
+# open a local webserver quickly
+bindsym Mod4+Shift+a exec arch-wiki-search
 
 workspace 1 output HDMI-0
 workspace 2 output HDMI-0
