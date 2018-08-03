@@ -569,9 +569,12 @@ endif
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:EditorConfig_max_line_indicator = "fill"
 
-" rust
+" rust racer
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 0
+
+" rust
 " let g:rustfmt_autosave = 1
 " let g:rustfmt_fail_silently = 1
 let g:rust_fold = 1

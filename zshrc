@@ -357,7 +357,10 @@ mksrcinfo() {
   makepkg --printsrcinfo > .SRCINFO
 }
 
-# anything local to this machine
+# zsh config local to this machine (stored in host dir in dotfiles)
+[[ -f ~/.zshrc_host ]] && . ~/.zshrc_host
+
+# anything local to this machine (not stored in dotfiles)
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
 
 

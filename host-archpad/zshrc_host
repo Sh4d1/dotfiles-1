@@ -1,0 +1,3 @@
+
+# https://wiki.archlinux.org/index.php/Pkgfile
+source /usr/share/doc/pkgfile/command-not-found.zsh
