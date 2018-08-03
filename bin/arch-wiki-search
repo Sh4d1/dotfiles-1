@@ -7,6 +7,9 @@
 #
 # A short script to quickly search and open a page from the Arch Wiki.
 # Depends on the `arch-wiki-docs` package.
+#
+# Default configuration requires `rofi` (gui fuzzy search) and `ranger` (the
+# rifle open command).
 
 
 import subprocess
