@@ -310,3 +310,6 @@ exec --no-startup-id xcape -e 'Caps_Lock=Escape' -t 300
 
 # hide the mouse cursor
 exec --no-startup-id xbanish
+
+# secrets daemon
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets

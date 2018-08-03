@@ -52,7 +52,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # fi
 
 # replacement for gnome-keyring-daemon
-eval `keychain --noask --eval --agents ssh id_rsa 2>/dev/null`
+# requires keychain package installed
+eval $(keychain --noask --eval --agents ssh id_rsa 2>/dev/null)
 
 
 if hash rustc 2>/dev/null && hash rustup 2>/dev/null; then

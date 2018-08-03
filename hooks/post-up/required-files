@@ -2,8 +2,5 @@
 
 # check if required files like encrypted password files are present
 
-# msmtp (smtp sending emails)
-[ -e ~/.msmtp-main.gpg ] || echo "~/.msmtp-main.gpg does not exist"
-
 # redshift
 [ -e ~/.coords ] || echo "~/.coords does not exist (coords for redshift)"
