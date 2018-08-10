@@ -128,7 +128,7 @@ bind index,pager \CP sidebar-prev       # Ctrl-P - Previous Mailbox
 bind index,pager \CN sidebar-next       # Ctrl-N - Next Mailbox
 bind index,pager \CO sidebar-open       # Ctrl-O - Open Highlighted Mailbox
 
-color sidebar_highlight white color10
+# color sidebar_highlight white color10
 
 # notmuch
 set nm_default_uri = "notmuch://$HOME/Maildir"

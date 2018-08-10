@@ -209,9 +209,9 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
+[grok]
+    summary = "Grok*"
+    script = /home/samuel/dotfiles/bin/notify_sound.sh
 
 #[script-test]
 #    summary = "*script*"

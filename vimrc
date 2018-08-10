@@ -36,6 +36,8 @@ Plug 'https://github.com/AndrewRadev/undoquit.vim.git'  " undo close buffer/spli
 " colorschemes
 Plug 'romainl/flattened'                                                " (solarized)
 Plug 'romainl/Apprentice'                                               " alternate 256 color colorscheme
+" Plug 'lifepillar/vim-solarized8'
+" Plug 'chriskempson/base16-vim '
 
 
 " general enhancements providing various functions
@@ -264,6 +266,8 @@ try
 catch
   colorscheme torte
 endtry
+
+set termguicolors
 
 " Status Line
 set laststatus=2

@@ -96,12 +96,12 @@ func! functions#sethighlight()
 
   " statusline highlights
   hi User1 ctermbg=NONE ctermfg=NONE
-  hi User2 ctermbg=2 ctermfg=0
-  hi User3 ctermbg=3 ctermfg=0
-  hi User4 ctermbg=4 ctermfg=0
-  hi User5 ctermbg=5 ctermfg=0
-  hi User6 ctermbg=6 ctermfg=0
-  hi User7 ctermbg=1 ctermfg=0
+  hi User2 ctermbg=2 ctermfg=0 guifg='#073642' guibg='#859900'
+  hi User3 ctermbg=3 ctermfg=0 guifg='#073642' guibg='#b58900'
+  hi User4 ctermbg=4 ctermfg=0 guifg='#073642' guibg='#268bd2'
+  hi User5 ctermbg=5 ctermfg=0 guifg='#073642' guibg='#d33682'
+  hi User6 ctermbg=6 ctermfg=0 guifg='#073642' guibg='#2aa198'
+  hi User7 ctermbg=1 ctermfg=0 guifg='#073642' guibg='#dc322f'
 
   hi link EndOfBuffer ColorColumn
 
