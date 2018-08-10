@@ -32,17 +32,18 @@ status.register("load")
 
 # NOTE: requires libpulseaudio from PyPI
 status.register("pulseaudio",
+                color_unmuted="#00FF00",
                 format="♪ {volume}%",)
 
 status.register("backlight",
-    format="BL: {percentage}%",
+    format="{percentage}% BL",
     base_path="/sys/class/backlight/intel_backlight/")
 
 # NOTE: the network module requires PyPI package netifaces
 status.register("network",
                 interface="wlp2s0",
                 dynamic_color=False,
-                format_up="{v4cidr} {kbs}KiBs",)
+                format_up="{v4cidr} {bytes_recv}KiBs",)
 
 status.register("mail",
         backends=[maildir.MaildirMail(

@@ -241,6 +241,9 @@ bindsym Mod4+Shift+b exec /home/samuel/dotfiles/bin/open-book
 # open a local webserver quickly
 bindsym Mod4+Ctrl+l exec /home/samuel/dotfiles/bin/open-local-url
 
+# open an offline archwiki page
+bindsym Mod4+Shift+a exec arch-wiki-search
+
 new_window pixel 2
 
 focus_on_window_activation urgent

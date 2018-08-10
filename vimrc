@@ -267,7 +267,9 @@ catch
   colorscheme torte
 endtry
 
-set termguicolors
+if $COLORTERM == "truecolor"
+  set termguicolors
+endif
 
 " Status Line
 set laststatus=2
