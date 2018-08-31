@@ -13,6 +13,9 @@ augroup END
 nnoremap <silent><buffer> coi :VimwikiToggleListItem<cr>
 nnoremap <silent><buffer> <c-space> :Files<cr>
 
+" setlocal foldmethod=manual
+setlocal spell
+
 
 " fix bad default header level mappings
 noremap <buffer> = =

@@ -35,9 +35,9 @@ Plug 'https://github.com/AndrewRadev/undoquit.vim.git'  " undo close buffer/spli
 
 " colorschemes
 Plug 'romainl/flattened'                                                " (solarized)
-Plug 'romainl/Apprentice'                                               " alternate 256 color colorscheme
+Plug 'romainl/Apprentice'
 " Plug 'lifepillar/vim-solarized8'
-" Plug 'chriskempson/base16-vim '
+Plug 'chriskempson/base16-vim'
 
 
 " general enhancements providing various functions
@@ -102,6 +102,7 @@ Plug 'mhinz/vim-signify'                                                " view h
 Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
 Plug 'junegunn/gv.vim'                                                  " git log viewer
 Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
+Plug 'https://github.com/iberianpig/tig-explorer.vim'  " tig integration
 
 " Completion
 " Plug 'ajh17/VimCompletesMe'                                             " tab completion
@@ -816,7 +817,7 @@ let g:vimwiki_list = [
       \ 'auto_tags': 1,
     \ }
   \ ]
-let g:vimwiki_folder = 'expr'
+let g:vimwiki_folding = 'expr'
 let g:vimwiki_auto_chdir = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_dir_link = 'index'
