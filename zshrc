@@ -210,6 +210,7 @@ alias ml='tmuxinator local'
 alias g='git'
 alias tk='task'
 alias m='neomutt'
+alias p='gopass'
 
 alias vimdiff='nvim -d'
 alias status='systemctl status'
@@ -352,6 +353,11 @@ alias x=startx
 alias wi='nvim +VimwikiIndex'
 alias diary='nvim +VimwikiDiaryIndex'
 alias hl='hledger'
+
+# edit today's journal entry
+today() {
+  nvim "$HOME/wiki/diary/$(date +%F).wiki"
+}
 
 mksrcinfo() {
   makepkg --printsrcinfo > .SRCINFO

@@ -82,7 +82,18 @@ func! functions#buildstatusline()
 
   " git status
   let l:line .= '%6*%( %{fugitive#statusline()} %)'
-  let l:line .= '%2*%( %{functions#sy_stats_wrapper()} %)'
+
+  " signify
+  " let l:line .= '%2*%( %{functions#sy_stats_wrapper()} %)'
+
+  " gitgutter
+  let l:hunks = GitGutterGetHunkSummary()
+  if l:hunks[0] || l:hunks[1] || l:hunks[2]
+    let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .
+                \ ' %#GitGutterChange#~' . l:hunks[1] .
+                \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
+
+  endif
 
   return l:line
 endfunc

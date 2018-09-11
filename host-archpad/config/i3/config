@@ -201,11 +201,16 @@ for_window [class="Toggl Desktop"] floating enable
 for_window [class="Toggl Desktop"] resize set 1000 1000
 
 # full desktop
-bindsym Print exec maim "$HOME/Pictures/screenshots/$(date +%s).png"
-# active window
-bindsym Shift+Print exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%s).png"
-# select area
-bindsym Ctrl+Print exec maim -s "$HOME/Pictures/screenshots/$(date +%s).png"
+# bindsym Print exec maim "$HOME/Pictures/screenshots/$(date +%s).png"
+# # active window
+# bindsym Shift+Print exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%s).png"
+# # select area
+# bindsym Ctrl+Print exec maim -s "$HOME/Pictures/screenshots/$(date +%s).png"
+
+# alternatives for keyboard without printscreen button
+bindsym Mod4+p exec maim "$HOME/Pictures/screenshots/$(date +%s).png"
+bindsym Mod4+Shift+p exec maim -i $(xdotool getactivewindow) "$HOME/Pictures/screenshots/$(date +%s).png"
+bindsym Mod4+Ctrl+p exec maim -s "$HOME/Pictures/screenshots/$(date +%s).png"
 
 # bindsym Mod4+Ctrl+Shift+Up exec
 bindsym Mod4+Ctrl+Shift+Left exec spot previous
@@ -310,6 +315,9 @@ exec_always --no-startup-id xset r rate 175 20
 
 # double up on capslock key (now acts as either esc or ctrl)
 exec --no-startup-id xcape -e 'Caps_Lock=Escape' -t 300
+
+# remap printscrn to super
+exec_always --no-startup-id xmodmap -e 'keysym Print = Super_R'
 
 # hide the mouse cursor
 exec --no-startup-id xbanish

@@ -68,7 +68,6 @@ Plug 'tpope/vim-db'                                                     " databa
 Plug 'zirrostig/vim-schlepp'                                            " move blockwise text
 Plug 'pelodelfuego/vim-swoop'                                           " thing
 Plug 'dyng/ctrlsf.vim' "searching
-Plug 'tpope/vim-rhubarb'
 
 " Language syntax/help
 Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files
@@ -93,16 +92,20 @@ Plug 'ElmCast/elm-vim'                                                  " elm
 Plug 'chr4/nginx.vim'                                                   " nginx config help
 Plug 'udalov/kotlin-vim'                                                " kotlin
 Plug 'ledger/vim-ledger'                                                " ledger/hledger plaint text accounting language support
+Plug 'https://gitlab.com/Lenovsky/nuake.git'  " quake style terminal
 
 
 " Git integrations
 Plug 'tpope/vim-fugitive'                                               " git commands from in vim
-" Plug 'airblade/vim-gitgutter'                                         " view hunks/changes in the gutter
-Plug 'mhinz/vim-signify'                                                " view hunks/changes in the gutter
+Plug 'airblade/vim-gitgutter'                                         " view hunks/changes in the gutter
+" Plug 'mhinz/vim-signify'                                                " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
 Plug 'junegunn/gv.vim'                                                  " git log viewer
 Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
 Plug 'https://github.com/iberianpig/tig-explorer.vim'  " tig integration
+Plug 'tpope/vim-rhubarb'
+Plug 'sodapopcan/vim-twiggy'
+Plug 'idanarye/vim-merginal'
 
 " Completion
 " Plug 'ajh17/VimCompletesMe'                                             " tab completion
@@ -179,6 +182,8 @@ set ruler " cursor position info
 set history=2000    " more history
 set undolevels=5000 " and undolevels
 set undofile
+
+set updatetime=500
 
 " set listchars=tab:»·,trail:·,eol:$,nbsp:• " for graphically displaying whitespace
 set listchars=tab:»·,trail:•,nbsp:•,extends:»,precedes:« " for graphically displaying whitespace
@@ -543,7 +548,7 @@ let g:vcm_default_maps = 1
 let g:vcm_direction = 'p'
 
 " gitgutter
-let g:gitgutter_diff_base = 'HEAD'
+" let g:gitgutter_diff_base = 'HEAD'
 " nnoremap <silent> cog :GitGutterSignsToggle<cr>
 
 " graphviz
@@ -841,9 +846,16 @@ let g:Schlepp#reindent = 1
 " vim-signify
 let g:signify_vcs_list = ['git']
 let g:signify_realtime = 0
+let g:signify_sign_change = '~'
 
 " hunk text object
 omap ic <plug>(signify-motion-inner-pending)
 xmap ic <plug>(signify-motion-inner-visual)
 omap ac <plug>(signify-motion-outer-pending)
 xmap ac <plug>(signify-motion-outer-visual)
+
+
+" nuake
+nnoremap <F4> :Nuake<CR>
+inoremap <F4> <C-\><C-n>:Nuake<CR>
+tnoremap <F4> <C-\><C-n>:Nuake<CR>

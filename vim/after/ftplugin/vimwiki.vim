@@ -16,6 +16,8 @@ nnoremap <silent><buffer> <c-space> :Files<cr>
 " setlocal foldmethod=manual
 setlocal spell
 
+setlocal foldlevel=2
+
 
 " fix bad default header level mappings
 noremap <buffer> = =
