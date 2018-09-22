@@ -108,6 +108,10 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'idanarye/vim-merginal'
 
 " Completion
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'make release',
+"     \ }
 " Plug 'ajh17/VimCompletesMe'                                             " tab completion
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -118,7 +122,8 @@ if has('nvim')
   Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'fszymanski/deoplete-emoji'
   " Plug 'sebastianmarkow/deoplete-rust'
-  Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
+  Plug 'nicoe/deoplete-khard'
 endif
 
 
@@ -463,7 +468,12 @@ let g:ale_fixers = {
       \ 'rust': [
       \    'rustfmt'
       \ ],
+      \ 'c': [
+      \    'clang-format'
+      \ ],
       \ }
+
+let g:ale_c_clangeformat_options = '-style=Mozilla'
 
 nnoremap <leader>f :ALEFix<cr>
 nnoremap <silent> coa :ALEToggle<cr>
@@ -662,6 +672,7 @@ let g:startify_commands = [
       \ {'U': 'PlugUpdate'},
       \ {'I': 'PlugInstall'},
       \ {'V': 'GV'},
+      \ {'S': 'Sedit'},
       \ ]
 
 autocmd User Startified setlocal buftype=nofile
@@ -859,3 +870,11 @@ xmap ac <plug>(signify-motion-outer-visual)
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
+
+" LanguageClient-neovim - unusable because of snippet completion not working
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['/usr/bin/rls'],
+"     \ }
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>

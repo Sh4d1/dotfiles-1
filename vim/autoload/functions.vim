@@ -132,10 +132,15 @@ endfunc
 " http://dhruvasagar.com/2014/03/11/creating-custom-scratch-buffers-in-vim
 " with modifications
 function! functions#ScratchEdit(cmd, options)
-  silent exe a:cmd tempname() . '-SCRATCH'
-  silent setl buftype=nofile
+  " use a system provided temporary file
+  " this will be persistent after quitting vim (won't accidentally lose data)
+  " won't be persistent across reboots (probably) - see `man mktemp` for how to
+  " specify a temporary file location if required
+  let l:file = system('mktemp -t nvim-scratch-XXXXX.md')
+  silent exe a:cmd l:file
+  " silent setl buftype=nofile
   if !empty(a:options) | silent exe 'setl' a:options | endif
-  exe 'normal! ggi# SCRATCH BUFFER'
+  " exe 'normal! ggi# SCRATCH BUFFER'
 endfunction
 
 function! functions#toggle_lexima()
