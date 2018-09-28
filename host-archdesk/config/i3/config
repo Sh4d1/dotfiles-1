@@ -36,7 +36,9 @@ floating_modifier Mod4
 
 # start a terminal
 bindsym Mod4+Return exec termite
-bindsym Mod4+Shift+Return exec termite-sf
+
+# open wiki
+bindsym Mod4+Shift+Return exec termite -e "nvim +VimwikiIndex"
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -314,9 +316,13 @@ workspace 4 output DP-0
 workspace 5 output DP-0
 workspace 6 output DP-0
 workspace 7 output DP-0
-workspace 8 output DVI-I-1
-workspace 9 output DVI-I-1
-workspace 10 output DVI-I-1
+# temporary due to removed monitor
+workspace 8 output DP-0
+workspace 9 output DP-0
+workspace 10 output DP-0
+# workspace 8 output DVI-I-1
+# workspace 9 output DVI-I-1
+# workspace 10 output DVI-I-1
 
 
 

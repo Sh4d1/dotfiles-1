@@ -28,7 +28,7 @@ Plug 'mhinz/vim-startify'
 Plug 'editorconfig/editorconfig-vim'                                    " editorconfig support
 Plug 'google/vim-searchindex'                                           " display info about current search position
 Plug 'roxma/vim-tmux-clipboard'                                         " clipboard integration with tmux
-Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode
+Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode (alternative to vim-rsi)
 Plug 'cspeterson/vim-convert'                                           " use `units` to convert unit values
 Plug 'https://github.com/mattn/webapi-vim.git'                          " library for interfacing with web apis
 Plug 'https://github.com/AndrewRadev/undoquit.vim.git'  " undo close buffer/split/tab
@@ -39,6 +39,7 @@ Plug 'romainl/Apprentice'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 
+" Plug 'https://github.com/blueyed/vim-diminactive'
 
 " general enhancements providing various functions
 Plug 'tpope/vim-obsession'                                              " saves sessions
