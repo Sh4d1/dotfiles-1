@@ -18,6 +18,7 @@ floating_modifier Mod4
 
 # start a terminal
 bindsym Mod4+Return exec termite
+bindsym Mod4+Shift+Return exec termite -e "nvim +VimwikiIndex"
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -260,7 +261,7 @@ exec_always --no-startup-id xrandr --output eDP1 --auto --pos 0x0 --dpi 160 --pr
 
 exec_always --no-startup-id xsetroot -solid '#000000'
 
-exec --no-startup-id compton -GC -b -r 0 -o 0 -l 0 -t 0 --backend glx --vsync opengl -D 5 --no-fading-openclose --no-fading-destroyed-argb
+# exec --no-startup-id compton -GC -b -r 0 -o 0 -l 0 -t 0 --backend glx --vsync opengl -D 5 --no-fading-openclose --no-fading-destroyed-argb
 
 # Startup programs!
 

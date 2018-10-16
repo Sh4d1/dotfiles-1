@@ -91,6 +91,11 @@ source /etc/profile.d/autojump.zsh 2>/dev/null
 
 ZSH_HIGHLIGHT_STYLES[comment]='fg=cyan'
 
+X_ZSH_HIGHLIGHT_DIRS_BLACKLIST+=("$HOME/mnt")
+X_ZSH_HIGHLIGHT_DIRS_BLACKLIST+=("$HOME/Network")
+X_ZSH_HIGHLIGHT_DIRS_BLACKLIST+=("$HOME/Shared")
+
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_STRATEGY='default'
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
@@ -101,7 +106,8 @@ SAVEHIST=100000
 
 # COMPLETIONS
 
-ZLE_REMOVE_SUFFIX_CHARS='* \t\n;&|'
+# ZLE_REMOVE_SUFFIX_CHARS='* \t\n;&|'
+ZLE_REMOVE_SUFFIX_CHARS=''
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 1
@@ -133,6 +139,8 @@ zstyle ':completion:*' hosts $knownhosts
 autoload -Uz compinit edit-command-line
 zle -N edit-command-line
 compinit
+
+
 
 # gopass completions (now integrated in archlinux)
 # command -v gopass >/dev/null && source <(gopass completion zsh)
@@ -223,6 +231,13 @@ alias sshp='ssh -o PubkeyAuthentication=no'
 alias rsyncp="rsync -e 'ssh -o PubkeyAuthentication=no'"
 
 alias swipl-test='swipl -g true -t halt. -s'
+
+alias x=startx
+
+alias wi='nvim +VimwikiIndex'
+alias diary='nvim +VimwikiDiaryIndex'
+
+alias hl='hledger'
 
 alias :q='exit'
 
@@ -348,11 +363,6 @@ KEYTIMEOUT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias x=startx
-
-alias wi='nvim +VimwikiIndex'
-alias diary='nvim +VimwikiDiaryIndex'
-alias hl='hledger'
 
 # edit today's journal entry
 today() {

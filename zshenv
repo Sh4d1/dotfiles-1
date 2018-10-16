@@ -23,7 +23,7 @@ export VISUAL=$EDITOR
 
 export TERMINAL="termite"
 export BROWSER="firefox"
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dsun.java2d.uiScale=2'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export MAILDIR=~/Maildir/INBOX/
 export MAIL=~/Maildir/INBOX/

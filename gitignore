@@ -26,3 +26,6 @@ env/
 Session.vim
 
 .mypy_cache/
+
+# local environment
+.env
