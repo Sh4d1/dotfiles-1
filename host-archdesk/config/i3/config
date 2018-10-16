@@ -354,7 +354,7 @@ focus_on_window_activation urgent
 
 exec_always --no-startup-id xsetroot -solid '#000000'
 
-exec --no-startup-id compton -GC -b -r 0 -o 0 -l 0 -t 0 --backend glx --vsync opengl -D 5 --no-fading-openclose --no-fading-destroyed-argb
+# exec --no-startup-id compton -GC -b -r 0 -o 0 -l 0 -t 0 --backend glx --vsync opengl -D 5 --no-fading-openclose --no-fading-destroyed-argb
 
 # Startup programs!
 
@@ -380,6 +380,9 @@ bindsym Mod4+c exec clipster -cs
 # pulseaudio system tray icon
 exec --no-startup-id pasystray
 
+# transmission torrent client
+exec --no-startup-id transmission-qt
+
 # notify daemon
 exec --no-startup-id dunst
 
@@ -398,7 +401,7 @@ exec --no-startup-id toggldesktop -b
 # password manager in tray
 exec --no-startup-id qtpass
 
-# redshift - note: put lat/long in salt pillar data
+# redshift - note: put lat/long in ~/.coords in format `lat:long`
 exec --no-startup-id redshift-gtk -l $(cat ~/.coords)
 
 # indicator icon for kdeconnect

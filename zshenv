@@ -73,6 +73,8 @@ export USER_HOME="$HOME"
 # I prefer to not have production deploy logs littered with cows
 export ANSIBLE_NOCOWS=1
 
-export AUR_PAGER="ranger"
+# for ledger/hledger
+export LEDGER_FILE="$HOME/ledger/main.ledger"
+
 
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local

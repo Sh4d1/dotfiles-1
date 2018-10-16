@@ -67,7 +67,7 @@ Plug 'justinmk/vim-dirvish'                                             " anothe
 Plug 'wincent/ferret'                                                   " search in files (plus qf enhancements)
 Plug 'tpope/vim-db'                                                     " database interface
 Plug 'zirrostig/vim-schlepp'                                            " move blockwise text
-Plug 'pelodelfuego/vim-swoop'                                           " thing
+" Plug 'pelodelfuego/vim-swoop'                                           " thing
 Plug 'dyng/ctrlsf.vim' "searching
 
 " Language syntax/help
@@ -441,6 +441,7 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⨯'
 
 let g:ale_linters = {
+      \ 'java': [],
       \ 'python': ['pylint'],
       \ 'javascript': ['flow'],
       \ 'typescript': ['tslint'],
@@ -879,3 +880,16 @@ tnoremap <F4> <C-\><C-n>:Nuake<CR>
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+
+
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+  " " If no commit message, start with insert mode
+  " if a:info.vcs ==# 'git' && getline(1) ==# ''
+  "     startinsert
+  " endif
+
+  " Scroll the diff window
+  map <buffer><C-d> <Plug>(committia-scroll-diff-down-half)
+  map <buffer><C-u> <Plug>(committia-scroll-diff-up-half)
+endfunction
