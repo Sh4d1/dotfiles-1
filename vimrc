@@ -38,6 +38,7 @@ Plug 'romainl/flattened'                                                " (solar
 Plug 'romainl/Apprentice'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
+Plug 'cormacrelf/vim-colors-github'
 
 " Plug 'https://github.com/blueyed/vim-diminactive'
 
@@ -93,6 +94,8 @@ Plug 'ElmCast/elm-vim'                                                  " elm
 Plug 'chr4/nginx.vim'                                                   " nginx config help
 Plug 'udalov/kotlin-vim'                                                " kotlin
 Plug 'ledger/vim-ledger'                                                " ledger/hledger plaint text accounting language support
+
+
 Plug 'https://gitlab.com/Lenovsky/nuake.git'  " quake style terminal
 
 
@@ -107,6 +110,8 @@ Plug 'https://github.com/iberianpig/tig-explorer.vim'  " tig integration
 Plug 'tpope/vim-rhubarb'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'idanarye/vim-merginal'
+
+" Plug 'parsonsmatt/intero-neovim'
 
 " Completion
 " Plug 'autozimu/LanguageClient-neovim', {
@@ -125,6 +130,7 @@ if has('nvim')
   " Plug 'sebastianmarkow/deoplete-rust'
   " Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
   Plug 'nicoe/deoplete-khard'
+  Plug 'eagletmt/neco-ghc' " haskell
 endif
 
 
@@ -875,8 +881,9 @@ tnoremap <F4> <C-\><C-n>:Nuake<CR>
 
 " LanguageClient-neovim - unusable because of snippet completion not working
 " let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['/usr/bin/rls'],
-"     \ }
+"       \ 'haskell': ['hie-wrapper'],
+"       \ 'rust': ['/usr/bin/rls'],
+"       \ }
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
@@ -893,3 +900,6 @@ function! g:committia_hooks.edit_open(info)
   map <buffer><C-d> <Plug>(committia-scroll-diff-down-half)
   map <buffer><C-u> <Plug>(committia-scroll-diff-up-half)
 endfunction
+
+" neco-ghc
+let g:necoghc_use_stack = 1

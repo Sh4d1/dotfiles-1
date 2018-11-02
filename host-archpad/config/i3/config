@@ -19,6 +19,7 @@ floating_modifier Mod4
 # start a terminal
 bindsym Mod4+Return exec termite
 bindsym Mod4+Shift+Return exec termite -e "nvim +VimwikiIndex"
+bindsym Mod4+Ctrl+Return exec termite -e "nvim \"$HOME/wiki/diary/$(date +%F).wiki\"" # today's diary/notes entry
 
 # kill focused window
 bindsym Mod4+Shift+q kill
