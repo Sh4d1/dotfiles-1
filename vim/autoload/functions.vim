@@ -87,6 +87,7 @@ func! functions#buildstatusline()
   " let l:line .= '%2*%( %{functions#sy_stats_wrapper()} %)'
 
   " gitgutter
+  " TODO: this always gets stats for currently focused buffer
   let l:hunks = GitGutterGetHunkSummary()
   if l:hunks[0] || l:hunks[1] || l:hunks[2]
     let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .

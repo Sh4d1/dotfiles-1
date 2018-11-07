@@ -456,6 +456,7 @@ let g:ale_linters = {
       \ 'tex': ['vale', 'proselint'],
       \ 'markdown': ['proselint', 'mdl', 'vale'],
       \ 'kotlin': ['kotlinc'],
+      \ 'haskell': [],
       \ 'ledger': ['ledger']
       \ }
 
