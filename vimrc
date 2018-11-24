@@ -95,6 +95,8 @@ Plug 'chr4/nginx.vim'                                                   " nginx 
 Plug 'udalov/kotlin-vim'                                                " kotlin
 Plug 'ledger/vim-ledger'                                                " ledger/hledger plaint text accounting language support
 
+Plug 'janko-m/vim-test'
+
 
 Plug 'https://gitlab.com/Lenovsky/nuake.git'  " quake style terminal
 
