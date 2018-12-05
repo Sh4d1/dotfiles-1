@@ -390,7 +390,7 @@ exec --no-startup-id dunst
 exec --no-startup-id udiskie
 
 
-exec --no-startup-id zsh -c 'tmuxinator start apps'
+exec --no-startup-id tmuxp load -d apps
 
 # nextcloud!
 exec --no-startup-id nextcloud

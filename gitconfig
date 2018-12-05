@@ -12,8 +12,8 @@
 [core]
     excludesfile = ~/.gitignore
 
-; [merge]
-;     tool = nfugitive
+[merge]
+    tool = nvimdiff4
 
 [diff]
     tool = nvimdiff2

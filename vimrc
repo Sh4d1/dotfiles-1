@@ -107,7 +107,7 @@ Plug 'airblade/vim-gitgutter'                                         " view hun
 " Plug 'mhinz/vim-signify'                                                " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
 Plug 'junegunn/gv.vim'                                                  " git log viewer
-Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
+" Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
 Plug 'https://github.com/iberianpig/tig-explorer.vim'  " tig integration
 Plug 'tpope/vim-rhubarb'
 Plug 'sodapopcan/vim-twiggy'
@@ -152,6 +152,7 @@ Plug 'w0rp/ale'                                                         " anothe
 
 " wiki/notes
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
 " NOTE: requires tasklib installed: `pip install --user tasklib`
 Plug 'tbabej/taskwiki'
 
@@ -364,37 +365,6 @@ map <silent> <leader>m :Marks<cr>
 let g:fzf_layout = { 'down': '~20%' }
 
 
-" Vimux
-" If text is selected, save it in the v register and send that register to tmux
-vmap <C-c><C-c> "vy :call functions#vimuxslime()<cr>
-
-" Select current paragraph and send it to tmux
-nmap <C-c><C-c> vip<C-c><C-c>
-
-" Prompt for a command to run
-map <leader>bp :VimuxPromptCommand<cr>
-
-" Run last command executed by VimuxRunCommand
-map <leader>bl :silent! wa <bar> :VimuxRunLastCommand<cr>
-
-" Inspect runner pane
-map <leader>bo :call VimuxOpenRunner()<cr>
-
-" Inspect runner pane
-map <leader>bi :VimuxInspectRunner<cr>
-
-" Close vim tmux runner opened by VimuxRunCommand
-map <leader>bq :VimuxCloseRunner<cr>
-
-" Interrupt any command running in the runner pane
-map <leader>bc :VimuxInterruptRunner<cr>
-
-" send eof
-map <leader>bd :call VimuxSendKeys("^D")<cr>
-
-" Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <leader>bz :call VimuxZoomRunner()<cr>
-
 
 " NVIM specific stuff
 if has('nvim')
@@ -567,10 +537,6 @@ let g:ctrlp_use_caching = 0
 " vimcompletesme config
 let g:vcm_default_maps = 1
 let g:vcm_direction = 'p'
-
-" gitgutter
-" let g:gitgutter_diff_base = 'HEAD'
-" nnoremap <silent> cog :GitGutterSignsToggle<cr>
 
 " graphviz
 let g:WMGraphviz_viewer = 'rifle'
@@ -794,14 +760,6 @@ let g:switch_custom_definitions =
   \ ]
 
 
-" vim-numbertoggle - Automatic toggling between 'hybrid' and absolute line numbers
-" Maintainer:        <https://jeffkreeftmeijer.com>
-" Version:           2.1.1
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-augroup END
 
 
 " vim-javascript
@@ -819,90 +777,16 @@ nnoremap <silent> com :SignatureToggleSigns<cr>
 " so that enter key also inserts a newline even if popup visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
 
-
-" vimwiki config
-let g:vimwiki_list = [
-    \ {
-      \ 'path': '~/wiki/',
-      \ 'path_html': '~/wiki_html/',
-      \ 'auto_toc': 1,
-      \ 'index': 'index',
-      \ 'automatic_nested_syntaxes': 1,
-      \ 'template_path': '~/wiki/templates/',
-      \ 'template_ext': '.html',
-      \ 'template_default': 'default',
-      \ 'css_name': 'style.css',
-      \ 'auto_tags': 1,
-    \ },
-    \ {
-      \ 'path': '~/.nextcloud-notes/',
-      \ 'auto_toc': 1,
-      \ 'index': 'index',
-      \ 'automatic_nested_syntaxes': 1,
-      \ 'ext': '.txt',
-      \ 'syntax': 'markdown',
-      \ 'auto_tags': 1,
-    \ }
-  \ ]
-let g:vimwiki_folding = 'expr'
-let g:vimwiki_auto_chdir = 1
-let g:vimwiki_hl_headers = 1
-let g:vimwiki_dir_link = 'index'
-
-let g:taskwiki_disable_concealcursor = 'yes'
-" i want to manage mk/load views myself
-let g:taskwiki_dont_preserve_folds = 'yes'
-let g:vimwiki_global_ext = 0
-
-
-" schlepp
-vmap <up>    <Plug>SchleppUp
-vmap <down>  <Plug>SchleppDown
-vmap <left>  <Plug>SchleppLeft
-vmap <right> <Plug>SchleppRight
-vmap <leader>d       <Plug>SchleppDup
-let g:Schlepp#allowSquishingLines = 1
-let g:Schlepp#allowSquishingBlock = 1
-let g:Schlepp#reindent = 1
-
-" vim-signify
-let g:signify_vcs_list = ['git']
-let g:signify_realtime = 0
-let g:signify_sign_change = '~'
-
-" hunk text object
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
-
+" hunk text objects
+omap ic <Plug>GitGutterTextObjectInnerPending
+omap ac <Plug>GitGutterTextObjectOuterPending
+xmap ic <Plug>GitGutterTextObjectInnerVisual
+xmap ac <Plug>GitGutterTextObjectOuterVisual
 
 " nuake
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
-
-" LanguageClient-neovim - unusable because of snippet completion not working
-" let g:LanguageClient_serverCommands = {
-"       \ 'haskell': ['hie-wrapper'],
-"       \ 'rust': ['/usr/bin/rls'],
-"       \ }
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-
-
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-  " " If no commit message, start with insert mode
-  " if a:info.vcs ==# 'git' && getline(1) ==# ''
-  "     startinsert
-  " endif
-
-  " Scroll the diff window
-  map <buffer><C-d> <Plug>(committia-scroll-diff-down-half)
-  map <buffer><C-u> <Plug>(committia-scroll-diff-up-half)
-endfunction
 
 " neco-ghc
 let g:necoghc_use_stack = 1
