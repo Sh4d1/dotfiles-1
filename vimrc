@@ -104,36 +104,12 @@ Plug 'https://gitlab.com/Lenovsky/nuake.git'  " quake style terminal
 " Git integrations
 Plug 'tpope/vim-fugitive'                                               " git commands from in vim
 Plug 'airblade/vim-gitgutter'                                         " view hunks/changes in the gutter
-" Plug 'mhinz/vim-signify'                                                " view hunks/changes in the gutter
 Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
 Plug 'junegunn/gv.vim'                                                  " git log viewer
-" Plug 'rhysd/committia.vim'                                              " nicer editing git commit messages
 Plug 'https://github.com/iberianpig/tig-explorer.vim'  " tig integration
 Plug 'tpope/vim-rhubarb'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'idanarye/vim-merginal'
-
-" Plug 'parsonsmatt/intero-neovim'
-
-" Completion
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'make release',
-"     \ }
-" Plug 'ajh17/VimCompletesMe'                                             " tab completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-  " Plug 'carlitux/deoplete-ternjs'  " requires `tern` to be installed - `npm install -g tern` (or supply full path to bin)
-  Plug 'wokalski/autocomplete-flow' " requires `flow-bin` to be installed somewhere
-  Plug 'zchee/deoplete-jedi'
-  Plug 'zchee/deoplete-go', { 'do': 'make' }
-  Plug 'fszymanski/deoplete-emoji'
-  " Plug 'sebastianmarkow/deoplete-rust'
-  " Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
-  Plug 'nicoe/deoplete-khard'
-  Plug 'eagletmt/neco-ghc' " haskell
-endif
 
 
 " fuzzy finder
@@ -156,18 +132,34 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 " NOTE: requires tasklib installed: `pip install --user tasklib`
 Plug 'tbabej/taskwiki'
 
-" add plugins to &runtimepath
+" load neovim specific plugins
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  Plug 'wokalski/autocomplete-flow' " requires `flow-bin` to be installed somewhere
+  Plug 'zchee/deoplete-jedi'
+  Plug 'zchee/deoplete-go', { 'do': 'make' }
+  Plug 'fszymanski/deoplete-emoji'
+  Plug 'nicoe/deoplete-khard'
+  Plug 'eagletmt/neco-ghc' " haskell
+endif
+
 call plug#end()
 
-" set options
-
-set encoding=utf-8 " good default
 filetype plugin indent on
-syntax on "set syntax highlighting on
-set exrc " for local .vimrc
+syntax on
+
+" options
+
+set encoding=utf-8
+
+" for local .vimrc support
+set exrc
 set secure
 set title
-set hidden " so don't lose undo history when switching buffers
+
+" so don't lose undo history when switching buffers
+set hidden
 
 " see more lines on scrolling
 set scrolloff=3
@@ -246,10 +238,14 @@ set foldclose=all
 set conceallevel=2
 set concealcursor=
 
+set completeopt=menu
+
 " set colorcolumn=+1,+2,+3
 
-set signcolumn=yes " always show
+" always show to avoid visual interruptions
+set signcolumn=yes
 
+" who needs mouse support :P
 set mouse=
 
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -267,11 +263,6 @@ let g:netrw_browsex_viewer = 'rifle'
 " faster diff?
 let g:diff_translations = 0
 
-" seems to crash neovim with the other settings i have
-" if has('nvim')
-"   set inccommand=split
-" endif
-
 " VCS conflict markers should be highlighted
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -281,16 +272,15 @@ let maplocalleader = "\<space>"
 " better % navigation
 runtime macros/matchit.vim
 
-" solarized colorscheme
 try
   colorscheme flattened_dark
 catch
+  " the colorscheme fallback if none installed
   colorscheme torte
 endtry
 
-if $COLORTERM == "truecolor"
-  set termguicolors
-endif
+" 24 bit color support
+set termguicolors
 
 " Status Line
 set laststatus=2
@@ -324,8 +314,6 @@ nmap <leader>2 2z=
 " more consistent mapping
 noremap Y y$
 
-nnoremap <F2> :Rename |
-
 " control + space in terminal hack
 map <C-@> <C-Space>
 imap <C-@> <C-Space>
@@ -351,42 +339,12 @@ nnoremap <A-l> :bn<cr>
 nmap <silent> <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
 
-" ctrl-p
-map <silent> <c-p> :CtrlP<cr>
-map <silent> <leader>pp :CtrlP<cr>
-map <silent> <leader>pt :CtrlPTag<cr>
-map <silent> <leader>pm :CtrlPMRU<cr>
-map <silent> <leader>pb :CtrlPBuffer<cr>
-
-" fzf
-map <silent> <c-space> :Files<cr>
-map <silent> <leader>t :Tags<cr>
-map <silent> <leader>m :Marks<cr>
-let g:fzf_layout = { 'down': '~20%' }
-
-
-
 " NVIM specific stuff
 if has('nvim')
   " double escape to get out of terminal mode
   " (double to allow single esc to go to terminal)
   tnoremap <esc><esc> <c-\><c-n>
 endif
-
-"replace 'f' with 1-char Sneak
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-"replace 't' with 1-char Sneak
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
 
 " shortcuts to completions
 inoremap <silent> ,f <C-x><C-f>
@@ -490,7 +448,6 @@ augroup vimrc
   autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 augroup END
 
-
 " vimtex
 let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
 " let g:vimtex_view_general_viewer = 'rifle'
@@ -561,10 +518,6 @@ let g:qf_window_bottom = 0
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
-if !has('nvim')
-  map y <Plug>(highlightedyank)
-endif
-
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:EditorConfig_max_line_indicator = "fill"
 
@@ -600,60 +553,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports" "auto-populate imports
 
-" vim-startify
-
-autocmd User Startified setlocal cursorline
-
-let g:startify_enable_special         = 1
-let g:startify_files_number           = 8
-let g:startify_relative_path          = 1
-let g:startify_change_to_dir          = 0
-let g:startify_update_oldfiles        = 1
-let g:startify_session_autoload       = 1
-let g:startify_session_persistence    = 1
-
-let g:startify_skiplist = [
-      \ 'COMMIT_EDITMSG',
-      \ $HOME . '/.vim/plugged/.*',
-      \ ]
-
-let g:startify_bookmarks = [
-      \ { 'v': '~/.vimrc' },
-      \ { 'z': '~/.zshrc' },
-      \ ]
-
-let g:startify_custom_header = [ '   VIM' ]
-" " ascii art from http://www.vim.org/images/vim.txt
-" let g:startify_custom_header = [
-"     \ "        ________ ++     ________",
-"     \ "       /VVVVVVVV\\++++  /VVVVVVVV\\",
-"     \ "       \\VVVVVVVV/++++++\\VVVVVVVV/",
-"     \ "        |VVVVVV|++++++++/VVVVV/'",
-"     \ "        |VVVVVV|++++++/VVVVV/'",
-"     \ "       +|VVVVVV|++++/VVVVV/'+",
-"     \ "     +++|VVVVVV|++/VVVVV/'+++++",
-"     \ "   +++++|VVVVVV|/VVVVV/'+++++++++",
-"     \ "     +++|VVVVVVVVVVV/'+++++++++",
-"     \ "       +|VVVVVVVVV/'+++++++++",
-"     \ "        |VVVVVVV/'+++++++++",
-"     \ "        |VVVVV/'+++++++++",
-"     \ "        |VVV/'+++++++++",
-"     \ "        'V/'   ++++++",
-"     \ "                 ++",
-"     \ ]
-"
-let g:startify_custom_footer =
-      \ ['', "   Vim is charityware. Run ':h iccf' for more information.", '']
-
-let g:startify_commands = [
-      \ {'U': 'PlugUpdate'},
-      \ {'I': 'PlugInstall'},
-      \ {'V': 'GV'},
-      \ {'S': 'Sedit'},
-      \ ]
-
-autocmd User Startified setlocal buftype=nofile
-
 
 " vim sandwich
 " vim-surround style keymappings
@@ -671,15 +570,6 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-
-
-" Ferret
-let g:FerretMap = 0
-let g:FerrerLazyInit=0
-nmap <leader>aa <Plug>(FerretAck)
-nmap <leader>ar <Plug>(FerretAcks)
-nmap <leader>aw <Plug>(FerretAckWord)
-nmap <leader>al <Plug>(FerretLack)
 
 " jedi-vim
 let g:jedi#completions_enabled = 0
@@ -701,49 +591,6 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged
 let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
 let g:UltiSnipsEnableSnipMate=1
 
-" vim-go
-" map
-
-" deoplete
-
-set completeopt=menu
-
-function! s:check_back_space() abort
-  let l:col = col('.') - 1
-  return !l:col || getline('.')[l:col - 1]  =~ '\s'
-endfunction
-
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-
-  " let g:deoplete#disable_auto_complete = 1
-
-  inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
-
-  inoremap <silent><expr> <S-TAB>
-    \ pumvisible() ? "\<C-p>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
-
-  if !exists('g:deoplete#omni#input_patterns')
-      let g:deoplete#omni#input_patterns = {}
-  endif
-  let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
-
-  call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-
-  " let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-
-  let g:nvim_typescript#default_mappings = 1
-
-
-  call deoplete#custom#option('omni_patterns', {
-  \ 'ledger': '^    \(\w \w\|\w\|:\)\+',
-  \})
-endif
 
 let g:autocomplete_flow#insert_paren_after_function = 0
 
@@ -760,8 +607,6 @@ let g:switch_custom_definitions =
   \ ]
 
 
-
-
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -770,23 +615,8 @@ let g:javascript_plugin_flow = 1
 " vim-jsx
 let g:jsx_ext_required = 0
 
-" vim-signature
-nnoremap <silent> com :SignatureToggleSigns<cr>
-
-
 " so that enter key also inserts a newline even if popup visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-
-" hunk text objects
-omap ic <Plug>GitGutterTextObjectInnerPending
-omap ac <Plug>GitGutterTextObjectOuterPending
-xmap ic <Plug>GitGutterTextObjectInnerVisual
-xmap ac <Plug>GitGutterTextObjectOuterVisual
-
-" nuake
-nnoremap <F4> :Nuake<CR>
-inoremap <F4> <C-\><C-n>:Nuake<CR>
-tnoremap <F4> <C-\><C-n>:Nuake<CR>
 
 " neco-ghc
 let g:necoghc_use_stack = 1

@@ -38,7 +38,8 @@ set use_from = yes
 set maildir_trash = no
 
 set pager_format="-%Z- %C/%m: [%[%a %Y-%m-%d %H:%M:%S]] %-20.20n   %s%*  -- (%P)"
-set index_format="%4C %Z [%[%a %Y-%m-%d %H:%M:%S]] %-15.15L (%?l?%4l&%4c?) %s"
+set index_format="%5C %T%S [%[%a %Y-%m-%d %H:%M:%S]] (%?l?%4l&%4c?) %30.30L | %s"
+set to_chars="x+TCF"
 
 # delete/trash messages from index
 folder-hook . 'macro index d ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Trash\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Trash"'
@@ -113,6 +114,10 @@ macro index <F5> "<shell-escape>vdirsyncer sync<enter>" \
 macro index A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>+Archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "move message to Archive"
 
 macro pager l <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+
+# register mailing list addresses for quick reply with `L`
+lists chatbot
 
 ####### NEOMUTT ONLY OPTIONS
 

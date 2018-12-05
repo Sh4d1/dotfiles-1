@@ -4,7 +4,7 @@
 These are my dotfiles, including other setup tasks such as installing software, creating directories, etc.
 Shared here so you can browse through and get ideas. And everyone needs a dotfiles repo hey?
 
-Copyright © 2017 Samuel Walladge
+Copyright © 2018 Samuel Walladge
 
 
 ## Installing

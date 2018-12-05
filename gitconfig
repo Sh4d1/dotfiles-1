@@ -30,9 +30,6 @@
 [mergetool "nfugitive"]
     cmd = nvim -f -c "Gdiff" "$MERGED"
 
-[mergetool]
-    keepBackup = false
-
 [alias]
     lg = log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lga = log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all

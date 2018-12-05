@@ -337,6 +337,14 @@ colours() {
   done
 }
 
+peek() {
+  if [ -n "$TMUX" ]; then
+    tmux split-window -p 33 $EDITOR $@ || exit
+  else
+    echo "peek must be run inside tmux"
+  fi
+}
+
 # ascii weather over http https://github.com/chubin/wttr.in
 wttr()
 {
