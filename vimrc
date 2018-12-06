@@ -30,12 +30,14 @@ function! PackInit() abort
   "
   " flattened is a solarized colorscheme
   call minpac#add('https://github.com/romainl/flattened.git')
-  call minpac#add('https://github.com/romainl/Apprentice')
+  call minpac#add('https://github.com/romainl/Apprentice.git')
   call minpac#add('https://github.com/ap/vim-css-color.git')
-  call minpac#add('https://github.com/tpope/vim-characterize')
-  call minpac#add('https://github.com/tpope/vim-repeat')
-  call minpac#add('https://github.com/tpope/vim-sleuth')
-  call minpac#add('https://github.com/tpope/vim-eunuch')
+  call minpac#add('https://github.com/tpope/vim-characterize.git')
+  call minpac#add('https://github.com/tpope/vim-repeat.git')
+  call minpac#add('https://github.com/tpope/vim-sleuth.git')
+  call minpac#add('https://github.com/tpope/vim-eunuch.git')
+  call minpac#add('https://github.com/vim-utils/vim-husk.git')
+  call minpac#add('https://github.com/tpope/vim-speeddating.git')
 
 
   " Autoloaded plugins that do have config
@@ -44,9 +46,21 @@ function! PackInit() abort
   call minpac#add('https://github.com/w0rp/ale.git')
   call minpac#add('https://github.com/vimwiki/vimwiki.git', {'branch': 'dev'})
   call minpac#add('https://github.com/tbabej/taskwiki.git', {'do': '!pip install --user -U tasklib'})
-  call minpac#add('https://github.com/mhinz/vim-startify')
-  call minpac#add('https://github.com/machakann/vim-sandwich')
-  call minpac#add('https://github.com/airblade/vim-gitgutter')
+  call minpac#add('https://github.com/mhinz/vim-startify.git')
+  call minpac#add('https://github.com/machakann/vim-sandwich.git')
+  call minpac#add('https://github.com/airblade/vim-gitgutter.git')
+  call minpac#add('https://github.com/AndrewRadev/switch.vim.git')
+  call minpac#add('https://github.com/tommcdo/vim-exchange.git')
+  call minpac#add('https://github.com/wellle/targets.vim.git')
+  call minpac#add('https://github.com/justinmk/vim-sneak.git')
+  call minpac#add('https://github.com/AndrewRadev/splitjoin.vim.git')
+  call minpac#add('https://github.com/AndrewRadev/sideways.vim.git')
+  call minpac#add('https://github.com/mbbill/undotree.git')
+  call minpac#add('https://github.com/justinmk/vim-dirvish.git')
+
+  call minpac#add('https://github.com/tpope/vim-fugitive.git')
+  call minpac#add('https://github.com/tpope/vim-rhubarb.git')
+  call minpac#add('https://github.com/junegunn/gv.vim.git')
 
   call minpac#add('https://github.com/junegunn/fzf.git', {'do': '!./install --bin'})
   call minpac#add('https://github.com/junegunn/fzf.vim.git') " depends on fzf above
@@ -56,66 +70,50 @@ function! PackInit() abort
 
 
   " TODO: go through these plugins
-  call minpac#add('https://github.com/machakann/vim-highlightedyank')
-  call minpac#add('https://github.com/tpope/vim-speeddating')
-  call minpac#add('https://github.com/Yggdroot/indentLine')
-  call minpac#add('https://github.com/kshenoy/vim-signature')
-  call minpac#add('https://github.com/Valloric/MatchTagAlways')
-  call minpac#add('https://github.com/editorconfig/editorconfig-vim')
-  call minpac#add('https://github.com/google/vim-searchindex')
-  call minpac#add('https://github.com/roxma/vim-tmux-clipboard')
-  call minpac#add('https://github.com/vim-utils/vim-husk')
-  call minpac#add('https://github.com/cspeterson/vim-convert')
+  call minpac#add('https://github.com/machakann/vim-highlightedyank.git')
+  call minpac#add('https://github.com/Yggdroot/indentLine.git')
+  call minpac#add('https://github.com/kshenoy/vim-signature.git')
+  call minpac#add('https://github.com/Valloric/MatchTagAlways.git')
+  call minpac#add('https://github.com/editorconfig/editorconfig-vim.git')
+  call minpac#add('https://github.com/google/vim-searchindex.git')
+  call minpac#add('https://github.com/roxma/vim-tmux-clipboard.git')
+  call minpac#add('https://github.com/cspeterson/vim-convert.git')
   call minpac#add('https://github.com/AndrewRadev/undoquit.vim.git')
-  call minpac#add('https://github.com/cormacrelf/vim-colors-github')
-  call minpac#add('https://github.com/tpope/vim-obsession')
-  call minpac#add('https://github.com/tpope/vim-commentary')
-  call minpac#add('https://github.com/tommcdo/vim-lion')
-  call minpac#add('https://github.com/AndrewRadev/sideways.vim')
-  call minpac#add('https://github.com/mattn/emmet-vim')
-  call minpac#add('https://github.com/justinmk/vim-sneak')
-  call minpac#add('https://github.com/wellle/targets.vim')
-  call minpac#add('https://github.com/tpope/vim-unimpaired')
-  call minpac#add('https://github.com/wellle/visual-split.vim')
-  call minpac#add('https://github.com/romainl/vim-qf')
-  call minpac#add('https://github.com/tpope/vim-abolish')
-  call minpac#add('https://github.com/tommcdo/vim-exchange')
-  call minpac#add('https://github.com/AndrewRadev/linediff.vim')
-  call minpac#add('https://github.com/AndrewRadev/splitjoin.vim')
-  call minpac#add('https://github.com/AndrewRadev/switch.vim')
-  call minpac#add('https://github.com/mbbill/undotree',)
-  call minpac#add('https://github.com/benmills/vimux')
-  call minpac#add('https://github.com/justinmk/vim-dirvish')
-  call minpac#add('https://github.com/wincent/ferret')
-  call minpac#add('https://github.com/tpope/vim-db')
-  call minpac#add('https://github.com/zirrostig/vim-schlepp')
-  call minpac#add('https://github.com/jamessan/vim-gnupg')
-  call minpac#add('https://github.com/cespare/vim-toml')
-  call minpac#add('https://github.com/lervag/vimtex')
-  call minpac#add('https://github.com/wannesm/wmgraphviz.vim')
-  call minpac#add('https://github.com/saltstack/salt-vim')
-  call minpac#add('https://github.com/leafgarland/typescript-vim')
-  call minpac#add('https://github.com/godlygeek/tabular')
-  call minpac#add('https://github.com/tmux-plugins/vim-tmux')
-  call minpac#add('https://github.com/fatih/vim-go')
-  call minpac#add('https://github.com/pangloss/vim-javascript')
-  call minpac#add('https://github.com/mxw/vim-jsx')
+  call minpac#add('https://github.com/tpope/vim-obsession.git')
+  call minpac#add('https://github.com/tpope/vim-commentary.git')
+  call minpac#add('https://github.com/tommcdo/vim-lion.git')
+  call minpac#add('https://github.com/mattn/emmet-vim.git')
+  call minpac#add('https://github.com/tpope/vim-unimpaired.git')
+  call minpac#add('https://github.com/wellle/visual-split.vim.git')
+  call minpac#add('https://github.com/romainl/vim-qf.git')
+  call minpac#add('https://github.com/tpope/vim-abolish.git')
+  call minpac#add('https://github.com/AndrewRadev/linediff.vim.git')
+  call minpac#add('https://github.com/benmills/vimux.git')
+  call minpac#add('https://github.com/wincent/ferret.git')
+  call minpac#add('https://github.com/zirrostig/vim-schlepp.git')
+  call minpac#add('https://github.com/jamessan/vim-gnupg.git')
+  call minpac#add('https://github.com/cespare/vim-toml.git')
+  call minpac#add('https://github.com/lervag/vimtex.git')
+  call minpac#add('https://github.com/wannesm/wmgraphviz.vim.git')
+  call minpac#add('https://github.com/saltstack/salt-vim.git')
+  call minpac#add('https://github.com/leafgarland/typescript-vim.git')
+  call minpac#add('https://github.com/godlygeek/tabular.git')
+  call minpac#add('https://github.com/tmux-plugins/vim-tmux.git')
+  call minpac#add('https://github.com/fatih/vim-go.git')
+  call minpac#add('https://github.com/pangloss/vim-javascript.git')
+  call minpac#add('https://github.com/mxw/vim-jsx.git')
   call minpac#add('https://github.com/davidhalter/jedi-vim',)
-  call minpac#add('https://github.com/rust-lang/rust.vim')
-  call minpac#add('https://github.com/racer-rust/vim-racer')
-  call minpac#add('https://github.com/ElmCast/elm-vim')
-  call minpac#add('https://github.com/chr4/nginx.vim')
-  call minpac#add('https://github.com/udalov/kotlin-vim')
-  call minpac#add('https://github.com/ledger/vim-ledger')
-  call minpac#add('https://github.com/janko-m/vim-test')
+  call minpac#add('https://github.com/rust-lang/rust.vim.git')
+  call minpac#add('https://github.com/racer-rust/vim-racer.git')
+  call minpac#add('https://github.com/ElmCast/elm-vim.git')
+  call minpac#add('https://github.com/chr4/nginx.vim.git')
+  call minpac#add('https://github.com/udalov/kotlin-vim.git')
+  call minpac#add('https://github.com/ledger/vim-ledger.git')
+  call minpac#add('https://github.com/janko-m/vim-test.git')
   call minpac#add('https://gitlab.com/Lenovsky/nuake.git')
-  call minpac#add('https://github.com/tpope/vim-fugitive')
-  call minpac#add('https://github.com/jreybert/vimagit')
-  call minpac#add('https://github.com/junegunn/gv.vim')
-  call minpac#add('https://github.com/iberianpig/tig-explorer.vim')
-  call minpac#add('https://github.com/tpope/vim-rhubarb')
-  call minpac#add('https://github.com/sodapopcan/vim-twiggy')
-  call minpac#add('https://github.com/idanarye/vim-merginal')
+  call minpac#add('https://github.com/jreybert/vimagit.git')
+  call minpac#add('https://github.com/sodapopcan/vim-twiggy.git')
+  call minpac#add('https://github.com/idanarye/vim-merginal.git')
 
 
   " plugins that are put in the opt directory (not auto loaded)
@@ -158,10 +156,9 @@ set encoding=utf-8
 
 " for local .vimrc support
 set exrc
+
 set secure
 set title
-
-" so don't lose undo history when switching buffers
 set hidden
 
 " see more lines on scrolling
@@ -351,6 +348,8 @@ if has('nvim')
 endif
 
 " shortcuts to completions
+" TODO: remove this because it's annoying when typing a comma separated list
+" where spaces aren't allowed
 inoremap <silent> ,f <C-x><C-f>
 inoremap <silent> ,i <C-x><C-i>
 inoremap <silent> ,l <C-x><C-l>

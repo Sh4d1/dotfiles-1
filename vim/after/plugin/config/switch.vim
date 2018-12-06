@@ -7,5 +7,6 @@ endif
 " Switch
 let g:switch_custom_definitions =
   \ [
-  \   switch#NormalizedCase(['left', 'right'])
+  \   switch#NormalizedCase(['left', 'right']),
+  \   [0, 1]
   \ ]

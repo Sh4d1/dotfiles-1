@@ -203,7 +203,8 @@ bindkey -M viins '^B' backward-word
 
 # ALIASES
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -hls'
+alias lsa='ls --color=auto -hlsa'
 alias rm='rm -I'
 alias td='todotxt-machine'
 alias c=j
