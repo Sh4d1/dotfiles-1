@@ -7,6 +7,8 @@
 "  - /r/vim
 "  - and others...
 
+" TODO: move custom functions to autoload for speed
+
 function! PackInit() abort
   if glob(expand('~/.vim/pack/bundle/opt/minpac')) == ''
     !git clone https://github.com/k-takata/minpac $HOME/.vim/pack/bundle/opt/minpac
@@ -18,17 +20,115 @@ function! PackInit() abort
   " self manage
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+  " libraries that are dependencies for other plugins
+  " webapi currently only used by rust.vim for :RustPlay
+  call minpac#add('https://github.com/mattn/webapi-vim.git')
+
   " Autoloaded plugins.
   " These are plugins that don't require any config and just make Vim nicer in
   " general.
+  "
+  " flattened is a solarized colorscheme
   call minpac#add('https://github.com/romainl/flattened.git')
+  call minpac#add('https://github.com/romainl/Apprentice')
   call minpac#add('https://github.com/ap/vim-css-color.git')
+  call minpac#add('https://github.com/tpope/vim-characterize')
+  call minpac#add('https://github.com/tpope/vim-repeat')
+  call minpac#add('https://github.com/tpope/vim-sleuth')
+  call minpac#add('https://github.com/tpope/vim-eunuch')
+
 
   " Autoloaded plugins that do have config
-  call minpac#add('https://github.com/ludovicchabant/vim-gutentags')
+  call minpac#add('https://github.com/ludovicchabant/vim-gutentags.git')
+  call minpac#add('https://github.com/luochen1990/rainbow.git')
+  call minpac#add('https://github.com/w0rp/ale.git')
+  call minpac#add('https://github.com/vimwiki/vimwiki.git', {'branch': 'dev'})
+  call minpac#add('https://github.com/tbabej/taskwiki.git', {'do': '!pip install --user -U tasklib'})
+  call minpac#add('https://github.com/mhinz/vim-startify')
+  call minpac#add('https://github.com/machakann/vim-sandwich')
+  call minpac#add('https://github.com/airblade/vim-gitgutter')
+
+  call minpac#add('https://github.com/junegunn/fzf.git', {'do': '!./install --bin'})
+  call minpac#add('https://github.com/junegunn/fzf.vim.git') " depends on fzf above
+
+  call minpac#add('https://github.com/SirVer/ultisnips.git')
+  call minpac#add('https://github.com/honza/vim-snippets.git')
+
+
+  " TODO: go through these plugins
+  call minpac#add('https://github.com/machakann/vim-highlightedyank')
+  call minpac#add('https://github.com/tpope/vim-speeddating')
+  call minpac#add('https://github.com/Yggdroot/indentLine')
+  call minpac#add('https://github.com/kshenoy/vim-signature')
+  call minpac#add('https://github.com/Valloric/MatchTagAlways')
+  call minpac#add('https://github.com/editorconfig/editorconfig-vim')
+  call minpac#add('https://github.com/google/vim-searchindex')
+  call minpac#add('https://github.com/roxma/vim-tmux-clipboard')
+  call minpac#add('https://github.com/vim-utils/vim-husk')
+  call minpac#add('https://github.com/cspeterson/vim-convert')
+  call minpac#add('https://github.com/AndrewRadev/undoquit.vim.git')
+  call minpac#add('https://github.com/cormacrelf/vim-colors-github')
+  call minpac#add('https://github.com/tpope/vim-obsession')
+  call minpac#add('https://github.com/tpope/vim-commentary')
+  call minpac#add('https://github.com/tommcdo/vim-lion')
+  call minpac#add('https://github.com/AndrewRadev/sideways.vim')
+  call minpac#add('https://github.com/mattn/emmet-vim')
+  call minpac#add('https://github.com/justinmk/vim-sneak')
+  call minpac#add('https://github.com/wellle/targets.vim')
+  call minpac#add('https://github.com/tpope/vim-unimpaired')
+  call minpac#add('https://github.com/wellle/visual-split.vim')
+  call minpac#add('https://github.com/romainl/vim-qf')
+  call minpac#add('https://github.com/tpope/vim-abolish')
+  call minpac#add('https://github.com/tommcdo/vim-exchange')
+  call minpac#add('https://github.com/AndrewRadev/linediff.vim')
+  call minpac#add('https://github.com/AndrewRadev/splitjoin.vim')
+  call minpac#add('https://github.com/AndrewRadev/switch.vim')
+  call minpac#add('https://github.com/mbbill/undotree',)
+  call minpac#add('https://github.com/benmills/vimux')
+  call minpac#add('https://github.com/justinmk/vim-dirvish')
+  call minpac#add('https://github.com/wincent/ferret')
+  call minpac#add('https://github.com/tpope/vim-db')
+  call minpac#add('https://github.com/zirrostig/vim-schlepp')
+  call minpac#add('https://github.com/jamessan/vim-gnupg')
+  call minpac#add('https://github.com/cespare/vim-toml')
+  call minpac#add('https://github.com/lervag/vimtex')
+  call minpac#add('https://github.com/wannesm/wmgraphviz.vim')
+  call minpac#add('https://github.com/saltstack/salt-vim')
+  call minpac#add('https://github.com/leafgarland/typescript-vim')
+  call minpac#add('https://github.com/godlygeek/tabular')
+  call minpac#add('https://github.com/tmux-plugins/vim-tmux')
+  call minpac#add('https://github.com/fatih/vim-go')
+  call minpac#add('https://github.com/pangloss/vim-javascript')
+  call minpac#add('https://github.com/mxw/vim-jsx')
+  call minpac#add('https://github.com/davidhalter/jedi-vim',)
+  call minpac#add('https://github.com/rust-lang/rust.vim')
+  call minpac#add('https://github.com/racer-rust/vim-racer')
+  call minpac#add('https://github.com/ElmCast/elm-vim')
+  call minpac#add('https://github.com/chr4/nginx.vim')
+  call minpac#add('https://github.com/udalov/kotlin-vim')
+  call minpac#add('https://github.com/ledger/vim-ledger')
+  call minpac#add('https://github.com/janko-m/vim-test')
+  call minpac#add('https://gitlab.com/Lenovsky/nuake.git')
+  call minpac#add('https://github.com/tpope/vim-fugitive')
+  call minpac#add('https://github.com/jreybert/vimagit')
+  call minpac#add('https://github.com/junegunn/gv.vim')
+  call minpac#add('https://github.com/iberianpig/tig-explorer.vim')
+  call minpac#add('https://github.com/tpope/vim-rhubarb')
+  call minpac#add('https://github.com/sodapopcan/vim-twiggy')
+  call minpac#add('https://github.com/idanarye/vim-merginal')
+
 
   " plugins that are put in the opt directory (not auto loaded)
+  " deoplete (autocompletion engine)
   call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })
+
+  " deoplete plugins
+  call minpac#add('https://github.com/wokalski/autocomplete-flow', {'type': 'opt'})
+  call minpac#add('https://github.com/zchee/deoplete-jedi', {'type': 'opt'})
+  call minpac#add('https://github.com/zchee/deoplete-go', {'do': '!make', 'type': 'opt'})
+  call minpac#add('https://github.com/fszymanski/deoplete-emoji', {'type': 'opt'})
+  call minpac#add('https://github.com/nicoe/deoplete-khard', {'type': 'opt'})
+  call minpac#add('https://github.com/eagletmt/neco-ghc', {'type': 'opt'})
 
 endfunction
 
@@ -38,142 +138,19 @@ command! PackStatus call PackInit() | call minpac#status()
 
 " load neovim-only plugins
 if has('nvim')
+  " need to use the bang here otherwise won't work ¯\_(ツ)_/¯
   packadd! deoplete.nvim
+  packadd  deoplete-khard
+  packadd  deoplete-jedi
+  packadd  deoplete-go
+  packadd  deoplete-emoji
+  packadd  neco-ghc
 endif
 
-" Load plugins with vim-plug
-call plug#begin('~/.vim/plugged')
-
-" enhancements that don't need (much) configuring
-"   and don't provide commands/mappings
-Plug 'ludovicchabant/vim-gutentags'                                     " auto-generate tags file
-Plug 'luochen1990/rainbow'                                              " easier to see nested parens
-Plug 'machakann/vim-highlightedyank'                                    " highlights currently yanked region
-Plug 'tpope/vim-characterize'                                           " overrides ga
-Plug 'tpope/vim-repeat'                                                 " better repeating for supported plugins
-Plug 'tpope/vim-sleuth'                                                 " auto-set indent options
-Plug 'tpope/vim-speeddating'                                            " make inc/dec numbers work with dates
-Plug 'Yggdroot/indentLine'                                              " help for showing indent levels
-Plug 'kshenoy/vim-signature'                                            " show marks in gutter
-Plug 'Valloric/MatchTagAlways'                                          " highlight enclosing xml tags
-Plug 'mhinz/vim-startify'
-Plug 'editorconfig/editorconfig-vim'                                    " editorconfig support
-Plug 'google/vim-searchindex'                                           " display info about current search position
-Plug 'roxma/vim-tmux-clipboard'                                         " clipboard integration with tmux
-Plug 'vim-utils/vim-husk'                                               " readline bindings for command mode (alternative to vim-rsi)
-Plug 'cspeterson/vim-convert'                                           " use `units` to convert unit values
-Plug 'https://github.com/mattn/webapi-vim.git'                          " library for interfacing with web apis
-Plug 'https://github.com/AndrewRadev/undoquit.vim.git'  " undo close buffer/split/tab
-
-" colorschemes
-Plug 'romainl/Apprentice'
-" Plug 'lifepillar/vim-solarized8'
-Plug 'chriskempson/base16-vim'
-Plug 'cormacrelf/vim-colors-github'
-
-" Plug 'https://github.com/blueyed/vim-diminactive'
-
-" general enhancements providing various functions
-Plug 'tpope/vim-obsession'                                              " saves sessions
-Plug 'tpope/vim-commentary'                                             " commenting
-Plug 'machakann/vim-sandwich'                                           " like tpope's surround, but more configurable
-Plug 'tommcdo/vim-lion'                                                 " align things
-Plug 'AndrewRadev/sideways.vim'                                         " move function args sideways
-Plug 'mattn/emmet-vim'                                                  " emmet for html (like sparkup)
-Plug 'justinmk/vim-sneak'                                               " alternative to f/t
-Plug 'wellle/targets.vim'                                               " extra text objects
-Plug 'tpope/vim-unimpaired'                                             " pair mappings
-" Plug 'terryma/vim-expand-region'                                        " expand selected region of text
-Plug 'wellle/visual-split.vim'                                          " easier splits
-Plug 'romainl/vim-qf'                                                   " quickfix window improvements
-Plug 'tpope/vim-eunuch'                                                 " shortcuts to shell commands (esp rename files)
-Plug 'tpope/vim-abolish'                                                " random useful text things
-Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck'       " spellcheck/proofreading enhancements
-Plug 'tommcdo/vim-exchange'                                             " swap two things
-Plug 'AndrewRadev/linediff.vim'
-Plug 'AndrewRadev/splitjoin.vim'                                        " switch between single and multi lines quickly
-Plug 'AndrewRadev/switch.vim'                                           " toggle things
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}                        " show the undotree
-Plug 'benmills/vimux'                                                   " run things in tmux
-Plug 'justinmk/vim-dirvish'                                             " another alternative to netwr
-Plug 'wincent/ferret'                                                   " search in files (plus qf enhancements)
-Plug 'tpope/vim-db'                                                     " database interface
-Plug 'zirrostig/vim-schlepp'                                            " move blockwise text
-" Plug 'pelodelfuego/vim-swoop'                                           " thing
-Plug 'dyng/ctrlsf.vim' "searching
-
-" Language syntax/help
-Plug 'jamessan/vim-gnupg'                                               " seamless editing pgp encrypted files
-Plug 'cespare/vim-toml'                                                 " toml syntax
-Plug 'lervag/vimtex'                                                    " latex
-Plug 'wannesm/wmgraphviz.vim'                                           " graphviz dot
-Plug 'saltstack/salt-vim'                                               " saltstack syntax
-Plug 'leafgarland/typescript-vim'                                       " typescript syntax + settings
-Plug 'godlygeek/tabular'                                                " tabular
-Plug 'tmux-plugins/vim-tmux'                                            " tmux syntax
-Plug 'fatih/vim-go'                                                     " golang
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'                                                      " jsx syntax/indenting support
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                   " java completion
-Plug 'davidhalter/jedi-vim', {'for': 'python'}                          " python completions + refactoring
-Plug 'rust-lang/rust.vim'                                               " rust
-Plug 'racer-rust/vim-racer'                                             " rust completion
-Plug 'ElmCast/elm-vim'                                                  " elm
-Plug 'chr4/nginx.vim'                                                   " nginx config help
-Plug 'udalov/kotlin-vim'                                                " kotlin
-Plug 'ledger/vim-ledger'                                                " ledger/hledger plaint text accounting language support
-
-Plug 'janko-m/vim-test'
-
-
-Plug 'https://gitlab.com/Lenovsky/nuake.git'  " quake style terminal
-
-
-" Git integrations
-Plug 'tpope/vim-fugitive'                                               " git commands from in vim
-Plug 'airblade/vim-gitgutter'                                         " view hunks/changes in the gutter
-Plug 'jreybert/vimagit'                                                 " interactive git stage/view/commit window
-Plug 'junegunn/gv.vim'                                                  " git log viewer
-Plug 'https://github.com/iberianpig/tig-explorer.vim'  " tig integration
-Plug 'tpope/vim-rhubarb'
-Plug 'sodapopcan/vim-twiggy'
-Plug 'idanarye/vim-merginal'
-
-
-" fuzzy finder
-" for now, I think I'll keep ctrlp for situations where can't install other
-" deps, and fzf for main use
-Plug 'ctrlpvim/ctrlp.vim'                                               " fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }       " another fuzzy finder
-Plug 'junegunn/fzf.vim'
-
-" Snippets
-Plug 'SirVer/ultisnips'                                                 " snippets machine
-Plug 'honza/vim-snippets'                                               " extra snippets
-
-" linter/fixer
-Plug 'w0rp/ale'                                                         " another linter (better?)
-
-" wiki/notes
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-
-" NOTE: requires tasklib installed: `pip install --user tasklib`
-Plug 'tbabej/taskwiki'
-
-" load neovim specific plugins
-if has('nvim')
-  Plug 'wokalski/autocomplete-flow' " requires `flow-bin` to be installed somewhere
-  Plug 'zchee/deoplete-jedi'
-  Plug 'zchee/deoplete-go', { 'do': 'make' }
-  Plug 'fszymanski/deoplete-emoji'
-  Plug 'nicoe/deoplete-khard'
-  Plug 'eagletmt/neco-ghc' " haskell
-endif
-
-call plug#end()
 
 filetype plugin indent on
 syntax on
+
 
 " options
 
@@ -231,7 +208,8 @@ set nospell " spellchecking off by default
 set spelllang=en_au " correct language
 set spellcapcheck=
 
-set lazyredraw " don't redraw while replaying macros
+" don't redraw while replaying macros
+set lazyredraw
 
 set virtualedit=block
 
@@ -243,6 +221,7 @@ set nostartofline
 
 " single global backup/swp/undo dirs
 set backupdir=~/.vim/backup/
+" double trailing slash is not a typo
 set directory=~/.vim/swp//
 set undodir=~/.vim/undo/
 
@@ -278,7 +257,8 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
       \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
       \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-set gdefault " global substitute by default
+" global substitute by default
+set gdefault
 
 set noshowmode
 
@@ -286,7 +266,7 @@ set thesaurus+=~/.vim/mthesaur.txt
 
 let g:netrw_browsex_viewer = 'rifle'
 
-" faster diff?
+" speed up diff syntax highlighting
 let g:diff_translations = 0
 
 " VCS conflict markers should be highlighted
@@ -310,16 +290,14 @@ set termguicolors
 
 " Status Line
 set laststatus=2
-
 set statusline=%!functions#buildstatusline()
 
 " neovim python provider
 let g:python_host_prog  = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
-" Keymappings
 
-" nnoremap <cr> @:
+" Keymappings
 
 " readonly save trick
 cmap w!! w !sudo tee % >/dev/null
@@ -377,7 +355,6 @@ inoremap <silent> ,f <C-x><C-f>
 inoremap <silent> ,i <C-x><C-i>
 inoremap <silent> ,l <C-x><C-l>
 inoremap <silent> ,n <C-x><C-n>
-" oMnicompletion
 inoremap <silent> ,m <C-x><C-o>
 inoremap <silent> ,t <C-x><C-]>
 inoremap <silent> ,u <C-x><C-u>
@@ -398,52 +375,6 @@ nnoremap <silent> >, :silent :SidewaysRight<cr>
 nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 
-let g:ale_statusline_format = ['%dE', '%dW', '']
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⨯'
-
-let g:ale_linters = {
-      \ 'java': [],
-      \ 'python': ['pylint'],
-      \ 'javascript': ['flow'],
-      \ 'typescript': ['tslint'],
-      \ 'elm': [],
-      \ 'text': ['vale', 'proselint'],
-      \ 'tex': ['vale', 'proselint'],
-      \ 'markdown': ['proselint', 'mdl', 'vale'],
-      \ 'kotlin': ['kotlinc'],
-      \ 'haskell': [],
-      \ 'ledger': ['ledger']
-      \ }
-
-let g:ale_fixers = {
-      \ 'javascript': [
-      \    'eslint'
-      \ ],
-      \ 'typescript': [
-      \    'tslint'
-      \ ],
-      \ 'python': [
-      \    'black',
-      \    'isort'
-      \ ],
-      \ 'css': [
-      \    'prettier'
-      \ ],
-      \ 'rust': [
-      \    'rustfmt'
-      \ ],
-      \ 'c': [
-      \    'clang-format'
-      \ ],
-      \ }
-
-let g:ale_c_clangeformat_options = '-style=Mozilla'
-
-nnoremap <leader>f :ALEFix<cr>
-nnoremap <silent> coa :ALEToggle<cr>
-
-
 nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
 
 nnoremap <silent> <leader>se :silent :Sedit<cr>
@@ -455,6 +386,9 @@ imap <C-h> <BS>
 cmap <C-h> <BS>
 
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
+
+" so that enter key also inserts a newline even if popup visible
+inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
 
 
 " what I want saved/restored with views - previously the curdir was saved, which
@@ -473,53 +407,6 @@ augroup vimrc
   autocmd ColorScheme * call functions#sethighlight()
   autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 augroup END
-
-" vimtex
-let g:vimtex_latexmk_options = '-pdflatex="xelatex --shell-escape" -pdf'
-" let g:vimtex_view_general_viewer = 'rifle'
-let g:vimtex_view_method = 'zathura'
-let g:tex_flavor = 'latex'
-
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_quickfix_mode = 0
-let g:vimtex_quickfix_open_on_warning = 0
-
-" rainbow
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-let g:rainbow_conf = {
-      \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-      \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-      \   'operators': '_,_',
-      \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-      \   'separately': {
-      \       '*': {},
-      \       'tex': {
-      \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-      \       },
-      \       'lisp': {
-      \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-      \       },
-      \       'vim': {
-      \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-      \       },
-      \       'html': {
-      \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-      \       },
-      \       'css': 0,
-      \   }
-      \}
-
-" ctrlp
-let g:ctrlp_map = '' " managing it myself
-let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_show_hidden = 1
-let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
-" rg is fast enough that CtrlP doesn't need to cache
-let g:ctrlp_use_caching = 0
-
-" vimcompletesme config
-let g:vcm_default_maps = 1
-let g:vcm_direction = 'p'
 
 " graphviz
 let g:WMGraphviz_viewer = 'rifle'
@@ -559,16 +446,6 @@ let g:rust_fold = 1
 " let g:rust_shortener_url = ''
 let g:rust_clip_command = 'xsel -ib'
 
-
-" gutentags
-let g:gutentags_file_list_command = {
-      \ 'markers': {
-      \ '.git': 'git ls-files',
-      \ '.hg': 'hg files',
-      \ },
-      \ }
-
-
 " vim-go
 let g:go_list_type = "quickfix"
 let g:go_highlight_functions = 1
@@ -578,12 +455,6 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports" "auto-populate imports
-
-
-" vim sandwich
-" vim-surround style keymappings
-runtime macros/sandwich/keymap/surround.vim
-
 
 " emmet - note, conflicts with sparkup using this binding
 let g:user_emmet_leader_key = '<c-e>'
@@ -596,7 +467,6 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-
 " jedi-vim
 let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
@@ -608,16 +478,6 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>jn"
 let g:jedi#rename_command = "<leader>jr"
 
-
-" ultisnips
-let g:UltiSnipsExpandTrigger="<c-space>"
-let g:UltiSnipsJumpForwardTrigger="<c-space>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips']
-let g:UltiSnipsSnippetsDir=$HOME.'/.vim/UltiSnips'
-let g:UltiSnipsEnableSnipMate=1
-
-
 let g:autocomplete_flow#insert_paren_after_function = 0
 
 " indentLine
@@ -625,24 +485,9 @@ let g:indentLine_setConceal = 0
 " let g:indentLine_setColors = 0
 let g:indentLine_char = '▏'
 
-
-" Switch
-let g:switch_custom_definitions =
-  \ [
-  \   switch#NormalizedCase(['left', 'right'])
-  \ ]
-
-
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-
 " vim-jsx
 let g:jsx_ext_required = 0
-
-" so that enter key also inserts a newline even if popup visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-
-" neco-ghc
-let g:necoghc_use_stack = 1

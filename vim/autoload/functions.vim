@@ -67,7 +67,6 @@ func! functions#buildstatusline()
     endif
   endif
 
-
   " git status
   if exists('g:loaded_fugitive')
     let l:line .= '%6*%( %{fugitive#statusline()} %)'
@@ -111,7 +110,10 @@ func! functions#sethighlight()
   if (l:sign_col_color ==# '')
     let l:sign_col_color = 0
   endif
-  execute 'highlight ALEWarningSign ctermfg=3 ' . l:prefix . 'bg=' . l:sign_col_color
-  execute 'highlight ALEErrorSign ctermfg=1 ' . l:prefix . 'bg=' . l:sign_col_color
+
+  if exists('g:loaded_ale')
+    execute 'highlight ALEWarningSign ctermfg=3 ' . l:prefix . 'bg=' . l:sign_col_color
+    execute 'highlight ALEErrorSign ctermfg=1 ' . l:prefix . 'bg=' . l:sign_col_color
+  endif
 
 endfunc

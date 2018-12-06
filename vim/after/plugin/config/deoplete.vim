@@ -34,5 +34,5 @@ call deoplete#custom#option('omni_patterns', {
 
 " deoplete plugins
 
+" XXX: assumes vimtex installed
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
-let g:nvim_typescript#default_mappings = 1
