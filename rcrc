@@ -1,2 +1,3 @@
 EXCLUDES="LICENSE README.md bin"
 DOTFILES_DIRS="$HOME/dotfiles"
+SYMLINK_DIRS="vim/pack/*"

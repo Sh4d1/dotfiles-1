@@ -2,6 +2,6 @@
 
 # download the mthesaur.txt if not already
 
-if [ ! -e ~/.vim/mthesaur.txt ]; then
+if [ ! -e "$HOME/.vim/mthesaur.txt" ]; then
     curl -o ~/.vim/mthesaur.txt 'http://www.gutenberg.org/files/3202/files/mthesaur.txt'
 fi

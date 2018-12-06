@@ -44,3 +44,6 @@
     dh1 = diff HEAD~1
     a = add
     ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+
+[hub]
+	protocol = ssh

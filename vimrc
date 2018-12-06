@@ -7,6 +7,16 @@
 "  - /r/vim
 "  - and others...
 
+function! PackInit() abort
+  packadd minpac
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+  call minpac#add('https://github.com/romainl/flattened.git')
+endfunction
+
+command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  call PackInit() | call minpac#clean()
+command! PackStatus call PackInit() | call minpac#status()<Paste>
 
 " Load plugins with vim-plug
 call plug#begin('~/.vim/plugged')
@@ -34,7 +44,6 @@ Plug 'https://github.com/mattn/webapi-vim.git'                          " librar
 Plug 'https://github.com/AndrewRadev/undoquit.vim.git'  " undo close buffer/split/tab
 
 " colorschemes
-Plug 'romainl/flattened'                                                " (solarized)
 Plug 'romainl/Apprentice'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
@@ -77,15 +86,12 @@ Plug 'cespare/vim-toml'                                                 " toml s
 Plug 'lervag/vimtex'                                                    " latex
 Plug 'wannesm/wmgraphviz.vim'                                           " graphviz dot
 Plug 'saltstack/salt-vim'                                               " saltstack syntax
-" Plug 'chrisbra/csv.vim'                                                 " csv sheets
 Plug 'leafgarland/typescript-vim'                                       " typescript syntax + settings
-" Plug 'Quramy/vim-js-pretty-template'                                    " javascript template string syntax
 Plug 'godlygeek/tabular'                                                " tabular
 Plug 'tmux-plugins/vim-tmux'                                            " tmux syntax
 Plug 'fatih/vim-go'                                                     " golang
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'                                                      " jsx syntax/indenting support
-" Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}  " javascript completions
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}                   " java completion
 Plug 'davidhalter/jedi-vim', {'for': 'python'}                          " python completions + refactoring
 Plug 'rust-lang/rust.vim'                                               " rust
