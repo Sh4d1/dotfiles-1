@@ -8,22 +8,44 @@
 "  - and others...
 
 function! PackInit() abort
+  if glob(expand('~/.vim/pack/bundle/opt/minpac')) == ''
+    !git clone https://github.com/k-takata/minpac $HOME/.vim/pack/bundle/opt/minpac
+  endif
+
   packadd minpac
-  call minpac#init()
+  call minpac#init({'package_name': 'bundle'})
+
+  " self manage
   call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  " Autoloaded plugins.
+  " These are plugins that don't require any config and just make Vim nicer in
+  " general.
   call minpac#add('https://github.com/romainl/flattened.git')
+  call minpac#add('https://github.com/ap/vim-css-color.git')
+
+  " Autoloaded plugins that do have config
+  call minpac#add('https://github.com/ludovicchabant/vim-gutentags')
+
+  " plugins that are put in the opt directory (not auto loaded)
+  call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })
+
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
-command! PackStatus call PackInit() | call minpac#status()<Paste>
+command! PackStatus call PackInit() | call minpac#status()
+
+" load neovim-only plugins
+if has('nvim')
+  packadd! deoplete.nvim
+endif
 
 " Load plugins with vim-plug
 call plug#begin('~/.vim/plugged')
 
 " enhancements that don't need (much) configuring
 "   and don't provide commands/mappings
-Plug 'ap/vim-css-color'                                                 " highlight colors in css
 Plug 'ludovicchabant/vim-gutentags'                                     " auto-generate tags file
 Plug 'luochen1990/rainbow'                                              " easier to see nested parens
 Plug 'machakann/vim-highlightedyank'                                    " highlights currently yanked region
@@ -140,8 +162,6 @@ Plug 'tbabej/taskwiki'
 
 " load neovim specific plugins
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
   Plug 'wokalski/autocomplete-flow' " requires `flow-bin` to be installed somewhere
   Plug 'zchee/deoplete-jedi'
   Plug 'zchee/deoplete-go', { 'do': 'make' }

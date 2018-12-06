@@ -24,8 +24,7 @@ let g:startify_custom_footer =
       \ ['', "   Vim is charityware. Run ':h iccf' for more information.", '']
 
 let g:startify_commands = [
-      \ {'U': 'PlugUpdate'},
-      \ {'I': 'PlugInstall'},
+      \ {'U': 'PackUpdate'},
       \ {'V': 'GV'},
       \ {'S': 'Sedit'},
       \ ]

@@ -4,12 +4,11 @@ if ! exists('g:loaded_deoplete')
     finish
 endif
 
+
 function! s:check_back_space() abort
   let l:col = col('.') - 1
   return !l:col || getline('.')[l:col - 1]  =~ '\s'
 endfunction
-
-let g:deoplete#enable_at_startup = 1
 
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
