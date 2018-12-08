@@ -1,25 +1,102 @@
-" Samuel Walladge's vimrc
-" inspiration for some parts found at:
-"  - http://items.sjbach.com/319/configuring-vim-right
-"  - https://github.com/timdawborn/dotfiles/blob/master/.vimrc
-"  - https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim
-"  - https://www.vi-improved.org/{recommendations,plugins}
-"  - /r/vim
-"  - and others...
+" Samuel Walladge's Vim config (this vimrc and .vim/*)
+" Thanks to the helpful people on #vim (freenode) and /r/vim, the authors of so
+" many helpful blog posts, and people who share their config online.
 
 command! PackUpdate call local#pack#pack_init() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call local#pack#pack_init() | call minpac#clean()
 command! PackStatus call local#pack#pack_init() | call minpac#status()
 
+" Add all installed plugins to runtime path now to be loaded in the normal
+" course of plugin loading. I do this so that I can easily disable a plugin by
+" commenting it out here instead of needing to move the directory out of the
+" pack/bundle/start directory.
+packadd! ale
+packadd! Apprentice
+packadd! autocomplete-flow
+packadd! editorconfig-vim
+packadd! elm-vim
+packadd! emmet-vim
+packadd! ferret
+packadd! flattened
+packadd! fzf
+packadd! fzf.vim
+packadd! gv.vim
+packadd! indentLine
+packadd! jedi-vim
+packadd! kotlin-vim
+packadd! linediff.vim
+packadd! MatchTagAlways
+packadd! nginx.vim
+packadd! nuake
+packadd! rainbow
+packadd! rust.vim
+packadd! salt-vim
+packadd! sideways.vim
+packadd! splitjoin.vim
+packadd! switch.vim
+packadd! tabular
+packadd! targets.vim
+packadd! taskwiki
+packadd! typescript-vim
+packadd! ultisnips
+packadd! undoquit.vim
+packadd! undotree
+packadd! vim-abolish
+packadd! vimagit
+packadd! vim-characterize
+packadd! vim-commentary
+packadd! vim-convert
+packadd! vim-css-color
+packadd! vim-dirvish
+packadd! vim-eunuch
+packadd! vim-exchange
+packadd! vim-fugitive
+packadd! vim-gitgutter
+packadd! vim-gnupg
+packadd! vim-go
+packadd! vim-gutentags
+packadd! vim-highlightedyank
+packadd! vim-husk
+packadd! vim-javascript
+packadd! vim-jsx
+packadd! vim-ledger
+packadd! vim-lion
+packadd! vim-merginal
+packadd! vim-obsession
+packadd! vim-qf
+packadd! vim-racer
+packadd! vim-repeat
+packadd! vim-rhubarb
+packadd! vim-sandwich
+packadd! vim-schlepp
+packadd! vim-searchindex
+packadd! vim-signature
+packadd! vim-sleuth
+packadd! vim-sneak
+packadd! vim-snippets
+packadd! vim-speeddating
+packadd! vim-startify
+packadd! vim-test
+packadd! vimtex
+packadd! vim-tmux
+packadd! vim-tmux-clipboard
+packadd! vim-toml
+packadd! vim-twiggy
+packadd! vim-unimpaired
+packadd! vimux
+packadd! vimwiki
+packadd! visual-split.vim
+packadd! webapi-vim
+packadd! wmgraphviz.vim
+
 " load neovim-only plugins
 if has('nvim')
-  " need to use the bang here otherwise won't work ¯\_(ツ)_/¯
   packadd! deoplete.nvim
-  packadd  deoplete-khard
-  packadd  deoplete-jedi
-  packadd  deoplete-go
-  packadd  deoplete-emoji
-  packadd  neco-ghc
+  packadd! deoplete-khard
+  packadd! deoplete-jedi
+  packadd! deoplete-go
+  packadd! deoplete-emoji
+  packadd! neco-ghc
 endif
 
 
@@ -87,7 +164,7 @@ set lazyredraw
 set virtualedit=block
 
 set formatoptions+=ncrqjl
-set formatoptions-=t " don't auto wrap text - use gq manually
+" set formatoptions-=t " don't auto wrap text - use gq manually
 set formatoptions-=a " don't format the entire paragraph automatically
 
 set nostartofline
