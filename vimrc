@@ -42,7 +42,6 @@ packadd! ultisnips
 packadd! undoquit.vim
 packadd! undotree
 packadd! vim-abolish
-packadd! vimagit
 packadd! vim-characterize
 packadd! vim-commentary
 packadd! vim-convert
@@ -69,6 +68,7 @@ packadd! vim-repeat
 packadd! vim-rhubarb
 packadd! vim-sandwich
 packadd! vim-schlepp
+packadd! vim-scriptease
 packadd! vim-searchindex
 packadd! vim-signature
 packadd! vim-sleuth
@@ -77,12 +77,13 @@ packadd! vim-snippets
 packadd! vim-speeddating
 packadd! vim-startify
 packadd! vim-test
-packadd! vimtex
 packadd! vim-tmux
 packadd! vim-tmux-clipboard
 packadd! vim-toml
 packadd! vim-twiggy
 packadd! vim-unimpaired
+packadd! vimagit
+packadd! vimtex
 packadd! vimux
 packadd! vimwiki
 packadd! visual-split.vim
@@ -248,12 +249,15 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Keymappings
 
 " readonly save trick
-cmap w!! w !sudo tee % >/dev/null
+" cmap w!! w !sudo tee % >/dev/null
 
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
-nnoremap <silent> <esc> <esc>:nohlsearch \| redraw! \| silent! wa<cr>
+" use esc in normal mode to reset things - hide search highlighting, redraw the
+" screen, write out all buffers, and write the current buffer (so BufWritePost
+" is fired; to trigger tools like ALE to relint)
+nnoremap <silent> <esc> <esc>:nohlsearch \| redraw! \| silent! wa \| silent! w<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>

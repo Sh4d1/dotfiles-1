@@ -49,12 +49,13 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/AndrewRadev/sideways.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/mbbill/undotree.git', {'type': 'opt'})
   call minpac#add('https://github.com/justinmk/vim-dirvish.git', {'type': 'opt'})
+  call minpac#add('https://github.com/tpope/vim-scriptease.git', {'type': 'opt'})
 
   call minpac#add('https://github.com/tpope/vim-fugitive.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-rhubarb.git', {'type': 'opt'})
   call minpac#add('https://github.com/junegunn/gv.vim.git', {'type': 'opt'})
 
-  call minpac#add('https://github.com/junegunn/fzf.git', {'do': '!./install --bin'})
+  call minpac#add('https://github.com/junegunn/fzf.git', {'type': 'opt', 'do': '!./install --bin'})
   call minpac#add('https://github.com/junegunn/fzf.vim.git', {'type': 'opt'}) " depends on fzf above
 
   call minpac#add('https://github.com/SirVer/ultisnips.git', {'type': 'opt'})

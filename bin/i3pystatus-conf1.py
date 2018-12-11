@@ -39,7 +39,7 @@ status.register("temp",
 # Note: the network module requires PyPI package netifaces
 status.register("network",
                 interface="eno1",
-                format_up="{v4cidr}",)
+                format_up="{v4cidr} {bytes_recv}KiBs down | {bytes_sent}KiBs up",)
 
 
 # Shows disk usage of /
