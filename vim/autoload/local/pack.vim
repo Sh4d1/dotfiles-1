@@ -30,6 +30,12 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/tpope/vim-eunuch.git', {'type': 'opt'})
   call minpac#add('https://github.com/vim-utils/vim-husk.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-speeddating.git', {'type': 'opt'})
+  call minpac#add('https://github.com/machakann/vim-highlightedyank.git', {'type': 'opt'})
+  call minpac#add('https://github.com/Yggdroot/indentLine.git', {'type': 'opt'})
+  call minpac#add('https://github.com/google/vim-searchindex.git', {'type': 'opt'})
+  call minpac#add('https://github.com/roxma/vim-tmux-clipboard.git', {'type': 'opt'})
+  call minpac#add('https://github.com/cspeterson/vim-convert.git', {'type': 'opt'})
+  call minpac#add('https://github.com/tpope/vim-commentary.git', {'type': 'opt'})
 
 
   " Autoloaded plugins that do have config
@@ -50,6 +56,9 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/mbbill/undotree.git', {'type': 'opt'})
   call minpac#add('https://github.com/justinmk/vim-dirvish.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-scriptease.git', {'type': 'opt'})
+  call minpac#add('https://github.com/kshenoy/vim-signature.git', {'type': 'opt'})
+  call minpac#add('https://github.com/editorconfig/editorconfig-vim.git', {'type': 'opt'})
+  call minpac#add('https://github.com/Valloric/MatchTagAlways.git', {'type': 'opt'})
 
   call minpac#add('https://github.com/tpope/vim-fugitive.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-rhubarb.git', {'type': 'opt'})
@@ -63,17 +72,8 @@ function! local#pack#pack_init() abort
 
 
   " TODO: go through these plugins
-  call minpac#add('https://github.com/machakann/vim-highlightedyank.git', {'type': 'opt'})
-  call minpac#add('https://github.com/Yggdroot/indentLine.git', {'type': 'opt'})
-  call minpac#add('https://github.com/kshenoy/vim-signature.git', {'type': 'opt'})
-  call minpac#add('https://github.com/Valloric/MatchTagAlways.git', {'type': 'opt'})
-  call minpac#add('https://github.com/editorconfig/editorconfig-vim.git', {'type': 'opt'})
-  call minpac#add('https://github.com/google/vim-searchindex.git', {'type': 'opt'})
-  call minpac#add('https://github.com/roxma/vim-tmux-clipboard.git', {'type': 'opt'})
-  call minpac#add('https://github.com/cspeterson/vim-convert.git', {'type': 'opt'})
   call minpac#add('https://github.com/AndrewRadev/undoquit.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-obsession.git', {'type': 'opt'})
-  call minpac#add('https://github.com/tpope/vim-commentary.git', {'type': 'opt'})
   call minpac#add('https://github.com/tommcdo/vim-lion.git', {'type': 'opt'})
   call minpac#add('https://github.com/mattn/emmet-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-unimpaired.git', {'type': 'opt'})
@@ -104,7 +104,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/ledger/vim-ledger.git', {'type': 'opt'})
   call minpac#add('https://github.com/janko-m/vim-test.git', {'type': 'opt'})
   call minpac#add('https://gitlab.com/Lenovsky/nuake.git', {'type': 'opt'})
-  call minpac#add('https://github.com/jreybert/vimagit.git', {'type': 'opt'})
   call minpac#add('https://github.com/sodapopcan/vim-twiggy.git', {'type': 'opt'})
   call minpac#add('https://github.com/idanarye/vim-merginal.git', {'type': 'opt'})
 
