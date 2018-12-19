@@ -378,6 +378,13 @@ today() {
   nvim "$HOME/wiki/diary/$(date +%F).wiki"
 }
 
+# open quick note with title
+zet() {
+  # fname=$(sed 's/ /-/' <<< $@)
+  # nvim "$HOME/wiki/$(date +%F-%H%M)-${fname}.wiki"
+  nvim --cmd 'let g:startify_disable_at_vimenter = 1' "+Zetedit $*"
+}
+
 mksrcinfo() {
   makepkg --printsrcinfo > .SRCINFO
 }

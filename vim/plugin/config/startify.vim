@@ -24,9 +24,11 @@ let g:startify_custom_footer =
       \ ['', "   Vim is charityware. Run ':h iccf' for more information.", '']
 
 let g:startify_commands = [
+      \ {'S': 'Sedit'},
+      \ {'T': 'VimwikiMakeDiaryNote'},
       \ {'U': 'PackUpdate'},
       \ {'V': 'GV'},
-      \ {'S': 'Sedit'},
+      \ {'W': 'VimwikiIndex'},
       \ ]
 
 

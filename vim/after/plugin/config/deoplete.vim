@@ -32,6 +32,11 @@ call deoplete#custom#option('omni_patterns', {
 \})
 
 
+" for triggering vimwiki link omnicompletion
+call deoplete#custom#var('omni', 'input_patterns', {
+    \ 'vimwiki': '\[\[[^\s]*',
+    \})
+
 " deoplete plugins
 
 " XXX: assumes vimtex installed

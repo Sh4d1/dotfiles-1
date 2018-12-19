@@ -9,9 +9,15 @@ augroup vimwiki_local
 augroup END
 
 
-" remap due to clobbering my other mapping
-nnoremap <silent><buffer> coi :VimwikiToggleListItem<cr>
+nnoremap <silent><buffer> <leader><space> :VimwikiToggleListItem<cr>
+vnoremap <silent><buffer> <leader><space> :VimwikiToggleListItem<cr>
+
+" remap due to clobbering my other mapping.
+" requires fzf
 nnoremap <silent><buffer> <c-space> :Files<cr>
+
+" disable fzf tags mapping
+map <silent><buffer> <leader>t <nop>
 
 " setlocal foldmethod=manual
 setlocal spell
@@ -27,9 +33,6 @@ nmap <buffer> <leader>> <Plug>VimwikiAddHeaderLevel
 
 " reassign default dirvish mapping
 map <silent><buffer> - <Plug>(dirvish_up)
-
-" disable fzf tags mapping here
-map <silent><buffer> <leader>t <nop>
 
 " TODO: colour these nicely
 " hi VimwikiHeader1 guifg=#FF0000
