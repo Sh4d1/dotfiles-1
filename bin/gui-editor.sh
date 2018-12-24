@@ -1,3 +1,3 @@
 #! /usr/bin/zsh
 
-termite -t "POPUP1" -e "zsh -i -c '$EDITOR \"$1\"'"
+urxvt -title "POPUP1" -e $EDITOR "$1"

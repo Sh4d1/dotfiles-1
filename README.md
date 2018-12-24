@@ -71,6 +71,7 @@ RCRC=~/dotfiles/rcrc rcup
 - todoman
 - todotxt-machine
 - udiskie
+- rxvt-unicode
 - vdirsyncer
 - vim/neovim
 - X11 (xinitrc, Xresources)

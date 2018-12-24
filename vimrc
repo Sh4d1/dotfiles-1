@@ -39,7 +39,6 @@ packadd! targets.vim
 packadd! taskwiki
 packadd! typescript-vim
 packadd! ultisnips
-packadd! undoquit.vim
 packadd! undotree
 packadd! vim-abolish
 packadd! vim-characterize
@@ -50,7 +49,7 @@ packadd! vim-dirvish
 packadd! vim-eunuch
 packadd! vim-exchange
 packadd! vim-fugitive
-packadd! vim-gitgutter
+packadd! vim-signify
 packadd! vim-gnupg
 packadd! vim-go
 packadd! vim-gutentags
@@ -86,7 +85,6 @@ packadd! vimagit
 packadd! vimtex
 packadd! vimux
 packadd! vimwiki
-packadd! visual-split.vim
 packadd! webapi-vim
 packadd! wmgraphviz.vim
 
@@ -109,10 +107,6 @@ syntax on
 
 set encoding=utf-8
 
-" for local .vimrc support
-set exrc
-
-set secure
 set title
 set hidden
 
@@ -155,8 +149,10 @@ set shortmess+=filnxtToOc " less 'press ... to continue' maybe
 set showmode
 set breakindent
 set showbreak=…
-set nospell " spellchecking off by default
-set spelllang=en_au " correct language
+
+" spelling options
+set nospell
+set spelllang=en_au
 set spellcapcheck=
 
 " don't redraw while replaying macros
@@ -209,8 +205,6 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 " global substitute by default
 set gdefault
 
-set noshowmode
-
 set thesaurus+=~/.vim/mthesaur.txt
 
 let g:netrw_browsex_viewer = 'rifle'
@@ -235,7 +229,7 @@ catch
 endtry
 
 " 24 bit color support
-set termguicolors
+" set termguicolors
 
 " Status Line
 set laststatus=2
@@ -343,7 +337,7 @@ cmap <C-h> <BS>
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
 " so that enter key also inserts a newline even if popup visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+imap <expr> <CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
 
 
 " what I want saved/restored with views - previously the curdir was saved, which

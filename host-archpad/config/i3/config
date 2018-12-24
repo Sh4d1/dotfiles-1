@@ -17,9 +17,9 @@ set $right l
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec termite
-bindsym Mod4+Shift+Return exec termite -e "nvim +VimwikiIndex"
-bindsym Mod4+Ctrl+Return exec termite -e "nvim \"$HOME/wiki/diary/$(date +%F).wiki\"" # today's diary/notes entry
+bindsym Mod4+Return exec urxvt
+bindsym Mod4+Shift+Return exec urxvt -e nvim +VimwikiIndex
+bindsym Mod4+Ctrl+Return exec urxvt -e nvim "$HOME/wiki/diary/$(date +%F).wiki" # today's diary/notes entry
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -28,8 +28,8 @@ bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 bindsym Mod4+Shift+d exec --no-startup-id dmenu_run # still handy to have though
 
 # for clipboard editor
-bindsym Mod4+Shift+g exec --no-startup-id termite -t "GHOST" -e "edit-anywhere"
-bindsym Mod4+Control+g exec --no-startup-id termite -t "GHOST" -e "edit-clip"
+bindsym Mod4+Shift+g exec --no-startup-id urxvt -title "GHOST" -e "edit-anywhere"
+bindsym Mod4+Control+g exec --no-startup-id urxvt -title "GHOST" -e "edit-clip"
 
 # change focus
 bindsym Mod4+$left focus left

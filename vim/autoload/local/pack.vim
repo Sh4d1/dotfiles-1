@@ -46,7 +46,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/tbabej/taskwiki.git', {'type': 'opt', 'do': '!pip install --user -U tasklib'})
   call minpac#add('https://github.com/mhinz/vim-startify.git', {'type': 'opt'})
   call minpac#add('https://github.com/machakann/vim-sandwich.git', {'type': 'opt'})
-  call minpac#add('https://github.com/airblade/vim-gitgutter.git', {'type': 'opt'})
   call minpac#add('https://github.com/AndrewRadev/switch.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/tommcdo/vim-exchange.git', {'type': 'opt'})
   call minpac#add('https://github.com/wellle/targets.vim.git', {'type': 'opt'})
@@ -60,6 +59,7 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/editorconfig/editorconfig-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/Valloric/MatchTagAlways.git', {'type': 'opt'})
 
+  call minpac#add('https://github.com/mhinz/vim-signify.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-fugitive.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-rhubarb.git', {'type': 'opt'})
   call minpac#add('https://github.com/junegunn/gv.vim.git', {'type': 'opt'})
@@ -69,15 +69,10 @@ function! local#pack#pack_init() abort
 
   call minpac#add('https://github.com/SirVer/ultisnips.git', {'type': 'opt'})
   call minpac#add('https://github.com/honza/vim-snippets.git', {'type': 'opt'})
-
-
-  " TODO: go through these plugins
-  call minpac#add('https://github.com/AndrewRadev/undoquit.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-obsession.git', {'type': 'opt'})
   call minpac#add('https://github.com/tommcdo/vim-lion.git', {'type': 'opt'})
   call minpac#add('https://github.com/mattn/emmet-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-unimpaired.git', {'type': 'opt'})
-  call minpac#add('https://github.com/wellle/visual-split.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/romainl/vim-qf.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-abolish.git', {'type': 'opt'})
   call minpac#add('https://github.com/AndrewRadev/linediff.vim.git', {'type': 'opt'})
@@ -108,8 +103,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/idanarye/vim-merginal.git', {'type': 'opt'})
 
 
-  " plugins that are put in the opt directory (not auto loaded)
-  " deoplete (autocompletion engine)
   call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })
 
   " deoplete plugins

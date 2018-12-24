@@ -1,4 +1,4 @@
-
+# vim: ft=toml
 
 [options]
 font = Hack 8
@@ -6,15 +6,15 @@ font = Hack 8
 scrollback_lines = 20000
 allow_bold = true
 
+clickable_url = false
+
 
 # Solarized dark color scheme
 
 [colors]
 foreground = #839496
 foreground_bold = #eee8d5
-#foreground_dim = #888888
-# background = #002b36
-background = #002630
+background = #002b36
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
@@ -29,8 +29,7 @@ color4 = #268bd2
 color5 = #d33682
 color6 = #2aa198
 color7 = #eee8d5
-# color8 = #002b36
-color8 = #002630
+color8 = #002b36
 color9 = #cb4b16
 color10 = #586e75
 color11 = #657b83

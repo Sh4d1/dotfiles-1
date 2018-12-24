@@ -42,6 +42,7 @@ status.register("network",
                 format_up="{v4cidr} {bytes_recv}KiBs down | {bytes_sent}KiBs up",)
 
 
+
 # Shows disk usage of /
 status.register("disk",
                 path="/",

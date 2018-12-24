@@ -28,313 +28,295 @@
 *cursorColor:           #93a1a1
 *pointerColorBackground:#586e75
 *pointerColorForeground:#93a1a1
-
-!! black dark/light
 *color0:                #073642
-*color8:                #002b36
-
-!! red dark/light
 *color1:                #dc322f
-*color9:                #cb4b16
-
-!! green dark/light
 *color2:                #859900
-*color10:               #586e75
-
-!! yellow dark/light
 *color3:                #b58900
-*color11:               #657b83
-
-!! blue dark/light
 *color4:                #268bd2
-*color12:               #839496
-
-!! magenta dark/light
 *color5:                #d33682
-*color13:               #6c71c4
-
-!! cyan dark/light
 *color6:                #2aa198
-*color14:               #93a1a1
-
-!! white dark/light
 *color7:                #eee8d5
+*color8:                #002b36
+*color9:                #cb4b16
+*color10:               #586e75
+*color11:               #657b83
+*color12:               #839496
+*color13:               #6c71c4
+*color14:               #93a1a1
 *color15:               #fdf6e3
 
 Xft.hinting: 1
 ! Xft.hintstyle: hintmedium
 Xft.antialias: 1
-Xft.dpi: 162
 Xft.rgba: rgb
 
-*dpi: 162
 
-
-! "Enabled modi" Set from: XResources
 rofi.modi:                           window,drun,run,combi
-! "Window width" Set from: XResources
 rofi.width:                          50
-! "Number of lines" Set from: XResources
 rofi.lines:                          15
-! "Number of columns" Set from: XResources
 rofi.columns:                        1
-! "Font to use" Set from: XResources
 rofi.font:                           Hack 12
-! "Border width" Set from: XResources
 rofi.bw:                             3
-! "Location on screen" Set from: XResources
 rofi.location:                       0
-! "Padding" Set from: XResources
 rofi.padding:                        5
-! "Y-offset relative to location" Set from: XResources
 rofi.yoffset:                        0
-! "X-offset relative to location" Set from: XResources
 rofi.xoffset:                        0
-! "Always show number of lines" Set from: XResources
 rofi.fixed-num-lines:                false
-! "Whether to load and show icons" Set from: Default
 ! rofi.show-icons:                     false
-! "Terminal to use" Set from: XResources
-rofi.terminal:                       termite
-! "Ssh client to use" Set from: XResources
+rofi.terminal:                       urxvt
 rofi.ssh-client:                     ssh
-! "Ssh command to execute" Set from: XResources
 rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
-! "Run command to execute" Set from: XResources
 rofi.run-command:                    {cmd}
-! "Command to get extra run targets" Set from: XResources
 rofi.run-list-command:
-! "Run command to execute that runs in shell" Set from: XResources
 rofi.run-shell-command:              {terminal} --hold -e "{cmd}"
-! "Command executed on accep-entry-custom for window modus" Set from: Default
 ! rofi.window-command:                 xkill -id {window}
-! "Theme to use to look for icons" Set from: Default
 ! rofi.drun-icon-theme:
-! "Disable history in run/ssh" Set from: XResources
 rofi.disable-history:                false
-! "Use sorting" Set from: Default
 ! rofi.sort:                           false
-! "Use levenshtein sorting also for fuzzy matching" Set from: XResources
 rofi.levenshtein-sort:               false
-! "Set case-sensitivity" Set from: XResources
 rofi.case-sensitive:                 false
-! "Cycle through the results list" Set from: Default
 ! rofi.cycle:                          true
-! "Enable sidebar-mode" Set from: XResources
 rofi.sidebar-mode:                   false
-! "Row height (in chars)" Set from: XResources
 rofi.eh:                             1
-! "Enable auto select mode" Set from: XResources
 rofi.auto-select:                    false
-! "Parse hosts file for ssh mode" Set from: XResources
 rofi.parse-hosts:                    false
-! "Parse known_hosts file for ssh mode" Set from: XResources
 rofi.parse-known-hosts:              true
-! "Set the modi to combine in combi mode" Set from: XResources
 rofi.combi-modi:                     window,run,drun
-! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
 ! rofi.matching:                       normal
-! "Tokenize input string" Set from: XResources
 rofi.tokenize:                       true
-! "Monitor id to show on" Set from: XResources
 rofi.m:                              -1
-! "Margin between rows *DEPRECATED*" Set from: XResources
 rofi.line-margin:                    2
-! "Padding within rows *DEPRECATED*" Set from: Default
 ! rofi.line-padding:                   1
-! "Pre-set filter" Set from: XResources
 rofi.filter:
-! "Separator style (none, dash, solid) *DEPRECATED*" Set from: XResources
 rofi.separator-style:                dash
-! "Hide scroll-bar *DEPRECATED*" Set from: XResources
 rofi.hide-scrollbar:                 false
-! "Fullscreen" Set from: XResources
 rofi.fullscreen:                     false
-! "Fake transparency *DEPRECATED*" Set from: XResources
 rofi.fake-transparency:              false
-! "DPI" Set from: XResources
-rofi.dpi:                            162
-! "Threads to use for string matching" Set from: XResources
 rofi.threads:                        1
-! "Scrollbar width *DEPRECATED*" Set from: XResources
 rofi.scrollbar-width:                8
-! "Scrolling method. (0: Page, 1: Centered)" Set from: XResources
 rofi.scroll-method:                  0
-! "Background to use for fake transparency. (background or screenshot)" Set from: Default
 ! rofi.fake-background:                screenshot
-! "Window Format. w (desktop name), t (title), n (name), r (role), c (class) *DEPRECATED*" Set from: Default
 ! rofi.window-format:                  {w}    {i}{c}   {t}
-! "Click outside the window to exit" Set from: Default
 ! rofi.click-to-exit:                  true
-! "Indicate how it match by underlining it." Set from: Default
 ! rofi.show-match:                     true
-! "New style theme file" Set from: Default
 ! rofi.theme:
-! "Color scheme for normal row" Set from: XResources
 rofi.color-normal:                   #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
-! "Color scheme for urgent row" Set from: XResources
 rofi.color-urgent:                   #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3
-! "Color scheme for active row" Set from: XResources
 rofi.color-active:                   #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3
-! "Color scheme window" Set from: XResources
 rofi.color-window:                   #fdf6e3,#000000,#002b36
-! "Directory containing plugins" Set from: Default
 ! rofi.plugin-path:                    /usr/lib/rofi
-! "Pidfile location" Set from: XResources
 rofi.pid:                            /home/samuel/.rofi.pid
-! "The display name of this browser" Set from: Default
 ! rofi.display-window:
-! "The display name of this browser" Set from: Default
 ! rofi.display-windowcd:
-! "The display name of this browser" Set from: Default
 ! rofi.display-run:
-! "The display name of this browser" Set from: Default
 ! rofi.display-ssh:
-! "The display name of this browser" Set from: Default
 ! rofi.display-drun:
-! "The display name of this browser" Set from: Default
 ! rofi.display-combi:
-! "The display name of this browser" Set from: Default
 ! rofi.display-keys:
-! "Paste primary selection" Set from: XResources
 rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
-! "Paste clipboard" Set from: XResources
 rofi.kb-secondary-paste:             Control+v,Insert
-! "Clear input line" (disabled)
 rofi.kb-clear-line:
-! "Beginning of line" Set from: XResources
 rofi.kb-move-front:                  Control+a
-! "End of line" Set from: XResources
 rofi.kb-move-end:                    Control+e
-! "Move back one word" Set from: XResources
 rofi.kb-move-word-back:              Alt+b
-! "Move forward one word" Set from: XResources
 rofi.kb-move-word-forward:           Alt+f
-! "Move back one char" Set from: XResources
 rofi.kb-move-char-back:              Left,Control+b
-! "Move forward one char" Set from: XResources
 rofi.kb-move-char-forward:           Right,Control+f
-! "Delete previous word" Set from: XResources
 rofi.kb-remove-word-back:            Control+w
-! "Delete next word" Set from: XResources
 rofi.kb-remove-word-forward:         Control+Alt+d
-! "Delete next char" Set from: XResources
 rofi.kb-remove-char-forward:         Delete,Control+d
-! "Delete previous char" Set from: XResources
 rofi.kb-remove-char-back:            BackSpace,Control+h
-! "Delete till the end of line" Set from: Default
 rofi.kb-remove-to-eol:               Control+k
-! "Delete till the start of line" Set from: Default
 rofi.kb-remove-to-sol:               Control+u
-! "Accept entry" Set from: XResources
 rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
-! "Use entered text as command (in ssh/run modi)" Set from: XResources
 rofi.kb-accept-custom:               Control+Return
-! "Use alternate accept command." Set from: Default
 ! rofi.kb-accept-alt:                  Shift+Return
-! "Delete entry from history" Set from: XResources
 rofi.kb-delete-entry:                Shift+Delete
-! "Switch to the next mode." Set from: XResources
 rofi.kb-mode-next:                   Shift+Right,Control+Tab
-! "Switch to the previous mode." Set from: XResources
 rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab
-! "Go to the previous column" Set from: XResources
 rofi.kb-row-left:                    Control+Page_Up
-! "Go to the next column" Set from: XResources
 rofi.kb-row-right:                   Control+Page_Down
-! "Select previous entry" Set from: XResources
 rofi.kb-row-up:                      Up,Control+p,Shift+Tab
-! "Select next entry" Set from: XResources
 rofi.kb-row-down:                    Down,Control+n
-! "Go to next row, if one left, accept it, if no left next mode." Set from: XResources
 rofi.kb-row-tab:                     Tab
-! "Go to the previous page" Set from: XResources
 rofi.kb-page-prev:                   Page_Up
-! "Go to the next page" Set from: XResources
 rofi.kb-page-next:                   Page_Down
-! "Go to the first entry" Set from: XResources
 rofi.kb-row-first:                   Home,KP_Home
-! "Go to the last entry" Set from: XResources
 rofi.kb-row-last:                    End,KP_End
-! "Set selected item as input text" Set from: XResources
 rofi.kb-row-select:                  Control+space
-! "Take a screenshot of the rofi window" Set from: XResources
 rofi.kb-screenshot:                  Alt+Shift+S
-! "Toggle case sensitivity" Set from: XResources
 rofi.kb-toggle-case-sensitivity:     grave,dead_grave
-! "Toggle sort" Set from: XResources
 rofi.kb-toggle-sort:                 Alt+grave
-! "Quit rofi" Set from: XResources
 rofi.kb-cancel:                      Escape,Control+bracketleft
-! "Custom keybinding 1" Set from: XResources
 rofi.kb-custom-1:                    Alt+1
-! "Custom keybinding 2" Set from: XResources
 rofi.kb-custom-2:                    Alt+2
-! "Custom keybinding 3" Set from: XResources
 rofi.kb-custom-3:                    Alt+3
-! "Custom keybinding 4" Set from: XResources
 rofi.kb-custom-4:                    Alt+4
-! "Custom Keybinding 5" Set from: XResources
 rofi.kb-custom-5:                    Alt+5
-! "Custom keybinding 6" Set from: XResources
 rofi.kb-custom-6:                    Alt+6
-! "Custom Keybinding 7" Set from: XResources
 rofi.kb-custom-7:                    Alt+7
-! "Custom keybinding 8" Set from: XResources
 rofi.kb-custom-8:                    Alt+8
-! "Custom keybinding 9" Set from: XResources
 rofi.kb-custom-9:                    Alt+9
-! "Custom keybinding 10" Set from: XResources
 rofi.kb-custom-10:                   Alt+0
-! "Custom keybinding 11" Set from: XResources
 rofi.kb-custom-11:                   Alt+Shift+1
-! "Custom keybinding 12" Set from: XResources
 rofi.kb-custom-12:                   Alt+Shift+2
-! "Csutom keybinding 13" Set from: XResources
 rofi.kb-custom-13:                   Alt+Shift+3
-! "Custom keybinding 14" Set from: XResources
 rofi.kb-custom-14:                   Alt+Shift+4
-! "Custom keybinding 15" Set from: XResources
 rofi.kb-custom-15:                   Alt+Shift+5
-! "Custom keybinding 16" Set from: XResources
 rofi.kb-custom-16:                   Alt+Shift+6
-! "Custom keybinding 17" Set from: XResources
 rofi.kb-custom-17:                   Alt+Shift+7
-! "Custom keybinding 18" Set from: XResources
 rofi.kb-custom-18:                   Alt+Shift+8
-! "Custom Keybinding 19" Set from: XResources
 rofi.kb-custom-19:                   Alt+Shift+9
-! "Select row 1" Set from: Default
 ! rofi.kb-select-1:                    Super+1
-! "Select row 2" Set from: Default
 ! rofi.kb-select-2:                    Super+2
-! "Select row 3" Set from: Default
 ! rofi.kb-select-3:                    Super+3
-! "Select row 4" Set from: Default
 ! rofi.kb-select-4:                    Super+4
-! "Select row 5" Set from: Default
 ! rofi.kb-select-5:                    Super+5
-! "Select row 6" Set from: Default
 ! rofi.kb-select-6:                    Super+6
-! "Select row 7" Set from: Default
 ! rofi.kb-select-7:                    Super+7
-! "Select row 8" Set from: Default
 ! rofi.kb-select-8:                    Super+8
-! "Select row 9" Set from: Default
 ! rofi.kb-select-9:                    Super+9
-! "Select row 10" Set from: Default
 ! rofi.kb-select-10:                   Super+0
-! "Go to the previous column" Set from: Default
 ! rofi.ml-row-left:                    Mouse6
-! "Go to the next column" Set from: Default
 ! rofi.ml-row-right:                   Mouse7
-! "Select previous entry" Set from: Default
 ! rofi.ml-row-up:                      Mouse4
-! "Select next entry" Set from: Default
 ! rofi.ml-row-down:                    Mouse5
-! "Select hovered row" Set from: Default
 ! rofi.me-select-entry:                Mouse1
-! "Accept hovered row" Set from: Default
 ! rofi.me-accept-entry:                MouseD1
-! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseD1
+
+/* URxvt.answerbackString:               string */
+/* URxvt.background.border:              boolean */
+/* URxvt.background.expr:                string */
+/* URxvt.background.interval:            seconds */
+/* URxvt.background:                     color */
+/* URxvt.backspacekey:                   string */
+/* URxvt.bell-command:                   string */
+/* URxvt.blurRadius:                     HxV */
+/* URxvt.boldFont:                       fontname */
+/* URxvt.boldItalicFont:                 fontname */
+/* URxvt.borderColor:                    color */
+/* URxvt.borderLess:                     boolean */
+/* URxvt.buffered:                       boolean */
+/* URxvt.chdir:                          string */
+/* URxvt.colorBD:                        color */
+/* URxvt.colorIT:                        color */
+/* URxvt.colorRV:                        color */
+/* URxvt.colorUL:                        color */
+/* URxvt.cursorBlink:                    boolean */
+/* URxvt.cursorColor2:                   color */
+/* URxvt.cursorColor:                    color */
+/* URxvt.cursorUnderline:                boolean */
+/* URxvt.cutchars:                       string */
+/* URxvt.deletekey:                      string */
+/* URxvt.depth:                          number */
+/* URxvt.externalBorder:                 number */
+/* URxvt.fadeColor:                      color */
+/* URxvt.fading:                         number */
+/* URxvt.foreground:                     color */
+/* URxvt.geometry:                       geometry */
+/* URxvt.highlightColor:                 color */
+/* URxvt.highlightTextColor:             color */
+/* URxvt.hold:                           boolean */
+/* URxvt.iconFile:                       file */
+/* URxvt.iconName:                       string */
+/* URxvt.imFont:                         fontname */
+/* URxvt.imLocale:                       string */
+/* URxvt.inheritPixmap:                  boolean */
+/* URxvt.inputMethod:                    name */
+/* URxvt.insecure:                       boolean */
+/* URxvt.intensityStyles:                boolean */
+/* URxvt.internalBorder:                 number */
+/* URxvt.iso14755:                       boolean */
+/* URxvt.iso14755_52:                    boolean */
+/* URxvt.italicFont:                     fontname */
+/* URxvt.jumpScroll:                     boolean */
+/* URxvt.keysym.sym:                     keysym */
+/* URxvt.kuake.hotkey:                   string */
+/* URxvt.lineSpace:                      number */
+/* URxvt.loginShell:                     boolean */
+/* URxvt.mapAlert:                       boolean */
+/* URxvt.matcher.button:                 string */
+/* URxvt.matcher.launcher.*:             string */
+/* URxvt.matcher.launcher:               string */
+/* URxvt.matcher.pattern.*:              string */
+/* URxvt.matcher.rend.*:                 string */
+/* URxvt.meta8:                          boolean */
+/* URxvt.modifier:                       modifier */
+/* URxvt.mouseWheelScrollPage:           boolean */
+/* URxvt.multiClickTime:                 number */
+/* URxvt.override-redirect:              boolean */
+/* URxvt.pastableTabs:                   boolean */
+/* URxvt.perl-eval:                      perl-eval */
+/* URxvt.perl-ext-common:                string */
+/* URxvt.perl-ext:                       string */
+/* URxvt.perl-lib:                       string */
+/* URxvt.pointerBlank:                   boolean */
+/* URxvt.pointerBlankDelay:              number */
+/* URxvt.pointerColor2:                  color */
+/* URxvt.pointerColor:                   color */
+/* URxvt.preeditType:                    style */
+/* URxvt.print-pipe:                     string */
+/* URxvt.remote-clipboard.fetch:         string */
+/* URxvt.remote-clipboard.store:         string */
+/* URxvt.reverseVideo:                   boolean */
+/* URxvt.saveLines:                      number */
+/* URxvt.scrollBar:                      boolean */
+/* URxvt.scrollBar_align:                mode */
+/* URxvt.scrollBar_floating:             boolean */
+/* URxvt.scrollBar_right:                boolean */
+/* URxvt.scrollColor:                    color */
+/* URxvt.scrollTtyKeypress:              boolean */
+/* URxvt.scrollTtyOutput:                boolean */
+/* URxvt.scrollWithBuffer:               boolean */
+/* URxvt.scrollstyle:                    mode */
+/* URxvt.searchable-scrollback:          string */
+/* URxvt.secondaryScreen:                boolean */
+/* URxvt.secondaryScroll:                boolean */
+/* URxvt.selection-autotransform.*:      string */
+/* URxvt.selection-pastebin.cmd:         string */
+/* URxvt.selection-pastebin.url:         string */
+/* URxvt.selection.pattern-0:            string */
+/* URxvt.shading:                        number */
+/* URxvt.skipBuiltinGlyphs:              boolean */
+/* URxvt.skipScroll:                     boolean */
+/* URxvt.tab-bg:                         colour */
+/* URxvt.tab-fg:                         colour */
+/* URxvt.tabbar-bg:                      colour */
+/* URxvt.tabbar-fg:                      colour */
+/* URxvt.termName:                       string */
+/* URxvt.thickness:                      number */
+/* URxvt.tintColor:                      color */
+/* URxvt.title:                          string */
+/* URxvt.transient-for:                  windowid */
+/* URxvt.transparent:                    boolean */
+/* URxvt.tripleclickwords:               boolean */
+/* URxvt.troughColor:                    color */
+/* URxvt.underlineColor:                 color */
+/* URxvt.urgentOnBell:                   boolean */
+/* URxvt.url-launcher:                   string */
+/* URxvt.utmpInhibit:                    boolean */
+/* URxvt.visual:                         number */
+/* URxvt.visualBell:                     boolean */
+/* URxvt.xrm:                            string */
+URxvt.color0:                #073642
+URxvt.color10:               #586e75
+URxvt.color11:               #657b83
+URxvt.color12:               #839496
+URxvt.color13:               #6c71c4
+URxvt.color14:               #93a1a1
+URxvt.color15:               #fdf6e3
+URxvt.color1:                #dc322f
+URxvt.color2:                #859900
+URxvt.color3:                #b58900
+URxvt.color4:                #268bd2
+URxvt.color5:                #d33682
+URxvt.color6:                #2aa198
+URxvt.color7:                #eee8d5
+URxvt.color8:                #002b36
+URxvt.color9:                #cb4b16
+URxvt.letterSpace:                    -1
+URxvt.scrollBar: false
+
+! host specific settings
+#include ".Xresources.host"

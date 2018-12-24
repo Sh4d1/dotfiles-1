@@ -81,9 +81,11 @@ func! functions#buildstatusline()
       let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .
                   \ ' %#GitGutterChange#~' . l:hunks[1] .
                   \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
-  endif
+    endif
 
   endif
+
+  " TODO: re-add signify support
 
   return l:line
 endfunc

@@ -8,4 +8,4 @@ CHALLENGE_ID=`get_vimgolf_id "$QUTE_HTML"`
 # notify-send "vimgolf starting $CHALLENGE_ID"
 # check if key empty before running
 
-[ -n "$CHALLENGE_ID" ] && termite -t "POPUP1" -e "zsh -i -c 'vimgolf put $CHALLENGE_ID'"
+[ -n "$CHALLENGE_ID" ] && urxvt -title "POPUP1" -e zsh -i -c "vimgolf put $CHALLENGE_ID"

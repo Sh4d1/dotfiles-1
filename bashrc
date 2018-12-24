@@ -8,7 +8,7 @@
 PS1='[\u@\h \W]\$ '
 
 export EDITOR="vim"
-export TERMINAL="termite"
+export TERMINAL="urxvt"
 export BROWSER="firefox"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
@@ -33,9 +33,6 @@ elif [ "$(uname -s)" == "Linux" ]; then
 
     alias ls='ls --color=auto'
     alias rm='rm -I'
-
-    # bug fixed in coreutils - no longer needed for termite!
-    # eval $(dircolors ~/.dircolors.ansi-dark)
 
     # ruby gem path, and bin directory in my home dir
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"

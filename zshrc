@@ -4,6 +4,8 @@
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
 
+export TERM=tmux-256color
+
 # disable catching <c-q> and <c-s>
 stty stop undef
 stty start undef
@@ -156,10 +158,10 @@ compinit
 # shells where i haven't set that up...
 bindkey -e
 
-# bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+# # bind UP and DOWN arrow keys
+# zmodload zsh/terminfo
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # bind UP and DOWN arrow keys (compatibility fallback
 # for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
