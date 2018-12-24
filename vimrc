@@ -10,6 +10,11 @@ command! PackStatus call local#pack#pack_init() | call minpac#status()
 " course of plugin loading. I do this so that I can easily disable a plugin by
 " commenting it out here instead of needing to move the directory out of the
 " pack/bundle/start directory.
+
+" deps
+packadd! webapi-vim
+
+" libs
 packadd! ale
 packadd! Apprentice
 packadd! autocomplete-flow
@@ -23,14 +28,12 @@ packadd! fzf.vim
 packadd! gv.vim
 packadd! indentLine
 packadd! jedi-vim
-packadd! kotlin-vim
 packadd! linediff.vim
 packadd! MatchTagAlways
 packadd! nginx.vim
 packadd! nuake
 packadd! rainbow
 packadd! rust.vim
-packadd! salt-vim
 packadd! sideways.vim
 packadd! splitjoin.vim
 packadd! switch.vim
@@ -59,7 +62,6 @@ packadd! vim-javascript
 packadd! vim-jsx
 packadd! vim-ledger
 packadd! vim-lion
-packadd! vim-merginal
 packadd! vim-obsession
 packadd! vim-qf
 packadd! vim-racer
@@ -79,13 +81,10 @@ packadd! vim-test
 packadd! vim-tmux
 packadd! vim-tmux-clipboard
 packadd! vim-toml
-packadd! vim-twiggy
 packadd! vim-unimpaired
-packadd! vimagit
 packadd! vimtex
 packadd! vimux
 packadd! vimwiki
-packadd! webapi-vim
 packadd! wmgraphviz.vim
 
 " load neovim-only plugins
@@ -98,12 +97,9 @@ if has('nvim')
   packadd! neco-ghc
 endif
 
-
+set nocompatible
 filetype plugin indent on
 syntax on
-
-
-" options
 
 set encoding=utf-8
 
@@ -251,7 +247,8 @@ cnoremap <c-n> <down>
 " use esc in normal mode to reset things - hide search highlighting, redraw the
 " screen, write out all buffers, and write the current buffer (so BufWritePost
 " is fired; to trigger tools like ALE to relint)
-nnoremap <silent> <esc> <esc>:nohlsearch \| redraw! \| silent! wa \| silent! w<cr>
+" NOTE: can't remap to just <esc> in Vim without also `set noesckeys` and enduring pain
+nnoremap <silent> <leader><esc> <esc>:<c-u>nohlsearch \| redraw! \| silent! wa \| silent! w<cr>
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>

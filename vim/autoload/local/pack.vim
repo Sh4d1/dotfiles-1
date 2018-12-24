@@ -16,7 +16,6 @@ function! local#pack#pack_init() abort
   " webapi currently only used by rust.vim for :RustPlay
   call minpac#add('https://github.com/mattn/webapi-vim.git', {'type': 'opt'})
 
-  " Autoloaded plugins.
   " These are plugins that don't require any config and just make Vim nicer in
   " general.
   "
@@ -83,7 +82,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/cespare/vim-toml.git', {'type': 'opt'})
   call minpac#add('https://github.com/lervag/vimtex.git', {'type': 'opt'})
   call minpac#add('https://github.com/wannesm/wmgraphviz.vim.git', {'type': 'opt'})
-  call minpac#add('https://github.com/saltstack/salt-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/leafgarland/typescript-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/godlygeek/tabular.git', {'type': 'opt'})
   call minpac#add('https://github.com/tmux-plugins/vim-tmux.git', {'type': 'opt'})
@@ -95,12 +93,9 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/racer-rust/vim-racer.git', {'type': 'opt'})
   call minpac#add('https://github.com/ElmCast/elm-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/chr4/nginx.vim.git', {'type': 'opt'})
-  call minpac#add('https://github.com/udalov/kotlin-vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/ledger/vim-ledger.git', {'type': 'opt'})
   call minpac#add('https://github.com/janko-m/vim-test.git', {'type': 'opt'})
   call minpac#add('https://gitlab.com/Lenovsky/nuake.git', {'type': 'opt'})
-  call minpac#add('https://github.com/sodapopcan/vim-twiggy.git', {'type': 'opt'})
-  call minpac#add('https://github.com/idanarye/vim-merginal.git', {'type': 'opt'})
 
 
   call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })

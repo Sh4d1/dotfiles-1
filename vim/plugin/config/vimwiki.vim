@@ -23,6 +23,7 @@ let g:vimwiki_list = [
       \ 'auto_tags': 1,
     \ }
   \ ]
+
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_auto_chdir = 1
 let g:vimwiki_hl_headers = 1
