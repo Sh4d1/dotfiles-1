@@ -247,8 +247,10 @@ cnoremap <c-n> <down>
 " use esc in normal mode to reset things - hide search highlighting, redraw the
 " screen, write out all buffers, and write the current buffer (so BufWritePost
 " is fired; to trigger tools like ALE to relint)
-" NOTE: can't remap to just <esc> in Vim without also `set noesckeys` and enduring pain
-nnoremap <silent> <leader><esc> <esc>:<c-u>nohlsearch \| redraw! \| silent! wa \| silent! w<cr>
+" NOTE: can't remap <esc> in Vim without also `set noesckeys` and enduring pain
+if has('nvim')
+  nnoremap <silent> <esc> <esc>:<c-u>nohlsearch \| redraw! \| silent! wa \| silent! w<cr>
+endif
 
 " toggle paste mode
 nnoremap <F3> :set invpaste paste?<cr>
