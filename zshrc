@@ -4,7 +4,7 @@
 # If not running interactively, do nothing
 [[ $- != *i* ]] && return
 
-export TERM=tmux-256color
+# export TERM=tmux-256color
 
 # disable catching <c-q> and <c-s>
 stty stop undef
