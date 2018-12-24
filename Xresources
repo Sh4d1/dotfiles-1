@@ -212,7 +212,7 @@ rofi.kb-custom-19:                   Alt+Shift+9
 /* URxvt.depth:                          number */
 /* URxvt.externalBorder:                 number */
 /* URxvt.fadeColor:                      color */
-/* URxvt.fading:                         number */
+URxvt.fading:                         0
 /* URxvt.foreground:                     color */
 /* URxvt.geometry:                       geometry */
 /* URxvt.highlightColor:                 color */
