@@ -1,3 +1,5 @@
+! vim: ft=xdefaults
+
 Xft.dpi: 160
 *dpi: 160
 

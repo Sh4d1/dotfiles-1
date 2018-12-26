@@ -189,7 +189,6 @@ rofi.kb-custom-19:                   Alt+Shift+9
 /* URxvt.background.border:              boolean */
 /* URxvt.background.expr:                string */
 /* URxvt.background.interval:            seconds */
-/* URxvt.background:                     color */
 /* URxvt.backspacekey:                   string */
 /* URxvt.bell-command:                   string */
 /* URxvt.blurRadius:                     HxV */
@@ -212,7 +211,6 @@ rofi.kb-custom-19:                   Alt+Shift+9
 /* URxvt.depth:                          number */
 /* URxvt.externalBorder:                 number */
 /* URxvt.fadeColor:                      color */
-URxvt.fading:                         0
 /* URxvt.foreground:                     color */
 /* URxvt.geometry:                       geometry */
 /* URxvt.highlightColor:                 color */
@@ -225,10 +223,7 @@ URxvt.fading:                         0
 /* URxvt.inheritPixmap:                  boolean */
 /* URxvt.inputMethod:                    name */
 /* URxvt.insecure:                       boolean */
-/* URxvt.intensityStyles:                boolean */
 /* URxvt.internalBorder:                 number */
-/* URxvt.iso14755:                       boolean */
-/* URxvt.iso14755_52:                    boolean */
 /* URxvt.italicFont:                     fontname */
 /* URxvt.jumpScroll:                     boolean */
 /* URxvt.keysym.sym:                     keysym */
@@ -260,8 +255,6 @@ URxvt.fading:                         0
 /* URxvt.remote-clipboard.fetch:         string */
 /* URxvt.remote-clipboard.store:         string */
 /* URxvt.reverseVideo:                   boolean */
-/* URxvt.saveLines:                      number */
-/* URxvt.scrollBar:                      boolean */
 /* URxvt.scrollBar_align:                mode */
 /* URxvt.scrollBar_floating:             boolean */
 /* URxvt.scrollBar_right:                boolean */
@@ -293,30 +286,36 @@ URxvt.fading:                         0
 /* URxvt.tripleclickwords:               boolean */
 /* URxvt.troughColor:                    color */
 /* URxvt.underlineColor:                 color */
-/* URxvt.urgentOnBell:                   boolean */
 /* URxvt.url-launcher:                   string */
 /* URxvt.utmpInhibit:                    boolean */
 /* URxvt.visual:                         number */
-/* URxvt.visualBell:                     boolean */
 /* URxvt.xrm:                            string */
-URxvt.color0:                #073642
-URxvt.color10:               #586e75
-URxvt.color11:               #657b83
-URxvt.color12:               #839496
-URxvt.color13:               #6c71c4
-URxvt.color14:               #93a1a1
-URxvt.color15:               #fdf6e3
-URxvt.color1:                #dc322f
-URxvt.color2:                #859900
-URxvt.color3:                #b58900
-URxvt.color4:                #268bd2
-URxvt.color5:                #d33682
-URxvt.color6:                #2aa198
-URxvt.color7:                #eee8d5
-URxvt.color8:                #002b36
-URxvt.color9:                #cb4b16
+URxvt.background:                     #002b36
+URxvt.color0:                         #073642
+URxvt.color1:                         #dc322f
+URxvt.color2:                         #859900
+URxvt.color3:                         #b58900
+URxvt.color4:                         #268bd2
+URxvt.color5:                         #d33682
+URxvt.color6:                         #2aa198
+URxvt.color7:                         #eee8d5
+URxvt.color8:                         #002b36
+URxvt.color9:                         #cb4b16
+URxvt.color10:                        #586e75
+URxvt.color11:                        #657b83
+URxvt.color12:                        #839496
+URxvt.color13:                        #6c71c4
+URxvt.color14:                        #93a1a1
+URxvt.color15:                        #fdf6e3
+URxvt.fading:                         0
+URxvt.intensityStyles:                false
+URxvt.iso14755:                       false
+URxvt.iso14755_52:                    false
 URxvt.letterSpace:                    -1
-URxvt.scrollBar: false
+URxvt.saveLines:                      20000
+URxvt.scrollBar:                      false
+URxvt.urgentOnBell:                   true
+URxvt.visualBell:                     false
 
 ! host specific settings
 #include ".Xresources.host"
