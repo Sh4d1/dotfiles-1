@@ -65,7 +65,7 @@ func! functions#buildstatusline()
 
   if exists('g:loaded_ale')
     if s:ale_running
-      let l:line .= '%1*%( ale… %)'
+      let l:line .= '%1*%( [lint…] %)'
     else
       let l:ale = ale#statusline#Count(bufnr('%'))
       if l:ale.total > 0

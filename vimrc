@@ -431,3 +431,4 @@ let g:jsx_ext_required = 0
 
 " Signify
 let g:signify_vcs_list = [ 'git' ]
+let g:signify_sign_change = '~'

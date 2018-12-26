@@ -1,8 +1,8 @@
 " ale config
 
-let g:ale_statusline_format = ['%dE', '%dW', '']
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⨯'
+let g:ale_sign_warning = '!'
+let g:ale_sign_info = 'ℹ'
 
 let g:ale_linters = {
       \ 'java': [],
