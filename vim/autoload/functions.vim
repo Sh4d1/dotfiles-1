@@ -8,6 +8,21 @@ augroup ALEProgress
   autocmd User ALELintPost let s:ale_running = 0 | redrawstatus
 augroup end
 
+" retrieve and format Signify diff status for statusline
+function! functions#sy_stats_wrapper()
+  let [l:added, l:modified, l:removed] = sy#repo#get_stats()
+  let l:hunkline = ''
+
+  if l:added >= 0 || l:modified >= 0 || l:removed >= 0
+    let l:hunkline .= '%#DiffAdd# +' . l:added .
+                \ ' %#DiffChange#~' . l:modified .
+                \ ' %#DiffDelete#-' . l:removed . ' '
+
+  endif
+
+  return l:hunkline
+endfunction
+
 " Strip trailing whitespace. Only works if not in binary mode and excludes
 " certain filetypes.
 func! functions#striptrailingwhitespace()
@@ -72,20 +87,9 @@ func! functions#buildstatusline()
     let l:line .= '%6*%( %{fugitive#statusline()} %)'
   endif
 
-  " gitgutter
-  if exists('g:loaded_gitgutter')
-    " TODO: this always gets stats for currently focused buffer. disable in
-    " non-focussed buffers
-    let l:hunks = GitGutterGetHunkSummary()
-    if l:hunks[0] || l:hunks[1] || l:hunks[2]
-      let l:line .= '%#GitGutterAdd# +' . l:hunks[0] .
-                  \ ' %#GitGutterChange#~' . l:hunks[1] .
-                  \ ' %#GitGutterDelete#-' . l:hunks[2] . ' '
-    endif
-
+  if exists('g:loaded_signify')
+    let l:line .= '%6*%(' . functions#sy_stats_wrapper() . '%)'
   endif
-
-  " TODO: re-add signify support
 
   return l:line
 endfunc

@@ -295,17 +295,6 @@ if has('nvim')
   tnoremap <esc><esc> <c-\><c-n>
 endif
 
-" shortcuts to completions
-" TODO: remove this because it's annoying when typing a comma separated list
-" where spaces aren't allowed
-inoremap <silent> ,f <C-x><C-f>
-inoremap <silent> ,i <C-x><C-i>
-inoremap <silent> ,l <C-x><C-l>
-inoremap <silent> ,n <C-x><C-n>
-inoremap <silent> ,m <C-x><C-o>
-inoremap <silent> ,t <C-x><C-]>
-inoremap <silent> ,u <C-x><C-u>
-
 nnoremap <silent> du :diffupdate<CR>
 
 " Sideways
@@ -439,3 +428,6 @@ let g:javascript_plugin_flow = 1
 
 " vim-jsx
 let g:jsx_ext_required = 0
+
+" Signify
+let g:signify_vcs_list = [ 'git' ]

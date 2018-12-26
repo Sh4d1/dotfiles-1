@@ -15,34 +15,6 @@ export JAVA_FONTS=/usr/share/fonts/TTF
 export MAIL=~/Maildir
 
 
-alias td='todotxt-machine'
-
-if [ "$(uname -s)" == "Darwin" ]; then
-    # Do something under OS X platform
-    export PATH="/usr/local/bin:$PATH:/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
-    alias rm='rm -i'
-    alias octave='PATH=/usr/local/octave/3.8.0/bin:/usr/local/octave/3.8.0/sbin:${PATH}  octave'
-    # set up homebrew cask for global install
-    export HOMEBREW_CASK_OPTS="--appdir=/Applications --prefpanedir=/Library/PreferencePanes --qlplugindir=/Library/QuickLook --fontdir=/Library/Fonts --input_methoddir=/Library/Input\ Methods --screen_saverdir=/Library/Screen\ Savers"
-    alias vim='vi'
-
-
-elif [ "$(uname -s)" == "Linux" ]; then
-    # Do something under GNU/Linux platform
-
-
-    alias ls='ls --color=auto'
-    alias rm='rm -I'
-
-    # ruby gem path, and bin directory in my home dir
-    PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"
-
-    # simple stopwatch function
-    function stopwatch(){ local tempdate=`date +%s`; while true; do echo -ne "$(date -u --date @$((`date +%s` - $tempdate)) +'   %H:%M:%S')\r"; sleep 0.2; done };
-fi
-
-
-
 export HISTFILESIZE=5000
 export HISTSIZE=5000
 export HISTTIMEFORMAT="[%F %T] "
@@ -55,7 +27,6 @@ shopt -s histappend
 
 
 [[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

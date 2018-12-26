@@ -36,7 +36,7 @@ ttyctl -f
 [[ -f ~/.dircolors ]] && eval `dircolors ~/.dircolors`
 
 # config for zsh-syntax-highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # must be loaded before zsh-syntax-highlighting <https://github.com/zsh-users/zsh-syntax-highlighting/issues/67>
 autoload -Uz select-word-style
