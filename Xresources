@@ -185,111 +185,7 @@ rofi.kb-custom-19:                   Alt+Shift+9
 ! rofi.me-accept-entry:                MouseD1
 ! rofi.me-accept-custom:               Control+MouseD1
 
-/* URxvt.answerbackString:               string */
-/* URxvt.background.border:              boolean */
-/* URxvt.background.expr:                string */
-/* URxvt.background.interval:            seconds */
-/* URxvt.backspacekey:                   string */
-/* URxvt.bell-command:                   string */
-/* URxvt.blurRadius:                     HxV */
-/* URxvt.boldFont:                       fontname */
-/* URxvt.boldItalicFont:                 fontname */
-/* URxvt.borderColor:                    color */
-/* URxvt.borderLess:                     boolean */
-/* URxvt.buffered:                       boolean */
-/* URxvt.chdir:                          string */
-/* URxvt.colorBD:                        color */
-/* URxvt.colorIT:                        color */
-/* URxvt.colorRV:                        color */
-/* URxvt.colorUL:                        color */
-/* URxvt.cursorBlink:                    boolean */
-/* URxvt.cursorColor2:                   color */
-/* URxvt.cursorColor:                    color */
-/* URxvt.cursorUnderline:                boolean */
-/* URxvt.cutchars:                       string */
-/* URxvt.deletekey:                      string */
-/* URxvt.depth:                          number */
-/* URxvt.externalBorder:                 number */
-/* URxvt.fadeColor:                      color */
-/* URxvt.foreground:                     color */
-/* URxvt.geometry:                       geometry */
-/* URxvt.highlightColor:                 color */
-/* URxvt.highlightTextColor:             color */
-/* URxvt.hold:                           boolean */
-/* URxvt.iconFile:                       file */
-/* URxvt.iconName:                       string */
-/* URxvt.imFont:                         fontname */
-/* URxvt.imLocale:                       string */
-/* URxvt.inheritPixmap:                  boolean */
-/* URxvt.inputMethod:                    name */
-/* URxvt.insecure:                       boolean */
-/* URxvt.internalBorder:                 number */
-/* URxvt.italicFont:                     fontname */
-/* URxvt.jumpScroll:                     boolean */
-/* URxvt.keysym.sym:                     keysym */
-/* URxvt.kuake.hotkey:                   string */
-/* URxvt.lineSpace:                      number */
-/* URxvt.loginShell:                     boolean */
-/* URxvt.mapAlert:                       boolean */
-/* URxvt.matcher.button:                 string */
-/* URxvt.matcher.launcher.*:             string */
-/* URxvt.matcher.launcher:               string */
-/* URxvt.matcher.pattern.*:              string */
-/* URxvt.matcher.rend.*:                 string */
-/* URxvt.meta8:                          boolean */
-/* URxvt.modifier:                       modifier */
-/* URxvt.mouseWheelScrollPage:           boolean */
-/* URxvt.multiClickTime:                 number */
-/* URxvt.override-redirect:              boolean */
-/* URxvt.pastableTabs:                   boolean */
-/* URxvt.perl-eval:                      perl-eval */
-/* URxvt.perl-ext-common:                string */
-/* URxvt.perl-ext:                       string */
-/* URxvt.perl-lib:                       string */
-/* URxvt.pointerBlank:                   boolean */
-/* URxvt.pointerBlankDelay:              number */
-/* URxvt.pointerColor2:                  color */
-/* URxvt.pointerColor:                   color */
-/* URxvt.preeditType:                    style */
-/* URxvt.print-pipe:                     string */
-/* URxvt.remote-clipboard.fetch:         string */
-/* URxvt.remote-clipboard.store:         string */
-/* URxvt.reverseVideo:                   boolean */
-/* URxvt.scrollBar_align:                mode */
-/* URxvt.scrollBar_floating:             boolean */
-/* URxvt.scrollBar_right:                boolean */
-/* URxvt.scrollColor:                    color */
-/* URxvt.scrollTtyKeypress:              boolean */
-/* URxvt.scrollTtyOutput:                boolean */
-/* URxvt.scrollWithBuffer:               boolean */
-/* URxvt.scrollstyle:                    mode */
-/* URxvt.searchable-scrollback:          string */
-/* URxvt.secondaryScreen:                boolean */
-/* URxvt.secondaryScroll:                boolean */
-/* URxvt.selection-autotransform.*:      string */
-/* URxvt.selection-pastebin.cmd:         string */
-/* URxvt.selection-pastebin.url:         string */
-/* URxvt.selection.pattern-0:            string */
-/* URxvt.shading:                        number */
-/* URxvt.skipBuiltinGlyphs:              boolean */
-/* URxvt.skipScroll:                     boolean */
-/* URxvt.tab-bg:                         colour */
-/* URxvt.tab-fg:                         colour */
-/* URxvt.tabbar-bg:                      colour */
-/* URxvt.tabbar-fg:                      colour */
-/* URxvt.termName:                       string */
-/* URxvt.thickness:                      number */
-/* URxvt.tintColor:                      color */
-/* URxvt.title:                          string */
-/* URxvt.transient-for:                  windowid */
-/* URxvt.transparent:                    boolean */
-/* URxvt.tripleclickwords:               boolean */
-/* URxvt.troughColor:                    color */
-/* URxvt.underlineColor:                 color */
-/* URxvt.url-launcher:                   string */
-/* URxvt.utmpInhibit:                    boolean */
-/* URxvt.visual:                         number */
-/* URxvt.xrm:                            string */
+
 URxvt.background:                     #002b36
 URxvt.color0:                         #073642
 URxvt.color1:                         #dc322f
@@ -307,13 +203,30 @@ URxvt.color12:                        #839496
 URxvt.color13:                        #6c71c4
 URxvt.color14:                        #93a1a1
 URxvt.color15:                        #fdf6e3
+URxvt.cursorBlink:                    true
 URxvt.fading:                         0
 URxvt.intensityStyles:                false
+
+/* it's annoying and blocks C-S-* shortcuts */
 URxvt.iso14755:                       false
 URxvt.iso14755_52:                    false
+
+! use common copy/paste bindings
+URxvt.keysym.C-S-0x43:                eval:selection_to_clipboard
+URxvt.keysym.C-S-0x56:                eval:paste_clipboard
+
+! make C-arrowkey work
+URxvt.keysym.Control-Down:            \033[1;5B
+URxvt.keysym.Control-Left:            \033[1;5D
+URxvt.keysym.Control-Right:           \033[1;5C
+URxvt.keysym.Control-Up:              \033[1;5A
+
 URxvt.letterSpace:                    -1
 URxvt.saveLines:                      20000
 URxvt.scrollBar:                      false
+URxvt.scrollTtyKeypress:              true
+URxvt.scrollTtyOutput:                false
+URxvt.scrollWithBuffer:               true
 URxvt.urgentOnBell:                   true
 URxvt.visualBell:                     false
 

@@ -13,7 +13,7 @@ function! functions#sy_stats_wrapper()
   let [l:added, l:modified, l:removed] = sy#repo#get_stats()
   let l:hunkline = ''
 
-  if l:added >= 0 || l:modified >= 0 || l:removed >= 0
+  if l:added > 0 || l:modified > 0 || l:removed > 0
     let l:hunkline .= '%#DiffAdd# +' . l:added .
                 \ ' %#DiffChange#~' . l:modified .
                 \ ' %#DiffDelete#-' . l:removed . ' '
