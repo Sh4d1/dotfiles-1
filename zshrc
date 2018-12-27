@@ -63,12 +63,13 @@ zplug "zsh-users/zsh-autosuggestions"
 # completions
 zplug "zsh-users/zsh-completions"
 
-# pure prompt
 zplug "mafredri/zsh-async", from:github
-zplug "swalladge/pure", use:pure.zsh, from:github, as:theme
-# zplug "~/projects/pure/", from:local, as:theme, use:pure.zsh
 
-# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# My fork has some improvements:
+# - green prompt symbol instead of magenta (contrasts better with red)
+# - shows count for backgrounded processes
+zplug "swalladge/pure", use:pure.zsh, from:github, as:theme
+# zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -99,12 +100,15 @@ X_ZSH_HIGHLIGHT_DIRS_BLACKLIST+=("$HOME/Shared")
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-ZSH_AUTOSUGGEST_STRATEGY='default'
+ZSH_AUTOSUGGEST_STRATEGY='history'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=80
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word )
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
+# need to set this to 12 (or unset) to display the venv info in prompt
+VIRTUAL_ENV_DISABLE_PROMPT=12
 
 # COMPLETIONS
 
@@ -254,58 +258,6 @@ emulator() {
 
 export GPG_TTY=$(tty)
 
-# my original custom prompt styled after my vim/tmux status bar - uncomment and
-# remove pure prompt from zplug plugins to enable
-#
-# setopt promptsubst
-# precmd() {
-#   LASTSTATUS=$?
-#   PROMPT=""
-#   RPROMPT=""
-
-#   # last status
-#   if [ $LASTSTATUS -ne 0 ]; then
-#     RPROMPT+="%F{7}%K{9} $LASTSTATUS %k%f"
-#   fi
-
-#   # git status
-#   BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-#   if [ $? = 0 ]; then
-#     RPROMPT+="%K{6}%F{0} $BRANCH "
-#     # can be unbelievable slow on large repos?
-#     DIRTY=$(git status --porcelain 2>/dev/null | wc -l)
-#     if [ $DIRTY -ne 0 ]; then
-#       RPROMPT+="[$DIRTY] "
-#     fi
-#     RPROMPT+="%f%k"
-#   fi
-
-#   # virtual environment
-#   VENV=$(echo $VIRTUAL_ENV | awk -F '/' '{print $NF}')
-#   if [ -n "$VENV" ]; then
-#     RPROMPT+="%K{3}%F{0} ($VENV) %f%k"
-#   fi
-
-#   # any background jobs
-#   JOBS=$(jobs | wc -l)
-#   if [ $JOBS -ne 0 ]; then
-#     PROMPT+="%K{2}%F{8} $JOBS %f%k"
-#   fi
-
-#   # username/host
-#   PROMPT+="%K{7}%F{8} %n"
-#   if [ "$REMOTE_SESSION" = "true" ]; then
-#     PROMPT+="@%m"
-#   fi
-#   PROMPT+=" %f%k"
-
-#   # location
-#   PROMPT+="%K{10}%F{0} %20<…<%2~%<< %f%k"
-
-#   # final space
-#   PROMPT+=" "
-# }
-
 
 # cd to the root of current project if currently in a project
 cdr() {
@@ -397,8 +349,8 @@ mksrcinfo() {
 # anything local to this machine (not stored in dotfiles)
 [[ -f ~/.zshrc_local ]] && . ~/.zshrc_local
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # zprof
