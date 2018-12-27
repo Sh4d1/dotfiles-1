@@ -27,7 +27,10 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/tpope/vim-repeat.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-sleuth.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-eunuch.git', {'type': 'opt'})
+
+  " more focused alternative to vim rsi (readline mappings)
   call minpac#add('https://github.com/vim-utils/vim-husk.git', {'type': 'opt'})
+
   call minpac#add('https://github.com/tpope/vim-speeddating.git', {'type': 'opt'})
   call minpac#add('https://github.com/machakann/vim-highlightedyank.git', {'type': 'opt'})
   call minpac#add('https://github.com/Yggdroot/indentLine.git', {'type': 'opt'})

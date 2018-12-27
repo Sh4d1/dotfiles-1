@@ -1,5 +1,8 @@
 " ale config
 
+" locally defined for use in statusline
+let g:ale_running = 0
+
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'
 let g:ale_sign_info = 'ℹ'

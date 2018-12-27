@@ -11,10 +11,7 @@ command! PackStatus call local#pack#pack_init() | call minpac#status()
 " commenting it out here instead of needing to move the directory out of the
 " pack/bundle/start directory.
 
-" deps
-packadd! webapi-vim
-
-" libs
+" add packages to runtime path. Comment out to disable packages
 packadd! ale
 packadd! Apprentice
 packadd! autocomplete-flow
@@ -52,7 +49,6 @@ packadd! vim-dirvish
 packadd! vim-eunuch
 packadd! vim-exchange
 packadd! vim-fugitive
-packadd! vim-signify
 packadd! vim-gnupg
 packadd! vim-go
 packadd! vim-gutentags
@@ -72,6 +68,7 @@ packadd! vim-schlepp
 packadd! vim-scriptease
 packadd! vim-searchindex
 packadd! vim-signature
+packadd! vim-signify
 packadd! vim-sleuth
 packadd! vim-sneak
 packadd! vim-snippets
@@ -85,6 +82,7 @@ packadd! vim-unimpaired
 packadd! vimtex
 packadd! vimux
 packadd! vimwiki
+packadd! webapi-vim
 packadd! wmgraphviz.vim
 
 " load neovim-only plugins
@@ -219,7 +217,7 @@ runtime macros/matchit.vim
 
 " Status Line
 set laststatus=2
-set statusline=%!functions#buildstatusline()
+set statusline=%!local#statusline#buildstatusline()
 
 " neovim python provider
 let g:python_host_prog  = '/usr/bin/python2'
@@ -304,7 +302,7 @@ nnoremap <silent> >, :silent :SidewaysRight<cr>
 nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 
-nnoremap <silent> <leader>zz :silent :call functions#striptrailingwhitespace()<cr>
+nnoremap <silent> <leader>zz :silent :call local#functions#striptrailingwhitespace()<cr>
 
 command! -bar -nargs=* Sedit call local#scratch#edit('edit', <q-args>)
 command! -bar -nargs=* Ssplit call local#scratch#edit('split', <q-args>)
@@ -338,7 +336,7 @@ augroup END
 augroup vimrc
   autocmd!
   autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! wa
-  autocmd ColorScheme * call functions#sethighlight()
+  autocmd ColorScheme * call local#functions#sethighlight()
   autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 augroup END
 
@@ -349,9 +347,6 @@ let g:WMGraphviz_viewer = 'rifle'
 let g:GPGPossibleRecipients=[
       \"Samuel Walladge <samuel@swalladge.id.au>",
       \]
-
-" set up the custom highlights now, or else would have been overridden
-" call functions#sethighlight()
 
 " vim-qf
 let g:qf_mapping_ack_style = 1
