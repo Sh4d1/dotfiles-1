@@ -44,11 +44,11 @@ endfunc
 
 " builds a string designed to be used in the statusline
 func! functions#buildstatusline()
-  let l:line = '%1*'
+  let l:line = '%9*'
   let l:line .= '%F'                                             " filename
   let l:line .= '%r%m%w%q%h'                                     " flags
 
-  let l:line .= ' %1* '
+  let l:line .= ' %9* '
   let l:line .= '%='                                             " separator
 
   " show keymap
@@ -65,19 +65,19 @@ func! functions#buildstatusline()
 
   if exists('g:loaded_ale')
     if s:ale_running
-      let l:line .= '%1*%( [lint…] %)'
+      let l:line .= '%2*%( [lint] %)'
     else
       let l:ale = ale#statusline#Count(bufnr('%'))
       if l:ale.total > 0
         if l:ale.error > 0
-          let l:line .= '%7*%( ' " red
+          let l:line .= '%1*%( ' " red
         else
           let l:line .= '%3*%( ' " orange
         endif
         let l:line .= printf('E:%d W:%d', l:ale.error + l:ale.style_error, l:ale.warning + l:ale.style_warning + l:ale.info)
         let l:line .= ' %)'
       else
-        let l:line .= '%2*%( Ale %)'
+        let l:line .= '%2*%( [ OK ] %)'
       endif
     endif
   endif
@@ -97,27 +97,28 @@ endfunc
 
 func! functions#sethighlight()
 
+
   " statusline highlights
-  hi User1 ctermbg=NONE ctermfg=NONE
+  hi User1 ctermbg=1 ctermfg=0 guifg='#073642' guibg='#dc322f'
   hi User2 ctermbg=2 ctermfg=0 guifg='#073642' guibg='#859900'
   hi User3 ctermbg=3 ctermfg=0 guifg='#073642' guibg='#b58900'
   hi User4 ctermbg=4 ctermfg=0 guifg='#073642' guibg='#268bd2'
   hi User5 ctermbg=5 ctermfg=0 guifg='#073642' guibg='#d33682'
   hi User6 ctermbg=6 ctermfg=0 guifg='#073642' guibg='#2aa198'
-  hi User7 ctermbg=1 ctermfg=0 guifg='#073642' guibg='#dc322f'
+  hi User9 ctermbg=NONE ctermfg=NONE
 
+  " custom highlight improvements
   hi link EndOfBuffer ColorColumn
-
   hi Comment cterm=italic
 
   " make sure the ale sign column highlighting keeps the same background
-  let l:prefix = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui' : 'cterm')
-  let l:sign_col_color = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', l:prefix)
-  if (l:sign_col_color ==# '')
-    let l:sign_col_color = 0
-  endif
-
   if exists('g:loaded_ale')
+    let l:prefix = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui' : 'cterm')
+    let l:sign_col_color = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', l:prefix)
+    if (l:sign_col_color ==# '')
+      let l:sign_col_color = 0
+    endif
+
     execute 'highlight ALEWarningSign ctermfg=3 ' . l:prefix . 'bg=' . l:sign_col_color
     execute 'highlight ALEErrorSign ctermfg=1 ' . l:prefix . 'bg=' . l:sign_col_color
   endif

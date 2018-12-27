@@ -217,16 +217,6 @@ let maplocalleader = "\<space>"
 " better % navigation
 runtime macros/matchit.vim
 
-try
-  colorscheme flattened_dark
-catch
-  " the colorscheme fallback if none installed
-  colorscheme torte
-endtry
-
-" 24 bit color support
-" set termguicolors
-
 " Status Line
 set laststatus=2
 set statusline=%!functions#buildstatusline()
@@ -288,11 +278,18 @@ nnoremap <A-l> :bn<cr>
 nmap <silent> <leader>u :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
 
-" NVIM specific stuff
+" NVIM terminal specific stuff
 if has('nvim')
-  " double escape to get out of terminal mode
-  " (double to allow single esc to go to terminal)
-  tnoremap <esc><esc> <c-\><c-n>
+  " TODO: work out nice mappings
+  " tnoremap <m-space> <c-\><c-n>
+  " augroup vimrc_nvim_term
+  "   autocmd!
+  " XXX: https://github.com/neovim/neovim/issues/8691
+  "   " autocmd BufEnter term://* startinsert!
+  "   " autocmd BufLeave term://* stopinsert
+  "   autocmd BufEnter * if &buftype == 'terminal' | :startinsert! | endif
+  "   autocmd BufLeave * if &buftype == 'terminal' | :stopinsert | endif
+  " augroup END
 endif
 
 nnoremap <silent> du :diffupdate<CR>
@@ -354,7 +351,7 @@ let g:GPGPossibleRecipients=[
       \]
 
 " set up the custom highlights now, or else would have been overridden
-call functions#sethighlight()
+" call functions#sethighlight()
 
 " vim-qf
 let g:qf_mapping_ack_style = 1
@@ -432,3 +429,11 @@ let g:jsx_ext_required = 0
 " Signify
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
+
+" Finally set the colorscheme. Set at the end so previous autocmds are trigger
+try
+  colorscheme flattened_dark
+catch
+  " the colorscheme fallback if none installed
+  colorscheme torte
+endtry
