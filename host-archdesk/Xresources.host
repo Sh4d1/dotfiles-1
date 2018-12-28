@@ -2,5 +2,3 @@ Xft.dpi: 162
 *dpi: 162
 
 rofi.dpi:                            162
-
-URxvt.font:                           xft:Hack:pixelsize=18:antialias=true:autohint=true

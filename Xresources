@@ -230,5 +230,7 @@ URxvt.scrollWithBuffer:               true
 URxvt.urgentOnBell:                   true
 URxvt.visualBell:                     false
 
+URxvt.font:                           xft:Hack:pixelsize=18:antialias=true:autohint=true
+
 ! host specific settings
 #include ".Xresources.host"
