@@ -16,11 +16,9 @@ function! local#pack#pack_init() abort
   " webapi currently only used by rust.vim for :RustPlay
   call minpac#add('https://github.com/mattn/webapi-vim.git', {'type': 'opt'})
 
-  " These are plugins that don't require any config and just make Vim nicer in
-  " general.
-  "
   " flattened is a solarized colorscheme
   call minpac#add('https://github.com/romainl/flattened.git', {'type': 'opt'})
+
   call minpac#add('https://github.com/romainl/Apprentice.git', {'type': 'opt'})
   call minpac#add('https://github.com/ap/vim-css-color.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-characterize.git', {'type': 'opt'})
@@ -38,9 +36,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/roxma/vim-tmux-clipboard.git', {'type': 'opt'})
   call minpac#add('https://github.com/cspeterson/vim-convert.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-commentary.git', {'type': 'opt'})
-
-
-  " Autoloaded plugins that do have config
   call minpac#add('https://github.com/ludovicchabant/vim-gutentags.git', {'type': 'opt'})
   call minpac#add('https://github.com/luochen1990/rainbow.git', {'type': 'opt'})
   call minpac#add('https://github.com/w0rp/ale.git', {'type': 'opt'})
@@ -99,6 +94,8 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/ledger/vim-ledger.git', {'type': 'opt'})
   call minpac#add('https://github.com/janko-m/vim-test.git', {'type': 'opt'})
   call minpac#add('https://gitlab.com/Lenovsky/nuake.git', {'type': 'opt'})
+  call minpac#add('https://github.com/romainl/vim-qlist.git', {'type': 'opt'})
+  call minpac#add('https://github.com/romainl/vim-devdocs.git', {'type': 'opt'})
 
 
   call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })

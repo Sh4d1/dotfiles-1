@@ -45,6 +45,7 @@ packadd! vim-characterize
 packadd! vim-commentary
 packadd! vim-convert
 packadd! vim-css-color
+packadd! vim-devdocs
 packadd! vim-dirvish
 packadd! vim-eunuch
 packadd! vim-exchange
@@ -60,6 +61,7 @@ packadd! vim-ledger
 packadd! vim-lion
 packadd! vim-obsession
 packadd! vim-qf
+packadd! vim-qlist
 packadd! vim-racer
 packadd! vim-repeat
 packadd! vim-rhubarb
