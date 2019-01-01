@@ -267,10 +267,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
-" moving between buffers
-nnoremap <A-h> :bp<cr>
-nnoremap <A-l> :bn<cr>
-
 " run a macro on selected lines - press @, then the register name, then <enter>
 " xnoremap @ :normal @
 
@@ -306,6 +302,12 @@ nnoremap <silent> <, :silent :SidewaysLeft<cr>
 
 nnoremap <silent> <leader>zz :silent :call local#functions#striptrailingwhitespace()<cr>
 
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+
 command! -bar -nargs=* Sedit call local#scratch#edit('edit', <q-args>)
 command! -bar -nargs=* Ssplit call local#scratch#edit('split', <q-args>)
 command! -bar -nargs=* Svsplit call local#scratch#edit('vsplit', <q-args>)
@@ -315,9 +317,6 @@ nnoremap <silent> <leader>se :silent :Sedit<cr>
 nnoremap <silent> <leader>st :silent :Stabedit<cr>
 nnoremap <silent> <leader>sv :silent :Svsplit<cr>
 nnoremap <silent> <leader>ss :silent :Ssplit<cr>
-
-imap <C-h> <BS>
-cmap <C-h> <BS>
 
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
