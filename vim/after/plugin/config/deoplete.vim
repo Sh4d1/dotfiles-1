@@ -27,14 +27,10 @@ endif
 
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
-call deoplete#custom#option('omni_patterns', {
-\ 'ledger': '^    \(\w \w\|\w\|:\)\+',
-\})
-
-
 " for triggering vimwiki link omnicompletion
 call deoplete#custom#var('omni', 'input_patterns', {
     \ 'vimwiki': '\[\[[^\s]*',
+    \ 'ledger': '^    \(\w \w\|\w\|:\)\+',
     \})
 
 " deoplete plugins
