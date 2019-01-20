@@ -336,7 +336,7 @@ augroup END
 
 augroup vimrc
   autocmd!
-  autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! wa
+  " autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! wa
   autocmd ColorScheme * call local#functions#sethighlight()
   autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 augroup END
