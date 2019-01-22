@@ -14,3 +14,5 @@ inoremap . .<C-g>u
 inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
 inoremap : :<C-g>u
+
+let g:markdown_fenced_languages = ['python', 'c', 'javascript', 'json']

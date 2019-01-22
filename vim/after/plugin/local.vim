@@ -8,4 +8,4 @@ endif
 map <silent> <leader>wi :e ~/wiki/index.md<cr>
 
 " edit today diary note
-map <silent> <leader>wt :e ~/wiki/diary/<c-r>=strftime('%Y-%m-%d')<cr>.md<cr>
+map <silent> <leader>w<leader>w :e ~/wiki/diary/<c-r>=strftime('%Y-%m-%d')<cr>.md<cr>

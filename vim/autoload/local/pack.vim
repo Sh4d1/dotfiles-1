@@ -97,7 +97,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/romainl/vim-qlist.git', {'type': 'opt'})
   call minpac#add('https://github.com/romainl/vim-devdocs.git', {'type': 'opt'})
 
-
   call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })
 
   " deoplete plugins

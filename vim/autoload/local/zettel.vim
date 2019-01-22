@@ -5,7 +5,7 @@ func! local#zettel#edit(cmd, ...)
     let l:sep = '-'
   endif
 
-  let l:fname = expand('~/wiki/') . strftime("%F-%H%M") . l:sep . join(a:000, '-') . '.wiki'
+  let l:fname = expand('~/wiki/') . strftime("%F-%H%M") . l:sep . join(a:000, '-') . '.md'
 
   exec a:cmd . " " . l:fname
   if len(a:000) > 0
