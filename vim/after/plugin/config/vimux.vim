@@ -7,7 +7,7 @@ endif
 
 func s:vimux_slime()
  call VimuxSendText(@v)
- call VimuxSendKeys('Enter')
+ " call VimuxSendKeys('Enter')
 endfunc
 
 
@@ -17,13 +17,19 @@ vmap <C-c><C-c> "vy :call <SID>vimux_slime()<cr>
 " Select current paragraph and send it to tmux
 nmap <C-c><C-c> vip<C-c><C-c>
 
+" Select current line and send it to tmux
+nmap <C-c><C-l> V<C-c><C-c>
+
 " Prompt for a command to run
-map <leader>bp :VimuxPromptCommand<cr>
+map <leader>bp :silent! wa <bar> :VimuxPromptCommand<cr>
 
 " Run last command executed by VimuxRunCommand
 map <leader>bl :silent! wa <bar> :VimuxRunLastCommand<cr>
 
-" Inspect runner pane
+" Run !!
+map <leader>bb :silent! wa <bar> :call VimuxRunCommand("!!")<cr>
+
+" Open runner pane
 map <leader>bo :call VimuxOpenRunner()<cr>
 
 " Inspect runner pane

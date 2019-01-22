@@ -340,7 +340,7 @@ today() {
 
 # open quick note with title
 zet() {
-  nvim --cmd 'let g:startify_disable_at_vimenter = 1' "+Zetedit $*"
+  nvim "+Zetedit $*"
 }
 
 mksrcinfo() {

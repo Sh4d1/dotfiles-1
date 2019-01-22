@@ -12,14 +12,13 @@ command! PackStatus call local#pack#pack_init() | call minpac#status()
 " pack/bundle/start directory.
 
 " add packages to runtime path. Comment out to disable packages
-packadd! ale
 packadd! Apprentice
+packadd! flattened
+packadd! ale
 packadd! autocomplete-flow
-" packadd! editorconfig-vim
 packadd! elm-vim
 packadd! emmet-vim
 packadd! ferret
-packadd! flattened
 packadd! fzf
 packadd! fzf.vim
 packadd! gv.vim
@@ -27,7 +26,6 @@ packadd! indentLine
 packadd! jedi-vim
 packadd! linediff.vim
 packadd! nginx.vim
-packadd! nuake
 packadd! rainbow
 packadd! rust.vim
 packadd! sideways.vim
@@ -37,6 +35,7 @@ packadd! tabular
 packadd! targets.vim
 packadd! typescript-vim
 packadd! ultisnips
+packadd! vim-snippets
 packadd! undotree
 packadd! vim-abolish
 packadd! vim-characterize
@@ -71,14 +70,13 @@ packadd! vim-signature
 packadd! vim-signify
 packadd! vim-sleuth
 packadd! vim-sneak
-packadd! vim-snippets
 packadd! vim-speeddating
-packadd! vim-startify
 packadd! vim-test
 packadd! vim-tmux
 packadd! vim-tmux-clipboard
 packadd! vim-toml
 packadd! vim-unimpaired
+packadd! vim-editorconfig
 packadd! vimtex
 packadd! vimux
 packadd! webapi-vim
@@ -358,8 +356,9 @@ let g:qf_window_bottom = 0
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-let g:EditorConfig_max_line_indicator = "fill"
+let g:editorconfig_blacklist = {
+    \ 'filetype': ['git.*', 'fugitive'],
+    \ 'pattern': ['\.un~$']}
 
 " rust racer
 let g:racer_cmd = "/usr/bin/racer"

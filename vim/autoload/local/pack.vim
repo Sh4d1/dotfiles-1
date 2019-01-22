@@ -41,7 +41,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/w0rp/ale.git', {'type': 'opt'})
   call minpac#add('https://github.com/vimwiki/vimwiki.git', {'type': 'opt', 'branch': 'dev'})
   call minpac#add('https://github.com/tbabej/taskwiki.git', {'type': 'opt', 'do': '!pip install --user -U tasklib'})
-  call minpac#add('https://github.com/mhinz/vim-startify.git', {'type': 'opt'})
   call minpac#add('https://github.com/machakann/vim-sandwich.git', {'type': 'opt'})
   call minpac#add('https://github.com/AndrewRadev/switch.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/tommcdo/vim-exchange.git', {'type': 'opt'})
@@ -53,7 +52,7 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/justinmk/vim-dirvish.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-scriptease.git', {'type': 'opt'})
   call minpac#add('https://github.com/kshenoy/vim-signature.git', {'type': 'opt'})
-  call minpac#add('https://github.com/editorconfig/editorconfig-vim.git', {'type': 'opt'})
+  call minpac#add('https://github.com/sgur/vim-editorconfig.git', {'type': 'opt'})
 
   call minpac#add('https://github.com/mhinz/vim-signify.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-fugitive.git', {'type': 'opt'})
@@ -92,7 +91,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/chr4/nginx.vim.git', {'type': 'opt'})
   call minpac#add('https://github.com/ledger/vim-ledger.git', {'type': 'opt'})
   call minpac#add('https://github.com/janko-m/vim-test.git', {'type': 'opt'})
-  call minpac#add('https://gitlab.com/Lenovsky/nuake.git', {'type': 'opt'})
   call minpac#add('https://github.com/romainl/vim-qlist.git', {'type': 'opt'})
   call minpac#add('https://github.com/romainl/vim-devdocs.git', {'type': 'opt'})
 
