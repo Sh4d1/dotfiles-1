@@ -15,4 +15,6 @@ inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
 inoremap : :<C-g>u
 
-let g:markdown_fenced_languages = ['python', 'c', 'javascript', 'json']
+" this makes everything slow because loads language related files on opening
+" markdown files
+" let g:markdown_fenced_languages = ['python', 'c', 'javascript', 'json']

@@ -54,7 +54,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/tpope/vim-scriptease.git', {'type': 'opt'})
   call minpac#add('https://github.com/kshenoy/vim-signature.git', {'type': 'opt'})
   call minpac#add('https://github.com/editorconfig/editorconfig-vim.git', {'type': 'opt'})
-  call minpac#add('https://github.com/Valloric/MatchTagAlways.git', {'type': 'opt'})
 
   call minpac#add('https://github.com/mhinz/vim-signify.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-fugitive.git', {'type': 'opt'})

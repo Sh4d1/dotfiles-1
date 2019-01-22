@@ -19,7 +19,7 @@ floating_modifier Mod4
 # start a terminal
 bindsym Mod4+Return exec urxvt
 bindsym Mod4+Shift+Return exec urxvt -e nvim "$HOME/wiki/index.md"
-bindsym Mod4+Ctrl+Return exec urxvt -e nvim "$HOME/wiki/diary/$(date +%F).wiki" # today's diary/notes entry
+bindsym Mod4+Ctrl+Return exec urxvt -e nvim "$HOME/wiki/diary/$(date +%F).md" # today's diary/notes entry
 
 # kill focused window
 bindsym Mod4+Shift+q kill

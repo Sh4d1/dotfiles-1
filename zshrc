@@ -335,13 +335,11 @@ KEYTIMEOUT=1
 
 # edit today's journal entry
 today() {
-  nvim "$HOME/wiki/diary/$(date +%F).wiki"
+  nvim "$HOME/wiki/diary/$(date +%F).md"
 }
 
 # open quick note with title
 zet() {
-  # fname=$(sed 's/ /-/' <<< $@)
-  # nvim "$HOME/wiki/$(date +%F-%H%M)-${fname}.wiki"
   nvim --cmd 'let g:startify_disable_at_vimenter = 1' "+Zetedit $*"
 }
 

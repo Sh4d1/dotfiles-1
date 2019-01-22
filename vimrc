@@ -15,7 +15,7 @@ command! PackStatus call local#pack#pack_init() | call minpac#status()
 packadd! ale
 packadd! Apprentice
 packadd! autocomplete-flow
-packadd! editorconfig-vim
+" packadd! editorconfig-vim
 packadd! elm-vim
 packadd! emmet-vim
 packadd! ferret
@@ -26,7 +26,6 @@ packadd! gv.vim
 packadd! indentLine
 packadd! jedi-vim
 packadd! linediff.vim
-packadd! MatchTagAlways
 packadd! nginx.vim
 packadd! nuake
 packadd! rainbow
