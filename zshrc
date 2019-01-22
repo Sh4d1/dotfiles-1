@@ -146,6 +146,7 @@ autoload -Uz compinit edit-command-line
 zle -N edit-command-line
 compinit
 
+autoload zmv
 
 
 # gopass completions (now integrated in archlinux)
@@ -243,8 +244,7 @@ alias swipl-test='swipl -g true -t halt. -s'
 
 alias x=startx
 
-alias wi='nvim +VimwikiIndex'
-alias diary='nvim +VimwikiDiaryIndex'
+alias wi='nvim ~/wiki/index.md'
 
 alias hl='hledger'
 
@@ -300,6 +300,10 @@ peek() {
   else
     echo "peek must be run inside tmux"
   fi
+}
+
+cheat() {
+  curl "cht.sh/$1"
 }
 
 # ascii weather over http https://github.com/chubin/wttr.in

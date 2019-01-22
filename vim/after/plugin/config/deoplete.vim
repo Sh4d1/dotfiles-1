@@ -27,10 +27,10 @@ endif
 
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
-" for triggering vimwiki link omnicompletion
-call deoplete#custom#var('omni', 'input_patterns', {
-    \ 'vimwiki': '\[\[[^\s]*',
-    \})
+" " for triggering vimwiki link omnicompletion
+" call deoplete#custom#var('omni', 'input_patterns', {
+"     \ 'vimwiki': '\[\[[^\s]*',
+"     \})
 
 " deoplete plugins
 

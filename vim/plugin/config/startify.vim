@@ -25,10 +25,9 @@ let g:startify_custom_footer =
 
 let g:startify_commands = [
       \ {'S': 'Sedit'},
-      \ {'T': 'VimwikiMakeDiaryNote'},
       \ {'U': 'PackUpdate'},
       \ {'V': 'GV'},
-      \ {'W': 'VimwikiIndex'},
+      \ {'W': 'e ~/wiki/index.md'},
       \ ]
 
 

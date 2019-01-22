@@ -36,7 +36,6 @@ packadd! splitjoin.vim
 packadd! switch.vim
 packadd! tabular
 packadd! targets.vim
-packadd! taskwiki
 packadd! typescript-vim
 packadd! ultisnips
 packadd! undotree
@@ -83,7 +82,6 @@ packadd! vim-toml
 packadd! vim-unimpaired
 packadd! vimtex
 packadd! vimux
-packadd! vimwiki
 packadd! webapi-vim
 packadd! wmgraphviz.vim
 
