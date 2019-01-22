@@ -4,7 +4,7 @@
 These are my dotfiles, including other setup tasks such as installing software, creating directories, etc.
 Shared here so you can browse through and get ideas. And everyone needs a dotfiles repo hey?
 
-Copyright © 2018 Samuel Walladge
+Copyright © 2017-2019 Samuel Walladge
 
 
 ## Installing
@@ -24,7 +24,7 @@ RCRC=~/dotfiles/rcrc rcup
 
 ### Post install tasks
 
-- run `:PlugInstall` in vim/nvim to install plugins
+- run `:PackUpdate` in vim/nvim to install plugins
 
 ## Notes
 
@@ -92,7 +92,7 @@ RCRC=~/dotfiles/rcrc rcup
 
 This repository contains both original and third party content.
 Content can be assumed to be original unless stated otherwise.
-Original content is copyright © 2017 Samuel Walladge, and can be used and distributed under the terms of
+Original content is copyright © 2017-2019 Samuel Walladge, and can be used and distributed under the terms of
 the GPLv3. All third party content is copyright their respective authors and bound by their original licenses.
 
 All attempts have been made to identify third party content within the repository, with sources and attribution given
