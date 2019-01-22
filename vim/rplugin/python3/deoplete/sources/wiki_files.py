@@ -4,7 +4,7 @@
 
 import os
 import re
-from os.path import exists, dirname
+from os.path import relpath, dirname
 import glob
 
 from deoplete.source.base import Base
@@ -16,6 +16,7 @@ class Source(Base):
     def __init__(self, vim):
         super().__init__(vim)
 
+        self.vim = vim
         self.name = 'wiki_files'
         self.mark = '[WL]' # WikiLink
         self.min_pattern_length = 0
@@ -31,10 +32,14 @@ class Source(Base):
         path = '/home/samuel/wiki/'
         len_path = len(path)
 
+        cur_file_dir = dirname(self.vim.buffers[context['bufnr']].name)
+
         for fname in glob.iglob(path + '**/*', recursive=True):
+            fname = relpath(fname, cur_file_dir)
+
             if fname.endswith('.md'):
                 fname = fname[:-3]
-            fname = fname[len_path:]
+
             contents.append(fname)
 
         return contents
