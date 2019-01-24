@@ -55,6 +55,9 @@ bindsym Mod4+Shift+d exec --no-startup-id dmenu_run # still handy to have though
 bindsym Mod4+Shift+g exec --no-startup-id urxvt -title "GHOST" -e "edit-anywhere"
 bindsym Mod4+Control+g exec --no-startup-id urxvt -title "GHOST" -e "edit-clip"
 
+# find and open a wiki page; requires rofi and the wiki pages in $HOME/wiki/
+bindsym Mod4+w exec --no-startup-id open-wiki-page
+
 # change focus
 bindsym Mod4+$left focus left
 bindsym Mod4+$down focus down
