@@ -69,5 +69,6 @@ export ANSIBLE_NOCOWS=1
 # for ledger/hledger
 export LEDGER_FILE="$HOME/ledger/main.ledger"
 
+export npm_config_prefix=~/.node_modules
 
 [[ -f ~/.zshenv_local ]] && . ~/.zshenv_local
