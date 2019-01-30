@@ -181,7 +181,7 @@ set foldclose=all
 set conceallevel=2
 set concealcursor=
 
-set completeopt=menu
+set completeopt=menu,preview
 
 " always show to avoid visual interruptions
 set signcolumn=yes

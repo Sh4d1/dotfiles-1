@@ -13,3 +13,10 @@ vunmap as
 ounmap as
 vunmap is
 ounmap is
+
+" also I use surround style keymappings, so these can go
+unmap sa
+unmap sd
+unmap sdb
+unmap sr
+unmap srb

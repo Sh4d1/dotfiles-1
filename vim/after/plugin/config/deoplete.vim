@@ -36,3 +36,13 @@ call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
 " XXX: assumes vimtex installed
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+
+" call deoplete#custom#option('sources', {
+"   \ '_': ['buffer'],
+"   \ 'cpp': ['buffer', 'tag'],
+"   \})
+
+call deoplete#custom#option('ignore_sources',
+      \ {
+        \ 'markdown': ['tag']
+    \ })
