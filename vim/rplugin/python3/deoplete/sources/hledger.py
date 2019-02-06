@@ -22,7 +22,7 @@ class Source(Base):
         self.min_pattern_length = 100 # to prevent 
         self.filetypes = ['ledger']
         self.accounts = []
-        self.input_pattern = r'^    ([\w:]|[\w:]\s[\w:])+'
+        self.input_pattern = r'^    ([\w:-]|[\w:-]\s[\w:-])+'
 
     def get_complete_position(self, context):
         # accounts always indented by 4 spaces

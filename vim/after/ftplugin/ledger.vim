@@ -12,7 +12,7 @@ function! s:inAccount()
 
   let l:lineNr = line('.')
 
-  let l:pat = '\w\([0-9A-Za-z_:]\| [0-9A-Za-z_:]\)*'
+  let l:pat = '\w\([0-9A-Za-z_:-]\| [0-9A-Za-z_:-]\)*'
 
   if (!search('^    ' . l:pat, 'ce', l:lineNr))
     return
@@ -36,7 +36,7 @@ function! s:inAccountSection()
 
   let l:lineNr = line('.')
 
-  let l:pat = '\w\(\w\| \w\)*'
+  let l:pat = '[0-9A-Za-z_-]\([0-9A-Za-z_-]\| [0-9A-Za-z_-]\)*'
 
   if (!search(l:pat, 'ce', l:lineNr))
     return
@@ -66,7 +66,7 @@ function! s:endAccountSection()
 
   normal! lv
 
-  call search('\w\([0-9A-Za-z_:]\| [0-9A-Za-z_:]\)*', 'ce', l:lineNr)
+  call search('\w\([0-9A-Za-z_:-]\| [0-9A-Za-z_:-]\)*', 'ce', l:lineNr)
 
   " restore magic
   let &magic = l:magic

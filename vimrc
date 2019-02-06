@@ -85,7 +85,6 @@ packadd! wmgraphviz.vim
 " load neovim-only plugins
 if has('nvim')
   packadd! deoplete.nvim
-  packadd! deoplete-khard
   packadd! deoplete-jedi
   packadd! deoplete-go
   packadd! deoplete-emoji
@@ -132,7 +131,7 @@ set undofile
 
 set updatetime=500
 
-set listchars=tab:»·,trail:•,nbsp:•,extends:»,precedes:«
+set listchars=tab:»·,trail:•,nbsp:▄,extends:»,precedes:«
 set list
 
 set wildmenu

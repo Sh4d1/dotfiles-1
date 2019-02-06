@@ -101,7 +101,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/zchee/deoplete-jedi', {'type': 'opt'})
   call minpac#add('https://github.com/zchee/deoplete-go', {'do': '!make', 'type': 'opt'})
   call minpac#add('https://github.com/fszymanski/deoplete-emoji', {'type': 'opt'})
-  call minpac#add('https://github.com/nicoe/deoplete-khard', {'type': 'opt'})
   call minpac#add('https://github.com/eagletmt/neco-ghc', {'type': 'opt'})
 
 endfunction
