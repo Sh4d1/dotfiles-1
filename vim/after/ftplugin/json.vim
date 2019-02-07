@@ -1,4 +1,7 @@
 
+" don't creepily hide quotes
 set conceallevel=0
 
-setlocal formatprg=jq\ -sM\ .
+" magic
+" EXEC: jq
+setlocal formatprg=jq\ -M\ .

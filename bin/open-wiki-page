@@ -3,13 +3,13 @@
 # swalladge 2019
 #
 # Fuzzy find and open a private wiki page.
+# EXEC: rg
 
 shopt -s nullglob globstar
 
 cd "$HOME/wiki"
-files=( **/* )
 
-file=$(printf '%s\n' "${files[@]}" | rofi -dmenu -no-custom  -i -p "wiki" "$@")
+file=$(rg --files --follow | rofi -dmenu -no-custom  -i -p "wiki" "$@")
 
 [[ -n "$file" ]] || exit
 

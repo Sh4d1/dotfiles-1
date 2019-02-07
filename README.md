@@ -32,7 +32,10 @@ RCRC=~/dotfiles/rcrc rcup
   post](https://robots.thoughtbot.com/rcm-for-rc-files-in-dotfiles-repos) and
   [github repo](https://github.com/thoughtbot/rcm) for more info on management
   commands.
-
+- use a comment with the contents `EXEC: <progname>` to show that a particular
+  executable is required to work. This should be any executable that needs to
+  be present that isn't installed with the dotfiles. This also makes it easily
+  greppable.
 
 ## Config included
 

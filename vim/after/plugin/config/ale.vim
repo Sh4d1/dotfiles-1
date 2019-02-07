@@ -12,5 +12,4 @@ augroup ALEProgress
 augroup end
 
 
-nnoremap <leader>f :ALEFix<cr>
 nnoremap <silent> yoa :ALEToggle<cr>

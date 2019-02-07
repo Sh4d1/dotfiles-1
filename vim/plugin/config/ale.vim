@@ -20,27 +20,3 @@ let g:ale_linters = {
       \ 'haskell': [],
       \ 'ledger': ['ledger']
       \ }
-
-let g:ale_fixers = {
-      \ 'javascript': [
-      \    'eslint'
-      \ ],
-      \ 'typescript': [
-      \    'tslint'
-      \ ],
-      \ 'python': [
-      \    'black',
-      \    'isort'
-      \ ],
-      \ 'css': [
-      \    'prettier'
-      \ ],
-      \ 'rust': [
-      \    'rustfmt'
-      \ ],
-      \ 'c': [
-      \    'clang-format'
-      \ ],
-      \ }
-
-let g:ale_c_clangeformat_options = '-style=Mozilla'

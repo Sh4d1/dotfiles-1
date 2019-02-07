@@ -421,6 +421,9 @@ let g:jsx_ext_required = 0
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 
+xnoremap <silent> id :<c-u>normal! ggVG<cr>
+onoremap <silent> id :<c-u>normal! ggVG<cr>
+
 " Finally set the colorscheme. Set at the end so previous autocmds are trigger
 try
   colorscheme flattened_dark
