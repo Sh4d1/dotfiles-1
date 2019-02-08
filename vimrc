@@ -24,11 +24,9 @@ packadd! fzf.vim
 packadd! gv.vim
 packadd! indentLine
 packadd! jedi-vim
-packadd! linediff.vim
 packadd! nginx.vim
 packadd! rainbow
 packadd! rust.vim
-packadd! sideways.vim
 packadd! splitjoin.vim
 packadd! switch.vim
 packadd! tabular
@@ -56,7 +54,6 @@ packadd! vim-javascript
 packadd! vim-jsx
 packadd! vim-ledger
 packadd! vim-lion
-packadd! vim-obsession
 packadd! vim-qf
 packadd! vim-qlist
 packadd! vim-racer
@@ -284,16 +281,6 @@ endif
 
 nnoremap <silent> du :diffupdate<CR>
 
-" Sideways
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
-
-nnoremap <silent> >, :silent :SidewaysRight<cr>
-nnoremap <silent> <, :silent :SidewaysLeft<cr>
-
-
 nnoremap <silent> <leader>zz :silent :call local#functions#striptrailingwhitespace()<cr>
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -331,6 +318,7 @@ augroup END
 augroup vimrc
   autocmd!
   " autocmd BufHidden,FocusLost,InsertLeave ?* nested silent! wa
+  autocmd FocusLost ?* nested silent! wa
   autocmd ColorScheme * call local#functions#sethighlight()
   autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime | endif
 augroup END
