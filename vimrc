@@ -15,7 +15,6 @@ command! PackStatus call local#pack#pack_init() | call minpac#status()
 packadd! Apprentice
 packadd! flattened
 packadd! ale
-packadd! autocomplete-flow
 packadd! elm-vim
 packadd! emmet-vim
 packadd! ferret
@@ -83,6 +82,7 @@ if has('nvim')
   packadd! deoplete-go
   packadd! deoplete-emoji
   packadd! neco-ghc
+  packadd! autocomplete-flow
 endif
 
 set nocompatible

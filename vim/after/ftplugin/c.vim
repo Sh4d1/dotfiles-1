@@ -1,2 +1,2 @@
 
-setlocal formatprg=clang-format\ -style=Mozilla
+setlocal equalprg=clang-format\ -style=Mozilla

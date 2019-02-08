@@ -4,4 +4,4 @@ set conceallevel=0
 
 " magic
 " EXEC: jq
-setlocal formatprg=jq\ -M\ .
+setlocal equalprg=jq\ -M\ .
