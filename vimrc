@@ -57,7 +57,6 @@ packadd! vim-lion
 packadd! vim-qf
 packadd! vim-qlist
 packadd! vim-racer
-packadd! vim-repeat
 packadd! vim-rhubarb
 packadd! vim-sandwich
 packadd! vim-schlepp
@@ -66,8 +65,6 @@ packadd! vim-searchindex
 packadd! vim-signature
 packadd! vim-signify
 packadd! vim-sleuth
-packadd! vim-sneak
-packadd! vim-speeddating
 packadd! vim-test
 packadd! vim-tmux
 packadd! vim-tmux-clipboard
@@ -205,8 +202,14 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let mapleader = "\<space>"
 let maplocalleader = "\<space>"
 
+" OPTIONAL MACROS
+
 " better % navigation
 runtime macros/matchit.vim
+
+" vim-sandwich
+runtime macros/local/sandwich.vim
+
 
 " Status Line
 set laststatus=2
