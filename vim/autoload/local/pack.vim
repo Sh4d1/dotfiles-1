@@ -12,27 +12,18 @@ function! local#pack#pack_init() abort
   " self manage
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-  " libraries that are dependencies for other plugins
-  " webapi currently only used by rust.vim for :RustPlay
   call minpac#add('https://github.com/mattn/webapi-vim.git', {'type': 'opt'})
-
-  " flattened is a solarized colorscheme
   call minpac#add('https://github.com/romainl/flattened.git', {'type': 'opt'})
-
   call minpac#add('https://github.com/romainl/Apprentice.git', {'type': 'opt'})
   call minpac#add('https://github.com/ap/vim-css-color.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-characterize.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-sleuth.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-eunuch.git', {'type': 'opt'})
-
-  " more focused alternative to vim rsi (readline mappings)
   call minpac#add('https://github.com/vim-utils/vim-husk.git', {'type': 'opt'})
-
   call minpac#add('https://github.com/machakann/vim-highlightedyank.git', {'type': 'opt'})
   call minpac#add('https://github.com/Yggdroot/indentLine.git', {'type': 'opt'})
   call minpac#add('https://github.com/google/vim-searchindex.git', {'type': 'opt'})
   call minpac#add('https://github.com/roxma/vim-tmux-clipboard.git', {'type': 'opt'})
-  call minpac#add('https://github.com/cspeterson/vim-convert.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-commentary.git', {'type': 'opt'})
   call minpac#add('https://github.com/ludovicchabant/vim-gutentags.git', {'type': 'opt'})
   call minpac#add('https://github.com/luochen1990/rainbow.git', {'type': 'opt'})
@@ -47,15 +38,12 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/tpope/vim-scriptease.git', {'type': 'opt'})
   call minpac#add('https://github.com/kshenoy/vim-signature.git', {'type': 'opt'})
   call minpac#add('https://github.com/sgur/vim-editorconfig.git', {'type': 'opt'})
-
   call minpac#add('https://github.com/mhinz/vim-signify.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-fugitive.git', {'type': 'opt'})
   call minpac#add('https://github.com/tpope/vim-rhubarb.git', {'type': 'opt'})
   call minpac#add('https://github.com/junegunn/gv.vim.git', {'type': 'opt'})
-
   call minpac#add('https://github.com/junegunn/fzf.git', {'type': 'opt', 'do': '!./install --bin'})
   call minpac#add('https://github.com/junegunn/fzf.vim.git', {'type': 'opt'}) " depends on fzf above
-
   call minpac#add('https://github.com/SirVer/ultisnips.git', {'type': 'opt'})
   call minpac#add('https://github.com/honza/vim-snippets.git', {'type': 'opt'})
   call minpac#add('https://github.com/tommcdo/vim-lion.git', {'type': 'opt'})
@@ -85,14 +73,13 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/janko-m/vim-test.git', {'type': 'opt'})
   call minpac#add('https://github.com/romainl/vim-qlist.git', {'type': 'opt'})
   call minpac#add('https://github.com/romainl/vim-devdocs.git', {'type': 'opt'})
-
   call minpac#add('https://github.com/Shougo/deoplete.nvim.git', {'do': ':UpdateRemotePlugins', 'type': 'opt' })
-
-  " deoplete plugins
   call minpac#add('https://github.com/wokalski/autocomplete-flow', {'type': 'opt'})
   call minpac#add('https://github.com/zchee/deoplete-jedi', {'type': 'opt'})
   call minpac#add('https://github.com/zchee/deoplete-go', {'do': '!make', 'type': 'opt'})
   call minpac#add('https://github.com/fszymanski/deoplete-emoji', {'type': 'opt'})
   call minpac#add('https://github.com/eagletmt/neco-ghc', {'type': 'opt'})
+  call minpac#add('https://github.com/roxma/nvim-yarp', {'type': 'opt'})
+  call minpac#add('https://github.com/roxma/vim-hug-neovim-rpc', {'type': 'opt'})
 
 endfunction

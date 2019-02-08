@@ -11,33 +11,36 @@ command! PackStatus call local#pack#pack_init() | call minpac#status()
 " commenting it out here instead of needing to move the directory out of the
 " pack/bundle/start directory.
 
+" PACKAGE LIST
 " add packages to runtime path. Comment out to disable packages
-packadd! Apprentice
-packadd! flattened
+" Colorschemes
+packadd! flattened " solarized
+packadd! Apprentice " alternate dark theme
+
+
+" GENERAL
+
+" more focused alternative to vim rsi (readline mappings)
+packadd! vim-husk
+
+packadd! indentLine
 packadd! ale
-packadd! elm-vim
 packadd! emmet-vim
 packadd! ferret
 packadd! fzf
 packadd! fzf.vim
 packadd! gv.vim
-packadd! indentLine
-packadd! jedi-vim
-packadd! nginx.vim
 packadd! rainbow
-packadd! rust.vim
 packadd! splitjoin.vim
 packadd! switch.vim
 packadd! tabular
 packadd! targets.vim
-packadd! typescript-vim
 packadd! ultisnips
 packadd! vim-snippets
 packadd! undotree
 packadd! vim-abolish
 packadd! vim-characterize
 packadd! vim-commentary
-packadd! vim-convert
 packadd! vim-css-color
 packadd! vim-devdocs
 packadd! vim-dirvish
@@ -45,17 +48,11 @@ packadd! vim-eunuch
 packadd! vim-exchange
 packadd! vim-fugitive
 packadd! vim-gnupg
-packadd! vim-go
 packadd! vim-gutentags
 packadd! vim-highlightedyank
-packadd! vim-husk
-packadd! vim-javascript
-packadd! vim-jsx
-packadd! vim-ledger
 packadd! vim-lion
 packadd! vim-qf
 packadd! vim-qlist
-packadd! vim-racer
 packadd! vim-rhubarb
 packadd! vim-sandwich
 packadd! vim-schlepp
@@ -65,24 +62,49 @@ packadd! vim-signature
 packadd! vim-signify
 packadd! vim-sleuth
 packadd! vim-test
-packadd! vim-tmux
 packadd! vim-tmux-clipboard
-packadd! vim-toml
 packadd! vim-unimpaired
 packadd! vim-editorconfig
-packadd! vimtex
 packadd! vimux
-packadd! webapi-vim
-packadd! wmgraphviz.vim
 
-" load neovim-only plugins
+
+" language-specific
+packadd! rust.vim
+packadd! elm-vim
+packadd! jedi-vim
+packadd! wmgraphviz.vim
+packadd! nginx.vim
+packadd! typescript-vim
+packadd! vim-go
+packadd! vim-javascript
+packadd! vim-jsx
+packadd! vim-ledger
+packadd! vim-racer
+packadd! vim-tmux
+packadd! vim-toml
+packadd! vimtex
+
+
+" deps
+packadd! webapi-vim
+
+
+" deoplete and plugins
+packadd! deoplete.nvim
+packadd! deoplete-jedi
+packadd! deoplete-go
+packadd! deoplete-emoji
+packadd! neco-ghc
+packadd! autocomplete-flow
+
+
 if has('nvim')
-  packadd! deoplete.nvim
-  packadd! deoplete-jedi
-  packadd! deoplete-go
-  packadd! deoplete-emoji
-  packadd! neco-ghc
-  packadd! autocomplete-flow
+  " neovim-only plugins
+
+else
+  " vim only plugins
+  packadd! nvim-yarp
+  packadd! vim-hug-neovim-rpc
 endif
 
 set nocompatible
