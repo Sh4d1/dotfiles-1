@@ -21,7 +21,7 @@ class Source(Base):
         self.mark = '[WL]' # WikiLink
         self.min_pattern_length = 0
         self.rank = 450
-        self.filetypes = ['wiki.markdown']
+        self.filetypes = ['privwiki']
 
     def get_complete_position(self, context):
         pos = context['input'].rfind('[[')

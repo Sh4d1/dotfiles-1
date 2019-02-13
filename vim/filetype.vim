@@ -12,5 +12,5 @@ augroup filetypedetect
   au! BufNewFile,BufRead /tmp/neomutt*              setf mail
   au! BufNewFile,BufRead *.tsx                      setf typescript.jsx
   au! BufNewFile,BufRead /dev/shm/gopass*,/dev/shm/pass*    setf pass
-  au! BufNewFile,BufRead /home/samuel/wiki/*.md    setf wiki.markdown
+  au! BufNewFile,BufRead /home/samuel/wiki/*.md    setf privwiki.markdown
 augroup END
