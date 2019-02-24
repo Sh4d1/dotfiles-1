@@ -23,3 +23,5 @@ call ale#linter#Define('ledger', {
 \   'callback': 'ale_linters#ledger#ledger#Handle',
 \})
 
+
+" TODO: refactor this into a :compiler config

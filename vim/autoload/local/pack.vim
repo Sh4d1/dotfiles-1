@@ -81,5 +81,6 @@ function! local#pack#pack_init() abort
   call minpac#add('https://github.com/eagletmt/neco-ghc', {'type': 'opt'})
   call minpac#add('https://github.com/roxma/nvim-yarp', {'type': 'opt'})
   call minpac#add('https://github.com/roxma/vim-hug-neovim-rpc', {'type': 'opt'})
+  call minpac#add('https://github.com/tpope/vim-dispatch', {'type': 'opt'})
 
 endfunction

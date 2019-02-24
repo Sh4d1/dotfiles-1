@@ -24,7 +24,7 @@ packadd! Apprentice " alternate dark theme
 packadd! vim-husk
 
 packadd! indentLine
-packadd! ale
+" packadd! ale
 packadd! emmet-vim
 packadd! ferret
 packadd! fzf
@@ -66,6 +66,7 @@ packadd! vim-tmux-clipboard
 packadd! vim-unimpaired
 packadd! vim-editorconfig
 packadd! vimux
+packadd! vim-dispatch
 
 
 " language-specific
